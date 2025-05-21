@@ -17,8 +17,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
-	// Save operation
+	
+	/**
+	 * Create a new employee
+	 *
+	 * @param name string
+	 * @return Employee object
+	 */
+	//Hack method? MCP Client/Agent/LLM for saveEmployee(Employee employee) always wanted to pass in an ID that it made up.
+	@Tool(name = "saveEmployeeUsingName", description = "Creates a new employee based on the passed name.")
+	public Employee saveEmployeeUsingName(String name) {
+		Employee employee = new Employee();
+		employee.setName(name);
+		return employeeRepository.save(employee);
+	}
+	
+	/**
+	 * Create a new employee
+	 *
+	 * @param employee object
+	 * @return Employee object
+	 */
 	@Override
 	public Employee saveEmployee(Employee employee) {
 		return employeeRepository.save(employee);

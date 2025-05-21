@@ -1,10 +1,3 @@
-/*
-CREATE TABLE employee (
-    employeeId INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
-*/
-
 INSERT INTO employee (employee_id, name) VALUES (1, 'Richard');
 INSERT INTO employee (employee_id, name) VALUES (2, 'Mary');
 INSERT INTO employee (employee_id, name) VALUES (3, 'Susan');
