@@ -14,7 +14,7 @@ public class HumanresourcesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HumanresourcesApplication.class, args);
 	}
-	
+
 	@Bean
 	public ToolCallbackProvider weatherTools(EmployeeService employeeService) {
 		return MethodToolCallbackProvider.builder().toolObjects(employeeService).build();

@@ -6,17 +6,18 @@ import com.megacorp.humanresources.entity.Employee;
 
 public interface EmployeeService {
 	// Save operation
-    Employee saveEmployee(Employee employee);
+	Employee saveEmployee(Employee employee);
 
-    // Read operation
-    List<Employee> fetchEmployeeList();
+	// Read operation
+	List<Employee> fetchEmployeeList();
 
-    // Update operation
-    Employee updateEmployee(Employee employee,
-                                Long dId);
+	// Update operation
+	Employee updateEmployee(Employee employee, Long dId);
 
-    // Delete operation
-    void deleteEmployeeById(Long employeeId);
+	// Delete operation
+	void deleteEmployeeById(Long employeeId);
+
+	// Get operation
+	Employee getEmployeeById(Long employeeId);
 
 }
-	

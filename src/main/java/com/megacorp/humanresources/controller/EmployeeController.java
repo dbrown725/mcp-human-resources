@@ -14,40 +14,37 @@ import org.springframework.web.bind.annotation.*;
 //Class
 public class EmployeeController {
 
- @Autowired private EmployeeService employeeService;
+	@Autowired
+	private EmployeeService employeeService;
 
- // Save operation
- @PostMapping("/employees")
- public Employee saveEmployee(
-     @Valid @RequestBody Employee employee)
- {
-     return employeeService.saveEmployee(employee);
- }
+	// Save operation
+	@PostMapping("/employees")
+	public Employee saveEmployee(@Valid @RequestBody Employee employee) {
+		return employeeService.saveEmployee(employee);
+	}
 
- // Read operation
- @GetMapping("/employees")
- public List<Employee> fetchEmployeeList()
- {
-     return employeeService.fetchEmployeeList();
- }
+	// Read operation
+	@GetMapping("/employees")
+	public List<Employee> fetchEmployeeList() {
+		return employeeService.fetchEmployeeList();
+	}
 
- // Update operation
- @PutMapping("/employees/{id}")
- public Employee
- updateEmployee(@RequestBody Employee employee,
-                  @PathVariable("id") Long employeeId)
- {
-     return employeeService.updateEmployee(
-         employee, employeeId);
- }
+	// Update operation
+	@PutMapping("/employees/{id}")
+	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long employeeId) {
+		return employeeService.updateEmployee(employee, employeeId);
+	}
 
- // Delete operation
- @DeleteMapping("/employees/{id}")
- public String deleteEmployeeById(@PathVariable("id")
-                                    Long employeeId)
- {
-     employeeService.deleteEmployeeById(
-         employeeId);
-     return "Deleted Successfully";
- }
+	// Delete operation
+	@DeleteMapping("/employees/{id}")
+	public String deleteEmployeeById(@PathVariable("id") Long employeeId) {
+		employeeService.deleteEmployeeById(employeeId);
+		return "Deleted Successfully";
+	}
+	
+	// Get operation
+	@GetMapping("/employees/{id}")
+	public Employee EmployeeById(@PathVariable("id") Long employeeId) {
+		return employeeService.getEmployeeById(employeeId);
+	}
 }
