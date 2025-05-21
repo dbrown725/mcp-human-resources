@@ -8,7 +8,6 @@ import java.util.Objects;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 
 //Annotation
 @Service
@@ -58,6 +57,18 @@ public class EmployeeServiceImpl
 
 
      return employeeRepository.save(depDB);
+ }
+ 
+ /**
+  * Get a single employee by ID
+  *
+  * @param id The employee ID
+  * @return Employee object
+  */
+ @Tool(name = "getEmployeeById", description = "Get a single employee by ID")
+ public Employee getEmployeeById(Long employeeId) {
+   return employeeRepository.findById(employeeId)
+           .get();
  }
 
  // Delete operation
