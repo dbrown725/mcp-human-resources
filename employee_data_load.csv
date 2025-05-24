@@ -1,0 +1,1207 @@
+FIRST_NAME,LAST_NAME,TITLE,DEPARTMENT,BUSINESS_UNIT,GENDER,ETHNICITY,AGE,HIRE_DATE,ANNUAL_SALARY
+Kai,Le,Controls Engineer,Engineering,Manufacturing,Male,Asian,47,2022-02-05,92368 
+Robert,Patel,Analyst,Sales,Corporate,Male,Asian,58,2013-10-23,45703 
+Cameron,Lo,Network Administrator,IT,Research & Development,Male,Asian,34,2019-03-24,83576 
+Harper,Castillo,IT Systems Architect,IT,Corporate,Female,Latino,39,2018-04-07,98062 
+Harper,Dominguez,Director,Engineering,Corporate,Female,Latino,42,2005-06-18,175391 
+Ezra,Vu,Network Administrator,IT,Manufacturing,Male,Asian,62,2004-04-22,66227 
+Jade,Hu,Sr. Analyst,Accounting,Specialty Products,Female,Asian,58,2009-06-27,89744 
+Miles,Chang,Analyst II,Finance,Corporate,Male,Asian,62,1999-02-19,69674 
+Gianna,Holmes,System Administrator,IT,Manufacturing,Female,Caucasian,38,2011-09-09,97630 
+Jameson,Thomas,Manager,Finance,Specialty Products,Male,Caucasian,52,2015-02-05,105879 
+Jameson,Pena,Systems Analyst,IT,Manufacturing,Male,Latino,49,2003-10-12,40499 
+Bella,Wu,Sr. Analyst,Finance,Specialty Products,Female,Asian,63,2014-08-03,71418 
+Jose,Wong,Director,IT,Manufacturing,Male,Asian,45,2017-11-15,150558 
+Lucas,Richardson,Manager,Marketing,Corporate,Male,Caucasian,36,2018-07-22,118912 
+Jacob,Moore,Sr. Manager,Marketing,Corporate,Male,Black,42,2021-03-24,131422 
+Luna,Lu,IT Systems Architect,IT,Corporate,Female,Asian,62,1997-07-26,64208 
+Bella,Tran,Vice President,Engineering,Specialty Products,Female,Asian,45,2010-08-05,254486 
+Ivy,Chau,Analyst,Sales,Specialty Products,Female,Asian,61,2019-03-03,54811 
+Jordan,Kumar,Service Desk Analyst,IT,Specialty Products,Male,Asian,29,2017-11-11,95729 
+Sophia,Gutierrez,Manager,Accounting,Specialty Products,Female,Latino,63,2009-02-08,102649 
+Eli,Dang,Sr. Manager,Accounting,Specialty Products,Male,Asian,45,2015-11-16,122875 
+Lillian,Lewis,Technical Architect,IT,Research & Development,Female,Black,43,2013-08-14,83323 
+Serenity,Cao,Account Representative,Sales,Manufacturing,Female,Asian,31,2018-10-21,66721 
+Parker,Lai,Vice President,Accounting,Specialty Products,Male,Asian,48,2006-11-29,246400 
+Charles,Simmons,Manager,Sales,Specialty Products,Male,Caucasian,55,1997-10-27,113525 
+Jayden,Luu,Director,Accounting,Manufacturing,Male,Asian,64,2004-05-13,184342 
+Brooks,Richardson,Director,Marketing,Specialty Products,Male,Caucasian,58,2020-11-24,151341 
+Ivy,Thompson,Manager,Marketing,Manufacturing,Female,Caucasian,50,2004-08-11,118900 
+Peyton,Wright,Sr. Manager,Marketing,Corporate,Female,Black,41,2017-05-13,153370 
+Wyatt,Dinh,System Administrator,IT,Specialty Products,Male,Asian,50,2002-03-15,72860 
+Ruby,Alexander,Vice President,Finance,Research & Development,Female,Caucasian,59,2001-08-13,255610 
+Axel,Oh,Sr. Analyst,Sales,Corporate,Male,Asian,26,2020-10-24,84962 
+Axel,Ramirez,Manager,Human Resources,Specialty Products,Male,Latino,55,2017-12-04,103795 
+Liliana,Chang,Service Desk Analyst,IT,Corporate,Female,Asian,32,2018-01-11,97509 
+Leonardo,Carter,Business Partner,Human Resources,Specialty Products,Male,Caucasian,50,2022-09-07,54931 
+Landon,Gonzales,Test Engineer,Engineering,Specialty Products,Male,Latino,54,2009-08-30,88689 
+Amelia,Dominguez,Sr. Manager,Accounting,Corporate,Female,Latino,31,2015-09-23,158184 
+Silas,Ross,Analyst,Marketing,Research & Development,Male,Caucasian,47,2016-02-10,48523 
+Jeremiah,Cheng,Sr. Analyst,Marketing,Specialty Products,Male,Asian,26,2022-02-05,70946 
+Chloe,Chin,Sr. Manager,Finance,Specialty Products,Female,Asian,62,2021-11-13,134487 
+Ella,Martinez,Sr. Analyst,Finance,Research & Development,Female,Latino,35,2012-04-06,76111 
+Gianna,Jones,Manager,Accounting,Research & Development,Female,Caucasian,48,1998-09-26,119220 
+Austin,Chow,Vice President,Accounting,Manufacturing,Male,Asian,35,2021-04-11,180858 
+Ella,Chen,Manager,Accounting,Specialty Products,Female,Asian,45,2005-11-10,114072 
+Ruby,Kaur,Test Engineer,Engineering,Research & Development,Female,Asian,26,2021-06-26,91672 
+Savannah,Morales,Analyst II,Marketing,Corporate,Female,Latino,48,2005-01-26,71542 
+Luca,Powell,IT Coordinator,IT,Specialty Products,Male,Caucasian,33,2016-12-18,54700 
+Parker,Thao,Analyst II,Sales,Corporate,Male,Asian,55,2011-05-08,65022 
+Ryan,Vo,Cloud Infrastructure Architect,IT,Research & Development,Male,Asian,38,2011-04-12,65109 
+Isabella,Ngo,Manager,Accounting,Specialty Products,Female,Asian,49,2022-01-01,126598 
+Leah,Vega,Cloud Infrastructure Architect,IT,Corporate,Female,Latino,52,2018-06-07,72388 
+Jaxson,Liu,Vice President,Finance,Corporate,Male,Asian,27,2021-05-18,205216 
+Santiago,Ross,Enterprise Architect,IT,Specialty Products,Male,Caucasian,34,2012-12-13,74004 
+Layla,Bell,Vice President,Engineering,Corporate,Female,Caucasian,65,2001-07-26,203030 
+Bella,Morales,Director,Sales,Specialty Products,Female,Latino,38,2016-05-10,194864 
+Eliza,Kang,Computer Systems Manager,IT,Manufacturing,Female,Asian,63,2002-01-27,76659 
+Gabriel,Reyes,Manager,Sales,Corporate,Male,Latino,42,2005-06-10,101630 
+Piper,Garcia,Sr. Manager,Sales,Research & Development,Female,Latino,60,1993-11-24,126929 
+Jacob,Cheng,Director,Sales,Manufacturing,Male,Asian,47,1999-11-26,155890 
+Nathan,Hong,Director,Finance,Corporate,Male,Asian,50,2019-10-02,150631 
+Chloe,Kim,Sr. Analyst,Sales,Specialty Products,Female,Asian,39,2012-07-06,72850 
+Isaac,Guzman,Account Representative,Sales,Corporate,Male,Latino,46,2010-08-18,57951 
+Julian,Ford,Analyst II,Sales,Manufacturing,Male,Caucasian,50,2010-07-29,70340 
+Kinsley,Liang,Automation Engineer,Engineering,Manufacturing,Female,Asian,55,2008-08-25,98221 
+Wesley,Yu,Sr. Manager,Sales,Specialty Products,Male,Asian,43,2003-09-24,127175 
+Serenity,Martin,Sr. Analyst,Finance,Manufacturing,Female,Black,26,2021-05-16,97542 
+Ethan,Sanchez,Sr. Analyst,Marketing,Research & Development,Male,Latino,34,2019-05-15,81646 
+David,Sanchez,Director,Sales,Specialty Products,Male,Latino,38,2009-07-05,182055 
+Elias,Hsu,Sr. Analyst,Marketing,Specialty Products,Male,Asian,35,2022-01-23,86777 
+Luca,Phan,Manager,Marketing,Corporate,Male,Asian,39,2015-06-17,129949 
+Olivia,Xi,Manager,Sales,Specialty Products,Female,Asian,26,2020-08-19,124535 
+Alice,Luu,System Administrator,IT,Research & Development,Female,Asian,60,1993-07-17,81083 
+Leonardo,Ng,Analyst,Marketing,Corporate,Male,Asian,32,2019-06-10,57727 
+Peyton,Edwards,Analyst II,Finance,Manufacturing,Female,Caucasian,65,2020-07-11,59344 
+Axel,Patel,Sr. Analyst,Sales,Research & Development,Male,Asian,27,2022-09-13,73203 
+Eva,Chavez,IT Systems Architect,IT,Specialty Products,Female,Latino,63,2004-01-17,83070 
+Savannah,Lee,Manager,Human Resources,Research & Development,Female,Asian,51,2020-07-22,104008 
+Mia,Grant,Solutions Architect,IT,Corporate,Female,Caucasian,43,2007-02-16,70923 
+Eli,Richardson,Sr. Manager,Marketing,Specialty Products,Male,Black,31,2018-04-08,159121 
+Eloise,Perry,Sr. Business Partner,Human Resources,Research & Development,Female,Caucasian,26,2020-12-02,88921 
+Ian,Cheng,Sr. Manager,Sales,Specialty Products,Male,Asian,46,2015-08-30,126704 
+Penelope,Chan,Analyst II,Accounting,Manufacturing,Female,Asian,59,2012-05-20,57704 
+Sofia,Vasquez,Director,Sales,Research & Development,Female,Latino,52,1996-07-29,191455 
+Anthony,Baker,Solutions Architect,IT,Manufacturing,Male,Caucasian,31,2021-06-03,99937 
+Lucas,Luong,Analyst,Marketing,Specialty Products,Male,Asian,42,2008-03-12,40778 
+Xavier,Patel,Director,Marketing,Specialty Products,Male,Asian,53,2021-11-16,187740 
+Robert,Soto,HRIS Analyst,Human Resources,Research & Development,Male,Latino,47,2008-09-10,72384 
+Nevaeh,Jiang,Sr. Manager,Marketing,Corporate,Female,Asian,45,2016-08-05,143318 
+Chloe,Reyes,Director,Human Resources,Specialty Products,Female,Latino,45,2008-06-18,191304 
+Lucy,Edwards,Director,Human Resources,Specialty Products,Female,Black,33,2015-03-16,175875 
+Luna,Edwards,Manager,Sales,Research & Development,Female,Black,42,2014-04-13,106726 
+Stella,Daniels,Cloud Infrastructure Architect,IT,Manufacturing,Female,Black,37,2011-10-30,72637 
+Ayla,Ma,Manager,Marketing,Corporate,Female,Asian,27,2022-12-05,118304 
+Matthew,Avila,Computer Systems Manager,IT,Manufacturing,Male,Latino,55,2003-06-17,68592 
+Gianna,Lim,Analyst,Accounting,Research & Development,Female,Asian,46,2006-04-01,42532 
+Joseph,Tan,Technical Architect,IT,Research & Development,Male,Asian,37,2015-08-20,65073 
+Connor,Lai,Engineering Manager,Engineering,Corporate,Male,Asian,32,2019-09-22,111035 
+Ava,Owens,Analyst II,Finance,Specialty Products,Female,Caucasian,28,2020-02-07,63066 
+Dylan,Aguilar,Director,Engineering,Corporate,Male,Latino,49,2007-03-27,186192 
+Leah,Zheng,Director,Engineering,Corporate,Female,Asian,52,2016-06-18,182938 
+Jade,Pham,Analyst,Accounting,Manufacturing,Female,Asian,61,2017-12-12,53931 
+Theodore,Bui,Vice President,Sales,Specialty Products,Male,Asian,53,2012-05-13,252140 
+Asher,Chan,Sr. Business Partner,Human Resources,Corporate,Male,Asian,40,2018-08-18,73041 
+Ezekiel,Brown,Manager,Finance,Corporate,Male,Caucasian,27,2022-03-14,120315 
+Peyton,Allen,Manager,Marketing,Specialty Products,Female,Caucasian,26,2020-11-23,112264 
+Parker,Joseph,Systems Analyst,IT,Specialty Products,Male,Caucasian,53,2000-01-21,55039 
+Kayden,Ortiz,Sr. Manager,Accounting,Specialty Products,Male,Latino,33,2013-07-29,134782 
+Lillian,Desai,Field Engineer,Engineering,Manufacturing,Female,Asian,27,2022-12-12,92806 
+Avery,Gutierrez,Vice President,Marketing,Corporate,Female,Latino,56,2016-07-02,181028 
+Caroline,Sandoval,Analyst,Sales,Corporate,Female,Latino,36,2013-10-03,48117 
+Hailey,Lim,Director,Marketing,Corporate,Female,Asian,47,2005-01-06,192753 
+Roman,Liang,Sr. Analyst,Sales,Manufacturing,Male,Asian,28,2021-03-04,85206 
+Elias,Rojas,Account Representative,Sales,Manufacturing,Male,Latino,30,2018-01-07,58290 
+Quinn,Lai,Systems Analyst,IT,Research & Development,Female,Asian,58,2003-08-28,41946 
+Clara,Le,Service Desk Analyst,IT,Corporate,Female,Asian,56,2021-03-15,79388 
+Chloe,Yoon,Network Administrator,IT,Corporate,Female,Asian,65,2002-02-25,83854 
+Abigail,Simmons,Sr. Manager,IT,Specialty Products,Female,Caucasian,29,2018-04-24,126550 
+Ayla,Espinoza,Director,Human Resources,Research & Development,Female,Latino,60,1993-10-01,199705 
+Nova,Lin,Vice President,Sales,Specialty Products,Female,Asian,31,2019-04-09,201235 
+Sadie,Singh,Director,Engineering,Specialty Products,Female,Asian,45,2022-03-16,182717 
+Aaron,Powell,Enterprise Architect,IT,Research & Development,Male,Black,30,2017-09-11,79975 
+Jameson,Vargas,Director,Human Resources,Specialty Products,Male,Latino,36,2011-07-24,196554 
+Logan,Young,Vice President,IT,Corporate,Male,Black,39,2010-08-16,239395 
+Wyatt,Cheung,Analyst II,Sales,Specialty Products,Male,Asian,44,2013-07-25,53703 
+Lucas,Zhu,Manager,IT,Manufacturing,Male,Asian,53,2011-03-14,123480 
+Emily,Hong,IT Coordinator,IT,Specialty Products,Female,Asian,46,2021-01-09,41197 
+Luke,Ramos,Account Representative,Sales,Corporate,Male,Latino,30,2018-07-28,72463 
+Maya,Gupta,Field Engineer,Engineering,Corporate,Female,Asian,28,2019-08-04,87675 
+Eliana,Ha,Analyst,Accounting,Specialty Products,Female,Asian,35,2020-12-15,55833 
+Lillian,Cheng,Analyst II,Finance,Research & Development,Female,Asian,58,1996-08-20,58208 
+Alexander,Pena,Sr. Analyst,Sales,Specialty Products,Male,Latino,47,2002-05-24,75633 
+Leonardo,Mai,Sr. Analyst,Marketing,Specialty Products,Male,Asian,43,2007-01-28,79090 
+Jack,Phillips,Analyst II,Finance,Manufacturing,Male,Black,47,2015-07-27,66138 
+Scarlett,Delgado,Cloud Infrastructure Architect,IT,Research & Development,Female,Latino,57,2013-08-28,80728 
+Jack,Rogers,Systems Analyst,IT,Corporate,Male,Black,47,2005-02-01,46202 
+Violet,Huynh,Manager,Sales,Research & Development,Female,Asian,50,2008-02-29,123096 
+Victoria,Park,Analyst,Marketing,Research & Development,Female,Asian,27,2020-03-18,45989 
+Elizabeth,Rodriguez,Sr. Manager,Accounting,Corporate,Female,Latino,26,2021-08-13,140756 
+Samuel,Kumar,Network Engineer,IT,Corporate,Male,Asian,43,2009-03-09,85261 
+Zoe,Maldonado,Vice President,Accounting,Corporate,Female,Latino,49,1998-09-25,198222 
+Natalia,Richardson,Sr. Manager,Sales,Research & Development,Female,Caucasian,36,2017-06-02,150825 
+Madeline,Contreras,Analyst,Accounting,Corporate,Female,Latino,51,1995-10-31,59311 
+Raelynn,Espinoza,Analyst,Accounting,Corporate,Female,Latino,46,2002-09-12,44411 
+Noah,Rojas,Analyst II,Finance,Manufacturing,Male,Latino,37,2019-11-14,69408 
+Jack,Ramos,Sr. Analyst,Finance,Manufacturing,Male,Latino,43,2018-06-17,96759 
+Riley,King,Director,Marketing,Specialty Products,Female,Black,53,2013-08-10,163480 
+Naomi,Lee,System Administrator,IT,Research & Development,Female,Asian,58,2014-04-15,91132 
+Caleb,Jones,Manager,Marketing,Corporate,Male,Caucasian,57,1996-07-10,122825 
+Peyton,Alvarado,Service Desk Analyst,IT,Manufacturing,Female,Latino,31,2015-10-24,73612 
+Luca,Liu,Account Representative,Sales,Manufacturing,Male,Asian,40,2007-06-22,70561 
+Christian,Johnson,Network Architect,IT,Research & Development,Male,Black,47,2008-05-25,60331 
+Kinsley,Gonzales,Systems Analyst,IT,Manufacturing,Female,Latino,51,2007-05-05,48772 
+Hunter,Yoon,Network Administrator,IT,Research & Development,Male,Asian,57,2020-10-02,90599 
+Elias,Dixon,IT Coordinator,IT,Corporate,Male,Caucasian,46,2021-11-22,55643 
+Owen,Guerrero,Field Engineer,Engineering,Corporate,Male,Latino,40,2022-09-03,97938 
+Lucas,Lo,Analyst,Accounting,Research & Development,Male,Asian,43,2004-01-18,49627 
+Hunter,Mitchell,IT Coordinator,IT,Research & Development,Male,Caucasian,54,2021-04-17,58137 
+Eliana,Bailey,Sr. Manager,Sales,Research & Development,Female,Black,27,2021-01-02,120586 
+Gabriella,Choi,Analyst II,Accounting,Manufacturing,Female,Asian,56,1999-08-15,72925 
+Evelyn,Alvarado,Network Administrator,IT,Specialty Products,Female,Latino,36,2022-08-12,83548 
+Wyatt,Chan,Manager,Finance,Manufacturing,Male,Asian,53,2005-06-28,128226 
+Sarah,Johnson,Director,Engineering,Research & Development,Female,Caucasian,31,2018-03-06,150653 
+Brooks,Evans,Sr. Account Representative,Sales,Specialty Products,Male,Caucasian,45,2016-05-04,80989 
+Isaiah,Dixon,Development Engineer,Engineering,Corporate,Male,Caucasian,29,2022-02-27,74901 
+Addison,Lo,Cloud Infrastructure Architect,IT,Research & Development,Female,Asian,27,2020-08-28,68712 
+Nolan,Howard,Quality Engineer,Engineering,Research & Development,Male,Caucasian,26,2022-04-18,82963 
+Paisley,Dominguez,Engineering Manager,Engineering,Research & Development,Female,Latino,53,2009-06-14,123203 
+Eliana,Ho,Director,Accounting,Corporate,Female,Asian,64,2012-09-05,195416 
+Charles,Miller,Director,Marketing,Manufacturing,Male,Black,32,2018-06-07,156418 
+Mia,Jiang,Vice President,Accounting,Manufacturing,Female,Asian,42,2015-06-19,255892 
+Skylar,Parker,Technical Architect,IT,Corporate,Female,Caucasian,31,2018-08-05,96195 
+Zoey,Leung,Network Administrator,IT,Research & Development,Female,Asian,40,2007-09-27,77637 
+Austin,Moua,Test Engineer,Engineering,Research & Development,Male,Asian,46,2003-05-27,79294 
+Christopher,Robinson,Vice President,Finance,Specialty Products,Male,Caucasian,35,2016-07-11,254287 
+Jayden,Zhang,Enterprise Architect,IT,Specialty Products,Male,Asian,64,1994-06-27,70516 
+Cora,Mejia,Sr. Analyst,Accounting,Research & Development,Female,Latino,58,2014-06-07,98296 
+Julian,Harris,Operations Engineer,Engineering,Manufacturing,Male,Caucasian,61,2015-12-30,98565 
+Anthony,Espinoza,Analyst II,Finance,Manufacturing,Male,Latino,41,2020-11-16,59149 
+Aubrey,Ruiz,Analyst II,Marketing,Specialty Products,Female,Latino,25,2021-01-11,70126 
+Piper,Tang,Vice President,Human Resources,Manufacturing,Female,Asian,50,2011-07-28,216787 
+Colton,Delgado,Sr. Manager,Accounting,Research & Development,Male,Latino,61,2006-10-22,156512 
+Madeline,Chung,Analyst,Finance,Research & Development,Female,Asian,63,2011-05-26,44444 
+Ariana,Sharma,Vice President,Sales,Research & Development,Female,Asian,45,2014-01-24,257725 
+Julian,Marquez,Sr. Manager,Accounting,Specialty Products,Male,Latino,33,2013-09-14,122408 
+Logan,Reyes,Quality Engineer,Engineering,Corporate,Male,Latino,62,1995-04-10,78251 
+Penelope,Mai,Vice President,Sales,Corporate,Female,Asian,43,2004-05-02,252938 
+Ryan,Reed,Sr. Analyst,Sales,Manufacturing,Male,Black,48,2019-10-28,90296 
+Grayson,Hwang,Sr. Analyst,Finance,Corporate,Male,Asian,42,2013-04-23,91689 
+Ezra,Tan,Sr. Manager,Finance,Corporate,Male,Asian,49,1999-12-22,158028 
+David,Ha,Sr. Account Representative,Sales,Corporate,Male,Asian,33,2022-07-27,89759 
+Lillian,Vang,Technical Architect,IT,Research & Development,Female,Asian,39,2015-09-13,78640 
+Sofia,Zhang,Analyst,Finance,Specialty Products,Female,Asian,51,2005-01-11,55368 
+Athena,Daniels,Network Administrator,IT,Specialty Products,Female,Caucasian,49,2021-05-23,78164 
+Jameson,Shin,Sr. Analyst,Marketing,Research & Development,Male,Asian,30,2020-05-14,76014 
+Everly,Avila,Account Representative,Sales,Manufacturing,Female,Latino,41,2015-11-13,61403 
+Liam,Nelson,Technical Architect,IT,Research & Development,Male,Black,58,2010-12-17,80720 
+Theodore,Lai,System Administrator,IT,Specialty Products,Male,Asian,55,2008-12-27,94026 
+Caroline,Do,Analyst,Marketing,Research & Development,Female,Asian,40,2016-03-06,56963 
+Josiah,Ramos,Manager,Finance,Specialty Products,Male,Latino,41,2014-01-08,113246 
+Colton,Alexander,Field Engineer,Engineering,Research & Development,Male,Caucasian,45,2005-08-09,76416 
+Charles,Ramos,Sr. Analyst,Accounting,Corporate,Male,Latino,57,2010-04-04,74597 
+Ellie,Wilson,Director,IT,Manufacturing,Female,Caucasian,65,1996-08-31,164102 
+Peyton,Powell,System Administrator,IT,Research & Development,Female,Caucasian,44,2003-02-16,74431 
+Hailey,Rojas,Analyst,Finance,Specialty Products,Female,Latino,52,2014-07-15,43378 
+Kai,Singh,Analyst,Finance,Corporate,Male,Asian,52,2001-04-19,47587 
+Ryan,Rivera,Director,Human Resources,Specialty Products,Male,Latino,53,2001-11-29,179983 
+Everett,Lu,Manager,Marketing,Research & Development,Male,Asian,31,2021-11-28,115565 
+Layla,Nunez,Manager,Finance,Manufacturing,Female,Latino,63,2017-09-10,126064 
+Liliana,Collins,Sr. Manager,Human Resources,Specialty Products,Female,Black,39,2013-01-18,151666 
+Ezekiel,Jenkins,Service Desk Analyst,IT,Specialty Products,Male,Caucasian,63,2000-04-11,99215 
+Christopher,Wang,Cloud Infrastructure Architect,IT,Manufacturing,Male,Asian,27,2020-08-23,71502 
+Savannah,Rodriguez,Director,Sales,Corporate,Female,Latino,30,2022-11-18,168050 
+Lyla,Turner,Sr. Manager,Sales,Specialty Products,Female,Caucasian,51,2003-11-07,130862 
+Adrian,Ngo,Enterprise Architect,IT,Research & Development,Male,Asian,58,2021-09-19,85716 
+Aria,Juarez,Director,Finance,Corporate,Female,Latino,62,2011-07-30,185026 
+Audrey,Ramos,Vice President,Sales,Manufacturing,Female,Latino,27,2021-12-09,182403 
+Hazel,Cho,Vice President,Accounting,Corporate,Female,Asian,63,2004-08-12,193531 
+Iris,Chung,Manager,IT,Research & Development,Female,Asian,52,2013-03-12,128301 
+Thomas,Rodriguez,Analyst,Finance,Manufacturing,Male,Latino,36,2019-10-09,51669 
+Avery,Lo,Automation Engineer,Engineering,Research & Development,Female,Asian,47,2001-01-26,104289 
+Gabriel,Bell,Cloud Infrastructure Architect,IT,Specialty Products,Male,Caucasian,27,2021-03-21,70181 
+Gianna,Walker,Computer Systems Manager,IT,Corporate,Female,Caucasian,45,2021-03-23,92317 
+Axel,Bailey,Sr. Analyst,Marketing,Corporate,Male,Black,47,2022-12-07,99382 
+Scarlett,Green,Network Engineer,IT,Specialty Products,Female,Caucasian,26,2020-04-21,67702 
+Jackson,Wong,Analyst II,Finance,Research & Development,Male,Asian,58,2006-12-26,53133 
+Eva,Jimenez,Operations Engineer,Engineering,Corporate,Female,Latino,60,1998-04-13,110554 
+Ian,Ma,Manager,Finance,Corporate,Male,Asian,45,2010-07-09,109221 
+Luna,Castro,IT Systems Architect,IT,Specialty Products,Female,Latino,45,2007-02-01,88933 
+Nolan,Brooks,Business Partner,Human Resources,Manufacturing,Male,Caucasian,40,2014-11-08,49342 
+Jayden,Jones,Cloud Infrastructure Architect,IT,Manufacturing,Male,Caucasian,27,2022-07-09,74587 
+Asher,Hsu,Sr. Analyst,Accounting,Manufacturing,Male,Asian,36,2020-03-13,80757 
+Greyson,Lim,Director,Finance,Corporate,Male,Asian,28,2022-10-12,198662 
+Chloe,Miller,Sr. Manager,Marketing,Manufacturing,Female,Black,57,2021-08-12,142506 
+Jaxson,Brooks,Network Architect,IT,Manufacturing,Male,Black,57,2022-07-15,77028 
+Jack,Perez,Cloud Infrastructure Architect,IT,Research & Development,Male,Latino,30,2017-01-09,80389 
+Ruby,Reed,Vice President,Engineering,Specialty Products,Female,Caucasian,26,2022-01-23,249062 
+Ivy,Rojas,IT Coordinator,IT,Corporate,Female,Latino,53,2013-01-08,52675 
+Hudson,Wong,Sr. Account Representative,Sales,Manufacturing,Male,Asian,59,2014-05-11,83365 
+Ryan,Yi,Solutions Architect,IT,Specialty Products,Male,Asian,56,2003-08-17,82758 
+Carter,Simmons,Manager,IT,Corporate,Male,Caucasian,41,2012-05-30,126406 
+Emilia,Xu,Manager,Marketing,Corporate,Female,Asian,46,2017-01-24,103147 
+Adam,Medina,IT Systems Architect,IT,Manufacturing,Male,Latino,49,2020-10-04,81622 
+Connor,Howard,Systems Analyst,IT,Specialty Products,Male,Caucasian,42,2021-03-15,44265 
+Audrey,Duong,Vice President,Sales,Specialty Products,Female,Asian,55,1999-03-03,213998 
+Landon,Reyes,Director,IT,Research & Development,Male,Latino,44,2014-08-23,171823 
+Noah,Ma,Vice President,Accounting,Manufacturing,Male,Asian,28,2018-11-06,201013 
+Lucas,Alexander,Director,IT,Manufacturing,Male,Black,41,2013-09-20,192944 
+Henry,Vo,Controls Engineer,Engineering,Manufacturing,Male,Asian,60,1996-09-13,81699 
+Mila,Han,Manager,Sales,Manufacturing,Female,Asian,54,2009-11-14,128791 
+Genesis,Herrera,Manager,IT,Research & Development,Female,Latino,34,2015-10-03,126898 
+Olivia,Vazquez,Network Engineer,IT,Specialty Products,Female,Latino,53,2020-04-13,93053 
+Leilani,Ng,Systems Analyst,IT,Corporate,Female,Asian,48,2011-09-19,50513 
+Olivia,Mendoza,Sr. Account Representative,Sales,Corporate,Female,Latino,43,2017-05-07,86533 
+Skylar,Xu,Test Engineer,Engineering,Research & Development,Female,Asian,60,1997-10-16,72806 
+Eloise,Williams,Vice President,Sales,Specialty Products,Female,Black,42,2019-02-12,258115 
+Jackson,Maldonado,Cloud Infrastructure Architect,IT,Manufacturing,Male,Latino,52,2008-05-01,63444 
+Christian,Harris,Engineering Manager,Engineering,Specialty Products,Male,Caucasian,50,1999-02-21,96099 
+Penelope,Santos,IT Systems Architect,IT,Manufacturing,Female,Latino,37,2009-03-01,92849 
+Nicholas,Zhou,Sr. Account Representative,Sales,Manufacturing,Male,Asian,58,2014-10-28,85094 
+Ayla,Garza,Sr. Manager,Marketing,Corporate,Female,Latino,39,2017-06-15,156224 
+Carson,Mai,Vice President,Accounting,Corporate,Male,Asian,50,1996-04-15,245920 
+Luna,Lu,Analyst II,Marketing,Research & Development,Female,Asian,51,2007-03-06,50214 
+Anthony,Ho,Sr. Analyst,Marketing,Specialty Products,Male,Asian,31,2015-01-11,79713 
+Clara,Lopez,Director,IT,Research & Development,Female,Latino,52,1999-08-09,166699 
+Melody,Woods,Network Administrator,IT,Research & Development,Female,Caucasian,63,2010-12-20,78788 
+Matthew,Simmons,Sr. Manager,Accounting,Research & Development,Male,Black,28,2022-12-19,142797 
+Gabriella,Carrillo,Vice President,Finance,Research & Development,Female,Latino,39,2012-07-16,187516 
+Lydia,Juarez,Director,Finance,Specialty Products,Female,Latino,36,2013-09-21,156029 
+Ava,Carrillo,Sr. Manager,Accounting,Specialty Products,Female,Latino,63,1999-01-01,149582 
+Elena,Sharma,Director,Marketing,Corporate,Female,Asian,47,2014-10-24,163922 
+Julia,Ahmed,Vice President,Accounting,Research & Development,Female,Asian,43,2004-11-14,240860 
+Iris,Vo,Manager,Human Resources,Specialty Products,Female,Asian,39,2018-09-27,128497 
+Hunter,Yi,Automation Engineer,Engineering,Corporate,Male,Asian,55,2015-05-10,121976 
+Valentina,Oh,Sr. Manager,Sales,Corporate,Female,Asian,32,2022-07-12,126464 
+Kinsley,Tran,Vice President,Accounting,Manufacturing,Female,Asian,53,2005-09-05,234064 
+Christian,Hong,Sr. Analyst,Finance,Manufacturing,Male,Asian,59,2008-01-16,81829 
+Amelia,Mehta,Director,Human Resources,Corporate,Female,Asian,26,2022-04-21,193971 
+Axel,Leung,Business Partner,Human Resources,Corporate,Male,Asian,55,2001-08-17,47696 
+Lucas,Lam,Manager,Accounting,Specialty Products,Male,Asian,34,2013-07-17,116676 
+Jose,Thompson,Manager,Marketing,Corporate,Male,Caucasian,45,2012-04-05,104162 
+Wesley,Duong,Sr. Business Partner,Human Resources,Specialty Products,Male,Asian,29,2022-04-14,86226 
+Adeline,Maldonado,Director,Marketing,Specialty Products,Female,Latino,45,2011-05-30,172206 
+Elias,Diaz,HRIS Analyst,Human Resources,Specialty Products,Male,Latino,34,2012-04-06,55985 
+Wyatt,Aguilar,Technical Architect,IT,Corporate,Male,Latino,26,2021-06-06,61481 
+Josephine,Espinoza,Manager,Sales,Research & Development,Female,Latino,30,2017-11-26,124295 
+Adeline,Lai,Sr. Manager,Sales,Research & Development,Female,Asian,55,1999-02-08,132894 
+Christopher,Vu,Computer Systems Manager,IT,Corporate,Male,Asian,47,2002-03-16,88839 
+Kai,Vega,Automation Engineer,Engineering,Manufacturing,Male,Latino,51,2005-06-16,78107 
+Hailey,Chin,Sr. Manager,IT,Corporate,Female,Asian,54,1993-07-10,135642 
+Eleanor,Xi,Sr. Manager,Sales,Corporate,Female,Asian,64,1997-01-10,147853 
+Lily,Molina,Manager,IT,Manufacturing,Female,Latino,40,2009-09-15,125900 
+Levi,Vasquez,IT Coordinator,IT,Manufacturing,Male,Latino,27,2020-02-10,42969 
+Elijah,Washington,Vice President,Marketing,Manufacturing,Male,Caucasian,47,2022-02-13,214303 
+Gianna,Park,Vice President,Accounting,Specialty Products,Female,Asian,28,2020-12-19,199406 
+Melody,Leung,Vice President,Human Resources,Research & Development,Female,Asian,35,2015-03-20,182436 
+Liliana,Valdez,Computer Systems Manager,IT,Corporate,Female,Latino,59,1996-10-01,96507 
+Ezekiel,Kumar,Field Engineer,Engineering,Manufacturing,Male,Asian,33,2015-11-19,82906 
+Ruby,Rahman,Business Partner,Human Resources,Manufacturing,Female,Asian,62,2005-12-05,41616 
+Natalie,Stewart,Network Engineer,IT,Corporate,Female,Caucasian,50,2003-06-30,92344 
+Charlotte,Lim,Vice President,Accounting,Manufacturing,Female,Asian,55,2006-06-27,196614 
+Elena,Campos,Manager,IT,Research & Development,Female,Latino,47,2022-02-06,104253 
+Vivian,Lim,IT Coordinator,IT,Specialty Products,Female,Asian,34,2021-01-22,44677 
+Madison,Xu,Network Engineer,IT,Research & Development,Female,Asian,39,2017-12-13,66463 
+Ava,Aguilar,Business Partner,Human Resources,Corporate,Female,Latino,35,2015-12-17,53285 
+Kayden,Patel,Development Engineer,Engineering,Research & Development,Male,Asian,54,1997-03-22,67683 
+Penelope,Desai,Vice President,Finance,Manufacturing,Female,Asian,41,2018-10-29,238155 
+Henry,Vang,Director,Sales,Corporate,Male,Asian,37,2019-06-21,173630 
+Eliana,Turner,Sr. Analyst,Finance,Research & Development,Female,Black,29,2020-01-27,98992 
+Charlotte,Tran,Vice President,IT,Corporate,Female,Asian,64,2017-04-11,253330 
+Everly,Coleman,Sr. Manager,Sales,Corporate,Female,Caucasian,54,2011-08-14,158403 
+Matthew,Harris,Sr. Manager,Accounting,Corporate,Male,Caucasian,36,2021-03-27,156085 
+Emilia,Barnes,Enterprise Architect,IT,Specialty Products,Female,Black,54,2013-04-18,80129 
+Sophie,Griffin,Account Representative,Sales,Research & Development,Female,Caucasian,56,2017-01-09,60517 
+Kai,Phillips,Test Engineer,Engineering,Research & Development,Male,Caucasian,48,2016-12-13,72315 
+Dylan,Khan,Director,Human Resources,Manufacturing,Male,Asian,35,2015-07-11,153815 
+Nevaeh,Clark,Sr. Manager,Marketing,Specialty Products,Female,Black,32,2018-08-16,139552 
+Carter,Luu,Vice President,Marketing,Corporate,Male,Asian,25,2022-10-20,257296 
+Jordan,Ngo,Sr. Analyst,Finance,Manufacturing,Male,Asian,26,2020-05-04,91372 
+Jackson,Hu,Sr. Business Partner,Human Resources,Corporate,Male,Asian,53,2017-06-05,73601 
+Madelyn,Kang,IT Systems Architect,IT,Corporate,Female,Asian,37,2013-04-29,71871 
+Everleigh,Bell,Sr. Account Representative,Sales,Specialty Products,Female,Caucasian,31,2016-02-07,84925 
+Eliana,Trinh,Sr. Manager,IT,Manufacturing,Female,Asian,47,2010-01-07,155600 
+Oliver,Ford,Manager,Sales,Research & Development,Male,Black,32,2018-12-15,101564 
+Ryan,Huang,Controls Engineer,Engineering,Research & Development,Male,Asian,40,2009-10-12,80150 
+Gabriel,Ahmed,HRIS Analyst,Human Resources,Corporate,Male,Asian,65,2021-10-09,73996 
+Ivy,Rios,Network Architect,IT,Manufacturing,Female,Latino,25,2022-01-18,90109 
+Luca,Hunter,Field Engineer,Engineering,Corporate,Male,Caucasian,39,2022-06-27,67216 
+Claire,Owens,Network Engineer,IT,Research & Development,Female,Caucasian,52,1998-06-07,75402 
+Aubrey,Maldonado,Automation Engineer,Engineering,Manufacturing,Female,Latino,38,2022-06-13,120795 
+Elias,Vasquez,Systems Analyst,IT,Specialty Products,Male,Latino,33,2015-07-27,44012 
+Melody,Luu,Vice President,Finance,Research & Development,Female,Asian,28,2021-04-03,219180 
+Christopher,Luu,Vice President,Engineering,Research & Development,Male,Asian,61,2005-10-27,258700 
+James,Han,Test Engineer,Engineering,Specialty Products,Male,Asian,32,2018-01-07,97496 
+Jaxson,Ayala,Vice President,Human Resources,Research & Development,Male,Latino,28,2020-08-01,239270 
+Levi,James,Manager,IT,Specialty Products,Male,Caucasian,39,2012-03-02,103466 
+Grayson,Carrillo,Sr. Analyst,Accounting,Corporate,Male,Latino,57,2001-06-27,74662 
+Maverick,Hwang,Vice President,Human Resources,Research & Development,Male,Asian,40,2015-04-20,227816 
+Noah,Truong,Vice President,Sales,Manufacturing,Male,Asian,47,2013-12-08,246680 
+Willow,Guzman,Enterprise Architect,IT,Manufacturing,Female,Latino,43,2010-06-26,85164 
+Rylee,Howard,Sr. Manager,Finance,Manufacturing,Female,Black,33,2014-08-18,135215 
+Ian,Marquez,HRIS Analyst,Human Resources,Corporate,Male,Latino,31,2019-01-14,72542 
+Layla,Owens,Vice President,IT,Research & Development,Female,Caucasian,47,2018-02-07,246303 
+Chloe,Dixon,Vice President,Engineering,Corporate,Female,Caucasian,60,2021-05-11,186400 
+Emily,Zheng,Solutions Architect,IT,Corporate,Female,Asian,50,2022-12-06,91004 
+Jayden,Rogers,Manager,Sales,Research & Development,Male,Caucasian,41,2016-12-14,101411 
+Elizabeth,Vasquez,Controls Engineer,Engineering,Specialty Products,Female,Latino,28,2020-08-09,111779 
+Samantha,Ford,Technical Architect,IT,Manufacturing,Female,Caucasian,25,2022-01-19,86075 
+Thomas,Silva,Analyst,Finance,Specialty Products,Male,Latino,45,2015-08-13,52798 
+Charlotte,Park,Network Architect,IT,Specialty Products,Female,Asian,63,2020-12-17,96136 
+Liam,Jimenez,Sr. Analyst,Marketing,Research & Development,Male,Latino,52,2002-08-11,95682 
+Ivy,Liu,Analyst II,Marketing,Manufacturing,Female,Asian,59,1993-05-29,55476 
+Jayden,Dixon,Vice President,Finance,Manufacturing,Male,Caucasian,30,2018-01-14,197792 
+Nevaeh,Butler,Field Engineer,Engineering,Research & Development,Female,Caucasian,55,2009-07-10,82271 
+Leonardo,Li,Sr. Manager,Accounting,Specialty Products,Male,Asian,65,2009-04-23,155716 
+Kinsley,Woods,HRIS Analyst,Human Resources,Corporate,Female,Caucasian,34,2014-06-19,71699 
+Abigail,Chu,Sr. Manager,Human Resources,Manufacturing,Female,Asian,51,2006-04-17,147436 
+Ava,Xiong,Sr. Business Partner,Human Resources,Manufacturing,Female,Asian,52,2019-07-21,88220 
+Olivia,Marquez,Account Representative,Sales,Specialty Products,Female,Latino,44,2020-04-06,54295 
+Claire,Vazquez,Vice President,Human Resources,Corporate,Female,Latino,44,2004-06-12,246538 
+Christian,Castro,IT Coordinator,IT,Specialty Products,Male,Latino,40,2006-04-15,43645 
+Mason,Oh,Manager,Human Resources,Manufacturing,Male,Asian,25,2022-04-11,125644 
+Violet,Santiago,Service Desk Analyst,IT,Research & Development,Female,Latino,32,2018-01-14,78414 
+Lily,Rios,Sr. Analyst,Marketing,Specialty Products,Female,Latino,45,2013-01-25,88016 
+Kinsley,Stewart,Computer Systems Manager,IT,Corporate,Female,Caucasian,56,2021-09-07,66561 
+Aria,Molina,Development Engineer,Engineering,Research & Development,Female,Latino,52,2001-10-24,89811 
+James,Cheng,Manager,IT,Manufacturing,Male,Asian,49,2010-05-26,125506 
+Mila,Vang,Analyst II,Finance,Manufacturing,Female,Asian,46,2009-08-25,56409 
+Alice,Liu,Sr. Manager,Sales,Research & Development,Female,Asian,39,2012-02-22,122058 
+Delilah,Gonzalez,Sr. Analyst,Sales,Manufacturing,Female,Latino,55,1998-03-29,82550 
+Samuel,Tang,System Administrator,IT,Manufacturing,Male,Asian,34,2012-09-15,93760 
+Serenity,Gray,Analyst,Sales,Research & Development,Female,Black,56,2012-06-19,55008 
+Benjamin,Estrada,Analyst II,Marketing,Research & Development,Male,Latino,56,2012-09-28,65368 
+Wesley,Han,Test Engineer,Engineering,Research & Development,Male,Asian,62,2017-04-20,83955 
+Nora,Herrera,Vice President,Marketing,Specialty Products,Female,Latino,60,1997-12-24,231907 
+Lincoln,Harris,IT Systems Architect,IT,Manufacturing,Male,Caucasian,42,2009-09-16,97628 
+Charles,Gonzales,IT Systems Architect,IT,Manufacturing,Male,Latino,27,2020-09-22,88142 
+Athena,Cheng,Test Engineer,Engineering,Corporate,Female,Asian,37,2020-03-02,83465 
+David,Garza,Director,IT,Manufacturing,Male,Latino,29,2022-01-09,197731 
+Hunter,Doan,Sr. Manager,Accounting,Research & Development,Male,Asian,32,2014-12-15,151758 
+Julian,Lam,Director,Finance,Research & Development,Male,Asian,33,2013-09-08,164340 
+Sofia,Estrada,Controls Engineer,Engineering,Specialty Products,Female,Latino,42,2006-03-26,104916 
+Jordan,Chen,Analyst,Finance,Specialty Products,Male,Asian,60,1997-01-22,42536 
+Eloise,Huang,Vice President,Finance,Research & Development,Female,Asian,51,2009-04-05,195171 
+Ivy,Mehta,Business Partner,Human Resources,Manufacturing,Female,Asian,50,2020-05-26,45290 
+Eli,Castillo,Vice President,Finance,Specialty Products,Male,Latino,50,2009-12-11,203306 
+Nolan,Garcia,Analyst II,Sales,Specialty Products,Male,Latino,26,2022-06-16,66865 
+Alexander,Zhu,Network Architect,IT,Corporate,Male,Asian,30,2022-10-17,89164 
+Victoria,Wu,Sr. Analyst,Sales,Manufacturing,Female,Asian,35,2021-10-28,75602 
+Mateo,Jordan,Network Administrator,IT,Specialty Products,Male,Caucasian,44,2021-02-13,92939 
+Everly,Martin,Analyst II,Marketing,Specialty Products,Female,Black,26,2020-05-28,64278 
+Athena,Castro,Solutions Architect,IT,Research & Development,Female,Latino,44,2013-10-04,72176 
+Josephine,White,Computer Systems Manager,IT,Corporate,Female,Caucasian,61,2010-02-05,87758 
+Nicholas,Vo,Analyst II,Accounting,Corporate,Male,Asian,50,2002-06-01,54646 
+Jackson,Sandoval,HRIS Analyst,Human Resources,Corporate,Male,Latino,61,2011-01-26,73323 
+Olivia,Turner,Director,Marketing,Specialty Products,Female,Caucasian,29,2021-01-07,151492 
+Cooper,Rivera,Sr. Manager,Finance,Corporate,Male,Latino,42,2005-12-26,138215 
+Hailey,Washington,Sr. Manager,Finance,Specialty Products,Female,Black,51,2013-07-03,135578 
+Mia,Vasquez,Test Engineer,Engineering,Research & Development,Female,Latino,27,2019-12-02,64297 
+Jose,Grant,Development Engineer,Engineering,Corporate,Male,Caucasian,52,2021-06-28,94857 
+Nathan,Yee,Development Engineer,Engineering,Research & Development,Male,Asian,58,2009-10-24,77196 
+Isabella,Munoz,Director,Sales,Research & Development,Female,Latino,45,2002-12-25,193154 
+Michael,Turner,Manager,Human Resources,Specialty Products,Male,Black,28,2019-12-29,115916 
+Oliver,Jones,Vice President,Accounting,Manufacturing,Male,Caucasian,56,2016-03-20,192374 
+Charles,Taylor,Director,Human Resources,Specialty Products,Male,Caucasian,32,2019-07-15,186869 
+Gianna,Alvarez,Business Partner,Human Resources,Manufacturing,Female,Latino,58,1993-05-11,49293 
+Nova,Martin,Manager,Human Resources,Research & Development,Female,Caucasian,39,2013-04-13,129087 
+Julia,Gonzalez,Analyst,Finance,Research & Development,Female,Latino,46,2005-02-15,54831 
+Athena,Vu,Analyst,Marketing,Specialty Products,Female,Asian,26,2020-11-28,51825 
+Caroline,Bui,Field Engineer,Engineering,Manufacturing,Female,Asian,36,2019-09-15,67457 
+Daniel,Ali,Cloud Infrastructure Architect,IT,Corporate,Male,Asian,43,2019-09-28,94555 
+Iris,Huang,Director,Human Resources,Corporate,Female,Asian,45,2008-03-28,163686 
+Natalia,Cheng,Systems Analyst,IT,Corporate,Female,Asian,65,2002-07-29,47919 
+Owen,Evans,Enterprise Architect,IT,Manufacturing,Male,Caucasian,34,2021-05-28,68972 
+Angel,Dixon,Analyst,Sales,Manufacturing,Male,Caucasian,52,2002-04-01,50775 
+Aubrey,Guerrero,Sr. Manager,Marketing,Corporate,Female,Latino,39,2013-02-12,122713 
+Ivy,Do,Analyst II,Accounting,Corporate,Female,Asian,57,1993-05-13,57230 
+Kai,Gutierrez,Sr. Manager,Marketing,Specialty Products,Male,Latino,63,1997-12-17,148794 
+Caroline,Ahmed,Sr. Manager,Marketing,Research & Development,Female,Asian,32,2016-12-23,155884 
+Alice,Sharma,Account Representative,Sales,Research & Development,Female,Asian,51,2018-10-05,50975 
+Leo,Simmons,Analyst,Accounting,Research & Development,Male,Black,38,2017-12-13,52200 
+Asher,Hong,Director,Finance,Research & Development,Male,Asian,53,2018-04-17,154141 
+Gianna,Ramirez,Field Engineer,Engineering,Specialty Products,Female,Latino,59,1993-07-25,69245 
+Thomas,Smith,Field Engineer,Engineering,Specialty Products,Male,Caucasian,57,1999-04-02,78212 
+Carter,Hunter,Sr. Analyst,Accounting,Corporate,Male,Caucasian,41,2019-10-07,72650 
+Charlotte,Green,Automation Engineer,Engineering,Research & Development,Female,Caucasian,33,2020-11-10,124681 
+Lincoln,Holmes,Network Administrator,IT,Research & Development,Male,Black,35,2013-08-21,89051 
+Hudson,Hu,Automation Engineer,Engineering,Research & Development,Male,Asian,36,2019-12-02,121049 
+Noah,Mitchell,Network Engineer,IT,Research & Development,Male,Caucasian,54,2007-06-15,70519 
+Liliana,Choi,Manager,IT,Research & Development,Female,Asian,55,2007-01-25,106302 
+Leonardo,Cho,Engineering Manager,Engineering,Specialty Products,Male,Asian,38,2008-08-25,119960 
+Oliver,Delgado,Test Engineer,Engineering,Research & Development,Male,Latino,45,2017-02-22,84309 
+Isabella,Roberts,Vice President,Engineering,Manufacturing,Female,Caucasian,53,2007-08-20,228494 
+Luca,Desai,Manager,Sales,Specialty Products,Male,Asian,45,2017-05-23,112076 
+William,Juarez,Technical Architect,IT,Specialty Products,Male,Latino,65,2016-07-29,88533 
+Ryan,Alvarez,HRIS Analyst,Human Resources,Research & Development,Male,Latino,62,2018-11-29,72025 
+Hudson,Ha,Field Engineer,Engineering,Manufacturing,Male,Asian,59,2004-02-06,67947 
+Hannah,Brown,Cloud Infrastructure Architect,IT,Manufacturing,Female,Caucasian,42,2020-07-12,79764 
+Hadley,Le,Cloud Infrastructure Architect,IT,Research & Development,Female,Asian,33,2015-03-18,60690 
+Jaxson,Shah,Analyst,Accounting,Corporate,Male,Asian,29,2018-08-25,44520 
+Christopher,Delgado,Network Architect,IT,Corporate,Male,Latino,33,2022-06-24,84317 
+Hannah,Ng,Director,Sales,Manufacturing,Female,Asian,36,2015-05-14,151055 
+Austin,Ngo,Network Architect,IT,Research & Development,Male,Asian,43,2020-03-27,62492 
+Gianna,Han,HRIS Analyst,Human Resources,Research & Development,Female,Asian,51,2011-02-27,72589 
+Isaac,Choi,Operations Engineer,Engineering,Corporate,Male,Asian,27,2021-01-21,82286 
+Madeline,Smith,Cloud Infrastructure Architect,IT,Research & Development,Female,Caucasian,55,2011-11-23,66660 
+Ellie,Fernandez,Quality Engineer,Engineering,Specialty Products,Female,Latino,62,2009-08-18,86805 
+Lyla,Lai,Manager,Human Resources,Specialty Products,Female,Asian,46,2004-08-11,125878 
+Emily,Moore,Analyst,Accounting,Research & Development,Female,Black,47,2009-11-08,50290 
+Aubrey,Moreno,Computer Systems Manager,IT,Research & Development,Female,Latino,57,2000-06-30,97083 
+Nova,Xiong,Network Administrator,IT,Corporate,Female,Asian,49,2019-04-10,93306 
+Eva,Lam,Field Engineer,Engineering,Manufacturing,Female,Asian,42,2022-03-08,73404 
+Caroline,Chau,IT Systems Architect,IT,Specialty Products,Female,Asian,55,2022-12-07,91179 
+Sofia,Chen,Manager,Finance,Specialty Products,Female,Asian,46,2006-08-27,108003 
+Christopher,Sharma,System Administrator,IT,Corporate,Male,Asian,45,2004-04-16,81384 
+Lucas,Grant,Sr. Business Partner,Human Resources,Manufacturing,Male,Caucasian,53,2012-03-28,97218 
+Delilah,Washington,Analyst,Sales,Research & Development,Female,Caucasian,46,2006-09-17,42944 
+Eloise,Molina,Analyst,Finance,Research & Development,Female,Latino,48,2015-01-18,43980 
+Clara,Desai,Manager,Marketing,Corporate,Female,Asian,33,2014-11-20,109533 
+Audrey,Campbell,Vice President,Accounting,Research & Development,Female,Caucasian,56,2008-07-30,226952 
+Delilah,Alvarez,System Administrator,IT,Manufacturing,Female,Latino,59,2007-11-27,71580 
+Luke,Luna,Analyst II,Finance,Manufacturing,Male,Latino,55,2012-11-16,66172 
+Elizabeth,Tan,Vice President,Marketing,Research & Development,Female,Asian,46,2018-07-27,237489 
+Sophia,Wang,Analyst,Marketing,Specialty Products,Female,Asian,50,2000-05-20,48733 
+Nova,Park,Analyst,Sales,Corporate,Female,Asian,29,2017-07-23,48563 
+Josiah,Khan,Cloud Infrastructure Architect,IT,Manufacturing,Male,Asian,57,2004-10-26,86592 
+Madison,Gray,Vice President,Finance,Research & Development,Female,Caucasian,39,2011-08-29,189823 
+Luca,Washington,Enterprise Architect,IT,Corporate,Male,Black,40,2022-06-27,65075 
+Isaac,Cruz,Vice President,Human Resources,Specialty Products,Male,Latino,33,2018-05-09,187917 
+Ellie,Ortega,Analyst,Sales,Specialty Products,Female,Latino,49,2020-10-20,42242 
+Ian,Huang,Analyst,Sales,Research & Development,Male,Asian,54,1998-02-07,53931 
+Jayden,Ahmed,Sr. Manager,IT,Corporate,Male,Asian,51,2006-03-28,140668 
+Violet,Simmons,Analyst,Marketing,Research & Development,Female,Caucasian,33,2017-10-23,53948 
+William,Roberts,Director,IT,Research & Development,Male,Caucasian,34,2017-04-12,174257 
+Penelope,Sandoval,Sr. Manager,Sales,Corporate,Female,Latino,28,2019-12-18,132209 
+Emilia,Ortiz,Vice President,Marketing,Research & Development,Female,Latino,34,2017-07-16,208883 
+Layla,Gutierrez,Computer Systems Manager,IT,Specialty Products,Female,Latino,39,2022-05-05,65957 
+Dylan,Vu,Manager,Human Resources,Specialty Products,Male,Asian,63,2004-07-22,106481 
+Peyton,Wong,Vice President,Accounting,Manufacturing,Female,Asian,35,2020-08-05,218127 
+Santiago,Banks,Sr. Manager,IT,Specialty Products,Male,Caucasian,44,2019-08-16,151481 
+Caroline,Wong,Analyst,Sales,Research & Development,Female,Asian,37,2017-03-08,40508 
+Quinn,Ho,Vice President,Accounting,Research & Development,Female,Asian,45,2002-07-20,200481 
+Caroline,Nunez,Vice President,Finance,Manufacturing,Female,Latino,65,2002-12-20,224872 
+Carson,Brown,Sr. Manager,Human Resources,Research & Development,Male,Black,65,2007-11-05,149474 
+Olivia,Maldonado,Test Engineer,Engineering,Research & Development,Female,Latino,63,2002-02-18,86820 
+Emilia,Chung,Director,Finance,Manufacturing,Female,Asian,55,1994-11-08,184078 
+Leilani,Shin,Analyst,Accounting,Corporate,Female,Asian,58,2013-12-18,55174 
+Abigail,Zhu,Director,Finance,Corporate,Female,Asian,31,2022-01-17,152474 
+Autumn,Xiong,Network Administrator,IT,Specialty Products,Female,Asian,28,2020-02-13,75172 
+Hailey,Cruz,Business Partner,Human Resources,Manufacturing,Female,Latino,50,2008-08-10,56002 
+Piper,Cruz,Director,Sales,Research & Development,Female,Latino,61,2013-04-13,195636 
+Jaxson,Jackson,Enterprise Architect,IT,Specialty Products,Male,Caucasian,53,1997-03-01,63165 
+Serenity,Mehta,Analyst,Sales,Research & Development,Female,Asian,51,1998-07-21,57277 
+Peyton,Gomez,Analyst,Finance,Specialty Products,Female,Latino,56,2020-01-14,42950 
+Ethan,Vargas,Director,IT,Research & Development,Male,Latino,38,2018-10-09,168410 
+Serenity,Morris,Manager,IT,Corporate,Female,Caucasian,41,2008-04-12,114588 
+Vivian,Chan,Sr. Analyst,Sales,Specialty Products,Female,Asian,61,1997-05-12,72546 
+Lincoln,Singh,Analyst,Sales,Corporate,Male,Asian,33,2021-01-09,55397 
+Ayla,Lim,Director,Marketing,Corporate,Female,Asian,41,2021-09-05,192266 
+Leilani,Hong,System Administrator,IT,Manufacturing,Female,Asian,36,2013-12-20,79876 
+Victoria,Doan,Manager,Sales,Corporate,Female,Asian,42,2018-03-06,112593 
+Naomi,Wright,System Administrator,IT,Manufacturing,Female,Caucasian,36,2016-11-03,99249 
+Scarlett,Howard,Manager,Finance,Manufacturing,Female,Caucasian,55,2012-08-12,117421 
+Victoria,Vo,Field Engineer,Engineering,Corporate,Female,Asian,44,2017-12-18,82241 
+Oliver,Fernandez,Manager,Marketing,Research & Development,Male,Latino,31,2022-05-15,125664 
+Luca,Jiang,Account Representative,Sales,Research & Development,Male,Asian,47,2013-09-08,57386 
+Charlotte,Owens,Vice President,Engineering,Corporate,Female,Black,59,2001-05-11,196740 
+Stella,Tan,Director,Human Resources,Specialty Products,Female,Asian,48,2009-08-22,168202 
+Ellie,Yoon,Vice President,Human Resources,Specialty Products,Female,Asian,44,2006-07-11,242004 
+Ella,Do,Account Representative,Sales,Manufacturing,Female,Asian,52,1998-02-28,57433 
+Lucas,Cruz,Sr. Analyst,Accounting,Specialty Products,Male,Latino,54,2009-07-11,74656 
+Sarah,Mehta,HRIS Analyst,Human Resources,Research & Development,Female,Asian,31,2016-08-23,62848 
+Anthony,Phan,Enterprise Architect,IT,Research & Development,Male,Asian,39,2011-04-11,92523 
+David,Chu,Sr. Manager,IT,Specialty Products,Male,Asian,40,2012-12-16,142844 
+Sebastian,Sanders,Manager,Sales,Corporate,Male,Caucasian,39,2009-01-23,100718 
+Jayden,Phillips,Director,IT,Research & Development,Male,Caucasian,25,2022-10-13,154186 
+Caleb,Chan,Operations Engineer,Engineering,Research & Development,Male,Asian,48,2003-06-24,107586 
+Ariana,Santiago,Network Architect,IT,Research & Development,Female,Latino,54,2003-10-28,88906 
+Quinn,Owens,Field Engineer,Engineering,Manufacturing,Female,Caucasian,40,2018-05-09,74329 
+Eli,James,Network Engineer,IT,Manufacturing,Male,Caucasian,32,2021-04-15,86523 
+Ezra,Aguilar,Vice President,IT,Manufacturing,Male,Latino,60,2014-11-05,239868 
+Anna,Castro,Analyst II,Finance,Specialty Products,Female,Latino,29,2018-05-21,65010 
+Liliana,Lewis,Network Administrator,IT,Corporate,Female,Caucasian,25,2021-02-23,82140 
+Maverick,Alvarado,Solutions Architect,IT,Manufacturing,Male,Latino,34,2016-06-11,75511 
+Nora,Butler,Vice President,IT,Research & Development,Female,Black,26,2022-05-06,188880 
+Landon,Rodriguez,Sr. Account Representative,Sales,Manufacturing,Male,Latino,39,2017-11-19,87155 
+Grace,Harris,Enterprise Architect,IT,Research & Development,Female,Caucasian,34,2018-10-28,75518 
+Jeremiah,Medina,Sr. Manager,IT,Research & Development,Male,Latino,54,1997-09-28,129311 
+Charles,Bryant,Analyst,Sales,Manufacturing,Male,Caucasian,27,2022-07-12,56919 
+Elizabeth,Dixon,Sr. Manager,Finance,Manufacturing,Female,Caucasian,26,2020-11-15,153832 
+Riley,Phillips,Vice President,Engineering,Specialty Products,Female,Caucasian,26,2022-08-05,211121 
+Gianna,Cruz,Manager,Sales,Corporate,Female,Latino,29,2019-07-02,106456 
+Lincoln,Cruz,Network Architect,IT,Corporate,Male,Latino,64,1997-07-15,72772 
+Ezekiel,Contreras,Sr. Manager,Accounting,Research & Development,Male,Latino,45,2001-08-10,143146 
+Amelia,Do,Analyst II,Marketing,Manufacturing,Female,Asian,45,2018-12-24,74776 
+Anthony,Perez,Sr. Account Representative,Sales,Specialty Products,Male,Latino,51,2021-09-13,92305 
+Elias,Maldonado,IT Systems Architect,IT,Manufacturing,Male,Latino,56,2005-04-01,94724 
+Liam,Luong,Technical Architect,IT,Specialty Products,Male,Asian,58,1995-11-13,88019 
+Jordan,Ford,Manager,Human Resources,Corporate,Male,Black,43,2016-09-19,108000 
+Mateo,Chung,Network Architect,IT,Corporate,Male,Asian,52,2018-07-27,81438 
+Jameson,Vang,Computer Systems Manager,IT,Corporate,Male,Asian,41,2018-05-23,95669 
+Samuel,Thomas,Vice President,Accounting,Specialty Products,Male,Caucasian,43,2016-02-15,180385 
+Gabriel,Rodriguez,IT Coordinator,IT,Research & Development,Male,Latino,36,2016-01-30,45184 
+Wyatt,Robinson,Development Engineer,Engineering,Research & Development,Male,Caucasian,55,2007-08-08,70451 
+Anna,Huynh,Technical Architect,IT,Specialty Products,Female,Asian,39,2009-04-05,63259 
+Lucy,Simmons,Analyst II,Accounting,Corporate,Female,Caucasian,56,2001-03-01,73778 
+Austin,Ng,Sr. Manager,Sales,Research & Development,Male,Asian,45,2009-03-03,126697 
+Madeline,Cruz,System Administrator,IT,Specialty Products,Female,Latino,63,2008-05-19,75396 
+Layla,Munoz,Director,Human Resources,Corporate,Female,Latino,39,2014-09-24,182595 
+Alexander,Tang,Analyst,Finance,Corporate,Male,Asian,32,2015-01-29,45424 
+Carson,Chen,Analyst II,Finance,Manufacturing,Male,Asian,45,2012-12-03,70661 
+Kai,Duong,IT Coordinator,IT,Research & Development,Male,Asian,41,2018-11-16,57166 
+Ayla,Cooper,Operations Engineer,Engineering,Corporate,Female,Caucasian,56,2017-02-15,101637 
+Eliza,Espinoza,Manager,Marketing,Specialty Products,Female,Latino,30,2017-12-28,103646 
+Axel,King,Automation Engineer,Engineering,Manufacturing,Male,Caucasian,46,2010-02-21,100757 
+Alexander,Carter,Network Administrator,IT,Specialty Products,Male,Caucasian,47,2008-10-04,60963 
+Robert,Rogers,Vice President,Engineering,Manufacturing,Male,Caucasian,53,2011-08-26,258734 
+Anthony,Gupta,Cloud Infrastructure Architect,IT,Specialty Products,Male,Asian,38,2021-09-23,70612 
+Jackson,Gupta,Service Desk Analyst,IT,Research & Development,Male,Asian,65,1993-06-27,77065 
+Sophia,Rodriguez,Development Engineer,Engineering,Specialty Products,Female,Latino,58,2007-10-31,96256 
+Cora,Patel,Analyst II,Accounting,Manufacturing,Female,Asian,36,2011-05-13,65794 
+Piper,Hsu,Analyst,Accounting,Research & Development,Female,Asian,45,2015-08-23,48491 
+Hunter,Marquez,Operations Engineer,Engineering,Research & Development,Male,Latino,34,2019-08-07,83220 
+Addison,Li,HRIS Analyst,Human Resources,Research & Development,Female,Asian,37,2010-03-04,61680 
+Carson,Hoang,Sr. Analyst,Sales,Manufacturing,Male,Asian,43,2021-10-09,72482 
+Julian,Fernandez,Development Engineer,Engineering,Research & Development,Male,Latino,27,2022-02-07,81713 
+Caleb,Rojas,Analyst II,Sales,Manufacturing,Male,Latino,38,2021-12-04,68281 
+Elizabeth,Griffin,Cloud Infrastructure Architect,IT,Corporate,Female,Caucasian,60,1993-09-10,63979 
+Nolan,Han,Business Partner,Human Resources,Corporate,Male,Asian,29,2017-11-19,53090 
+Cameron,Romero,Manager,Sales,Specialty Products,Male,Latino,49,1997-09-15,108325 
+Angel,Patterson,Sr. Analyst,Marketing,Corporate,Male,Black,45,2018-01-07,98289 
+Ryan,Foster,IT Coordinator,IT,Specialty Products,Male,Caucasian,44,2004-02-22,41275 
+Leonardo,Patterson,Sr. Analyst,Finance,Specialty Products,Male,Caucasian,46,2012-02-06,93642 
+William,Song,Director,Human Resources,Research & Development,Male,Asian,36,2010-10-25,162957 
+Axel,Aguilar,Sr. Analyst,Accounting,Manufacturing,Male,Latino,45,2022-04-10,96029 
+Liam,Valdez,Vice President,Human Resources,Research & Development,Male,Latino,55,1999-03-01,227148 
+Hudson,Washington,Cloud Infrastructure Architect,IT,Specialty Products,Male,Caucasian,43,2008-09-17,76819 
+Owen,Han,Analyst II,Sales,Specialty Products,Male,Asian,30,2022-09-01,66892 
+Harper,Washington,Vice President,Marketing,Manufacturing,Female,Caucasian,48,1999-06-24,256084 
+Brooklyn,Parker,Sr. Analyst,Marketing,Specialty Products,Female,Black,60,2005-03-19,85669 
+Hudson,Oh,IT Coordinator,IT,Research & Development,Male,Asian,30,2021-09-09,44454 
+Maverick,Howard,IT Coordinator,IT,Specialty Products,Male,Caucasian,25,2021-04-13,54353 
+Alexander,Dominguez,Analyst II,Sales,Specialty Products,Male,Latino,58,2014-11-27,58867 
+Jack,Garcia,Manager,Human Resources,Corporate,Male,Latino,37,2022-03-21,123918 
+Aiden,Hu,IT Coordinator,IT,Research & Development,Male,Asian,44,2010-05-07,56680 
+Cora,Espinoza,Business Partner,Human Resources,Research & Development,Female,Latino,53,2019-10-09,55206 
+Naomi,Moua,Director,Sales,Specialty Products,Female,Asian,58,2010-01-13,150633 
+Liam,Baker,Network Administrator,IT,Specialty Products,Male,Caucasian,65,2020-01-26,97379 
+Christian,Liu,Director,Accounting,Research & Development,Male,Asian,57,2000-03-29,178447 
+Aaron,Munoz,Network Administrator,IT,Manufacturing,Male,Latino,31,2021-06-13,60827 
+Levi,Kang,Engineering Manager,Engineering,Manufacturing,Male,Asian,32,2019-04-28,96951 
+Isaac,Foster,Manager,Accounting,Specialty Products,Male,Caucasian,48,2001-01-06,103051 
+Samantha,Zhu,Vice President,IT,Specialty Products,Female,Asian,55,2001-10-27,256592 
+Vivian,Watson,Development Engineer,Engineering,Specialty Products,Female,Caucasian,52,2017-07-07,79323 
+Emery,Hernandez,Development Engineer,Engineering,Research & Development,Female,Latino,27,2021-07-12,75583 
+Camila,Baker,Account Representative,Sales,Specialty Products,Female,Caucasian,36,2012-09-08,73646 
+David,Bryant,Solutions Architect,IT,Specialty Products,Male,Caucasian,36,2022-08-07,64937 
+Miles,Perez,Manager,Sales,Manufacturing,Male,Latino,42,2019-06-11,112146 
+Elijah,Hill,Sr. Analyst,Marketing,Research & Development,Male,Caucasian,48,2018-12-16,83332 
+Sofia,Shin,Computer Systems Manager,IT,Specialty Products,Female,Asian,42,2008-04-11,66248 
+Ezekiel,Lee,Sr. Manager,Human Resources,Research & Development,Male,Asian,37,2019-08-22,127238 
+Nevaeh,Truong,Network Architect,IT,Specialty Products,Female,Asian,55,2012-05-23,87857 
+Leah,Ali,HRIS Analyst,Human Resources,Specialty Products,Female,Asian,62,1999-08-20,51454 
+Emma,Soto,Sr. Manager,Accounting,Specialty Products,Female,Latino,29,2020-09-13,128066 
+Lydia,Marquez,Sr. Manager,Human Resources,Corporate,Female,Latino,29,2018-09-28,130790 
+Cora,Munoz,Vice President,Human Resources,Manufacturing,Female,Latino,45,2004-05-17,233342 
+Hudson,Ross,Analyst,Marketing,Manufacturing,Male,Caucasian,57,2009-10-04,54155 
+Aiden,Cheng,Vice President,Marketing,Manufacturing,Male,Asian,31,2019-09-06,189403 
+Willow,Vang,Sr. Analyst,Accounting,Manufacturing,Female,Asian,31,2018-05-18,78732 
+Jonathan,Young,Analyst,Accounting,Manufacturing,Male,Caucasian,47,2015-04-28,55401 
+Isaac,Rojas,System Administrator,IT,Manufacturing,Male,Latino,60,2006-07-12,82343 
+Dylan,Guzman,Quality Engineer,Engineering,Research & Development,Male,Latino,42,2017-03-16,66226 
+Sarah,Shin,Vice President,IT,Manufacturing,Female,Asian,26,2021-12-03,193435 
+Michael,Johnson,Manager,Finance,Corporate,Male,Caucasian,57,2011-04-18,114241 
+Riley,Vega,Director,Engineering,Research & Development,Female,Latino,25,2022-11-11,177264 
+Benjamin,Ali,Business Partner,Human Resources,Corporate,Male,Asian,53,2016-04-12,58010 
+Ezekiel,Cooper,Director,IT,Specialty Products,Male,Black,43,2003-03-15,154284 
+Lyla,Walker,Analyst,Accounting,Corporate,Female,Caucasian,49,2002-02-18,54633 
+Aria,Cheng,Business Partner,Human Resources,Research & Development,Female,Asian,61,1996-08-26,42829 
+Christopher,Ramirez,Engineering Manager,Engineering,Research & Development,Male,Latino,41,2010-03-15,118973 
+Emily,Roberts,Network Architect,IT,Manufacturing,Female,Caucasian,56,2018-12-29,61251 
+Nathan,Parker,Engineering Manager,Engineering,Specialty Products,Male,Caucasian,49,2002-04-24,108636 
+Nora,Her,Field Engineer,Engineering,Specialty Products,Female,Asian,32,2014-04-24,68780 
+Mia,Brown,Analyst II,Accounting,Corporate,Female,Caucasian,30,2016-08-10,60261 
+Hunter,Hu,Manager,Finance,Specialty Products,Male,Asian,64,2003-07-13,100951 
+Luke,Acosta,Network Architect,IT,Specialty Products,Male,Latino,57,2022-07-20,93872 
+Sophia,Griffin,Vice President,Marketing,Specialty Products,Female,Caucasian,50,2018-06-29,181570 
+Anthony,Chu,Manager,Sales,Manufacturing,Male,Asian,61,2003-09-30,101517 
+Landon,Ha,Manager,Finance,Manufacturing,Male,Asian,43,2006-01-30,100822 
+Layla,Kang,Manager,Marketing,Research & Development,Female,Asian,26,2022-03-02,128965 
+Cora,Xu,Network Administrator,IT,Manufacturing,Female,Asian,54,2011-11-17,60513 
+Rylee,Campos,Manager,Finance,Research & Development,Female,Latino,49,2005-02-09,107461 
+Amelia,Foster,Analyst II,Sales,Research & Development,Female,Caucasian,32,2018-02-24,66294 
+Hadley,Rios,Sr. Manager,Sales,Research & Development,Female,Latino,62,2009-01-11,157500 
+Luna,Chang,IT Coordinator,IT,Specialty Products,Female,Asian,64,2022-10-20,43271 
+Mia,Navarro,Technical Architect,IT,Research & Development,Female,Latino,52,2011-06-19,91518 
+Nova,Rios,Sr. Manager,Human Resources,Specialty Products,Female,Latino,42,2019-04-15,130874 
+Theodore,Truong,HRIS Analyst,Human Resources,Corporate,Male,Asian,45,2017-05-23,66324 
+Asher,Ly,Analyst II,Sales,Corporate,Male,Asian,65,1998-01-29,63853 
+Madeline,Doan,Manager,Human Resources,Corporate,Female,Asian,46,2021-01-10,104692 
+Scarlett,Rodriguez,Solutions Architect,IT,Corporate,Female,Latino,64,2022-11-03,71864 
+Zoey,Lu,Vice President,Marketing,Manufacturing,Female,Asian,45,2007-10-31,216269 
+Mila,Cheung,Enterprise Architect,IT,Specialty Products,Female,Asian,32,2021-12-17,73135 
+Lucy,Mai,Director,Engineering,Corporate,Female,Asian,56,2022-06-27,197579 
+Benjamin,Luu,Systems Analyst,IT,Corporate,Male,Asian,46,2011-12-15,59733 
+Mia,Navarro,Vice President,Human Resources,Corporate,Female,Latino,26,2020-05-22,187792 
+Maya,Watson,Manager,Human Resources,Specialty Products,Female,Caucasian,59,2017-01-07,108612 
+Jack,Adams,System Administrator,IT,Corporate,Male,Black,50,2018-07-18,80350 
+Gabriella,Jordan,Test Engineer,Engineering,Research & Development,Female,Caucasian,32,2019-09-21,61243 
+Jonathan,Torres,Analyst,Finance,Manufacturing,Male,Latino,56,2002-04-12,48896 
+Samuel,Xu,Quality Engineer,Engineering,Research & Development,Male,Asian,32,2019-09-20,82887 
+Ezekiel,Lai,Analyst,Marketing,Manufacturing,Male,Asian,45,2005-11-26,54742 
+Levi,Rahman,Sr. Manager,Marketing,Corporate,Male,Asian,43,2007-07-19,134544 
+Madison,Phan,Manager,IT,Specialty Products,Female,Asian,45,2003-05-10,128115 
+Andrew,Pham,Analyst,Accounting,Specialty Products,Male,Asian,38,2013-06-29,54713 
+Clara,Ford,Analyst II,Sales,Research & Development,Female,Caucasian,46,2014-08-09,63987 
+Christopher,Chau,IT Systems Architect,IT,Research & Development,Male,Asian,26,2021-12-28,86288 
+Madeline,Guerrero,Quality Engineer,Engineering,Corporate,Female,Latino,27,2020-08-16,61693 
+Harper,Yee,System Administrator,IT,Manufacturing,Female,Asian,48,2021-11-01,75624 
+Mia,Thomas,Manager,Human Resources,Corporate,Female,Caucasian,57,2013-05-17,122979 
+Owen,Nelson,Engineering Manager,Engineering,Specialty Products,Male,Caucasian,58,2003-01-06,91729 
+Aiden,Evans,Manager,Finance,Corporate,Male,Caucasian,48,2010-05-16,117736 
+Josiah,Lai,Sr. Manager,Human Resources,Research & Development,Male,Asian,54,1995-03-21,154658 
+Jameson,Yee,Enterprise Architect,IT,Research & Development,Male,Asian,29,2020-08-03,84397 
+Serenity,Her,Director,Accounting,Specialty Products,Female,Asian,50,1997-08-22,159285 
+Ariana,Turner,Analyst II,Accounting,Research & Development,Female,Caucasian,49,2004-06-06,59854 
+Jacob,Cooper,Solutions Architect,IT,Research & Development,Male,Caucasian,64,2018-05-18,87521 
+Christopher,Dominguez,Director,Marketing,Research & Development,Male,Latino,36,2015-09-17,179166 
+Nevaeh,Lim,Controls Engineer,Engineering,Corporate,Female,Asian,55,1999-03-29,120092 
+Dominic,Cheng,Director,Engineering,Corporate,Male,Asian,53,2015-06-19,168142 
+Serenity,Rodriguez,Director,Finance,Corporate,Female,Latino,54,1995-04-10,195662 
+Caleb,Thompson,Systems Analyst,IT,Manufacturing,Male,Caucasian,41,2012-12-17,49986 
+Luke,Avila,Vice President,Accounting,Corporate,Male,Latino,27,2020-08-21,181587 
+Sadie,Chin,Vice President,Human Resources,Specialty Products,Female,Asian,51,2000-07-26,199736 
+Everett,Le,Vice President,Accounting,Corporate,Male,Asian,45,2014-01-07,250639 
+Carson,Santos,Sr. Account Representative,Sales,Corporate,Male,Latino,34,2022-02-15,80655 
+Natalie,Ho,Analyst II,Finance,Research & Development,Female,Asian,33,2020-11-22,64327 
+Natalia,Hall,Analyst II,Accounting,Research & Development,Female,Caucasian,37,2018-11-08,72005 
+Zoey,Ahmed,Quality Engineer,Engineering,Specialty Products,Female,Asian,56,2012-04-25,62497 
+Santiago,Turner,Sr. Account Representative,Sales,Research & Development,Male,Caucasian,46,2003-02-24,74912 
+Jacob,Alexander,Business Partner,Human Resources,Specialty Products,Male,Caucasian,45,2001-03-19,50393 
+Christopher,Aguilar,Enterprise Architect,IT,Manufacturing,Male,Latino,32,2021-05-14,79670 
+Vivian,Jackson,Sr. Manager,Accounting,Corporate,Female,Black,51,1999-02-23,148942 
+Leonardo,Jenkins,Service Desk Analyst,IT,Research & Development,Male,Caucasian,29,2018-04-09,98504 
+Oliver,Hunter,Service Desk Analyst,IT,Manufacturing,Male,Caucasian,38,2015-12-20,70588 
+Ayla,Brooks,Analyst,Accounting,Corporate,Female,Caucasian,58,2001-11-21,58336 
+Willow,Chau,Development Engineer,Engineering,Corporate,Female,Asian,45,2011-09-09,86001 
+Kai,Shin,Sr. Analyst,Sales,Specialty Products,Male,Asian,49,2015-09-13,91121 
+Liliana,Zhao,Director,Human Resources,Corporate,Female,Asian,50,2011-08-30,183308 
+Aiden,Carter,Network Architect,IT,Manufacturing,Male,Caucasian,32,2021-03-05,71674 
+Christopher,Song,Automation Engineer,Engineering,Manufacturing,Male,Asian,29,2017-01-03,118639 
+Charles,Luu,Enterprise Architect,IT,Corporate,Male,Asian,34,2018-11-10,71808 
+Kayden,Dinh,Sr. Manager,Human Resources,Manufacturing,Male,Asian,50,2019-05-26,156374 
+Valentina,Zhang,Systems Analyst,IT,Manufacturing,Female,Asian,27,2021-03-10,51133 
+Alexander,Perez,Quality Engineer,Engineering,Specialty Products,Male,Latino,60,2008-06-25,86761 
+Everleigh,Kumar,Manager,IT,Manufacturing,Female,Asian,65,1994-07-05,125213 
+Santiago,Xiong,Manager,Sales,Manufacturing,Male,Asian,43,2008-09-26,120305 
+Elizabeth,Powell,Sr. Manager,Marketing,Research & Development,Female,Caucasian,45,2013-09-17,138355 
+Lucas,Yang,Network Engineer,IT,Corporate,Male,Asian,28,2021-07-04,70996 
+John,Richardson,Computer Systems Manager,IT,Manufacturing,Male,Caucasian,34,2014-12-29,77024 
+Miles,Ross,IT Coordinator,IT,Specialty Products,Male,Black,31,2017-04-18,50022 
+Jonathan,Santos,Vice President,Sales,Specialty Products,Male,Latino,29,2017-01-06,204534 
+Joshua,Maldonado,Sr. Account Representative,Sales,Research & Development,Male,Latino,49,2005-12-22,75814 
+Santiago,Vo,Director,Sales,Manufacturing,Male,Asian,47,2019-07-15,169487 
+Leilani,Martin,Sr. Manager,IT,Corporate,Female,Caucasian,56,2002-05-06,156435 
+Luca,Xiong,Account Representative,Sales,Specialty Products,Male,Asian,52,2006-12-20,59845 
+Valentina,Campos,System Administrator,IT,Manufacturing,Female,Latino,37,2020-03-06,93656 
+Grayson,Jenkins,Test Engineer,Engineering,Manufacturing,Male,Caucasian,55,1998-03-06,99035 
+Jeremiah,Ross,Sr. Manager,Marketing,Corporate,Male,Caucasian,27,2021-06-17,137997 
+Natalie,Zheng,Network Engineer,IT,Manufacturing,Female,Asian,28,2019-06-21,61573 
+Jace,Mehta,Analyst,Sales,Manufacturing,Male,Asian,55,2015-05-06,41102 
+Hannah,Doan,Manager,Human Resources,Research & Development,Female,Asian,44,2011-09-16,129866 
+Caroline,Robinson,Director,Human Resources,Specialty Products,Female,Caucasian,28,2020-01-22,161868 
+Naomi,Ma,Field Engineer,Engineering,Corporate,Female,Asian,55,1995-05-16,67131 
+Adam,Davis,Quality Engineer,Engineering,Research & Development,Male,Black,44,2019-10-15,71345 
+Ellie,Ho,Vice President,Sales,Corporate,Female,Asian,30,2019-10-09,246757 
+Mila,Liang,Manager,Marketing,Research & Development,Female,Asian,63,2005-03-28,106880 
+Nova,Doan,IT Systems Architect,IT,Manufacturing,Female,Asian,36,2018-08-28,98733 
+Colton,Mejia,Sr. Manager,Accounting,Research & Development,Male,Latino,28,2019-04-26,141675 
+Joseph,Kim,Analyst II,Accounting,Research & Development,Male,Asian,28,2018-06-23,53210 
+Audrey,Campos,Manager,Finance,Specialty Products,Female,Latino,27,2021-09-02,107114 
+Vivian,Brooks,Business Partner,Human Resources,Specialty Products,Female,Black,34,2022-09-12,57483 
+Mateo,Vargas,Network Architect,IT,Specialty Products,Male,Latino,53,1994-04-20,75226 
+David,Foster,Controls Engineer,Engineering,Corporate,Male,Caucasian,50,2012-01-15,87727 
+Isaiah,Ramos,Solutions Architect,IT,Manufacturing,Male,Latino,51,2018-06-21,87897 
+Samantha,Do,IT Systems Architect,IT,Research & Development,Female,Asian,27,2021-11-19,99612 
+Emery,Fernandez,Analyst,Accounting,Research & Development,Female,Latino,33,2019-03-27,56938 
+Santiago,Brooks,Sr. Business Partner,Human Resources,Corporate,Male,Caucasian,46,2012-01-20,92247 
+Aubrey,Lin,Vice President,Human Resources,Corporate,Female,Asian,51,2005-10-17,193672 
+Jace,Hsu,Systems Analyst,IT,Manufacturing,Male,Asian,31,2018-10-06,46098 
+Nicholas,Sanders,Vice President,Sales,Manufacturing,Male,Caucasian,45,2014-11-23,239980 
+Joshua,Sun,Manager,Finance,Corporate,Male,Asian,38,2011-07-13,121546 
+Riley,Ayala,Manager,Accounting,Specialty Products,Female,Latino,42,2010-02-20,128714 
+Isaac,Santos,Development Engineer,Engineering,Manufacturing,Male,Latino,43,2018-09-13,91537 
+Logan,Brooks,Director,IT,Corporate,Male,Caucasian,28,2020-05-07,178300 
+Leilani,Hu,Analyst II,Finance,Research & Development,Female,Asian,57,2018-05-21,50260 
+Jace,Cho,Director,Engineering,Research & Development,Male,Asian,33,2016-08-06,161800 
+Jaxson,Fong,Sr. Manager,Finance,Corporate,Male,Asian,32,2020-10-09,157616 
+Wyatt,Ly,Quality Engineer,Engineering,Corporate,Male,Asian,45,2008-12-19,82697 
+Mia,Huang,Sr. Manager,IT,Corporate,Female,Asian,33,2018-09-21,124404 
+Levi,Her,Sr. Manager,IT,Specialty Products,Male,Asian,43,2012-03-30,158750 
+Everleigh,Phillips,Analyst II,Sales,Manufacturing,Female,Caucasian,62,2015-11-08,69057 
+Natalie,Acosta,Sr. Manager,Marketing,Specialty Products,Female,Latino,36,2019-01-08,157976 
+Hadley,Chavez,Analyst,Sales,Corporate,Female,Latino,36,2020-06-28,54355 
+Hailey,Liu,Field Engineer,Engineering,Manufacturing,Female,Asian,31,2022-07-09,72475 
+Nicholas,Jiang,Engineering Manager,Engineering,Manufacturing,Male,Asian,62,2003-12-13,80132 
+Gabriel,Xu,Analyst,Accounting,Research & Development,Male,Asian,30,2018-10-13,52292 
+Sophia,Collins,Cloud Infrastructure Architect,IT,Specialty Products,Female,Caucasian,46,2022-01-08,69110 
+Evelyn,Vasquez,Technical Architect,IT,Manufacturing,Female,Latino,38,2013-02-24,68676 
+Paisley,Baker,Test Engineer,Engineering,Manufacturing,Female,Caucasian,58,2002-12-23,86094 
+Eloise,Griffin,Enterprise Architect,IT,Specialty Products,Female,Caucasian,27,2022-05-06,77607 
+Samuel,Cruz,Sr. Manager,Human Resources,Specialty Products,Male,Latino,61,1993-04-30,157672 
+Gabriel,Cheung,Analyst,Finance,Specialty Products,Male,Asian,64,2016-11-29,43785 
+Kai,Green,System Administrator,IT,Corporate,Male,Caucasian,65,2015-06-15,75439 
+Julia,Moore,Sr. Manager,IT,Manufacturing,Female,Caucasian,37,2021-11-18,139987 
+Roman,Mendoza,Vice President,Accounting,Specialty Products,Male,Latino,54,1994-09-04,257489 
+Levi,Rahman,System Administrator,IT,Specialty Products,Male,Asian,54,2009-01-30,91639 
+Sadie,Pham,Analyst II,Finance,Specialty Products,Female,Asian,26,2022-12-25,66563 
+Chloe,Contreras,Vice President,Marketing,Corporate,Female,Latino,29,2021-02-10,235047 
+Owen,Ford,Vice President,Human Resources,Corporate,Male,Caucasian,37,2015-02-10,214782 
+Audrey,Powell,Director,Accounting,Research & Development,Female,Black,37,2011-05-01,180544 
+Greyson,Munoz,Sr. Manager,Marketing,Research & Development,Male,Latino,62,2000-06-23,158614 
+Isaiah,Vang,Quality Engineer,Engineering,Corporate,Male,Asian,53,1998-11-30,63187 
+Lincoln,Alvarado,Sr. Analyst,Marketing,Manufacturing,Male,Latino,65,2004-12-08,93857 
+Carter,Sandoval,Vice President,IT,Manufacturing,Male,Latino,36,2021-03-11,253741 
+Julia,Jimenez,Sr. Analyst,Marketing,Specialty Products,Female,Latino,46,2010-11-17,92833 
+Savannah,Cortez,Service Desk Analyst,IT,Specialty Products,Female,Latino,55,2018-12-15,95400 
+Everly,Brown,Quality Engineer,Engineering,Specialty Products,Female,Black,63,2013-10-04,88230 
+Charlotte,Pham,Field Engineer,Engineering,Research & Development,Female,Asian,54,2003-02-25,62179 
+Iris,Bailey,IT Coordinator,IT,Research & Development,Female,Caucasian,26,2020-02-18,42343 
+Logan,Daniels,Sr. Analyst,Accounting,Corporate,Male,Caucasian,26,2022-05-07,70275 
+Autumn,Molina,Analyst II,Sales,Corporate,Female,Latino,34,2012-04-08,51448 
+Emma,Mehta,Vice President,Engineering,Manufacturing,Female,Asian,48,2009-04-09,185363 
+Julian,Joseph,Enterprise Architect,IT,Manufacturing,Male,Caucasian,52,2018-09-20,60784 
+Eleanor,Munoz,Analyst,Accounting,Specialty Products,Female,Latino,45,2004-04-07,45323 
+Caroline,Sandoval,Manager,Finance,Specialty Products,Female,Latino,51,2012-09-10,129727 
+Eliza,Zhu,Account Representative,Sales,Specialty Products,Female,Asian,43,2006-09-30,63229 
+Greyson,Moore,Director,Accounting,Corporate,Male,Caucasian,54,2004-02-12,194221 
+Lyla,Clark,Sr. Analyst,Sales,Research & Development,Female,Caucasian,54,2018-12-12,78020 
+Samuel,Patterson,Vice President,Accounting,Specialty Products,Male,Caucasian,25,2022-10-07,197331 
+Robert,Padilla,Analyst II,Accounting,Manufacturing,Male,Latino,65,1998-02-16,63346 
+Landon,Munoz,Controls Engineer,Engineering,Manufacturing,Male,Latino,40,2014-07-11,105574 
+Josiah,Yi,Operations Engineer,Engineering,Corporate,Male,Asian,31,2015-04-12,101941 
+Owen,Scott,Solutions Architect,IT,Research & Development,Male,Black,45,2005-07-17,74777 
+Matthew,Parker,Analyst,Sales,Research & Development,Male,Caucasian,40,2021-09-15,59447 
+Daniel,Huynh,Manager,Marketing,Manufacturing,Male,Asian,25,2021-12-08,105072 
+Matthew,Vargas,Sr. Manager,IT,,,Latino,53,1999-05-24,150893 
+Ella,Herrera,Director,,Corporate,,Latino,49,2013-02-08,156276 
+Everly,Hwang,,Accounting,,Female,Asian,31,2022-10-27,191755 
+Ian,Hernandez,,Accounting,,Male,Latino,40,2021-12-01,176533 
+Charlotte,Lam,Service Desk Analyst,,,Female,Asian,29,2020-08-26,60919 
+Jonathan,Ali,Automation Engineer,,,Male,Asian,51,,
+Violet,He,Analyst,Sales,,,Asian,31,2021-11-19,
+Hannah,Truong,Sr. Analyst,Accounting,,Female,Asian,44,2009-03-25,
+Hannah,Nelson,Account Representative,,,Female,Caucasian,38,,
+Autumn,Kaur,,Accounting,,Female,Asian,,,129172 
+Jameson,Salazar,Controls Engineer,,,,Latino,45,,85822 
+Luke,Luna,Analyst,Sales,,Male,Latino,58,2007-05-21,
+Hunter,Moua,Sr. Analyst,Accounting,,Male,Asian,29,2019-11-29,72620 
+Athena,Aguilar,Analyst II,Marketing,,Female,Latino,25,2021-08-24,71222 
+Ariana,Sanders,Director,Engineering,,Female,Caucasian,62,1994-12-26,155332 
+Easton,Cruz,Manager,Finance,Manufacturing,,Latino,33,2016-11-21,107202 
+Josiah,Vega,Manager,Accounting,,Male,Latino,56,2015-12-26,121751 
+Isla,Chavez,Manager,Finance,,Female,Latino,45,2010-09-29,115591 
+Willow,Estrada,Manager,Human Resources,,Female,Latino,28,2021-03-11,108601 
+Nevaeh,Ng,Sr. Manager,,Manufacturing,,Asian,30,2019-03-18,159823 
+Jade,Hu,Analyst,Marketing,,Female,Asian,45,2001-12-15,53526 
+Henry,Vazquez,IT Systems Architect,IT,,Male,Latino,33,2016-12-03,90084 
+Nathan,Jackson,Vice President,Accounting,,Male,Caucasian,41,2011-03-25,210085 
+Anthony,Lam,Sr. Manager,,Specialty Products,Male,Asian,33,2015-02-07,133908 
+Nevaeh,Ali,Manager,,Manufacturing,Female,Asian,48,2013-03-22,100652 
+Mila,Vasquez,Vice President,Human Resources,Corporate,Female,Latino,48,2013-07-26,225725 
+Madelyn,Henry,Vice President,Human Resources,Specialty Products,Female,Caucasian,41,2007-05-10,224989 
+Emilia,Alexander,Operations Engineer,Engineering,Specialty Products,Female,Caucasian,37,2022-09-11,109680 
+Christian,Ayala,Sr. Account Representative,Sales,Research & Development,Male,Latino,55,2003-09-28,74216 
+Willow,Xiong,Sr. Manager,Marketing,Corporate,Female,Asian,37,2021-05-04,151363 
+Avery,Valdez,HRIS Analyst,Human Resources,Research & Development,Female,Latino,58,2000-01-29,62686 
+Abigail,Carter,Director,Human Resources,Research & Development,Female,Black,51,2015-01-12,178218 
+Kinsley,Hill,Account Representative,,Research & Development,Female,Caucasian,26,2022-06-16,59436 
+Kai,Barnes,Account Representative,Sales,,Male,Caucasian,35,2016-08-24,58733 
+Lincoln,Cheng,Sr. Analyst,,Corporate,Male,Asian,61,1997-10-14,88681 
+Noah,Sharma,,Finance,Specialty Products,Male,Asian,59,2008-02-09,186854 
+Ariana,Hall,Manager,Human Resources,Corporate,Female,Caucasian,55,2005-01-17,128954 
+Kinsley,Gonzalez,,IT,Research & Development,Female,Latino,47,2000-01-27,125641 
+Dominic,Tang,Manager,,Corporate,Male,Asian,53,1993-12-08,100666 
+Colton,Le,HRIS Analyst,Human Resources,,Male,Asian,38,2010-01-12,71235 
+Kai,Huang,Sr. Business Partner,,Corporate,,Asian,28,2021-01-15,83235 
+Addison,Cruz,,Sales,Corporate,Female,,32,2014-09-08,42075 
+Maria,Barnes,,Marketing,,Female,Caucasian,64,2003-05-13,76506 
+Everett,Le,,,Manufacturing,Male,Asian,55,2007-03-03,100051 
+Mia,Vang,,Finance,Corporate,Female,Asian,38,2014-04-19,256509 
+Adam,Jordan,,,Corporate,Male,Caucasian,55,2015-03-12,79620 
+Leah,Stewart,Cloud Infrastructure Architect,IT,,Female,Caucasian,36,2010-06-04,62450 
+Robert,Santos,Sr. Manager,Human Resources,,Male,Latino,47,2000-12-29,134612 
+Addison,Ma,Systems Analyst,IT,Research & Development,Female,Asian,59,2008-05-21,46151 
+Clara,Collins,Network Engineer,IT,Manufacturing,Female,Caucasian,40,2008-03-03,63889 
+Stella,Castro,Test Engineer,Engineering,Corporate,Female,Latino,53,2009-04-17,75060 
+Lucy,Chin,Director,IT,Manufacturing,Female,Asian,50,2011-04-22,175033 
+Piper,Evans,Computer Systems Manager,IT,Specialty Products,Female,Caucasian,52,2014-01-28,89379 
+Cora,Coleman,Controls Engineer,Engineering,Corporate,Female,Black,40,2011-04-09,98594 
+Cora,Holmes,Vice President,Marketing,Research & Development,Female,Caucasian,39,2021-10-05,224435 
+Leo,Figueroa,Technical Architect,IT,Corporate,Male,Latino,31,2015-01-21,63644 
+Allison,Wang,Manager,Accounting,Manufacturing,Female,Asian,30,2018-12-16,121234 
+Levi,Cruz,Sr. Analyst,Accounting,Research & Development,Male,Latino,47,2007-09-22,83793 
+Iris,Phillips,Test Engineer,Engineering,Research & Development,Female,Caucasian,46,2019-11-28,99586 
+Madelyn,Chavez,Business Partner,Human Resources,Corporate,Female,Latino,43,2006-09-11,59514 
+Caroline,Smith,Manager,Marketing,Corporate,Female,Caucasian,28,2020-04-27,106043 
+Grayson,Lai,Solutions Architect,IT,,Male,Asian,47,2005-09-12,78985 
+Anna,Guerrero,,,,Female,Latino,43,2012-11-24,226122 
+Paisley,Bell,,Finance,,Female,Black,42,2012-01-10,110720 
+Jose,Park,,,,Male,Asian,45,2009-10-11,152519 
+Eliza,Parker,,Engineering,Corporate,,Caucasian,37,2010-03-24,80015 
+Harper,Castillo,Vice President,IT,Corporate,,Latino,46,2020-09-02,192286 
+Melody,Yoon,Business Partner,Human Resources,,Female,Asian,49,2014-10-15,40352 
+Avery,Smith,Sr. Manager,Human Resources,,,Caucasian,53,2008-06-27,147813 
+Madeline,Vu,System Administrator,IT,,Female,,61,2010-06-05,96404 
+Aubrey,Cheng,Analyst II,Accounting,,Female,Asian,,2001-06-17,64882 
+Clara,Henderson,Vice President,Sales,,,Caucasian,58,,203739 
+Jace,Henderson,Director,Engineering,,Male,Caucasian,34,2022-03-16,
+Caroline,Martin,Computer Systems Manager,IT,Manufacturing,Female,Black,54,,
+Asher,Bui,Sr. Account Representative,Sales,Specialty Products,Male,,,2009-01-27,90881 
+Samantha,Chau,Network Architect,IT,Specialty Products,Female,,28,2021-11-10,83965 
+Charles,Robinson,Development Engineer,Engineering,Corporate,,Black,62,2006-06-30,73500 
+Jonathan,Nelson,Director,Human Resources,,Male,Caucasian,59,2022-07-02,175137 
+Liliana,Simmons,Director,Marketing,,Female,Caucasian,35,2012-06-07,161453 
+Logan,Ortega,Analyst II,,Manufacturing,Male,Latino,31,2020-05-19,64234 
+Isaac,Jung,,IT,Specialty Products,Male,Asian,55,1994-07-12,103726 
+Levi,Gonzalez,Controls Engineer,,,Male,Latino,36,2012-04-27,
+Santiago,Wang,Sr. Manager,Sales,,Male,Asian,27,2021-08-09,133267 
+Julia,Kim,Account Representative,Sales,Specialty Products,,Asian,50,2016-12-04,50038 
+Noah,Allen,Analyst,Accounting,Corporate,Male,,27,2022-01-06,52058 
+Colton,Adams,Manager,Marketing,Specialty Products,Male,Caucasian,,,
+Colton,Mehta,Analyst,Accounting,Manufacturing,Male,Asian,42,,53829 
+Caroline,Gomez,Sr. Account Representative,Sales,Specialty Products,Female,Latino,65,1997-11-19,
+Kayden,Tang,Sr. Manager,Human Resources,Specialty Products,Male,Asian,57,2012-03-11,136723 
+Hadley,Parker,Manager,Accounting,Manufacturing,Female,Caucasian,44,2010-01-09,129099 
+Elizabeth,Estrada,IT Coordinator,IT,Corporate,Female,Latino,37,2016-12-20,59376 
+Sofia,Yee,System Administrator,IT,Research & Development,Female,Asian,52,2018-12-25,98060 
+Asher,Mendoza,Sr. Manager,Human Resources,Corporate,Male,Latino,49,2014-02-21,152911 
+Jordan,Hernandez,Systems Analyst,IT,Research & Development,Male,Latino,47,2003-12-15,42994 
+Everleigh,Tan,Analyst,Accounting,Manufacturing,Female,Asian,42,2019-03-28,59853 
+Joshua,Hall,Systems Analyst,IT,Manufacturing,Male,Black,61,2011-12-07,41220 
+Stella,Gupta,Sr. Analyst,Accounting,Corporate,Female,Asian,33,2020-02-18,97261 
+Levi,White,Manager,Human Resources,Manufacturing,Male,Black,45,2018-07-19,127363 
+Matthew,Jackson,Manager,Marketing,Specialty Products,Male,Caucasian,30,2019-10-13,111274 
+Dominic,Martinez,Computer Systems Manager,IT,Corporate,Male,Latino,53,2018-04-17,90554 
+Aiden,Aguilar,Manager,Finance,Research & Development,Male,Latino,62,1997-12-12,100226 
+Victoria,Hu,Field Engineer,Engineering,Manufacturing,Female,Asian,37,2017-04-21,93348 
+Eloise,Campos,Network Engineer,IT,Research & Development,,Latino,62,1993-06-25,78059 
+Emilia,Alvarado,Business Partner,Human Resources,Research & Development,,Latino,63,2001-06-29,58480 
+Lydia,Ahmed,Vice President,Finance,Corporate,,Asian,39,2017-04-24,218052 
+Dylan,Simmons,Manager,Accounting,Manufacturing,,,52,2002-05-23,
+Jaxson,Chu,Director,Marketing,Specialty Products,,,54,2010-10-10,
+Ariana,Griffin,Vice President,Marketing,Corporate,,,32,2015-03-04,241722 
+Hudson,Bailey,Solutions Architect,IT,Corporate,,,56,2018-03-12,91835 
+Colton,Grant,Sr. Analyst,Sales,Manufacturing,,,47,2011-01-07,93910 
+Emery,Flores,Sr. Analyst,Sales,Research & Development,,,45,2005-11-18,86303 
+Gabriella,Wong,Sr. Manager,Finance,Corporate,,,56,1995-05-01,122731 
+Ian,Gonzales,Sr. Manager,Finance,Corporate,,,38,2018-12-29,147867 
+Jaxon,Wright,Manager,Human Resources,Research & Development,,,47,2004-08-30,123790 
+Ethan,Cruz,Sr. Business Partner,Human Resources,Specialty Products,,,51,2000-04-28,77153 
+Adrian,James,Enterprise Architect,IT,Research & Development,,Caucasian,52,1994-08-15,73779 
+Isabella,Mejia,Vice President,Accounting,Corporate,Female,Latino,56,2018-10-07,231699 
+Christopher,Miller,Vice President,Finance,Corporate,Male,Black,37,2009-05-16,199512 
+Samuel,Watson,Network Architect,IT,Corporate,Male,Caucasian,29,2022-04-09,77557 
+Lucy,Phan,Sr. Analyst,Sales,,Female,Asian,59,2021-02-18,99760 
+Dominic,Thao,Sr. Analyst,Marketing,,Male,Asian,50,1996-09-08,96297 
+Jaxon,Shin,IT Coordinator,IT,,Male,Asian,48,2010-12-27,53593 
+Nevaeh,Diaz,Director,Marketing,,Female,Latino,44,2018-03-03,167660 
+Everleigh,Castillo,Service Desk Analyst,,Specialty Products,Female,Latino,50,2007-11-12,
+Valentina,Fernandez,Director,,Corporate,Female,Latino,62,2012-01-23,
+Serenity,Richardson,Director,,Specialty Products,Female,Caucasian,45,2019-03-14,
+Cooper,Ramirez,Director,,Specialty Products,Male,Latino,34,2012-02-07,
+Penelope,Avila,Analyst,,,Female,Latino,35,2012-05-22,
+David,Barnes,IT Systems Architect,,,Male,Caucasian,41,2006-08-19,70566 
+Ivy,Luong,Cloud Infrastructure Architect,,,Female,Asian,56,1993-07-05,75435 
+Aurora,Bailey,Development Engineer,Engineering,Research & Development,Female,Caucasian,31,2020-05-23,69108 
+Liliana,Green,Network Administrator,IT,Corporate,Female,Caucasian,48,,62672 
+Victoria,Vazquez,Test Engineer,Engineering,Research & Development,Female,,45,,92037 
+Kinsley,Huynh,Vice President,Human Resources,Specialty Products,Female,,53,,258722 
+Anna,Carrillo,Development Engineer,Engineering,Corporate,Female,,55,,64809 
+Isla,Singh,Quality Engineer,Engineering,Corporate,Female,,56,,95577 
+Emma,Yu,Development Engineer,Engineering,Research & Development,Female,Asian,41,,73059 
+Piper,Oh,,Marketing,Research & Development,Female,,57,1996-01-23,73117 
+Hunter,Molina,,,,Male,,41,2018-02-20,55330 
+Michael,Hoang,,,,,,59,2017-05-04,
+Eloise,Sun,,,,,,59,2005-06-01,
+Gianna,Jimenez,,,,,Latino,54,2015-11-26,
+Ava,Chan,Sr. Manager,,,Female,Asian,44,2022-10-12,
+Leilani,Navarro,,Marketing,Specialty Products,,Latino,55,2022-07-08,
+Lydia,Chu,,IT,Research & Development,,Asian,30,2021-10-03,
+Liam,Salazar,,Sales,,,Latino,44,2020-10-25,
+Hailey,Henderson,Analyst,,,Female,Caucasian,57,2008-08-13,
+Austin,Espinoza,,Engineering,,Male,Latino,58,2006-03-17,
+Delilah,Ng,,Engineering,Manufacturing,,Asian,59,2008-08-20,
+Gabriella,Han,,IT,Manufacturing,,,60,2000-01-22,
+Aria,Miller,,,Research & Development,Female,,32,2019-06-07,65666 
+Delilah,Cheng,Solutions Architect,IT,Specialty Products,,Asian,45,,92820 
+Caroline,Rodriguez,Sr. Manager,Finance,,Female,Latino,61,,135561 
+Jack,Chin,Sr. Manager,,,Male,Asian,44,,121788 
+Luna,Collins,,,Manufacturing,Female,Black,59,,92216 
+John,Campos,,Engineering,Manufacturing,Male,Latino,34,,104586 
+Miles,Liu,Analyst,Sales,Research & Development,Male,Asian,35,2021-05-25,52232 
+Violet,Duong,Vice President,Marketing,Specialty Products,Female,Asian,42,2014-09-22,226646 
+Isaac,Xiong,Sr. Manager,Finance,Specialty Products,Male,Asian,38,2012-10-28,152253 
+Ian,Le,Vice President,Engineering,Specialty Products,Male,Asian,46,2007-08-28,195471 
+Melody,Delgado,Network Architect,IT,Specialty Products,Female,Latino,48,2012-11-28,
+Eliza,Bui,Analyst,Finance,Corporate,Female,,63,2010-06-13,
+Layla,Wu,,Sales,Research & Development,Female,Asian,31,2018-08-27,
+Thomas,Lam,,Engineering,Manufacturing,Male,Asian,52,2022-11-18,
+Willow,Taylor,,Sales,Corporate,Female,Black,27,2021-02-08,51321 
+Kai,Le,,Engineering,Manufacturing,Male,Asian,47,2022-02-05,92368 
+Robert,Patel,,Sales,Corporate,Male,Asian,58,2013-10-23,45703 
+Cameron,Lo,,IT,Research & Development,Male,Asian,34,2019-03-24,
+Harper,Castillo,,IT,Corporate,Female,Latino,39,2018-04-07,
+Harper,Dominguez,,Engineering,Corporate,Female,Latino,42,2005-06-18,
+Ezra,Vu,,IT,Manufacturing,,Asian,62,2004-04-22,
+Jade,Hu,Sr. Analyst,,,,,58,2009-06-27,
+Miles,Chang,Analyst II,Finance,Corporate,Male,,62,1999-02-19,69674 
+Gianna,Holmes,System Administrator,IT,Manufacturing,Female,,38,2011-09-09,97630 
+Jameson,Thomas,Manager,Finance,Specialty Products,Male,,52,2015-02-05,105879 
+Jameson,Pena,Systems Analyst,IT,Manufacturing,Male,,49,2003-10-12,40499 
+Bella,Wu,Sr. Analyst,Finance,Specialty Products,Female,,63,2014-08-03,71418 
+Jose,Wong,Director,IT,Manufacturing,Male,,45,2017-11-15,150558 
+Madelyn,Yee,Sr. Analyst,Accounting,Research & Development,Female,,49,1999-10-15,
+Elena,Jimenez,Vice President,Engineering,Specialty Products,Female,,43,2011-11-11,185211 
+Sadie,Ali,Manager,Marketing,Specialty Products,Female,,53,2014-04-05,125099 
+Lucas,Sandoval,Sr. Analyst,Sales,Manufacturing,Male,Latino,41,2011-05-19,84627 
+Brooks,Ngo,Vice President,Engineering,Corporate,Male,Asian,26,2020-03-02,211114 
+Piper,Oh,Sr. Analyst,Marketing,Research & Development,Female,Asian,57,1996-01-23,73117 
+Hunter,Molina,Analyst,Marketing,Specialty Products,Male,Latino,41,2018-02-20,
+Dominic,Thao,Sr. Analyst,Marketing,Specialty Products,Male,Asian,50,1996-09-08,96297 
+Jaxon,Shin,IT Coordinator,IT,Specialty Products,Male,Asian,48,2010-12-27,53593 
+Nevaeh,Diaz,Director,Marketing,Manufacturing,Female,Latino,44,2018-03-03,167660 
+Easton,Truong,,Marketing,Research & Development,Male,,31,2021-05-13,234203 
+Sebastian,Vargas,Sr. Manager,Marketing,Corporate,Male,,48,2019-07-12,121884 
+Joseph,Dang,Vice President,Marketing,Research & Development,Male,Asian,61,2014-04-20,209680 
+Madison,White,Vice President,IT,,Female,Caucasian,42,2011-07-09,240940 
+Valentina,Nelson,Network Administrator,IT,Manufacturing,Female,Caucasian,50,2013-12-16,63884 
+Everleigh,Castillo,Service Desk Analyst,,Specialty Products,Female,Latino,50,2007-11-12,67756 
+Valentina,Fernandez,Director,,,Female,Latino,62,2012-01-23,180256 
+Serenity,Richardson,Director,Engineering,,Female,Caucasian,45,2019-03-14,183165 
+Cooper,Ramirez,,Accounting,,Male,Latino,34,2012-02-07,195194 
+Liliana,Simmons,,Marketing,Manufacturing,Female,Caucasian,35,2012-06-07,161453 
+Logan,Ortega,Analyst II,Marketing,Manufacturing,Male,Latino,31,2020-05-19,64234 
+Isaac,Jung,Manager,IT,Specialty Products,Male,Asian,55,1994-07-12,103726 
+Christopher,Desai,Automation Engineer,Engineering,Research & Development,Male,Asian,46,2000-12-29,114260 
+Levi,Gonzalez,Controls Engineer,Engineering,Corporate,Male,Latino,36,2012-04-27,116168 
+Santiago,Wang,Sr. Manager,Sales,Research & Development,Male,Asian,27,2021-08-09,133267 
+Olivia,Vazquez,Network Engineer,IT,Specialty Products,Female,Latino,53,2020-04-13,93053 
+Leilani,Ng,Systems Analyst,IT,Corporate,Female,Asian,48,2011-09-19,50513 
+Olivia,Mendoza,Sr. Account Representative,Sales,Corporate,Female,Latino,43,2017-05-07,86533 
+Skylar,Xu,Test Engineer,Engineering,Research & Development,Female,Asian,60,1997-10-16,72806 
+Eloise,Williams,Vice President,Sales,Specialty Products,Female,Black,42,2019-02-12,258115 
+Jackson,Maldonado,Cloud Infrastructure Architect,IT,Manufacturing,Male,Latino,52,2008-05-01,63444 
+Christian,Harris,Engineering Manager,Engineering,Specialty Products,Male,Caucasian,50,1999-02-21,96099 
+Penelope,Santos,IT Systems Architect,IT,Manufacturing,Female,Latino,37,2009-03-01,92849 
+Nicholas,Zhou,Sr. Account Representative,Sales,Manufacturing,Male,Asian,58,2014-10-28,85094 
+Ayla,Garza,Sr. Manager,Marketing,Corporate,Female,Latino,39,2017-06-15,156224 
+Carson,Mai,Vice President,Accounting,Corporate,Male,Asian,50,1996-04-15,
+Luna,Lu,Analyst II,Marketing,Research & Development,Female,Asian,51,2007-03-06,50214 
+Anthony,Ho,Sr. Analyst,Marketing,Specialty Products,Male,Asian,31,2015-01-11,79713 
+Clara,Lopez,Director,IT,Research & Development,Female,Latino,52,1999-08-09,166699 
+Grayson,Hwang,Sr. Analyst,Finance,Corporate,Male,Asian,42,2013-04-23,91689 
+Ezra,Tan,Sr. Manager,Finance,Corporate,Male,Asian,49,1999-12-22,158028 
+David,Ha,Sr. Account Representative,Sales,Corporate,Male,Asian,33,2022-07-27,89759 
+Lillian,Vang,Technical Architect,IT,Research & Development,Female,Asian,39,2015-09-13,78640 
+Sofia,Zhang,Analyst,Finance,Specialty Products,Female,Asian,51,2005-01-11,55368 
+Athena,Daniels,Network Administrator,IT,Specialty Products,Female,Caucasian,49,2021-05-23,78164 
+Jameson,Shin,Sr. Analyst,Marketing,Research & Development,Male,Asian,30,2020-05-14,76014 
+Everly,Avila,Account Representative,Sales,Manufacturing,Female,Latino,41,2015-11-13,61403 
+Liam,Nelson,Technical Architect,IT,Research & Development,Male,Black,58,2010-12-17,80720 
+Caleb,Rojas,Analyst II,Sales,Manufacturing,Male,Latino,38,2021-12-04,68281 
+Elizabeth,Griffin,Cloud Infrastructure Architect,IT,Corporate,Female,Caucasian,60,1993-09-10,63979 
+Nolan,Han,Business Partner,Human Resources,Corporate,Male,Asian,29,2017-11-19,53090 
+Cameron,Romero,Manager,Sales,Specialty Products,Male,Latino,49,1997-09-15,108325 
+Angel,Patterson,Sr. Analyst,Marketing,Corporate,Male,Black,45,2018-01-07,98289 
+Ryan,Foster,IT Coordinator,IT,Specialty Products,Male,Caucasian,44,2004-02-22,41275 
+Leonardo,Patterson,Sr. Analyst,Finance,Specialty Products,Male,Caucasian,46,2012-02-06,93642 
+William,Song,Director,Human Resources,Research & Development,Male,Asian,36,2010-10-25,162957 
+Axel,Aguilar,Sr. Analyst,Accounting,Manufacturing,Male,Latino,45,2022-04-10,96029 
+Liam,Valdez,Vice President,Human Resources,Research & Development,Male,Latino,55,1999-03-01,227148 
+Piper,Cruz,Director,Sales,Research & Development,Female,Latino,61,2013-04-13,195636 
+Jaxson,Jackson,Enterprise Architect,IT,Specialty Products,Male,Caucasian,53,1997-03-01,63165 
+Serenity,Mehta,Analyst,Sales,Research & Development,Female,Asian,51,1998-07-21,
+Peyton,Gomez,Analyst,Finance,Specialty Products,Female,Latino,56,2020-01-14,
+Ethan,Vargas,Director,IT,Research & Development,Male,Latino,38,2018-10-09,
+Serenity,Morris,Manager,IT,Corporate,Female,Caucasian,41,2008-04-12,
+Vivian,Chan,Sr. Analyst,Sales,Specialty Products,Female,Asian,61,1997-05-12,
+Lincoln,Singh,Analyst,Sales,Corporate,Male,Asian,33,2021-01-09,
+Ayla,Lim,Director,Marketing,Corporate,Female,Asian,41,2021-09-05,
+Leilani,Hong,System Administrator,IT,Manufacturing,Female,Asian,36,2013-12-20,79876 
+Victoria,Doan,Manager,Sales,Corporate,Female,Asian,42,2018-03-06,112593 
+Naomi,Wright,System Administrator,IT,Manufacturing,Female,Caucasian,36,2016-11-03,99249 
+Scarlett,Howard,Manager,Finance,Manufacturing,Female,Caucasian,55,2012-08-12,117421 
+Victoria,Vo,Field Engineer,Engineering,Corporate,Female,,,2017-12-18,82241 
+Oliver,Fernandez,Manager,Marketing,Research & Development,,,31,,125664 
+Samantha,Ford,Technical Architect,IT,,Female,,25,,86075 
+Thomas,Silva,Analyst,Finance,,Male,Latino,45,2015-08-13,52798 
+Charlotte,Park,Network Architect,IT,,Female,Asian,63,2020-12-17,
+Liam,Jimenez,Sr. Analyst,Marketing,,Male,Latino,52,2002-08-11,95682 
+Ivy,Liu,Analyst II,Marketing,,Female,Asian,59,1993-05-29,55476 
+Jayden,Dixon,Vice President,Finance,Manufacturing,,Caucasian,30,2018-01-14,197792 
+Nevaeh,Butler,Field Engineer,Engineering,,Female,Caucasian,55,2009-07-10,82271 
+Leonardo,Li,Sr. Manager,Accounting,,Male,Asian,65,2009-04-23,155716 
+Kinsley,Woods,HRIS Analyst,Human Resources,Corporate,Female,Caucasian,34,2014-06-19,71699 
+Abigail,Chu,Sr. Manager,Human Resources,Manufacturing,Female,Asian,51,2006-04-17,147436 
+Ava,Xiong,Sr. Business Partner,Human Resources,Manufacturing,Female,Asian,52,2019-07-21,88220 
+Olivia,Marquez,Account Representative,Sales,Specialty Products,Female,Latino,44,2020-04-06,54295 
+Charles,Ramos,Sr. Analyst,Accounting,Corporate,Male,Latino,57,2010-04-04,74597 
+Ellie,Wilson,Director,IT,Manufacturing,Female,Caucasian,65,1996-08-31,164102 
+Peyton,Powell,System Administrator,IT,Research & Development,Female,Caucasian,44,2003-02-16,74431 
+Hailey,Rojas,Analyst,Finance,Specialty Products,Female,Latino,52,2014-07-15,43378 
+Kai,Singh,Analyst,Finance,Corporate,Male,Asian,52,2001-04-19,47587 
+Ryan,Rivera,Director,Human Resources,Specialty Products,Male,Latino,53,2001-11-29,179983 
+Everett,Lu,Manager,Marketing,Research & Development,Male,Asian,31,2021-11-28,115565 
+Layla,Nunez,Manager,Finance,,Female,Latino,63,2017-09-10,126064 
+Liliana,Collins,Sr. Manager,Human Resources,Specialty Products,Female,Black,,2013-01-18,151666 
+Ezekiel,Jenkins,Service Desk Analyst,IT,Specialty Products,Male,Caucasian,63,2000-04-11,
+Christopher,Wang,Cloud Infrastructure Architect,IT,Manufacturing,Male,Asian,27,2020-08-23,71502 
+Savannah,Rodriguez,Director,Sales,Corporate,Female,Latino,30,2022-11-18,
+Lyla,Turner,Sr. Manager,Sales,Specialty Products,Female,Caucasian,51,2003-11-07,
+Adrian,Ngo,Enterprise Architect,IT,Research & Development,Male,Asian,58,2021-09-19,85716 
+Aria,Juarez,Director,Finance,Corporate,,Latino,62,2011-07-30,
+Audrey,Ramos,,Sales,Manufacturing,Female,Latino,27,2021-12-09,
+Ayla,Lim,,Marketing,Corporate,Female,Asian,41,2021-09-05,192266 
+Leilani,Hong,,IT,Manufacturing,Female,Asian,36,2013-12-20,79876 
+Victoria,Doan,,Sales,Corporate,Female,Asian,42,2018-03-06,112593 
+Naomi,Wright,,,Manufacturing,Female,Caucasian,36,2016-11-03,
+Scarlett,Howard,Manager,,Manufacturing,Female,Caucasian,55,2012-08-12,
+Victoria,Vo,Field Engineer,,Corporate,Female,Asian,44,2017-12-18,
+Oliver,Fernandez,Manager,,Research & Development,,Latino,31,2022-05-15,
+Eloise,Williams,Vice President,Sales,Specialty Products,,Black,42,2019-02-12,
+Jackson,Maldonado,Cloud Infrastructure Architect,IT,,Male,Latino,52,2008-05-01,
+Christian,Harris,Engineering Manager,Engineering,,,Caucasian,50,,96099 
+Penelope,Santos,IT Systems Architect,IT,,Female,Latino,37,2009-03-01,
+Nicholas,Zhou,Sr. Account Representative,Sales,,Male,Asian,58,2014-10-28,85094 
+Jose,Park,Director,IT,Research & Development,,Asian,45,2009-10-11,
+Eliza,Parker,Development Engineer,Engineering,Corporate,Female,Caucasian,37,2010-03-24,
+Harper,Castillo,Vice President,IT,Corporate,Female,Latino,46,2020-09-02,
+Melody,Yoon,Business Partner,Human Resources,Specialty Products,Female,Asian,49,2014-10-15,52292 
+Avery,Smith,Sr. Manager,Human Resources,Corporate,Female,Caucasian,53,2008-06-27,69110 
+Evelyn,Vasquez,Technical Architect,IT,Manufacturing,Female,Latino,38,2013-02-24,68676 
+Paisley,Baker,Test Engineer,Engineering,Manufacturing,Female,Caucasian,58,2002-12-23,86094 
+Eloise,Griffin,Enterprise Architect,IT,Specialty Products,Female,Caucasian,27,2022-05-06,77607 
+Santiago,Banks,Sr. Manager,IT,Specialty Products,Male,Caucasian,44,2019-08-16,151481 
+Caroline,Wong,Analyst,Sales,Research & Development,Female,Asian,37,2017-03-08,40508 
+Quinn,Ho,Vice President,Accounting,Research & Development,Female,Asian,45,2002-07-20,200481 
+Caroline,Nunez,Vice President,Finance,Manufacturing,Female,Latino,65,2002-12-20,224872 
+Carson,Brown,Sr. Manager,Human Resources,Research & Development,Male,Black,65,2007-11-05,149474 
+Olivia,Maldonado,Test Engineer,Engineering,Research & Development,Female,Latino,63,2002-02-18,86820 
+Emilia,Chung,Director,Finance,Manufacturing,Female,Asian,55,1994-11-08,184078 
+Leilani,Shin,Analyst,Accounting,Corporate,Female,Asian,58,2013-12-18,55174 
+Abigail,Zhu,Director,Finance,Corporate,Female,Asian,31,2022-01-17,152474 
+Autumn,Xiong,Network Administrator,IT,Specialty Products,Female,Asian,28,2020-02-13,75172 
+Hailey,Cruz,Business Partner,Human Resources,Manufacturing,Female,Latino,50,2008-08-10,56002 
+Piper,Cruz,Director,Sales,Research & Development,Female,Latino,61,2013-04-13,195636 
+Jaxson,Jackson,Enterprise Architect,IT,Specialty Products,Male,Caucasian,53,1997-03-01,63165 
+Serenity,Mehta,Analyst,Sales,Research & Development,Female,Asian,51,1998-07-21,57277 
+Peyton,Gomez,Analyst,Finance,Specialty Products,Female,Latino,56,2020-01-14,42950 
+Ethan,Vargas,Director,IT,Research & Development,Male,Latino,38,2018-10-09,168410 
+Serenity,Morris,Manager,IT,Corporate,Female,Caucasian,41,2008-04-12,114588 
+Hunter,Yi,Automation Engineer,Engineering,Corporate,Male,Asian,55,2015-05-10,121976 
+Valentina,Oh,Sr. Manager,Sales,Corporate,Female,Asian,32,2022-07-12,126464 
+Kinsley,Tran,Vice President,Accounting,Manufacturing,Female,Asian,53,2005-09-05,234064 
+Christian,Hong,Sr. Analyst,Finance,Manufacturing,Male,Asian,59,2008-01-16,81829 
+Amelia,Mehta,Director,Human Resources,Corporate,Female,Asian,26,2022-04-21,193971 
+Axel,Leung,Business Partner,Human Resources,Corporate,Male,Asian,55,2001-08-17,47696 
+Lucas,Lam,Manager,Accounting,Specialty Products,Male,Asian,34,2013-07-17,116676 
+Jose,Thompson,Manager,Marketing,Corporate,Male,Caucasian,45,2012-04-05,104162 
+Wesley,Duong,Sr. Business Partner,Human Resources,Specialty Products,Male,Asian,29,2022-04-14,86226 
+Adeline,Maldonado,Director,Marketing,Specialty Products,Female,Latino,45,2011-05-30,172206 
+Elias,Diaz,HRIS Analyst,Human Resources,Specialty Products,Male,Latino,34,2012-04-06,55985 
+Wyatt,Aguilar,Technical Architect,IT,Corporate,Male,Latino,26,2021-06-06,61481 
+Josephine,Espinoza,Manager,Sales,Research & Development,Female,Latino,30,2017-11-26,124295 
+Adeline,Lai,Sr. Manager,Sales,Research & Development,Female,Asian,55,1999-02-08,132894 
+Christopher,Vu,Computer Systems Manager,IT,Corporate,Male,Asian,47,2002-03-16,88839 
+Kai,Vega,Automation Engineer,Engineering,Manufacturing,Male,Latino,51,2005-06-16,78107 
+Kai,Le,Controls Engineer,Engineering,Manufacturing,Male,Asian,47,2022-02-05,92368 
+Robert,Patel,Analyst,Sales,Corporate,Male,Asian,58,2013-10-23,45703 
+Cameron,Lo,Network Administrator,IT,Research & Development,Male,Asian,34,2019-03-24,83576 
+Harper,Castillo,IT Systems Architect,IT,Corporate,Female,Latino,39,2018-04-07,98062 
+Harper,Dominguez,Director,Engineering,Corporate,Female,Latino,42,2005-06-18,175391 
+Ezra,Vu,Network Administrator,IT,Manufacturing,Male,Asian,62,2004-04-22,66227 
+Jade,Hu,Sr. Analyst,Accounting,Specialty Products,Female,Asian,58,2009-06-27,89744 
+Miles,Chang,Analyst II,Finance,Corporate,Male,Asian,62,1999-02-19,69674 
+Gianna,Holmes,System Administrator,IT,Manufacturing,Female,Caucasian,38,2011-09-09,97630 
+Jameson,Thomas,Manager,Finance,Specialty Products,Male,Caucasian,52,2015-02-05,105879 
+Jameson,Pena,Systems Analyst,IT,Manufacturing,Male,Latino,49,2003-10-12,40499 
+Bella,Wu,Sr. Analyst,Finance,Specialty Products,Female,Asian,63,2014-08-03,71418 
+Jose,Wong,Director,IT,Manufacturing,Male,Asian,45,2017-11-15,150558 
+Lucas,Richardson,Manager,Marketing,Corporate,Male,Caucasian,36,2018-07-22,118912 
+Jacob,Moore,Sr. Manager,Marketing,Corporate,Male,Black,42,2021-03-24,131422 
+Luna,Lu,IT Systems Architect,IT,Corporate,Female,Asian,62,1997-07-26,64208 
+Bella,Tran,Vice President,Engineering,Specialty Products,Female,Asian,45,2010-08-05,254486 
+Ivy,Chau,Analyst,Sales,Specialty Products,Female,Asian,61,2019-03-03,54811 
+Jordan,Kumar,Service Desk Analyst,IT,Specialty Products,Male,Asian,29,2017-11-11,95729 
+Sophia,Gutierrez,Manager,Accounting,Specialty Products,Female,Latino,63,2009-02-08,102649 
+Eli,Dang,Sr. Manager,Accounting,Specialty Products,Male,Asian,45,2015-11-16,122875 
+Lillian,Lewis,Technical Architect,IT,Research & Development,Female,Black,43,2013-08-14,83323 
+Serenity,Cao,Account Representative,Sales,Manufacturing,Female,Asian,31,2018-10-21,66721 
+Parker,Lai,Vice President,Accounting,Specialty Products,Male,Asian,48,2006-11-29,246400 
+Charles,Simmons,Manager,Sales,Specialty Products,Male,Caucasian,55,1997-10-27,113525 
+Melody,Yoon,Business Partner,Human Resources,Specialty Products,Female,Asian,49,2014-10-15,52292 
+Avery,Smith,Sr. Manager,Human Resources,Corporate,Female,Caucasian,53,2008-06-27,69110 
+Evelyn,Vasquez,Technical Architect,IT,Manufacturing,Female,Latino,38,2013-02-24,68676 
+Paisley,Baker,Test Engineer,Engineering,Manufacturing,Female,Caucasian,58,2002-12-23,86094 
+Eloise,Griffin,Enterprise Architect,IT,Specialty Products,Female,Caucasian,27,2022-05-06,77607 
+Santiago,Banks,Sr. Manager,IT,Specialty Products,Male,Caucasian,44,2019-08-16,151481 
+Caroline,Wong,Analyst,Sales,Research & Development,Female,Asian,37,2017-03-08,40508 
+Quinn,Ho,Vice President,Accounting,Research & Development,Female,Asian,45,2002-07-20,200481 
+Caroline,Nunez,Vice President,Finance,Manufacturing,Female,Latino,65,2002-12-20,224872 
+Carson,Brown,Sr. Manager,Human Resources,Research & Development,Male,Black,65,2007-11-05,149474 
+Olivia,Maldonado,Test Engineer,Engineering,Research & Development,Female,Latino,63,2002-02-18,86820 
+Emilia,Chung,Director,Finance,Manufacturing,Female,Asian,55,1994-11-08,184078 
+Leilani,Shin,Analyst,Accounting,Corporate,Female,Asian,58,2013-12-18,55174 
+Abigail,Zhu,Director,Finance,Corporate,Female,Asian,31,2022-01-17,152474 
+Autumn,Xiong,Network Administrator,IT,Specialty Products,Female,Asian,28,2020-02-13,75172 
+Hailey,Cruz,Business Partner,Human Resources,Manufacturing,Female,Latino,50,2008-08-10,56002 
+Piper,Cruz,Director,Sales,Research & Development,Female,Latino,61,2013-04-13,195636 
+Jaxson,Jackson,Enterprise Architect,IT,Specialty Products,Male,Caucasian,53,1997-03-01,63165 
+Serenity,Mehta,Analyst,Sales,Research & Development,Female,Asian,51,1998-07-21,57277 
+Peyton,Gomez,Analyst,Finance,Specialty Products,Female,Latino,56,2020-01-14,42950 
+Ethan,Vargas,Director,IT,Research & Development,Male,Latino,38,2018-10-09,168410 
+Bella,Wu,Sr. Analyst,Finance,Specialty Products,Female,Asian,63,2014-08-03,71418 
+Jose,Wong,Director,IT,Manufacturing,Male,Asian,45,2017-11-15,150558 
+Lucas,Richardson,Manager,Marketing,Corporate,Male,Caucasian,36,2018-07-22,118912 
+Jacob,Moore,Sr. Manager,Marketing,Corporate,Male,Black,42,2021-03-24,131422 
+Luna,Lu,IT Systems Architect,IT,Corporate,Female,Asian,62,1997-07-26,64208 
+Bella,Tran,Vice President,Engineering,Specialty Products,Female,Asian,45,2010-08-05,254486 
+Ivy,Chau,Analyst,Sales,Specialty Products,Female,Asian,61,2019-03-03,54811 
+Jordan,Kumar,Service Desk Analyst,IT,Specialty Products,Male,Asian,29,2017-11-11,95729 
+Sophia,Gutierrez,Manager,Accounting,Specialty Products,Female,Latino,63,2009-02-08,102649 
+Eli,Dang,Sr. Manager,Accounting,Specialty Products,Male,Asian,45,2015-11-16,122875 
+Lillian,Lewis,Technical Architect,IT,Research & Development,Female,Black,43,2013-08-14,83323 
+Serenity,Cao,Account Representative,Sales,Manufacturing,Female,Asian,31,2018-10-21,66721 
+Parker,Lai,Vice President,Accounting,Specialty Products,Male,Asian,48,2006-11-29,246400 
+Charles,Simmons,Manager,Sales,Specialty Products,Male,Caucasian,55,1997-10-27,113525 
+Jayden,Luu,Director,Accounting,Manufacturing,Male,Asian,64,2004-05-13,184342 
+Brooks,Richardson,Director,Marketing,Specialty Products,Male,Caucasian,58,2020-11-24,151341 
+Ivy,Thompson,Manager,Marketing,Manufacturing,Female,Caucasian,50,2004-08-11,118900 
+Peyton,Wright,Sr. Manager,Marketing,Corporate,Female,Black,41,2017-05-13,153370 
+Wyatt,Dinh,System Administrator,IT,Specialty Products,Male,Asian,50,2002-03-15,72860 
+Ruby,Alexander,Vice President,Finance,Research & Development,Female,Caucasian,59,2001-08-13,255610 
+Axel,Oh,Sr. Analyst,Sales,Corporate,Male,Asian,26,2020-10-24,84962 
+Greyson,Lim,Director,Finance,Corporate,Male,Asian,28,2022-10-12,198662 
+Chloe,Miller,Sr. Manager,Marketing,Manufacturing,Female,Black,57,2021-08-12,142506 
+Jaxson,Brooks,Network Architect,IT,Manufacturing,Male,Black,57,2022-07-15,77028 
+Jack,Perez,Cloud Infrastructure Architect,IT,Research & Development,Male,Latino,30,2017-01-09,80389 
+Ruby,Reed,Vice President,Engineering,Specialty Products,Female,Caucasian,26,2022-01-23,249062 
+Ivy,Rojas,IT Coordinator,IT,Corporate,Female,Latino,53,2013-01-08,52675 
+Hudson,Wong,Sr. Account Representative,Sales,Manufacturing,Male,Asian,59,2014-05-11,83365 
+Ryan,Yi,Solutions Architect,IT,Specialty Products,Male,Asian,56,2003-08-17,82758 
+Carter,Simmons,Manager,IT,Corporate,Male,Caucasian,41,2012-05-30,126406 
+Emilia,Xu,Manager,Marketing,Corporate,Female,Asian,46,2017-01-24,103147 
+Adam,Medina,IT Systems Architect,IT,Manufacturing,Male,Latino,49,2020-10-04,81622 
+Connor,Howard,Systems Analyst,IT,Specialty Products,Male,Caucasian,42,2021-03-15,44265 
+Audrey,Duong,Vice President,Sales,Specialty Products,Female,Asian,55,1999-03-03,213998 
+Landon,Reyes,Director,IT,Research & Development,Male,Latino,44,2014-08-23,171823 
+Noah,Ma,Vice President,Accounting,Manufacturing,Male,Asian,28,2018-11-06,201013 
+Lucas,Alexander,Director,IT,Manufacturing,Male,Black,41,2013-09-20,192944 
+Henry,Vo,Controls Engineer,Engineering,Manufacturing,Male,Asian,60,1996-09-13,81699 
+Mila,Han,Manager,Sales,Manufacturing,Female,Asian,54,2009-11-14,128791 
+Genesis,Herrera,Manager,IT,Research & Development,Female,Latino,34,2015-10-03,126898 
+Olivia,Vazquez,Network Engineer,IT,Specialty Products,Female,Latino,53,2020-04-13,93053 
+Leilani,Ng,Systems Analyst,IT,Corporate,Female,Asian,48,2011-09-19,50513 
+Olivia,Mendoza,Sr. Account Representative,Sales,Corporate,Female,Latino,43,2017-05-07,86533 

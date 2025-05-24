@@ -1,3 +1,2 @@
--- INSERT INTO employee (employee_id, FIRST_NAME, LAST_NAME, title, department, business_Unit, gender, ethnicity, age, hire_Date, annual_Salary) VALUES (1, 'Richard', 'Smith', 'Systems Analyst', 'IT', 'Research & Development', 'Male', 'Caucasian', 58, '2020-11-24', 63456);
-
-INSERT INTO employee (FIRST_NAME, LAST_NAME, TITLE, DEPARTMENT, BUSINESS_UNIT, gender, ethnicity, age, hire_Date, annual_Salary) SELECT FIRST_NAME, LAST_NAME, TITLE, DEPARTMENT, BUSINESS_UNIT, gender, ethnicity, age, hire_Date, annual_Salary FROM CSVREAD('/home/davidbrown/Documents/development/Kaggle_Employee_Data/employee_test_load.csv');
+-- Employee data source: https://www.kaggle.com/datasets/williamlucas0/employee-sample-data
+INSERT INTO employee (FIRST_NAME, LAST_NAME, TITLE, DEPARTMENT, BUSINESS_UNIT, gender, ethnicity, age, hire_Date, annual_Salary) SELECT FIRST_NAME, LAST_NAME, TITLE, DEPARTMENT, BUSINESS_UNIT, gender, ethnicity, age, hire_Date, annual_Salary FROM CSVREAD('~/Documents/projects/mcp-human-resources/employee_data_load.csv');
