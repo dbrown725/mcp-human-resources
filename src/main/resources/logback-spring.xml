@@ -45,12 +45,6 @@
     </root>
     
     <!-- Logging at TRACE level -->
-     <logger name="com.megacorp" level="trace" additivity="false">
-        <appender-ref ref="LogFile" />
-        <appender-ref ref="ConsoleOutput" />
-    </logger>
-    
-        <!-- Logging at DEBUG level -->
      <logger name="com.megacorp" level="debug" additivity="false">
         <appender-ref ref="LogFile" />
         <appender-ref ref="ConsoleOutput" />
