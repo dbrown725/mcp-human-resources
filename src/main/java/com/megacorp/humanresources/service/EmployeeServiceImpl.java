@@ -28,26 +28,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	/**
 	 * Create a new employee
 	 *
-	 * @param name string
-	 * @return Employee object
-	 */
-	//Hack method? MCP Client/Agent/LLM for saveEmployee(Employee employee) always wanted to pass in an ID that it made up.
-	@Tool(name = "saveEmployeeUsingName", description = "Creates a new employee based on the passed name.")
-	public Employee saveEmployeeUsingName(String name) {
-		logger.debug("Enter saveEmployeeUsingName(String name): " + name);
-		Employee employee = new Employee();
-		employee.setName(name);
-		return employeeRepository.save(employee);
-	}
-	
-	/**
-	 * Create a new employee
-	 *
 	 * @param employee object
 	 * @return Employee object
 	 */
+	@Tool(name = "saveEmployee", description = "Creates a new employee based on the passed employee object.")
 	@Override
 	public Employee saveEmployee(Employee employee) {
+		employee.setEmployeeId(null);
 		return employeeRepository.save(employee);
 	}
 
@@ -75,13 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee updateEmployee(Employee employee, Long employeeId) {
 		logger.debug("Enter updateEmployee(Employee employee:, Long employeeId) employee: " + employee + " employeeId: " + employeeId);
-		Employee depDB = employeeRepository.findById(employeeId).get();
-
-		if (Objects.nonNull(employee.getName()) && !"".equalsIgnoreCase(employee.getName())) {
-			depDB.setName(employee.getName());
-		}
-
-		return employeeRepository.save(depDB);
+		return employeeRepository.save(employee);
 	}
 
 	/**

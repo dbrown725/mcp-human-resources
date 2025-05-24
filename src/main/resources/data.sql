@@ -1,5 +1,1 @@
-INSERT INTO employee (employee_id, name) VALUES (1, 'Richard');
-INSERT INTO employee (employee_id, name) VALUES (2, 'Mary');
-INSERT INTO employee (employee_id, name) VALUES (3, 'Susan');
-INSERT INTO employee (employee_id, name) VALUES (4, 'Joseph');
-INSERT INTO employee (employee_id, name) VALUES (5, 'Mike');
+INSERT INTO employee (employee_id, FIRST_NAME, LAST_NAME, title, department, business_Unit, gender, ethnicity, age, hire_Date, annual_Salary) VALUES (1, 'Richard', 'Smith', 'Systems Analyst', 'IT', 'Research & Development', 'Male', 'Caucasian', 58, '2020-11-24', 63456);
