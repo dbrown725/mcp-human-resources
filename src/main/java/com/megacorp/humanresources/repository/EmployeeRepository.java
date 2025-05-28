@@ -1,8 +1,10 @@
 package com.megacorp.humanresources.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
 import com.megacorp.humanresources.entity.Employee;
-import org.springframework.data.repository.CrudRepository;
 
 //Interface extending CrudRepository
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
 }
