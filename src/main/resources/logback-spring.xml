@@ -6,7 +6,7 @@
     <property name="LOG_FILE_NAME" value="mcp-human-resources" />
 
     <!-- Setting up logging pattern for console logging -->
-    <appender name="ConsoleOutput"
+    <appender name="Console"
         class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
@@ -16,7 +16,7 @@
     </appender>
 
     <!-- Setting the filename and logging pattern for log file -->
-    <appender name="LogFile"
+    <appender name="File"
         class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
         <encoder
@@ -38,16 +38,15 @@
         </rollingPolicy>
     </appender>
 
-    <!-- Logging at INFO level -->
-    <root level="info">
-        <appender-ref ref="LogFile" />
-        <appender-ref ref="ConsoleOutput" />
+    <root level="INFO">
+        <appender-ref ref="Console" />
+        <appender-ref ref="File" />
     </root>
     
-    <!-- Logging at TRACE level -->
-     <logger name="com.megacorp" level="debug" additivity="false">
-        <appender-ref ref="LogFile" />
-        <appender-ref ref="ConsoleOutput" />
-    </logger>
+    <!-- Logging at DEBUG level -->
+     <!-- <logger name="com.megacorp" level="DEBUG" additivity="false">
+        <appender-ref ref="File" />
+        <appender-ref ref="Console" />
+    </logger> -->
     
 </configuration>
