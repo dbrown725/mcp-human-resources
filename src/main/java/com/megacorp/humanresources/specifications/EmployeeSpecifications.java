@@ -52,4 +52,8 @@ public class EmployeeSpecifications {
 	public static Specification<Employee> hasAnnualSalary(Long annualSalary) {
 		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("annualSalary"), annualSalary);
 	}
+
+	public static Specification<Employee> hasManagerId(Long managerId) {
+		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("managerId"), managerId);
+	}
 }

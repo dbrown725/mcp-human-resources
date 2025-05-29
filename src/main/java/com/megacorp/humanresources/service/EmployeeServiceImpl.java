@@ -151,7 +151,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Tool(
 		name = "searchUsers",
-		description = "Search users by any combination of the following parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, hireDate, hireDateFirst, hireDateLast, annualSalary."
+		description = "Search users by any combination of the following parameters: firstName, lastName, startAge, " +
+		"endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
 	)
 	public List<Employee> searchUsers(
 		@ToolParam(required = false) String firstName,
@@ -163,14 +164,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) String businessUnit,
 		@ToolParam(required = false) String gender,
 		@ToolParam(required = false) String ethnicity,
+		@ToolParam(required = false) Long managerId,
 		@ToolParam(required = false) Date hireDate,
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
-		@ToolParam(required = false) Date annualSalary
+		@ToolParam(required = false) Long annualSalary
 	)
 	{
-		logger.info("Entering searchUsers with parameters: firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}",
-			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, hireDate, hireDateFirst, hireDateLast, annualSalary);
+		logger.info("Entering searchUsers with parameters: firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary);
 
 		Specification<Employee> spec = Specification.where(null);
 		if (firstName != null && !firstName.isEmpty()) {
@@ -204,6 +206,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		if (hireDateFirst != null && hireDateLast != null) {
 			spec = spec.and(EmployeeSpecifications.hasHireDateBetween(hireDateFirst, hireDateLast));
+		}
+		if (annualSalary != null) {
+			spec = spec.and(EmployeeSpecifications.hasAnnualSalary(annualSalary));
+		}
+		if (managerId != null) {
+			spec = spec.and(EmployeeSpecifications.hasManagerId(managerId));
 		}
 
 		logger.debug("Built search specification: {}", spec);
