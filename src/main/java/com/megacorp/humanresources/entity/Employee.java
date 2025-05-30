@@ -91,8 +91,10 @@ public class Employee {
 			logger.warn("Hire date is null, returning empty string");
 			return "";
 		}
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        return dateFormat.format(this.hireDate);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		String formattedDate = dateFormat.format(this.hireDate);
+		logger.info("Returning formatted hire date: {}", formattedDate);
+		return formattedDate;
     }
 
     public void setFormattedDate(String dateString) {
@@ -111,4 +113,22 @@ public class Employee {
         }
 		logger.info("Exiting setFormattedDate");
     }
+
+	@Override
+	public String toString() {
+		return "Employee{" +
+				"employeeId=" + employeeId +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", title='" + title + '\'' +
+				", department='" + department + '\'' +
+				", businessUnit='" + businessUnit + '\'' +
+				", gender='" + gender + '\'' +
+				", ethnicity='" + ethnicity + '\'' +
+				", age=" + age +
+				", managerId=" + managerId +
+				", hireDate=" + (hireDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(hireDate) : null) +
+				", annualSalary=" + annualSalary +
+				'}';
+	}
 }

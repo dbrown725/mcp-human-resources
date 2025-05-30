@@ -72,6 +72,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		logger.info("Enter saveEmployeeByName(String firstName, String lastName)");
 		logger.debug("saveEmployeeByName inputs - firstName: {}, lastName: {}", firstName, lastName);
 		Employee employee = new Employee(firstName, lastName);
+		try {
+			employee.setHireDate(new java.text.SimpleDateFormat("MM/dd/yyyy").parse("09/09/9999"));
+		} catch (Exception e) {
+			logger.error("Error parsing hire date", e);
+		}
 		logger.info("Exit saveEmployeeByName(String firstName, String lastName)");
 		return employeeRepository.save(employee);
 	}
@@ -96,9 +101,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param employeeId The ID of the employee to be updated
 	 * @return The updated Employee object
 	 */
-	@Tool(name = "updateEmployee", description = "Updates an existing employee.")
+	@Tool(name = "updateEmployee", description = "Updates an existing employee. The only required field is employeeId. " +
+		"DO NOT CHANGE A FIELD UNLESS SPECIFICALLY ASKED TO DO SO BY THE USER!")
 	@Override
 	public Employee updateEmployee(Employee employee, Long employeeId) {
+		logger.info("updateEmployee input - employee: {}", employee.toString());
 		return employeeRepository.save(employee);
 	}
 
