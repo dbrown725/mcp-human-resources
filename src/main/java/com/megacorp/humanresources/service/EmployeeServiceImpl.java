@@ -1,7 +1,6 @@
 package com.megacorp.humanresources.service;
 
 import java.util.Date;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,20 +20,20 @@ import com.megacorp.humanresources.specifications.EmployeeSpecifications;
 
 import lombok.extern.slf4j.Slf4j;
 
-//Annotation
+
 /**
  * Service implementation for managing Employee entities.
- * This class provides methods to perform CRUD operations and additional functionalities
- * such as searching employees by specific criteria.
- * 
- * Methods:
+ * This class provides methods to perform CRUD operations and advanced search functionalities.
+ *
+ * Main Methods:
  * - saveEmployee: Creates a new employee.
- * - fetchEmployeeList: Retrieves a list of all employees.
+ * - saveEmployeeByName: Creates a new employee using first and last name.
+ * - fetchEmployeePage: Retrieves a paginated and sorted list of employees.
  * - updateEmployee: Updates an existing employee.
  * - getEmployeeById: Retrieves a single employee by their ID.
  * - deleteEmployeeById: Deletes a single employee by their ID.
- * - searchUsers: Searches employees by first name and/or age range.
- * 
+ * - searchEmployees: Searches employees by various criteria with pagination and sorting.
+ *
  * Annotations:
  * - @Service: Marks this class as a Spring service.
  * - @Slf4j: Provides logging capabilities.
@@ -51,10 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 	
 	/**
-	 * Create a new employee
+	 * Save a new employee to the repository.
 	 *
-	 * @param employee The employee object to be created
-	 * @return The created Employee object
+	 * @param employee The Employee object to be saved
+	 * @return The persisted Employee object with generated ID
 	 */
 	@Tool(name = "saveEmployee", description = "Creates a new employee based on the passed employee object.")
 	@Override
@@ -64,11 +63,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/**
-	 * Save a new employee using first name and last name
+	 * Creates and saves a new employee using the provided first and last name.
 	 *
-	 * @param firstName The first name of the employee
-	 * @param lastName The last name of the employee
-	 * @return The created Employee object
+	 * @param firstName The first name of the new employee
+	 * @param lastName The last name of the new employee
+	 * @return The persisted Employee object with generated ID and default hire date
 	 */
 	@Tool(name = "saveEmployeeByName", description = "Creates a new employee using the provided first name and last name.")
 	public Employee saveEmployeeByName(String firstName, String lastName) {
@@ -85,9 +84,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/**
-	 * Retrieve a list of all employees
-	 * 
-	 * @return A list containing all employees
+	 * Retrieve a paginated and sorted list of all employees.
+	 *
+	 * @param pageNumber The page number to retrieve (1-based)
+	 * @param pageSize The number of employees per page
+	 * @param sortBy The field to sort by (any Employee field)
+	 * @param sortDirection The direction of sorting ("asc" or "desc")
+	 * @return A Page containing the employees for the requested page and sort order
 	 */
 	@Tool(name = "fetchEmployeePage", description = "Get a Page of all employees. pageNumber, pageSize, sortBy (can be any Employee field) " +
 		"and sortDirection (can be desc or asc).")
@@ -159,9 +162,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	/**
-	 * Search users by any combination of the following parameters:
+	 * Searches for employees using any combination of the following optional parameters:
 	 * firstName, lastName, startAge, endAge, department, title, businessUnit,
-	 * gender, ethnicity, hireDate, hireDateFirst, hireDateLast, annualSalary.
+	 * gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary.
+	 * Supports pagination and sorting.
 	 *
 	 * @param firstName The first name of the employee (optional)
 	 * @param lastName The last name of the employee (optional)
@@ -172,18 +176,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param businessUnit The business unit of the employee (optional)
 	 * @param gender The gender of the employee (optional)
 	 * @param ethnicity The ethnicity of the employee (optional)
+	 * @param managerId The manager's ID (optional)
 	 * @param hireDate The hire date of the employee (optional)
 	 * @param hireDateFirst The earliest hire date (optional)
 	 * @param hireDateLast The latest hire date (optional)
 	 * @param annualSalary The annual salary of the employee (optional)
-	 * @return List of employees matching the criteria
+	 * @param pageNumber The page number to retrieve (1-based)
+	 * @param pageSize The number of employees per page
+	 * @param sortBy The field to sort by (any Employee field)
+	 * @param sortDirection The direction of sorting ("asc" or "desc")
+	 * @return A Page of employees matching the criteria
 	 */
 	@Tool(
-		name = "searchUsers",
-		description = "Search users by any combination of the following parameters: firstName, lastName, startAge, " +
+		name = "searchEmployees",
+		description = "Get a Page of employees. pageNumber, pageSize, sortBy (can be any Employee field) " + 
+		"and sortDirection (can be desc or asc). Optional paramaters: firstName, lastName, startAge, " +
 		"endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
 	)
-	public List<Employee> searchUsers(
+	public Page<Employee> searchEmployees(
 		@ToolParam(required = false) String firstName,
 		@ToolParam(required = false) String lastName,
 		@ToolParam(required = false) Integer startAge,
@@ -197,11 +207,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Date hireDate,
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
-		@ToolParam(required = false) Long annualSalary
+		@ToolParam(required = false) Long annualSalary,
+		Integer pageNumber, Integer pageSize, String sortBy, String sortDirection
 	)
 	{
-		logger.info("Entering searchUsers with parameters: firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}",
-			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary);
+		logger.info("Enter searchEmployees("
+			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
 
 		Specification<Employee> spec = Specification.where(null);
 		if (firstName != null && !firstName.isEmpty()) {
@@ -245,10 +257,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		logger.debug("Built search specification: {}", spec);
 
-		// Pageable limit = PageRequest.of(0, 10);
-		List<Employee> result = employeeRepository.findAll(spec);
+		Pageable pageable;
+		
+		if(sortDirection == null || sortDirection.isEmpty() || sortDirection.equalsIgnoreCase("asc")) {
+			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
+		} else if (sortDirection.equalsIgnoreCase("desc")) {
+			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).descending());
+		} else {
+			logger.warn("Invalid sort direction provided: {}. Defaulting to ascending order.", sortDirection);
+			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
+		}
+		logger.debug("Created pageable object: {}", pageable);
 
-		logger.info("Exiting searchUsers. Found {} employees.", result.size());
+		Page<Employee> result = employeeRepository.findAll(spec, pageable);
+
 		return result;
 	}
 }
