@@ -41,11 +41,16 @@ public class Employee {
 		this.lastName = lastName;
 	 }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
-    @SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequence", allocationSize = 1, initialValue=6000)
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequence", allocationSize = 1, initialValue=6000)
+	@Column(name = "EMPLOYEE_ID")
 	private Long employeeId;
+
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
+
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
 	@Column(name = "TITLE", nullable = true)

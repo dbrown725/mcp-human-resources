@@ -19,12 +19,6 @@ public class EmployeeController {
 		return employeeService.saveEmployee(employee);
 	}
 
-	// Update operation
-	@PutMapping("/employees/{id}")
-	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long employeeId) {
-		return employeeService.updateEmployee(employee, employeeId);
-	}
-
 	// Delete operation
 	@DeleteMapping("/employees/{id}")
 	public String deleteEmployeeById(@PathVariable("id") Long employeeId) {

@@ -84,55 +84,111 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/**
-	 * Retrieve a paginated and sorted list of all employees.
-	 *
-	 * @param pageNumber The page number to retrieve (1-based)
-	 * @param pageSize The number of employees per page
-	 * @param sortBy The field to sort by (any Employee field)
-	 * @param sortDirection The direction of sorting ("asc" or "desc")
-	 * @return A Page containing the employees for the requested page and sort order
-	 */
-	@Tool(name = "fetchEmployeePage", description = "Get a Page of all employees. pageNumber, pageSize, sortBy (can be any Employee field) " +
-		"and sortDirection (can be desc or asc).")
-	@Override
-	public Page<Employee> fetchEmployeePage(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection) {
-		logger.info("Enter fetchEmployeePage(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection)");
-		logger.debug("fetchEmployeePage inputs - pageNumber: {}, pageSize: {}, sortBy: {}, sortDirection: {}", 
-			pageNumber, pageSize, sortBy, sortDirection);
-		if (pageNumber == null || pageNumber < 1) {
-			pageNumber = 1; // Default to first page if not provided or invalid
-		}
-
-		Pageable pageable;
-		
-		if(sortDirection == null || sortDirection.isEmpty() || sortDirection.equalsIgnoreCase("asc")) {
-			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
-		} else if (sortDirection.equalsIgnoreCase("desc")) {
-			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).descending());
-		} else {
-			logger.warn("Invalid sort direction provided: {}. Defaulting to ascending order.", sortDirection);
-			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
-		}
-		logger.debug("Created pageable object: {}", pageable);
-
-		Page<Employee> employeesList = employeeRepository.findAll(pageable);
-		return employeesList;
-	}
-
-	/**
 	 * Update an existing employee
 	 *
 	 * @param employee The employee object with updated details
 	 * @param employeeId The ID of the employee to be updated
 	 * @return The updated Employee object
 	 */
-	@Tool(name = "updateEmployee", description = "Updates an existing employee. The only required field is employeeId. " +
-		"DO NOT CHANGE A FIELD UNLESS SPECIFICALLY ASKED TO DO SO BY THE USER!")
-	@Override
-	public Employee updateEmployee(Employee employee, Long employeeId) {
-		logger.info("updateEmployee input - employee: {}", employee.toString());
-		return employeeRepository.save(employee);
+	// @Tool(name = "updateEmployee", description = "Updates an existing employee. The only required field is employeeId. " +
+	// 	"DO NOT CHANGE A FIELD UNLESS SPECIFICALLY ASKED TO DO SO BY THE USER!")
+	// @Override
+	// public Employee updateEmployee(Employee employee, Long employeeId) {
+	// 	logger.info("updateEmployee input - employee: {}", employee.toString());
+	// 	return employeeRepository.save(employee);
+	// }
+
+	/**
+	 * Updates specific fields of an existing employee.
+	 * Only the fields provided as non-null parameters will be updated.
+	 *
+	 * @param employeeId The ID of the employee to update (required)
+	 * @param firstName The new first name of the employee (optional)
+	 * @param lastName The new last name of the employee (optional)
+	 * @param age The new age of the employee (optional)
+	 * @param department The new department of the employee (optional)
+	 * @param title The new job title of the employee (optional)
+	 * @param businessUnit The new business unit of the employee (optional)
+	 * @param gender The new gender of the employee (optional)
+	 * @param ethnicity The new ethnicity of the employee (optional)
+	 * @param managerId The new manager's ID (optional)
+	 * @param hireDate The new hire date of the employee (optional)
+	 * @param annualSalary The new annual salary of the employee (optional)
+	 * @return The updated Employee object
+	 */
+	@Tool(
+		name = "updateEmployee",
+		description = "Update specific fields of an Employee. Optional parameters: firstName, lastName, age, department, " +
+			"title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary. " +
+			"Only non-null parameters will be updated. Requires employeeId."
+	)
+	public Employee updateEmployee(
+		Long employeeId,
+		@ToolParam(required = false) String firstName,
+		@ToolParam(required = false) String lastName,
+		@ToolParam(required = false) Long age,
+		@ToolParam(required = false) String department,
+		@ToolParam(required = false) String title,
+		@ToolParam(required = false) String businessUnit,
+		@ToolParam(required = false) String gender,
+		@ToolParam(required = false) String ethnicity,
+		@ToolParam(required = false) Long managerId,
+		@ToolParam(required = false) Date hireDate,
+		@ToolParam(required = false) Long annualSalary
+	)
+	{
+		logger.info("Enter updateEmployee("
+			+ "employeeId={}, firstName={}, lastName={}, age={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, annualSalary={})",
+			employeeId, firstName, lastName, age, department, title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary);
+
+		Employee employee = employeeRepository.findById(employeeId).get();
+
+		if (firstName != null && !firstName.isEmpty()) {
+			employee.setFirstName(firstName);
+		}
+		if (lastName != null && !lastName.isEmpty()) {
+			employee.setLastName(lastName);
+		}
+		if (age != null) {
+			employee.setAge(age);
+		}
+		if (department != null && !department.isEmpty()) {
+			employee.setDepartment(department);
+		}
+		if (title != null && !title.isEmpty()) {
+			employee.setTitle(title);
+		}
+		if (gender != null && !gender.isEmpty()) {
+			employee.setGender(gender);
+		}
+		if (businessUnit != null && !businessUnit.isEmpty()) {
+			employee.setBusinessUnit(businessUnit);
+		}
+		if (ethnicity != null && !ethnicity.isEmpty()) {
+			employee.setEthnicity(ethnicity);
+		}
+		if (hireDate != null) {
+			employee.setHireDate(hireDate);
+		}
+		if (annualSalary != null) {
+			employee.setAnnualSalary(annualSalary);
+		}
+		if (managerId != null) {
+			employee.setManagerId(managerId);
+		}
+		employeeRepository.save(employee);
+
+		logger.info("Exit updateEmployee with updated employee: {}", employee.toString());
+		return employee;
 	}
+
+
+
+
+
+
+
+
 
 	/**
 	 * Retrieve a single employee by their ID
