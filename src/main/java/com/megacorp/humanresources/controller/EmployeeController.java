@@ -2,16 +2,12 @@ package com.megacorp.humanresources.controller;
 
 import com.megacorp.humanresources.entity.Employee;
 import com.megacorp.humanresources.service.EmployeeService;
-import java.util.List;
-//Importing required classes
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-//Annotation
-@RestController
 
-//Class
+@RestController
 public class EmployeeController {
 
 	@Autowired
@@ -21,12 +17,6 @@ public class EmployeeController {
 	@PostMapping("/employees")
 	public Employee saveEmployee(@Valid @RequestBody Employee employee) {
 		return employeeService.saveEmployee(employee);
-	}
-
-	// Read operation
-	@GetMapping("/employees")
-	public List<Employee> fetchEmployeeList() {
-		return employeeService.fetchEmployeeList();
 	}
 
 	// Update operation

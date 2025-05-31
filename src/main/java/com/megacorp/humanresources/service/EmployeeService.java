@@ -1,6 +1,6 @@
 package com.megacorp.humanresources.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import com.megacorp.humanresources.entity.Employee;
 
@@ -9,10 +9,10 @@ public interface EmployeeService {
 	Employee saveEmployee(Employee employee);
 
 	// Read operation
-	List<Employee> fetchEmployeeList();
+	Page<Employee> fetchEmployeePage(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection);
 
 	// Update operation
-	Employee updateEmployee(Employee employee, Long dId);
+	Employee updateEmployee(Employee employee, Long id);
 
 	// Delete operation
 	void deleteEmployeeById(Long employeeId);

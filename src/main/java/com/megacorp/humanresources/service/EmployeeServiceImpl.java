@@ -8,7 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -86,11 +89,30 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * 
 	 * @return A list containing all employees
 	 */
-	@Tool(name = "fetchEmployeeList", description = "Get a list of all employees")
+	@Tool(name = "fetchEmployeePage", description = "Get a Page of all employees. pageNumber, pageSize, sortBy (can be any Employee field) " +
+		"and sortDirection (can be desc or asc).")
 	@Override
-	public List<Employee> fetchEmployeeList() {
-		logger.debug("Enter fetchEmployeeList()");
-		List<Employee> employeesList = (List<Employee>) employeeRepository.findAll();
+	public Page<Employee> fetchEmployeePage(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection) {
+		logger.info("Enter fetchEmployeePage(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection)");
+		logger.debug("fetchEmployeePage inputs - pageNumber: {}, pageSize: {}, sortBy: {}, sortDirection: {}", 
+			pageNumber, pageSize, sortBy, sortDirection);
+		if (pageNumber == null || pageNumber < 1) {
+			pageNumber = 1; // Default to first page if not provided or invalid
+		}
+
+		Pageable pageable;
+		
+		if(sortDirection == null || sortDirection.isEmpty() || sortDirection.equalsIgnoreCase("asc")) {
+			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
+		} else if (sortDirection.equalsIgnoreCase("desc")) {
+			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).descending());
+		} else {
+			logger.warn("Invalid sort direction provided: {}. Defaulting to ascending order.", sortDirection);
+			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
+		}
+		logger.debug("Created pageable object: {}", pageable);
+
+		Page<Employee> employeesList = employeeRepository.findAll(pageable);
 		return employeesList;
 	}
 
