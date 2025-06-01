@@ -138,7 +138,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	)
 	{
 		logger.info("Enter updateEmployee("
-			+ "employeeId={}, firstName={}, lastName={}, age={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, annualSalary={})",
+			+ "employeeId={}, firstName={}, lastName={}, age={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={},\n"
+			+ "managerId={}, hireDate={}, annualSalary={})",
 			employeeId, firstName, lastName, age, department, title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary);
 
 		Employee employee = employeeRepository.findById(employeeId).get();
@@ -181,13 +182,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		logger.info("Exit updateEmployee with updated employee: {}", employee.toString());
 		return employee;
 	}
-
-
-
-
-
-
-
 
 
 	/**
@@ -245,9 +239,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Tool(
 		name = "searchEmployees",
-		description = "Get a Page of employees. pageNumber, pageSize, sortBy (can be any Employee field) " + 
-		"and sortDirection (can be desc or asc). Optional paramaters: firstName, lastName, startAge, " +
-		"endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
+		description = "Get a Page of employees. Optional parameters: pageNumber, pageSize, sortBy (any Employee field), " +
+		"sortDirection (desc or asc), firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, " +
+		"managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
 	)
 	public Page<Employee> searchEmployees(
 		@ToolParam(required = false) String firstName,
@@ -264,7 +258,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
 		@ToolParam(required = false) Long annualSalary,
-		Integer pageNumber, Integer pageSize, String sortBy, String sortDirection
+		@ToolParam(required = false) Integer pageNumber, 
+		@ToolParam(required = false) Integer pageSize, 
+		@ToolParam(required = false) String sortBy, 
+		@ToolParam(required = false) String sortDirection
 	)
 	{
 		logger.info("Enter searchEmployees("
@@ -313,15 +310,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		logger.debug("Built search specification: {}", spec);
 
-		Pageable pageable;
-		
-		if(sortDirection == null || sortDirection.isEmpty() || sortDirection.equalsIgnoreCase("asc")) {
-			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
-		} else if (sortDirection.equalsIgnoreCase("desc")) {
-			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).descending());
-		} else {
+		Pageable pageable = null;
+
+		if (pageNumber == null || pageNumber < 1) {
+			pageNumber = 1; // Default to first page if not provided or invalid
+		}
+		if (pageSize == null || pageSize < 1) {
+			pageSize = 10; // Default to 10 items per page if not provided or invalid
+		}
+		if (sortBy == null || sortBy.isEmpty()) {
+			sortBy = "employeeId"; // Default sort by employeeId if not provided
+		}
+		if (sortDirection == null || sortDirection.isEmpty()) {
+			sortDirection = "asc"; // Default to ascending order if not provided
+		}
+		logger.debug("Pagination and sorting parameters - pageNumber: {}, pageSize: {}, sortBy: {}, sortDirection: {}", 
+			pageNumber, pageSize, sortBy, sortDirection);
+
+		// pageNumber - 1 is used because PageRequest is 0-based
+		if (sortDirection.equalsIgnoreCase("desc")) {
+			pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortBy).descending());
+		} else if (!sortDirection.equalsIgnoreCase("asc")) {
 			logger.warn("Invalid sort direction provided: {}. Defaulting to ascending order.", sortDirection);
-			pageable = PageRequest.of(pageNumber.intValue() - 1, pageSize.intValue(), Sort.by(sortBy).ascending());
+			pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortBy).ascending());
+		} else {
+			pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortBy).ascending());
 		}
 		logger.debug("Created pageable object: {}", pageable);
 
