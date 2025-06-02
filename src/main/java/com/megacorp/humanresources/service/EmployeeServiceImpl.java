@@ -1,6 +1,7 @@
 package com.megacorp.humanresources.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param employee The Employee object to be saved
 	 * @return The persisted Employee object with generated ID
 	 */
-	@Tool(name = "saveEmployee", description = "Creates a new employee based on the passed employee object.")
+	@Tool(name = "save_employee", description = "Creates a new employee based on the passed employee object.")
 	@Override
 	public Employee saveEmployee(Employee employee) {
 		employee.setEmployeeId(null);
@@ -69,7 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param lastName The last name of the new employee
 	 * @return The persisted Employee object with generated ID and default hire date
 	 */
-	@Tool(name = "saveEmployeeByName", description = "Creates a new employee using the provided first name and last name.")
+	@Tool(name = "save_employee_with_name", description = "Creates a new employee using the provided first name and last name.")
 	public Employee saveEmployeeByName(String firstName, String lastName) {
 		logger.info("Enter saveEmployeeByName(String firstName, String lastName)");
 		logger.debug("saveEmployeeByName inputs - firstName: {}, lastName: {}", firstName, lastName);
@@ -117,7 +118,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @return The updated Employee object
 	 */
 	@Tool(
-		name = "updateEmployee",
+		name = "update_employee",
 		description = "Update specific fields of an Employee. Optional parameters: firstName, lastName, age, department, " +
 			"title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary. " +
 			"Only non-null parameters will be updated. Requires employeeId."
@@ -191,7 +192,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @return The Employee object corresponding to the given ID
 	 */
 	@Override
-	@Tool(name = "getEmployeeById", description = "Get a single employee by ID")
+	@Tool(name = "get_employee_with_id", description = "Get a single employee by ID")
 	public Employee getEmployeeById(Long employeeId) {
 		logger.info("Enter/Exit getEmployeeById(Long employeeId)");
 		return employeeRepository.findById(employeeId).get();
@@ -203,12 +204,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param employeeId The ID of the employee to be deleted
 	 */
 	@Override
-	@Tool(name = "deleteEmployeeById", description = "Delete a single employee by ID")
+	@Tool(name = "delete_employee_with_id", description = "Delete a single employee by ID")
 	public void deleteEmployeeById(Long employeeId) {
 		logger.info("Enter/exit deleteEmployeeById(Long employeeId)");
 		logger.debug("deleteEmployeeById input - employeeId: {}", employeeId);
 		logger.info("Exit deleteEmployeeById(Long employeeId)");
 		employeeRepository.deleteById(employeeId);
+	}
+
+	/**
+	 * Retrieve a list of all employees
+	 * 
+	 * @return A list containing all employees
+	 */
+	@Tool(name = "fetch_employee_list", description = "Get a list of all employees")
+	public List<Employee> fetchEmployeeList() {
+		logger.info("Enter fetchEmployeeList()");
+		List<Employee> employeesList = (List<Employee>) employeeRepository.findAll();
+		logger.info("Exit fetchEmployeeList()");
+		return employeesList;
 	}
 	
 	/**
@@ -238,7 +252,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @return A Page of employees matching the criteria
 	 */
 	@Tool(
-		name = "searchEmployees",
+		name = "search_employees",
 		description = "Get a Page of employees. Optional parameters: pageNumber, pageSize, sortBy (any Employee field), " +
 		"sortDirection (desc or asc), firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, " +
 		"managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
