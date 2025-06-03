@@ -281,46 +281,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		logger.info("Enter searchEmployees("
 			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
-
-		Specification<Employee> spec = Specification.where(null);
-		if (firstName != null && !firstName.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasFirstName(firstName));
-		}
-		if (lastName != null && !lastName.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasLastName(lastName));
-		}
-		if (startAge != null && endAge != null) {
-			spec = spec.and(EmployeeSpecifications.ageBetween(startAge, endAge));
-		}
-
-		if (department != null && !department.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasDepartment(department));
-		}
-		if (title != null && !title.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasTitle(title));
-		}
-
-		if (gender != null && !gender.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasGender(gender));
-		}
-		if (businessUnit != null && !businessUnit.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasBusinessUnit(businessUnit));
-		}
-		if (ethnicity != null && !ethnicity.isEmpty()) {
-			spec = spec.and(EmployeeSpecifications.hasEthnicity(ethnicity));
-		}
-		if (hireDate != null) {
-			spec = spec.and(EmployeeSpecifications.hasHireDate(hireDate.toString()));
-		}
-		if (hireDateFirst != null && hireDateLast != null) {
-			spec = spec.and(EmployeeSpecifications.hasHireDateBetween(hireDateFirst, hireDateLast));
-		}
-		if (annualSalary != null) {
-			spec = spec.and(EmployeeSpecifications.hasAnnualSalary(annualSalary));
-		}
-		if (managerId != null) {
-			spec = spec.and(EmployeeSpecifications.hasManagerId(managerId));
-		}
+		
+		Specification<Employee> spec = buildEmployeeSpecification(
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
+			managerId, hireDate, hireDateFirst, hireDateLast, annualSalary
+		);
 
 		logger.debug("Built search specification: {}", spec);
 
@@ -354,6 +319,109 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Page<Employee> result = employeeRepository.findAll(spec, pageable);
 
+		System.out.println(" *********************************************** Search results: " + result.getContent());
+
 		return result;
+	}
+
+	/**
+	 * Counts the number of employees matching the given search criteria.
+	 *
+	 * @param firstName The first name of the employee (optional)
+	 * @param lastName The last name of the employee (optional)
+	 * @param startAge The minimum age of the employee (optional)
+	 * @param endAge The maximum age of the employee (optional)
+	 * @param department The department of the employee (optional)
+	 * @param title The job title of the employee (optional)
+	 * @param businessUnit The business unit of the employee (optional)
+	 * @param gender The gender of the employee (optional)
+	 * @param ethnicity The ethnicity of the employee (optional)
+	 * @param managerId The manager's ID (optional)
+	 * @param hireDate The hire date of the employee (optional)
+	 * @param hireDateFirst The earliest hire date (optional)
+	 * @param hireDateLast The latest hire date (optional)
+	 * @param annualSalary The annual salary of the employee (optional)
+	 * @return The count of employees matching the criteria
+	 */
+	@Tool(
+		name = "count_employees",
+		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
+	)
+	public long countEmployees(
+		@ToolParam(required = false) String firstName,
+		@ToolParam(required = false) String lastName,
+		@ToolParam(required = false) Integer startAge,
+		@ToolParam(required = false) Integer endAge,
+		@ToolParam(required = false) String department,
+		@ToolParam(required = false) String title,
+		@ToolParam(required = false) String businessUnit,
+		@ToolParam(required = false) String gender,
+		@ToolParam(required = false) String ethnicity,
+		@ToolParam(required = false) Long managerId,
+		@ToolParam(required = false) Date hireDate,
+		@ToolParam(required = false) Date hireDateFirst,
+		@ToolParam(required = false) Date hireDateLast,
+		@ToolParam(required = false) Long annualSalary
+	) {
+		logger.info("Enter countEmployees("
+			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={})",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary);
+
+		Specification<Employee> spec = buildEmployeeSpecification(
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
+			managerId, hireDate, hireDateFirst, hireDateLast, annualSalary
+		);
+
+		long count = employeeRepository.count(spec);
+
+		logger.info("Exit countEmployees with count: {}", count);
+		return count;
+	}
+
+	private Specification<Employee> buildEmployeeSpecification(
+		String firstName, String lastName, Integer startAge, Integer endAge,
+		String department, String title, String businessUnit,
+		String gender, String ethnicity,
+		Long managerId, Date hireDate, Date hireDateFirst, Date hireDateLast, Long annualSalary) {
+
+		Specification<Employee> spec = Specification.where(null);
+
+		if (firstName != null && !firstName.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasFirstName(firstName));
+		}
+		if (lastName != null && !lastName.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasLastName(lastName));
+		}
+		if (startAge != null && endAge != null) {
+			spec = spec.and(EmployeeSpecifications.ageBetween(startAge, endAge));
+		}
+		if (department != null && !department.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasDepartment(department));
+		}
+		if (title != null && !title.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasTitle(title));
+		}
+		if (gender != null && !gender.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasGender(gender));
+		}
+		if (businessUnit != null && !businessUnit.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasBusinessUnit(businessUnit));
+		}
+		if (ethnicity != null && !ethnicity.isEmpty()) {
+			spec = spec.and(EmployeeSpecifications.hasEthnicity(ethnicity));
+		}
+		if (hireDate != null) {
+			spec = spec.and(EmployeeSpecifications.hasHireDate(hireDate.toString()));
+		}
+		if (hireDateFirst != null && hireDateLast != null) {
+			spec = spec.and(EmployeeSpecifications.hasHireDateBetween(hireDateFirst, hireDateLast));
+		}
+		if (annualSalary != null) {
+			spec = spec.and(EmployeeSpecifications.hasAnnualSalary(annualSalary));
+		}
+		if (managerId != null) {
+			spec = spec.and(EmployeeSpecifications.hasManagerId(managerId));
+		}
+		return spec;
 	}
 }
