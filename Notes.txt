@@ -6,4 +6,11 @@ Need employee id (database) and employeeId (hr employee id) to be separate;
 	How to get the LLM Agents creating employees to create employees with the correct next hr employee id? Perhaps a service that returns next employee id: 'E02***'. 
 		Perhaps update the saveEmployee @Tool description attribute to mention the next employee id @Tool 
 	Google search: "jpa entity jakarta hide id from user"
+
+Run terminal commands before running server:
+	Brave Search: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search
+		npm i @modelcontextprotocol/server-brave-search	
+		export BRAVE_API_KEY=<YOUR_KEY>
+	If using GROQ as your LLM - https://console.groq.com/keys
+		export GROQ_API_KEY=<YOUR_KEY>	
 	
