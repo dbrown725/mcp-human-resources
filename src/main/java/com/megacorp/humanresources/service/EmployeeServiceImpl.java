@@ -319,8 +319,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Page<Employee> result = employeeRepository.findAll(spec, pageable);
 
-		System.out.println(" *********************************************** Search results: " + result.getContent());
-
 		return result;
 	}
 
