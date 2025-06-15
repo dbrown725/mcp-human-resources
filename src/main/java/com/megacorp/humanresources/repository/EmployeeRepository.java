@@ -10,4 +10,7 @@ import com.megacorp.humanresources.entity.Employee;
 //Interface extending CrudRepository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
     Page<Employee> findAll(Pageable pageable);
+    
 }
+
+
