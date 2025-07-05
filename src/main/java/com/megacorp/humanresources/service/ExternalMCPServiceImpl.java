@@ -22,7 +22,7 @@ public class ExternalMCPServiceImpl implements ExternalMCPService {
 
     private final ChatClient chatClient;
 
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExternalMCPServiceImpl.class);
 
     public ExternalMCPServiceImpl(ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients) {
         this.chatClient = chatClientBuilder.defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients)).build();

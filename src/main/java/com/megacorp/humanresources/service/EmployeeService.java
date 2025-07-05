@@ -1,15 +1,78 @@
 package com.megacorp.humanresources.service;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
 import com.megacorp.humanresources.entity.Employee;
 
 public interface EmployeeService {
 	// Save operation
 	Employee saveEmployee(Employee employee);
 
-	// Delete operation
-	void deleteEmployeeById(Long employeeId);
+	Employee saveEmployeeByName(String firstName, String lastName);
+
+	Employee updateEmployee(
+		Long employeeId,
+		String firstName,
+		String lastName,
+		Long age,
+		String department,
+		String title,
+		String businessUnit,
+		String gender,
+		String ethnicity,
+		Long managerId,
+		Date hireDate,
+		Long annualSalary
+	);
 
 	// Get operation
 	Employee getEmployeeById(Long employeeId);
+
+	// Delete operation
+	void deleteEmployeeById(Long employeeId);
+
+	List<Employee> fetchEmployeeList();
+
+	Page<Employee> searchEmployees(
+		String firstName,
+		String lastName,
+		Integer startAge,
+		Integer endAge,
+		String department,
+		String title,
+		String businessUnit,
+		String gender,
+		String ethnicity,
+		Long managerId,
+		Date hireDate,
+		Date hireDateFirst,
+		Date hireDateLast,
+		Long annualSalary,
+		Integer pageNumber, 
+		Integer pageSize, 
+		String sortBy, 
+		String sortDirection
+	);
+
+	
+	long countEmployees(
+		String firstName,
+		String lastName,
+		Integer startAge,
+		Integer endAge,
+		String department,
+		String title,
+		String businessUnit,
+		String gender,
+		String ethnicity,
+		Long managerId,
+		Date hireDate,
+		Date hireDateFirst,
+		Date hireDateLast,
+		Long annualSalary
+	);
 
 }

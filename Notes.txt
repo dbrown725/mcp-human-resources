@@ -13,4 +13,17 @@ Run terminal commands before running server:
 		export BRAVE_API_KEY=<YOUR_KEY>
 	If using GROQ as your LLM - https://console.groq.com/keys
 		export GROQ_API_KEY=<YOUR_KEY>	
+	If using Google Gemini, follow the folowing directions.
+		https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html	
+		Including the following command run in the terminal that also starts the spring-boot app.
+			gcloud config set project <PROJECT_ID> && gcloud auth application-default login <ACCOUNT>
+		Need to set up ADC. (Need to run on a machine with a browser)
+			Helped with seting up ADC locally: 
+				https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment
+				https://www.youtube.com/watch?v=mEsC0BpEYGM
+			gcloud auth application-default login
+			In the browser when prompted choose my google user and then selected all access options.
+			Terminal then showed: Credentials saved to file: [/home/davidbrown/.config/gcloud/application_default_credentials.json]
+			First test resulted in an error and instructions with url link to resolve. I needed to follow the link and enable Vertex AI API 
+
 	
