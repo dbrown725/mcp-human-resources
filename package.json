@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@elastic/mcp-server-elasticsearch": "^0.3.1",
     "@modelcontextprotocol/server-brave-search": "^0.6.2"
   }
 }

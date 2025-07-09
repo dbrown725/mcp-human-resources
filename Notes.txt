@@ -11,6 +11,12 @@ Run terminal commands before running server:
 	Brave Search: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search
 		npm i @modelcontextprotocol/server-brave-search	
 		export BRAVE_API_KEY=<YOUR_KEY>
+		Configuration: src/main/resources/mcp-servers.json
+	Elastic Search: https://github.com/elastic/mcp-server-elasticsearch
+		npm i @elastic/mcp-server-elasticsearch
+		Use the following data to load an Elastic Index: mcp-human-resources/employee_data_load.csv
+		Configuration: src/main/resources/mcp-servers.json
+			Note that a space was needed in "ES_API_KEY": " ", since local Elastic Index has not security enabled
 	If using GROQ as your LLM - https://console.groq.com/keys
 		export GROQ_API_KEY=<YOUR_KEY>	
 	If using Google Gemini, follow the folowing directions.

@@ -9,6 +9,18 @@
       "env": {
         "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY"
       }
+    },
+    "mcp-server-elasticsearch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@elastic/mcp-server-elasticsearch"
+      ],
+      "env": {
+          "ES_URL": "http://localhost:9200",
+          "ES_API_KEY": " ",
+          "OTEL_LOG_LEVEL": "none" 
+      }
     }
   }
 }
