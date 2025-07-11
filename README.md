@@ -8,8 +8,8 @@ Assumes Linux with Java, Maven, node and npm installed
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/dbrown725/mcp-host-ui-local.git
-cd mcp-human-resources-client
+git clone https://github.com/dbrown725/mcp-human-resources.git
+cd mcp-human-resources
 ```
 
 2. Setup Brave Search: Acquire API Key, update configuration file and install Node module(s):<br>
@@ -47,7 +47,7 @@ export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
 
 5.  Notes from when run with Google Vertex AI<br>
         https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html<br>	
-		Including the following command run in the terminal that also starts the spring-boot app.
+		Including the following command run in the terminal that also starts the spring-boot app.<br>
 			gcloud config set project <YOUR_PROJECT_ID> && gcloud auth application-default login <YOUR_ACCOUNT> <br><br>
 		Need to set up ADC. (Need to run on a machine with a browser)<br>
 			Helped with seting up ADC locally: <br>
