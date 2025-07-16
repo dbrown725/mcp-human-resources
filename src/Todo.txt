@@ -1,0 +1,3 @@
+- Replace KeepAliveService.java Hack, I am sure there is a better way
+- Revisit @JoinColumn(name = "MANAGER_ID", insertable = false, updatable = false, nullable = true)  
+- Do I still have a hireDate format problem? or a drop one day from hireDay problem?

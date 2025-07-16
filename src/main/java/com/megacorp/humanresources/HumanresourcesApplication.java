@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.megacorp.humanresources.service.EmployeeService;
 
+import com.megacorp.humanresources.service.KeepAliveService;
+
 @SpringBootApplication
 public class HumanresourcesApplication {
 
@@ -16,8 +18,8 @@ public class HumanresourcesApplication {
 	}
 
 	@Bean
-	public ToolCallbackProvider weatherTools(EmployeeService employeeService) {
-		return MethodToolCallbackProvider.builder().toolObjects(employeeService).build();
+	public ToolCallbackProvider availableTools(EmployeeService employeeService, KeepAliveService keepAliveService) {
+		return MethodToolCallbackProvider.builder().toolObjects(employeeService,keepAliveService).build();
 	}
 
 }
