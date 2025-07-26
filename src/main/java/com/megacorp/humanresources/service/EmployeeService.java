@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.megacorp.humanresources.entity.Employee;
+import com.megacorp.humanresources.model.EmployeeCount;
 
 public interface EmployeeService {
 	// Save operation
@@ -58,7 +59,7 @@ public interface EmployeeService {
 	);
 
 	
-	long countEmployees(
+	EmployeeCount countEmployees(
 		String firstName,
 		String lastName,
 		Integer startAge,

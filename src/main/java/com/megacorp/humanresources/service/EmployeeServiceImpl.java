@@ -16,6 +16,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.megacorp.humanresources.entity.Employee;
+import com.megacorp.humanresources.model.EmployeeCount;
 import com.megacorp.humanresources.repository.EmployeeRepository;
 import com.megacorp.humanresources.specifications.EmployeeSpecifications;
 
@@ -345,7 +346,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		name = "count_employees",
 		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
 	)
-	public long countEmployees(
+	public EmployeeCount countEmployees(
 		@ToolParam(required = false) String firstName,
 		@ToolParam(required = false) String lastName,
 		@ToolParam(required = false) Integer startAge,
@@ -373,7 +374,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		long count = employeeRepository.count(spec);
 
 		logger.info("Exit countEmployees with count: {}", count);
-		return count;
+		return new EmployeeCount(Long.valueOf(count));
 	}
 
 	private Specification<Employee> buildEmployeeSpecification(
