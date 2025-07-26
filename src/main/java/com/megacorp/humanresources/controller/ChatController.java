@@ -3,6 +3,7 @@ package com.megacorp.humanresources.controller;
 import java.util.List;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.ExternalMCPService;
 
 import io.modelcontextprotocol.client.McpSyncClient;
+import reactor.core.publisher.Flux;
 
 @RestController
 public class ChatController {
@@ -41,6 +43,27 @@ public class ChatController {
             .user(prompt)
             .call()
             .content();
+    }
+
+
+    @GetMapping("/ai/chat-response")
+    public ChatResponse chatResponse(
+            @RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
+        return chatClient.prompt()
+                .tools(employeeService, externalMCPService)
+                .user(prompt)
+                .call()
+                .chatResponse();
+    }
+    
+    @GetMapping("/ai/stream")
+    public Flux<String> stream(
+        @RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
+        return chatClient.prompt()
+                .tools(employeeService, externalMCPService)
+                .user(prompt)
+                .stream()
+                .content();
     }
     
 }
