@@ -6,13 +6,15 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-// import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.SequenceGenerator;
@@ -73,16 +75,19 @@ public class Employee {
 	@Column(name = "AGE", nullable = true)
 	private Long age;
 
-	@Column(name = "MANAGER_ID", nullable = true)
-	private Long managerId;
+	@ManyToOne
+	@JoinColumn(name = "MANAGER_ID", insertable = true, updatable = true, nullable = true)
+	@com.fasterxml.jackson.annotation.JsonIgnore
+	private Employee manager;
 
-	// Self-referencing relationship to Employee (manager)
-	// This is optional, but recommended for JPA navigation
-	// Uncomment if you want to use object reference instead of just ID:
-	// Revisit later - I tried, but Pydantic kept spewing an error: "ERROR - Failed while agent.run: Could not find $ref definition for #"
-	// @ManyToOne
-	// @JoinColumn(name = "MANAGER_ID", insertable = false, updatable = false, nullable = true)
-	// private Employee manager;
+	public void setManager(Employee manager) {
+		this.manager = manager;
+	}
+
+	@JsonProperty("managerId")
+	public Long getManagerId() {
+		return this.manager != null ? this.manager.getEmployeeId() : null;
+	}
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "HIRE_DATE", nullable = true)
@@ -131,7 +136,7 @@ public class Employee {
 				", gender='" + gender + '\'' +
 				", ethnicity='" + ethnicity + '\'' +
 				", age=" + age +
-				", managerId=" + managerId +
+				", managerId=" + (manager != null ? this.manager.getEmployeeId() : null) +
 				", hireDate=" + (hireDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(hireDate) : null) +
 				", annualSalary=" + annualSalary +
 				'}';

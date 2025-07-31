@@ -177,8 +177,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 			employee.setAnnualSalary(annualSalary);
 		}
 		if (managerId != null) {
-			employee.setManagerId(managerId);
+			Employee manager = employeeRepository.findById(managerId).orElseThrow();
+			employee.setManager(manager);
 		}
+				
 		employeeRepository.save(employee);
 
 		logger.info("Exit updateEmployee with updated employee: {}", employee.toString());

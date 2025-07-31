@@ -6,6 +6,8 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.megacorp.humanresources.entity.Employee;
 
+import jakarta.persistence.criteria.Join;
+
 public class EmployeeSpecifications {
 
 	public static Specification<Employee> hasFirstName(String firstName) {
@@ -54,6 +56,12 @@ public class EmployeeSpecifications {
 	}
 
 	public static Specification<Employee> hasManagerId(Long managerId) {
-		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("managerId"), managerId);
+		return (root, query, criteriaBuilder) -> {
+            // Join the Employee entity with its manager (which is also an Employee)
+            Join<Employee, Employee> managerJoin = root.join("manager");
+            // Create a predicate to filter by the manager's ID
+            return criteriaBuilder.equal(managerJoin.get("employeeId"), managerId);
+        };
 	}
+
 }
