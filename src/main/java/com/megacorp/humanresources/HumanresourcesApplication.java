@@ -7,8 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.megacorp.humanresources.service.EmployeeService;
+import com.megacorp.humanresources.service.BraveSearchService;
 
 import com.megacorp.humanresources.service.KeepAliveService;
+
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class HumanresourcesApplication {
@@ -18,8 +21,13 @@ public class HumanresourcesApplication {
 	}
 
 	@Bean
-	public ToolCallbackProvider availableTools(EmployeeService employeeService, KeepAliveService keepAliveService) {
-		return MethodToolCallbackProvider.builder().toolObjects(employeeService,keepAliveService).build();
+	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService, KeepAliveService keepAliveService) {
+		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService).build();
 	}
+
+	@Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }

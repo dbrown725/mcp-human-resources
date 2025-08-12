@@ -14,11 +14,10 @@ cd mcp-human-resources
 
 2. Setup Brave Search: Acquire API Key, update configuration file and install Node module(s):<br>
     https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search<br>
-    Follow the above directions and acquire an API Key<br><br>
-    Brave Search configuration: src/main/resources/mcp-servers.json<br>
-        Update with your BRAVE_API_KEY
+    Follow the above directions and acquire an API Key<br>
+    
 ```bash
-npm i @modelcontextprotocol/server-brave-search
+export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
 ```
 
 3. Setup Elastic Search:<br>
@@ -36,8 +35,7 @@ npm i @elastic/mcp-server-elasticsearch
 ```
 
 4. Setup your preferred LLM, tested with GROQ and Google Vertex AI:<br>
-    Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html
-
+    Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html<br>
     Current code setup with GROQ<br>
     Acquire an API KEY: https://console.groq.com/keys
 
