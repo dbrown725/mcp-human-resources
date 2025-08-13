@@ -28,7 +28,7 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     Use the following data to load an Elastic Index: mcp-human-resources/employee_code_of_conduct_policies.csv<br>
     Name the index: employee_code_of_conduct_policies<br><br>
     Configuration: src/main/resources/mcp-servers.json<br>
-        Note that a space was needed in "ES_API_KEY": " ", since my local Elastic Index has not security enabled<br>
+        Note that a space was needed in "ES_API_KEY": " ", since my local Elastic Index does not have security enabled<br>
 
 ```bash
 npm i @elastic/mcp-server-elasticsearch

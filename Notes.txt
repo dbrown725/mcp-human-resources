@@ -7,29 +7,8 @@ Need employee id (database) and employeeId (hr employee id) to be separate;
 		Perhaps update the saveEmployee @Tool description attribute to mention the next employee id @Tool 
 	Google search: "jpa entity jakarta hide id from user"
 
-Run terminal commands before running server:
-	Brave Search: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search
-		npm i @modelcontextprotocol/server-brave-search	
-		export BRAVE_API_KEY=<YOUR_KEY>
-		Configuration: src/main/resources/mcp-servers.json
-	Elastic Search: https://github.com/elastic/mcp-server-elasticsearch
-		npm i @elastic/mcp-server-elasticsearch
-		Use the following data to load an Elastic Index: mcp-human-resources/employee_data_load.csv
-		Configuration: src/main/resources/mcp-servers.json
-			Note that a space was needed in "ES_API_KEY": " ", since local Elastic Index has not security enabled
-	If using GROQ as your LLM - https://console.groq.com/keys
-		export GROQ_API_KEY=<YOUR_KEY>	
-	If using Google Gemini, follow the folowing directions.
-		https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html	
-		Including the following command run in the terminal that also starts the spring-boot app.
-			gcloud config set project <PROJECT_ID> && gcloud auth application-default login <ACCOUNT>
-		Need to set up ADC. (Need to run on a machine with a browser)
-			Helped with seting up ADC locally: 
-				https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment
-				https://www.youtube.com/watch?v=mEsC0BpEYGM
-			gcloud auth application-default login
-			In the browser when prompted choose my google user and then selected all access options.
-			Terminal then showed: Credentials saved to file: [/home/davidbrown/.config/gcloud/application_default_credentials.json]
-			First test resulted in an error and instructions with url link to resolve. I needed to follow the link and enable Vertex AI API 
+	Look into Spring AI, ElasticSearch RAG: https://www.youtube.com/watch?v=ms2xRO8B1YU
+
+
 
 	
