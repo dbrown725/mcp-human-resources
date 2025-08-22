@@ -20,7 +20,15 @@ cd mcp-human-resources
 export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
 ```
 
-3. Setup Elastic Search:<br>
+3. Setup Google Cloud Storage:
+    Used as a guide: https://github.com/sohamkamani/java-gcp-examples/blob/main/src/main/java/com/sohamkamani/storage/App.java
+    // https://www.youtube.com/watch?v=FXiV4WPQveY
+    ```bash
+    export GEMINI_PROJECT_ID=<YOUR_GEMINI_PROJECT_ID>
+    export STORAGE_BUCKET_NAME=<YOUR_STORAGE_BUCKET_NAME>
+    ```
+
+4. Setup Elastic Search:<br>
     Elastic Search MCP: https://github.com/elastic/mcp-server-elasticsearch<br><br>
     Install Elastic Search and Kibana: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana<br>
     Directions for loading a csv file into Elastic Search using Kibana.<br>
@@ -34,7 +42,7 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
 npm i @elastic/mcp-server-elasticsearch
 ```
 
-4. Setup your preferred LLM, tested with GROQ and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
+5. Setup your preferred LLM, tested with GROQ and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
     Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html<br>
     Current code setup with GROQ<br>
     Acquire an API KEY: https://console.groq.com/keys
@@ -43,7 +51,7 @@ npm i @elastic/mcp-server-elasticsearch
 export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
 ```
 
-5.  Notes from when run with Google Vertex AI<br>
+6.  Notes from when run with Google Vertex AI<br>
         https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html<br>	
 		Including the following command run in the terminal that also starts the spring-boot app.<br>
 			gcloud config set project <YOUR_PROJECT_ID> && gcloud auth application-default login <YOUR_ACCOUNT> <br><br>
@@ -58,39 +66,47 @@ export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
             If switching from current GROQ setup to Google Vertex AI you will have to make comment/uncomment changes to pom.xml and application.properties 
 
 
-6. Setup log directory and file
+7. Setup log directory and file
 ```bash
 sudo mkdir /var/log/mcp-human-resources
 sudo touch /var/log/mcp-human-resources/mcp-human-resources.log
 sudo chmod -R 777 /var/log/mcp-human-resources
 ```
-7. Run a Maven Install<br>
+8. Run a Maven Install<br>
 ```bash
 "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/mvnw" install -f "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/pom.xml"
 ```
 
-8. Start the server<br>
+9. Start the server<br>
 Update run.sh with your JDK install location
 ```bash
 ./run.sh
 ```
 
-9. Can be tested using a browser or Postman<br><br>
+10. Can be tested using a browser or Postman<br><br>
     http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
     http://localhost:8081/employees/5012<br><br>
     http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
     http://localhost:8081/ai/chat-response?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
     http://localhost:8081/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
-    http://localhost:8081/image-to-text<br><br>
+    http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents
+    (see ImageDetectionController.java)<br><br>
     http://localhost:8081/receipt-image-to-text?prompt=What%20is%20the%20Total%20Amount%20Due?<br><br>
     http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents.<br><br>
+    http://localhost:8081/read-file?fileName=user_data/sample_user_data.txt<br><br>
+    http://localhost:8081/list-files?prefix=expense_receipts/<br><br>
+    POST http://localhost:8081/upload<br><br>
+    In POSTMAN the key should be "file" and the value field clicked should allow you to add a file from your file system, for example george_bush.jpg.<br><br>
+    http://localhost:8081/download-file/george_bush.jpg<br><br>
+    http://localhost:8081/delete-file?fileName=george_bush.jpg<br><br>
+
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
 
-10. Uses H2 as a database, it is loaded on application startup.<br>
+11. Uses H2 as a database, it is loaded on application startup.<br>
 http://localhost:8081/h2-console<br>
 Password is in application.properties<br>
 Sample query: Select * from EMPLOYEE where AGE > 50;   
 
-11. To see current logging level:<br>
+12. To see current logging level:<br>
 http://localhost:8081/log

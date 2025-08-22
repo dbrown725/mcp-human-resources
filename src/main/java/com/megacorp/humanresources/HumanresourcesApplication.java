@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.BraveSearchService;
-
 import com.megacorp.humanresources.service.KeepAliveService;
+import com.megacorp.humanresources.service.FileStorageService;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -21,8 +21,8 @@ public class HumanresourcesApplication {
 	}
 
 	@Bean
-	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService, KeepAliveService keepAliveService) {
-		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService).build();
+	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService, KeepAliveService keepAliveService, FileStorageService fileStorageService) {
+		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService, fileStorageService).build();
 	}
 
 	@Bean
