@@ -23,6 +23,27 @@ import com.google.cloud.storage.Storage.BlobListOption;
 
 // Based on https://github.com/sohamkamani/java-gcp-examples/blob/main/src/main/java/com/sohamkamani/storage/App.java
 // https://www.youtube.com/watch?v=FXiV4WPQveY
+/**
+ * Implementation of the {@link FileStorageService} interface for managing files in Google Cloud Storage (GCS).
+ * <p>
+ * This service provides methods to upload, retrieve, read, delete, and list files in a specified GCS bucket.
+ * It uses the Google Cloud Storage client library to interact with GCS and supports operations such as:
+ * <ul>
+ *     <li>Uploading files to a GCS bucket</li>
+ *     <li>Downloading files from a GCS bucket</li>
+ *     <li>Reading the contents of a file as a string</li>
+ *     <li>Deleting files from a GCS bucket</li>
+ *     <li>Listing files in a GCS bucket with a given prefix</li>
+ * </ul>
+ * <p>
+ * The bucket name and project ID are injected from application properties.
+ * <p>
+ * Logging is provided for all operations to facilitate debugging and monitoring.
+ * <p>
+ * Methods are annotated with {@code @Tool} to enable integration with external tools or frameworks.
+ *
+ * @author davidbrown
+ */
 @Service
 @Slf4j
 public class FileStorageServiceImpl implements FileStorageService {
@@ -35,6 +56,13 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Value("${spring.ai.vertex.ai.gemini.project-id}")
     private String projectId;
 
+
+    /**
+     * Uploads a file to Google Cloud Storage.
+     *
+     * @param file the file to upload
+     * @return a message indicating the result of the upload operation
+     */
     @Override
     public String uploadFile(MultipartFile file){
         logger.info("Entering uploadFile method");
@@ -53,7 +81,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             storage.create(blobInfo, fileContent);
         } catch (Exception e) {
             String errorMsg = "Failed to upload file: " + e.getMessage();
-            System.out.println(errorMsg);
+            logger.error(errorMsg);
             return errorMsg;
         }
         
@@ -62,27 +90,42 @@ public class FileStorageServiceImpl implements FileStorageService {
         return "File " + fileName + " uploaded as " + fileName;
     }
 
+    
+    /**
+     * Downloads a file from Google Cloud Storage and returns its contents as a byte array.
+     *
+     * @param fileName the name of the file to download
+     * @return the contents of the file as a byte array, or null if the file does not exist
+     */
     @Tool(name = "storage_retrieve_file", description = "Downloads a file from Google Cloud Storage")
     @Override
     public byte[] retrieveFile(String fileName) {
+        logger.info("Entering retrieveFile method");
 
         // Create a new GCS client and get the blob object from the blob ID
         Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
         BlobId blobId = BlobId.of(bucketName, fileName);
         Blob blob = storage.get(blobId);
         if (blob == null) {
-            System.out.println("File " + fileName + " does not exist in bucket " + bucketName);
+            logger.error("File {} does not exist in bucket {}", fileName, bucketName);
             return null;
         }
 
-        // download the file and print the status
-        //blob.downloadTo(Paths.get(filePath));
-        System.out.println("File " + fileName + " returned  downloaded from bucket, contents will be returned");
+        logger.debug("File {} downloaded from bucket {}, contents will be returned", fileName, bucketName);
+        logger.info("Exiting retrieveFile method");
         return blob.getContent();
     }
 
+    /**
+     * Reads the contents of a file from Google Cloud Storage and returns it as a String.
+     *
+     * @param fileName the name of the file to read
+     * @return the contents of the file as a String, or an error message if not found or on exception
+     */
     @Tool(name = "storage_read_file", description = "Returns the contents of a file from Google Cloud Storage")
+    @Override
     public String readFile(String fileName)  {
+        logger.info("Entering readFile method");
         // Create a new GCS client and get the blob object from the blob ID
         String contents = "";
         try {
@@ -90,21 +133,31 @@ public class FileStorageServiceImpl implements FileStorageService {
             BlobId blobId = BlobId.of(bucketName, fileName);
             Blob blob = storage.get(blobId);
             if (blob == null) {
-                System.out.println("File " + fileName + " does not exist in bucket " + bucketName);
+                logger.error("File {} does not exist in bucket {}", fileName, bucketName);
                 return "File not found";
             }
 
             // read the contents of the file and print it
             contents = new String(blob.getContent());
-            System.out.println("Contents of file " + fileName + ": " + contents);
+            logger.debug("Contents of file {}: {}", fileName, contents);
         } catch (Exception e) {
             contents = "Exception occurred: " + e.getMessage();
         }
+        logger.debug("Contents of file {}: {}", fileName, contents);
+        logger.info("Exiting readFile method");
         return contents;
     }
 
+    /**
+     * Deletes a file from Google Cloud Storage.
+     *
+     * @param fileName the name of the file to delete
+     * @return a message indicating the result of the delete operation
+     */
     @Tool(name = "storage_delete_file", description = "Deletes a file from Google Cloud Storage")
+    @Override
     public String deleteFile(String fileName) {
+        logger.info("Entering deleteFile method");
         // Create a new GCS client and get the blob object from the blob ID
         try {
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
@@ -112,41 +165,50 @@ public class FileStorageServiceImpl implements FileStorageService {
             Blob blob = storage.get(blobId);
 
             if (blob == null) {
-                System.out.println("File " + fileName + " does not exist in bucket " + bucketName);
+                logger.error("File {} does not exist in bucket {}", fileName, bucketName);
                 return "File not found";
             }
 
             // delete the file and print the status
             blob.delete();
         } catch (Exception e) {
-            System.out.println("Exception occurred while deleting file: " + e.getMessage());
+            logger.error("Exception occurred while deleting file: {}", e.getMessage());
             return "Exception occurred: " + e.getMessage();
         }
-        System.out.println("File " + fileName + " deleted from bucket " + bucketName);
+        
+        logger.info("Exiting deleteFile method");
         return "File " + fileName + " deleted from bucket " + bucketName;
     }
 
+    /**
+     * Lists all files in a Google Cloud Storage bucket with a given prefix.
+     *
+     * @param prefix the prefix to filter files in the bucket
+     * @return a list of file names matching the prefix
+     */
     @Tool(name = "storage_list_files", description = "Lists all files in a Google Cloud Storage bucket with a given prefix")
+    @Override
     public List<String> listFiles(String prefix) {
+        logger.info("Entering listFiles method");
 
         List<String> fileNames = new ArrayList<>();
         try {
             // Create a new GCS client and get the blob object from the blob ID
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
 
-            System.out.println("Files in bucket " + bucketName + ":");
-            // list all the blobs in the bucket
+            logger.debug("Files in bucket {}:", bucketName);
+            // List all the blobs in the bucket with the specified prefix
             for (Blob blob : storage
-                // .list(bucketName, BlobListOption.currentDirectory(), BlobListOption.prefix("user_data/"))
                 .list(bucketName, BlobListOption.currentDirectory(), BlobListOption.prefix(prefix))
                 .iterateAll()) {
-            System.out.println(blob.getName());
-            fileNames.add(blob.getName());
+                logger.debug(blob.getName());
+                fileNames.add(blob.getName());
             }
         } catch (Exception e) {
-            System.out.println("Exception occurred while listing files: " + e.getMessage());
+            logger.error("Exception occurred while listing files: {}", e.getMessage());
             throw e;
         }
+        logger.info("Exiting listFiles method");
         return fileNames;
     }
 }
