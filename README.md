@@ -44,7 +44,7 @@ npm i @elastic/mcp-server-elasticsearch
 
 5. Setup your preferred LLM, tested with GROQ and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
     Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html<br>
-    Current code setup with GROQ<br>
+    Current code setup with Google Vertex AI<br>
     Acquire an API KEY: https://console.groq.com/keys
 
 ```bash
