@@ -1,6 +1,5 @@
 package com.megacorp.humanresources.service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -23,27 +22,7 @@ import com.google.cloud.storage.Storage.BlobListOption;
 
 // Based on https://github.com/sohamkamani/java-gcp-examples/blob/main/src/main/java/com/sohamkamani/storage/App.java
 // https://www.youtube.com/watch?v=FXiV4WPQveY
-/**
- * Implementation of the {@link FileStorageService} interface for managing files in Google Cloud Storage (GCS).
- * <p>
- * This service provides methods to upload, retrieve, read, delete, and list files in a specified GCS bucket.
- * It uses the Google Cloud Storage client library to interact with GCS and supports operations such as:
- * <ul>
- *     <li>Uploading files to a GCS bucket</li>
- *     <li>Downloading files from a GCS bucket</li>
- *     <li>Reading the contents of a file as a string</li>
- *     <li>Deleting files from a GCS bucket</li>
- *     <li>Listing files in a GCS bucket with a given prefix</li>
- * </ul>
- * <p>
- * The bucket name and project ID are injected from application properties.
- * <p>
- * Logging is provided for all operations to facilitate debugging and monitoring.
- * <p>
- * Methods are annotated with {@code @Tool} to enable integration with external tools or frameworks.
- *
- * @author davidbrown
- */
+
 @Service
 @Slf4j
 public class FileStorageServiceImpl implements FileStorageService {
@@ -56,14 +35,12 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Value("${spring.ai.vertex.ai.gemini.project-id}")
     private String projectId;
 
-
     /**
      * Uploads a file to Google Cloud Storage.
      *
      * @param file the file to upload
      * @return a message indicating the result of the upload operation
      */
-    @Override
     public String uploadFile(MultipartFile file){
         logger.info("Entering uploadFile method");
         // Create a new GCS client
@@ -77,7 +54,23 @@ public class FileStorageServiceImpl implements FileStorageService {
             fileName = file.getOriginalFilename();
             fileContent = file.getBytes();
             blobId = BlobId.of(bucketName, fileName);
-            blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/octet-stream").build();
+            String contentType = "application/octet-stream";
+            if (fileName != null) {
+                String lowerFileName = fileName.toLowerCase();
+                if (lowerFileName.endsWith(".jpg") || lowerFileName.endsWith(".jpeg")) {
+                    contentType = "image/jpeg";
+                } else if (lowerFileName.endsWith(".png")) {
+                    contentType = "image/png";
+                } else if (lowerFileName.endsWith(".gif")) {
+                    contentType = "image/gif";
+                } else if (lowerFileName.endsWith(".webp")) {
+                    contentType = "image/webp";
+                } else if (lowerFileName.endsWith(".heic") || lowerFileName.endsWith(".heif")) {
+                    contentType = "image/heic";
+                }
+            }
+            blobInfo = BlobInfo.newBuilder(blobId).setContentType(contentType).build();
+
             storage.create(blobInfo, fileContent);
         } catch (Exception e) {
             String errorMsg = "Failed to upload file: " + e.getMessage();
@@ -97,7 +90,6 @@ public class FileStorageServiceImpl implements FileStorageService {
      * @param fileName the name of the file to download
      * @return the contents of the file as a byte array, or null if the file does not exist
      */
-    @Tool(name = "storage_retrieve_file", description = "Downloads a file from Google Cloud Storage")
     @Override
     public byte[] retrieveFile(String fileName) {
         logger.info("Entering retrieveFile method");

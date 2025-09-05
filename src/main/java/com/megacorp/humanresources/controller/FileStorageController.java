@@ -44,10 +44,9 @@ public class FileStorageController {
         return fileStorageService.uploadFile(file);
     }
 
-    @GetMapping("/download-file/{fileName}")
-    public ResponseEntity<byte[]> downloadFile(@PathVariable String fileName) {
-        String fileNameResolved = fileName.replaceAll("SLASH", "/");
-        byte[] fileContent = fileStorageService.retrieveFile(fileNameResolved);
+    @GetMapping("/download-file")
+    public ResponseEntity<byte[]> downloadFile(@RequestParam("fileName") String fileName) {
+        byte[] fileContent = fileStorageService.retrieveFile(fileName);
 
         if (fileContent == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -55,7 +54,7 @@ public class FileStorageController {
 
         HttpHeaders headers = new HttpHeaders();
         // Set content type based on file extension
-        String lowerFileName = fileNameResolved.toLowerCase();
+        String lowerFileName = fileName.toLowerCase();
         if (lowerFileName.endsWith(".jpg") || lowerFileName.endsWith(".jpeg")) {
             headers.setContentType(MediaType.IMAGE_JPEG);
         } else if (lowerFileName.endsWith(".png")) {
@@ -68,13 +67,17 @@ public class FileStorageController {
             headers.setContentType(MediaType.parseMediaType("image/heic"));
         } else if (lowerFileName.endsWith(".heif")) {
             headers.setContentType(MediaType.parseMediaType("image/heif"));
-        } 
+        } else if (lowerFileName.endsWith(".csv")) {
+            headers.setContentType(MediaType.parseMediaType("text/csv"));
+        } else if (lowerFileName.endsWith(".txt")) {
+            headers.setContentType(MediaType.parseMediaType("text/plain"));
+        }
         else {
             throw new IllegalArgumentException(
-                "Unsupported file extension. Valid image extensions are: .jpg, .jpeg, .png, .gif, .webp, .heic, .heif"
+                "Unsupported file extension. Valid image extensions are: .jpg, .jpeg, .png, .gif, .webp, .heic, .heif, .csv, .txt"
             );
         }
-        headers.setContentDispositionFormData("attachment", fileNameResolved);
+        headers.setContentDispositionFormData("attachment", fileName);
 
         return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
     }
