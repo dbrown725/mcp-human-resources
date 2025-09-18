@@ -21,7 +21,8 @@ public class HumanresourcesApplication {
 	}
 
 	@Bean
-	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService, KeepAliveService keepAliveService, FileStorageService fileStorageService) {
+	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService, 
+		KeepAliveService keepAliveService, FileStorageService fileStorageService) {
 		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService, fileStorageService).build();
 	}
 

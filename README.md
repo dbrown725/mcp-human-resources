@@ -99,6 +99,9 @@ Update run.sh with your JDK install location
     In POSTMAN the key should be "file" and the value field clicked should allow you to add a file from your file system, for example george_bush.jpg.<br><br>
     http://localhost:8081/download-file/george_bush.jpg<br><br>
     http://localhost:8081/delete-file?fileName=george_bush.jpg<br><br>
+    http://localhost:8081/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv<br><br>
+    http://localhost:8081/summarize-images-in-folder?folder=expense_receipts/20250831_20250913<br><br>
+    http://localhost:8081/generate-expense-report?folder=expense_receipts/20250831_20250913<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
