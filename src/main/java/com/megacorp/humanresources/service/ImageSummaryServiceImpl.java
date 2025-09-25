@@ -1,8 +1,6 @@
 package com.megacorp.humanresources.service;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.tool.annotation.Tool;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeType;
@@ -18,7 +16,6 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
     private final ChatClient chatClient;
     private final FileStorageService fileStorageService;
 
-    @Autowired
     public ImageSummaryServiceImpl(ChatClient.Builder builder, FileStorageService fileStorageService) {
         this.chatClient = builder.build();
         this.fileStorageService = fileStorageService;

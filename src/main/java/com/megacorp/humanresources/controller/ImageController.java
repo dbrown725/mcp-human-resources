@@ -14,10 +14,10 @@ import java.io.IOException;
 
 import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageSummaryService;
+import com.megacorp.humanresources.service.ImageGenerationService;
 
-// Based on https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/multimodal/image/ImageDetection.java
 @RestController
-public class ImageDetectionController {
+public class ImageController {
 
     private final ChatClient chatClient;
 
@@ -27,14 +27,18 @@ public class ImageDetectionController {
     @Autowired
     private ImageSummaryService imageSummaryService;
 
+    @Autowired
+    private ImageGenerationService imageGenerationService;
+
     // abc_hardware_store.png, intellicare_solutions.jpeg, techwave_solutions.jpg, xyz_bookstore.webp, cash_receipt.heic, abc_electronics.heif
     @Value("classpath:/images/abc_electronics.heif")
     Resource sampleReceiptImage;
 
-    public ImageDetectionController(ChatClient.Builder builder) {
+    public ImageController(ChatClient.Builder builder) {
         this.chatClient = builder.build();
     }
 
+    // Based on https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/multimodal/image/ImageDetection.java
     // Image source: https://coefficient.io/templates/sales-receipt-template
     @GetMapping("/receipt-image-to-text")
     public String receiptImage(@RequestParam(value = "prompt", defaultValue = "What payment method was used?") String prompt) throws IOException {
@@ -89,5 +93,12 @@ public class ImageDetectionController {
             }
         }
         return mimeType;
+    }
+
+    @GetMapping("/generate-image")
+    public String generateImage(
+        @RequestParam("prompt") String prompt,
+        @RequestParam("outputImageRootName") String outputImageRootName) throws IOException {
+        return imageGenerationService.generateImage(prompt, outputImageRootName);
     }
 }

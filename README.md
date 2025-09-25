@@ -27,8 +27,11 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     export GEMINI_PROJECT_ID=<YOUR_GEMINI_PROJECT_ID>
     export STORAGE_BUCKET_NAME=<YOUR_STORAGE_BUCKET_NAME>
     ```
-
-4. Setup Elastic Search:<br>
+4. Needed for Nano Banana image generation
+    ```bash
+    export GEMINI_API_KEY=<YOUR_GEMINI_API_KEY>
+    ```
+5. Setup Elastic Search:<br>
     Elastic Search MCP: https://github.com/elastic/mcp-server-elasticsearch<br><br>
     Install Elastic Search and Kibana: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana<br>
     Directions for loading a csv file into Elastic Search using Kibana.<br>
@@ -42,7 +45,7 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
 npm i @elastic/mcp-server-elasticsearch
 ```
 
-5. Setup your preferred LLM, tested with GROQ and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
+6. Setup your preferred LLM, tested with GROQ and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
     Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html<br>
     Current code setup with Google Vertex AI<br>
     Acquire an API KEY: https://console.groq.com/keys
@@ -51,7 +54,7 @@ npm i @elastic/mcp-server-elasticsearch
 export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
 ```
 
-6.  Notes from when run with Google Vertex AI<br>
+7.  Notes from when run with Google Vertex AI<br>
         https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html<br>	
 		Including the following command run in the terminal that also starts the spring-boot app.<br>
 			gcloud config set project <YOUR_PROJECT_ID> && gcloud auth application-default login <YOUR_ACCOUNT> <br><br>
@@ -66,24 +69,24 @@ export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
             If switching from current GROQ setup to Google Vertex AI you will have to make comment/uncomment changes to pom.xml and application.properties 
 
 
-7. Setup log directory and file
+8. Setup log directory and file
 ```bash
 sudo mkdir /var/log/mcp-human-resources
 sudo touch /var/log/mcp-human-resources/mcp-human-resources.log
 sudo chmod -R 777 /var/log/mcp-human-resources
 ```
-8. Run a Maven Install<br>
+9. Run a Maven Install<br>
 ```bash
 "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/mvnw" install -f "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/pom.xml"
 ```
 
-9. Start the server<br>
+10. Start the server<br>
 Update run.sh with your JDK install location
 ```bash
 ./run.sh
 ```
 
-10. Can be tested using a browser or Postman<br><br>
+11. Can be tested using a browser or Postman<br><br>
     http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
     http://localhost:8081/employees/5012<br><br>
     http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
@@ -102,14 +105,15 @@ Update run.sh with your JDK install location
     http://localhost:8081/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv<br><br>
     http://localhost:8081/summarize-images-in-folder?folder=expense_receipts/20250831_20250913<br><br>
     http://localhost:8081/generate-expense-report?folder=expense_receipts/20250831_20250913<br><br>
+    http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
 
-11. Uses H2 as a database, it is loaded on application startup.<br>
+12. Uses H2 as a database, it is loaded on application startup.<br>
 http://localhost:8081/h2-console<br>
 Password is in application.properties<br>
 Sample query: Select * from EMPLOYEE where AGE > 50;   
 
-12. To see current logging level:<br>
+13. To see current logging level:<br>
 http://localhost:8081/log
