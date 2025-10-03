@@ -86,7 +86,6 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
         byte[] csvBytes = csvResponse.getBytes();
         String csvFileName = folderName + "/expense_report.csv";
         
-
         return "Generated File. " + fileStorageService.uploadFile(csvBytes, csvFileName);
     }
 
