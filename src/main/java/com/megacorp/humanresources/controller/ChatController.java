@@ -3,6 +3,8 @@ package com.megacorp.humanresources.controller;
 import java.util.List;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +31,13 @@ public class ChatController {
      * @param mcpSyncClients list of MCP sync clients for tool callbacks
      */
 
-    public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService, ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients) {
+    public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService, 
+        ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients, ChatMemory chatMemory) {
         this.employeeService = employeeService;
         this.braveSearchService = braveSearchService;
-        this.chatClient = chatClientBuilder.defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients)).build();
+        this.chatClient = chatClientBuilder.defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+                .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
+                .build();
     }
 
     @GetMapping("/ai")
@@ -62,6 +67,15 @@ public class ChatController {
                 .tools(employeeService, braveSearchService)
                 .user(prompt)
                 .stream()
+                .content();
+    }
+
+    // https://docs.spring.io/spring-ai/reference/api/chat-memory.html
+    @GetMapping("/memory")
+    public String home(@RequestParam String message) {
+        return chatClient.prompt()
+                .user(message)
+                .call()
                 .content();
     }
     
