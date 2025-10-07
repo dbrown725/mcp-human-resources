@@ -78,5 +78,79 @@ public class ChatController {
                 .call()
                 .content();
     }
+
+    @GetMapping("/models/stuff-the-prompt")
+    public String modelsWithData() {
+        String system = """
+            If you are asked about up to date language models and their context window here is some information to help you with your response:
+            [
+              {
+                "model": "Llama 4 Scout",
+                "company": "Meta",
+                "context_window_tokens": 10000000,
+                "notes": "10 million‑token window on a single GPU – ideal for full‑book summarisation, long video/audio transcripts and on‑device multimodal workflows."
+              },
+              {
+                "model": "Claude Sonnet 4",
+                "company": "Anthropic",
+                "context_window_tokens": 1000000,
+                "notes": "1 million‑token window for complex multimodal tasks and large‑scale code‑base comprehension."
+              },
+              {
+                "model": "Gemini 2.5 Flash",
+                "company": "Google",
+                "context_window_tokens": 1000000,
+                "notes": "1 million‑token window, focused on fast inference for enterprise document analysis."
+              },
+              {
+                "model": "Gemini 2.5 Pro",
+                "company": "Google",
+                "context_window_tokens": 1000000,
+                "notes": "1 million‑token window, tuned for high‑quality reasoning and multimodal generation."
+              },
+              {
+                "model": "GPT‑4.1",
+                "company": "OpenAI",
+                "context_window_tokens": 1000000,
+                "notes": "1 million‑token window, the latest iteration of the GPT‑4 family."
+              },
+              {
+                "model": "Llama 4 Maverick",
+                "company": "Meta",
+                "context_window_tokens": 1000000,
+                "notes": "1 million‑token window, positioned for enterprise‑grade document analysis."
+              },
+              {
+                "model": "GPT‑4o",
+                "company": "OpenAI",
+                "context_window_tokens": 128000,
+                "notes": "128 k token window, strong for long‑form documents, code generation and retrieval‑augmented tasks."
+              },
+              {
+                "model": "Mistral Large 2",
+                "company": "Mistral AI",
+                "context_window_tokens": 128000,
+                "notes": "128 k token window, balances performance and efficiency for a wide range of applications."
+              },
+              {
+                "model": "DeepSeek R1",
+                "company": "DeepSeek AI",
+                "context_window_tokens": 128000,
+                "notes": "128 k token window, reasoning‑focused model with strong math and coding abilities."
+              },
+              {
+                "model": "DeepSeek V3",
+                "company": "DeepSeek AI",
+                "context_window_tokens": 128000,
+                "notes": "128 k token window, multimodal capabilities and high‑throughput inference."
+              }
+            ]
+            """;
+        return chatClient.prompt()
+                .user("Can you give me an up to date list of popular large language models and their current context window size")
+                .system(system)
+                .call()
+                .content();
+    }
     
 }

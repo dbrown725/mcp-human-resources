@@ -108,6 +108,7 @@ Update run.sh with your JDK install location
     http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2<br><br>
     http://localhost:8081/memory?message=My%20name%20is%20Bill%20Smith<br><br>
     http://localhost:8081/memory?message=What%20is%20my%20name?<br><br>
+    http://localhost:8081/models/stuff-the-prompt<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
