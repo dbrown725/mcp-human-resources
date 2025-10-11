@@ -30,8 +30,9 @@ public class ImageController {
     @Autowired
     private ImageGenerationService imageGenerationService;
 
-    // abc_hardware_store.png, intellicare_solutions.jpeg, techwave_solutions.jpg, xyz_bookstore.webp, cash_receipt.heic, abc_electronics.heif
-    @Value("classpath:/images/abc_electronics.heif")
+    // abc_hardware_store.png, intellicare_solutions.jpeg, techwave_solutions.jpg, xyz_bookstore.webp
+    // .heic and .heif mime types no longer supported by gemini-2.5.flash? cash_receipt.heic, abc_electronics.heif
+    @Value("classpath:/images/xyz_bookstore.webp")
     Resource sampleReceiptImage;
 
     public ImageController(ChatClient.Builder builder) {
@@ -46,11 +47,11 @@ public class ImageController {
         String mimeType = resolveMimeType(filename);
         MimeType resolvedMineType = MimeType.valueOf(mimeType);
         // gs://mcp-human-resources/expense_receipts/abc_electronics.heif
-        Resource imageUrl = fileStorageService.getResourceFromGcsUrl("https://storage.googleapis.com/mcp-human-resources/expense_receipts/abc_electronics.heif");
+        // Resource imageUrl = fileStorageService.getResourceFromGcsUrl("https://storage.googleapis.com/mcp-human-resources/expense_receipts/20250831_20250913/abc_hardware_store.png");
         return chatClient.prompt()
                 .user(u -> u
                         .text(prompt)
-                        .media(resolvedMineType, imageUrl)
+                        .media(resolvedMineType, sampleReceiptImage)
                 )
                 .call()
                 .content();
