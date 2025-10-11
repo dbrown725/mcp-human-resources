@@ -109,6 +109,7 @@ Update run.sh with your JDK install location
     http://localhost:8081/memory?message=My%20name%20is%20Bill%20Smith<br><br>
     http://localhost:8081/memory?message=What%20is%20my%20name?<br><br>
     http://localhost:8081/models/stuff-the-prompt<br><br>
+    http://localhost:8081/rag/models<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
