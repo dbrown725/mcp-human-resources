@@ -3,6 +3,8 @@ package com.megacorp.humanresources.service;
 import java.io.IOException;
 import java.net.URI;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +20,8 @@ import java.util.Base64;
 
 @Service
 public class ImageGenerationServiceImpl implements ImageGenerationService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ImageGenerationServiceImpl.class);
 
     @Value("${gemini.api.key}")
     private String geminiApiKey;
@@ -44,44 +48,39 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
     @Override
     @Tool(
         name = "generateImage",
-        description = "Generates an image from a prompt using Gemini API and uploads it to GCS. Optionally, an input image can be provided via 'optionalInputImageName' to guide the generation."
+        description = "Generates an image from a prompt using Gemini API and uploads it to GCS. Optionally, input images can be provided via 'optionalInputImageNames' array to guide the generation."
     )
-    public String generateImage(String prompt, String optionalInputImageName, String outputImageRootName) throws IOException {
+    public String generateImage(String prompt, String[] optionalInputImageNames, String outputImageRootName) throws IOException {
         if (geminiApiKey == null || geminiApiKey.isEmpty()) {
+            logger.error("Gemini API key is not set or is empty.");
             throw new IllegalArgumentException("Environment variable GEMINI_API_KEY must be set.");
         }
 
-        byte[] imageBytes;
-        String imgBase64 = "";
-        if (optionalInputImageName != null && !optionalInputImageName.isEmpty()) {
-            imageBytes = fileStorageService.retrieveFile(optionalInputImageName);
-            imgBase64 = Base64.getEncoder().encodeToString(imageBytes);
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent";
+
+        // Build parts array for the payload
+        StringBuilder partsBuilder = new StringBuilder();
+        partsBuilder.append(String.format("{\"text\": \"%s\"}", prompt));
+
+        if (optionalInputImageNames != null) {
+            for (String imageName : optionalInputImageNames) {
+                if (imageName != null && !imageName.isEmpty()) {
+                    byte[] imageBytes = fileStorageService.retrieveFile(imageName);
+                    String imgBase64 = Base64.getEncoder().encodeToString(imageBytes);
+                    partsBuilder.append(String.format(", {\"inline_data\": {\"mime_type\": \"image/jpeg\", \"data\": \"%s\"}}", imgBase64));
+                }
+            }
         }
 
-        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent";
-        String jsonPayload;
-        if (imgBase64.isBlank()) {
-            jsonPayload = String.format("{"
-                + "\"contents\": ["
-                + "  {"
-                + "    \"parts\": ["
-                + "      {\"text\": \"%s\"}"
-                + "    ]"
-                + "  }"
-                + "]"
-                + "}", prompt);
-        } else {
-            jsonPayload = String.format("{"
-                + "\"contents\": ["
-                + "  {"
-                + "    \"parts\": ["
-                + "      {\"text\": \"%s\"}"
-                + ", {\"inline_data\": {\"mime_type\": \"image/jpeg\", \"data\": \"%s\"}}"
-                + "    ]"
-                + "  }"
-                + "]"
-                + "}", prompt, imgBase64);
-        }
+        String jsonPayload = String.format("{"
+            + "\"contents\": ["
+            + "  {"
+            + "    \"parts\": ["
+            + "      %s"
+            + "    ]"
+            + "  }"
+            + "]"
+            + "}", partsBuilder.toString());
 
         // Build HTTP request
         HttpClient client = HttpClient.newHttpClient();
@@ -97,10 +96,12 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
+            logger.error("Error sending HTTP request", e);
             throw new RuntimeException("Error sending HTTP request: " + e.getMessage(), e);
         }
 
         if (response.statusCode() != 200) {
+            logger.error("Failed : HTTP error code : " + response.statusCode() + " - " + response.body());  
             throw new RuntimeException("Failed : HTTP error code : " + response.statusCode() + " - " + response.body());
         }
 

@@ -99,8 +99,8 @@ public class ImageController {
     @GetMapping("/generate-image")
     public String generateImage(
         @RequestParam("prompt") String prompt,
-        @RequestParam(value = "optionalInputImageName", required = false) String optionalInputImageName,
+        @RequestParam(value = "optionalInputImageNames", required = false) String[] optionalInputImageNames,
         @RequestParam("outputImageRootName") String outputImageRootName) throws IOException {
-        return imageGenerationService.generateImage(prompt, optionalInputImageName, outputImageRootName);
+        return imageGenerationService.generateImage(prompt, optionalInputImageNames, outputImageRootName);
     }
 }
