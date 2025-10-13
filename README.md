@@ -106,6 +106,8 @@ Update run.sh with your JDK install location
     http://localhost:8081/summarize-images-in-folder?folder=expense_receipts/20250831_20250913<br><br>
     http://localhost:8081/generate-expense-report?folder=expense_receipts/20250831_20250913<br><br>
     http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2<br><br>
+    http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20my%20cat%20eating%20a%20nano-banana%20in%20a%20fancy%20restaurant%20under%20the%20Gemini%20constellation.&optionalInputImageNames=original_images/cat-close-up-of-side-profile.webp&outputImageRootName=myCat<br><br>
+    http://localhost:8081/generate-employee-badge?firstName=Randy&lastName=Broussard&employeeNumber=6000&existingEmployeeImageName=original_images/randy_broussard.jpg<br><br>
     http://localhost:8081/memory?message=My%20name%20is%20Bill%20Smith<br><br>
     http://localhost:8081/memory?message=What%20is%20my%20name?<br><br>
     http://localhost:8081/models/stuff-the-prompt<br><br>

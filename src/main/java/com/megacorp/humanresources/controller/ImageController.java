@@ -103,4 +103,19 @@ public class ImageController {
         @RequestParam("outputImageRootName") String outputImageRootName) throws IOException {
         return imageGenerationService.generateImage(prompt, optionalInputImageNames, outputImageRootName);
     }
+
+    @GetMapping("/generate-employee-badge")
+    public String generateEmployeeBadge(
+        @RequestParam("firstName") String firstName,
+        @RequestParam("lastName") String lastName,
+        @RequestParam("employeeNumber") String employeeNumber,
+        @RequestParam("existingEmployeeImageName") String existingEmployeeImageName) throws IOException {
+        String employeeBadgeTemplateName = "original_images/employeeBadgeTemplate.png";    
+        String[] optionalInputImageNames = new String[] { employeeBadgeTemplateName, existingEmployeeImageName };
+        String outputImageRootName = String.format("%s_%s_%s_badge", firstName.toLowerCase(), lastName.toLowerCase(), employeeNumber);
+        String prompt = String.format(
+                "Edit the employee badge template image by replacing the placeholder person image %s with the photo from %s. Position the photo so that the person's face and both hands are fully visible and properly aligned on the badge. Insert the employee name '%s' and employee number '%s' into the corresponding text fields on the template. Preserve the original style, colors, fonts, and layout of the badge without any additional changes.",
+                employeeBadgeTemplateName, existingEmployeeImageName, firstName + "_" + lastName, employeeNumber);
+        return imageGenerationService.generateImage(prompt, optionalInputImageNames, outputImageRootName);
+    }
 }

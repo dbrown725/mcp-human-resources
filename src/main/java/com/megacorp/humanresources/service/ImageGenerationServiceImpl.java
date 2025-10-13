@@ -51,6 +51,11 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
         description = "Generates an image from a prompt using Gemini API and uploads it to GCS. Optionally, input images can be provided via 'optionalInputImageNames' array to guide the generation."
     )
     public String generateImage(String prompt, String[] optionalInputImageNames, String outputImageRootName) throws IOException {
+        logger.info("generateImage called with prompt: '{}', optionalInputImageNames: '{}', outputImageRootName: '{}'",
+            prompt,
+            optionalInputImageNames != null ? String.join(", ", optionalInputImageNames) : "null",
+            outputImageRootName
+        );
         if (geminiApiKey == null || geminiApiKey.isEmpty()) {
             logger.error("Gemini API key is not set or is empty.");
             throw new IllegalArgumentException("Environment variable GEMINI_API_KEY must be set.");
