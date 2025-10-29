@@ -113,6 +113,14 @@ Update run.sh with your JDK install location
     http://localhost:8081/models/stuff-the-prompt<br><br>
     http://localhost:8081/rag/models<br><br>
 
+    Rag elasticsearch data load.<br><br>
+    Download https://www.sudarshan.com/employee-code-of-conduct-policy.pdf<br><br>
+    POST http://localhost:8081/rag/ingest<br><br>
+    In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-policy.pdf.<br><br>
+    http://localhost:8081/rag/query?question=Give%20me%20a%20summary%20of%20what%20the%20company%20believes%20are%20"Personal%20Conflicts%20of%20Interest"<br><br>
+    http://localhost:8081/rag/advised?question=Give%20me%20some%20information%20on%20Alcohol,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
+
+
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
 
