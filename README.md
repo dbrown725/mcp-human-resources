@@ -120,6 +120,9 @@ Update run.sh with your JDK install location
     http://localhost:8081/rag/query?question=Give%20me%20a%20summary%20of%20what%20the%20company%20believes%20are%20"Personal%20Conflicts%20of%20Interest"<br><br>
     http://localhost:8081/rag/advised?question=Give%20me%20some%20information%20on%20Alcohol,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
 
+    http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
+    http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
+
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
