@@ -75,18 +75,32 @@ sudo mkdir /var/log/mcp-human-resources
 sudo touch /var/log/mcp-human-resources/mcp-human-resources.log
 sudo chmod -R 777 /var/log/mcp-human-resources
 ```
-9. Run a Maven Install<br>
+
+9. Setup and configure Prometheus and Grafana on Docker
+    Metrics and Tracing Configuration. Based on https://github.com/danvega/spring-ai-metrics and https://youtu.be/FzLABAppJfM?t=17141<br><br>
+    Prometheus: http://localhost:9090<br>
+    Grafana: http://localhost:3000 <br><br>
+    I had to update .../mcp-human-resources/docker/prometheus.yml to point to port 8081 instead of 8080 since this app runs on 8081.<br><br>
+    I also had to <br>
+          - go to http://localhost:3000/connections/datasources<br>
+          - click on the Prometheus datasource<br>
+          - change the name from 'Prometheus' to 'prometheus'<br>
+          - click 'Save & Test' to make sure Grafana can connect to Prometheus<br><br>
+    I also changed the admin password for Grafana in compose.yml to 'mysecretpassword' from 'admin' for better security. <br>
+      if admin/mysecretpassword doesn't work, change it back to admin/admin
+
+10. Run a Maven Install<br>
 ```bash
 "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/mvnw" install -f "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/pom.xml"
 ```
 
-10. Start the server<br>
+11. Start the server<br>
 Update run.sh with your JDK install location
 ```bash
 ./run.sh
 ```
 
-11. Can be tested using a browser or Postman<br><br>
+12. Can be tested using a browser or Postman<br><br>
     http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
     http://localhost:8081/employees/5012<br><br>
     http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
@@ -127,10 +141,10 @@ Update run.sh with your JDK install location
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
 
-12. Uses H2 as a database, it is loaded on application startup.<br>
+13. Uses H2 as a database, it is loaded on application startup.<br>
 http://localhost:8081/h2-console<br>
 Password is in application.properties<br>
 Sample query: Select * from EMPLOYEE where AGE > 50;   
 
-13. To see current logging level:<br>
+14. To see current logging level:<br>
 http://localhost:8081/log
