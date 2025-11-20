@@ -100,43 +100,48 @@ Update run.sh with your JDK install location
 ./run.sh
 ```
 
-12. Can be tested using a browser or Postman<br><br>
-    http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
-    http://localhost:8081/employees/5012<br><br>
-    http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
-    http://localhost:8081/ai/chat-response?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
-    http://localhost:8081/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
-    http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents
-    (see ImageDetectionController.java)<br><br>
-    http://localhost:8081/receipt-image-to-text?prompt=What%20is%20the%20Total%20Amount%20Due?<br><br>
-    http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents.<br><br>
-    http://localhost:8081/read-file?fileName=user_data/sample_user_data.txt<br><br>
-    http://localhost:8081/list-files?prefix=expense_receipts/<br><br>
-    POST http://localhost:8081/upload<br><br>
-    In POSTMAN the key should be "file" and the value field clicked should allow you to add a file from your file system, for example george_bush.jpg.<br><br>
-    http://localhost:8081/download-file/george_bush.jpg<br><br>
-    http://localhost:8081/delete-file?fileName=george_bush.jpg<br><br>
-    http://localhost:8081/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv<br><br>
-    http://localhost:8081/summarize-images-in-folder?folder=expense_receipts/20250831_20250913<br><br>
-    http://localhost:8081/generate-expense-report?folder=expense_receipts/20250831_20250913<br><br>
-    http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2<br><br>
-    http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20my%20cat%20eating%20a%20nano-banana%20in%20a%20fancy%20restaurant%20under%20the%20Gemini%20constellation.&optionalInputImageNames=original_images/cat-close-up-of-side-profile.webp&outputImageRootName=myCat<br><br>
-    http://localhost:8081/generate-employee-badge?firstName=Randy&lastName=Broussard&employeeNumber=6000&existingEmployeeImageName=original_images/randy_broussard.jpg<br><br>
-    http://localhost:8081/memory?message=My%20name%20is%20Bill%20Smith<br><br>
-    http://localhost:8081/memory?message=What%20is%20my%20name?<br><br>
-    http://localhost:8081/models/stuff-the-prompt<br><br>
-    http://localhost:8081/rag/models<br><br>
+12. TESTS
 
-    Rag elasticsearch data load.<br><br>
-    Download https://www.sudarshan.com/employee-code-of-conduct-policy.pdf<br><br>
-    POST http://localhost:8081/rag/ingest<br><br>
-    In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-policy.pdf.<br><br>
-    http://localhost:8081/rag/query?question=Give%20me%20a%20summary%20of%20what%20the%20company%20believes%20are%20"Personal%20Conflicts%20of%20Interest"<br><br>
-    http://localhost:8081/rag/advised?question=Give%20me%20some%20information%20on%20Alcohol,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
+    Run unit tests<br><br>
+        Navigate to project's root directory and run "mvn test"<br><br>
 
-    http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
-    http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
+    Run http tests<br><br>
+        Can be tested using a browser or Postman<br><br>
+        http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
+        http://localhost:8081/employees/5012<br><br>
+        http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
+        http://localhost:8081/ai/chat-response?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
+        http://localhost:8081/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
+        http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents
+        (see ImageDetectionController.java)<br><br>
+        http://localhost:8081/receipt-image-to-text?prompt=What%20is%20the%20Total%20Amount%20Due?<br><br>
+        http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents.<br><br>
+        http://localhost:8081/read-file?fileName=user_data/sample_user_data.txt<br><br>
+        http://localhost:8081/list-files?prefix=expense_receipts/<br><br>
+        POST http://localhost:8081/upload<br><br>
+        In POSTMAN the key should be "file" and the value field clicked should allow you to add a file from your file system, for example george_bush.jpg.<br><br>
+        http://localhost:8081/download-file/george_bush.jpg<br><br>
+        http://localhost:8081/delete-file?fileName=george_bush.jpg<br><br>
+        http://localhost:8081/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv<br><br>
+        http://localhost:8081/summarize-images-in-folder?folder=expense_receipts/20250831_20250913<br><br>
+        http://localhost:8081/generate-expense-report?folder=expense_receipts/20250831_20250913<br><br>
+        http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2<br><br>
+        http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20my%20cat%20eating%20a%20nano-banana%20in%20a%20fancy%20restaurant%20under%20the%20Gemini%20constellation.&optionalInputImageNames=original_images/cat-close-up-of-side-profile.webp&outputImageRootName=myCat<br><br>
+        http://localhost:8081/generate-employee-badge?firstName=Randy&lastName=Broussard&employeeNumber=6000&existingEmployeeImageName=original_images/randy_broussard.jpg<br><br>
+        http://localhost:8081/memory?message=My%20name%20is%20Bill%20Smith<br><br>
+        http://localhost:8081/memory?message=What%20is%20my%20name?<br><br>
+        http://localhost:8081/models/stuff-the-prompt<br><br>
+        http://localhost:8081/rag/models<br><br>
 
+        Rag elasticsearch data load.<br><br>
+        Download https://www.sudarshan.com/employee-code-of-conduct-policy.pdf<br><br>
+        POST http://localhost:8081/rag/ingest<br><br>
+        In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-policy.pdf.<br><br>
+        http://localhost:8081/rag/query?question=Give%20me%20a%20summary%20of%20what%20the%20company%20believes%20are%20"Personal%20Conflicts%20of%20Interest"<br><br>
+        http://localhost:8081/rag/advised?question=Give%20me%20some%20information%20on%20Alcohol,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
+
+        http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
+        http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
