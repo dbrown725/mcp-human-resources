@@ -154,6 +154,11 @@
 			<artifactId>guava</artifactId>
 			<version>33.4.8-jre</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.genai</groupId>
+			<artifactId>google-genai</artifactId>
+			<version>1.28.0</version>
+		</dependency>
  	</dependencies>
 	<dependencyManagement>
 		<dependencies>

@@ -9,14 +9,12 @@ import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Base64;
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentConfig;
+import com.google.genai.types.GenerateContentResponse;
+import com.google.genai.types.Part;
+import com.google.genai.types.Content;
+import java.util.ArrayList;
 
 @Service
 public class ImageGenerationServiceImpl implements ImageGenerationService {
@@ -25,6 +23,9 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
 
     @Value("${gemini.api.key}")
     private String geminiApiKey;
+
+    @Value("${google.gemini.image.generation.model}")
+    private String geminiImageGenerationModel;
 
     @Autowired
     private FileStorageService fileStorageService;
@@ -61,76 +62,53 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
             throw new IllegalArgumentException("Environment variable GEMINI_API_KEY must be set.");
         }
 
-        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent";
+        try (Client client = new Client()) {
+            GenerateContentConfig config = GenerateContentConfig.builder()
+                    .responseModalities("TEXT", "IMAGE")
+                    .build();
 
-        // Build parts array for the payload
-        StringBuilder partsBuilder = new StringBuilder();
-        partsBuilder.append(String.format("{\"text\": \"%s\"}", prompt));
-
-        if (optionalInputImageNames != null) {
-            for (String imageName : optionalInputImageNames) {
-                if (imageName != null && !imageName.isEmpty()) {
-                    byte[] imageBytes = fileStorageService.retrieveFile(imageName);
-                    String imgBase64 = Base64.getEncoder().encodeToString(imageBytes);
-                    partsBuilder.append(String.format(", {\"inline_data\": {\"mime_type\": \"image/jpeg\", \"data\": \"%s\"}}", imgBase64));
+            ArrayList<Part> inputParts = new ArrayList<>();
+            if (optionalInputImageNames != null) {
+                for (String imageName : optionalInputImageNames) {
+                    if (imageName != null && !imageName.isEmpty()) {
+                        inputParts.add(Part.fromBytes(
+                            fileStorageService.retrieveFile(imageName),
+                            "image/jpeg"));
+                    }
                 }
             }
+
+            Part textPart = Part.fromText(prompt);
+
+            Part[] combinedParts = new Part[inputParts.size() + 1];
+            combinedParts[0] = textPart;
+            for (int i = 0; i < inputParts.size(); i++) {
+                combinedParts[i + 1] = inputParts.get(i);
+            }
+
+            GenerateContentResponse response = client.models.generateContent(
+                geminiImageGenerationModel,
+                Content.fromParts(combinedParts),
+                config);
+
+            for (Part part : response.parts()) {
+                if (part.text().isPresent()) {
+                    logger.info(part.text().get());
+                } else if (part.inlineData().isPresent()) {
+                    var blob = part.inlineData().get();
+                    if (blob.data().isPresent()) {
+                        byte[] responseImageBytes = blob.data().get();
+                        String outputImageFileName = outputImageRootName + ".png";
+
+                        String gcsImageName = "generated_images/" + outputImageFileName;
+                        fileStorageService.uploadFile(responseImageBytes, gcsImageName);
+                        return "Image saved to GCS as " + gcsImageName;
+                    }
+                }
+            }
+
         }
 
-        String jsonPayload = String.format("{"
-            + "\"contents\": ["
-            + "  {"
-            + "    \"parts\": ["
-            + "      %s"
-            + "    ]"
-            + "  }"
-            + "]"
-            + "}", partsBuilder.toString());
-
-        // Build HTTP request
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("x-goog-api-key", geminiApiKey)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
-                .build();
-
-        // Send the request and get the response
-        HttpResponse<String> response;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            logger.error("Error sending HTTP request", e);
-            throw new RuntimeException("Error sending HTTP request: " + e.getMessage(), e);
-        }
-
-        if (response.statusCode() != 200) {
-            logger.error("Failed : HTTP error code : " + response.statusCode() + " - " + response.body());  
-            throw new RuntimeException("Failed : HTTP error code : " + response.statusCode() + " - " + response.body());
-        }
-
-        // Decode and save the image
-        String base64EncodedString = response.body();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode rootNode = objectMapper.readTree(base64EncodedString);
-
-        // Navigate to the Base64 encoded image data
-        String base64ImageData = rootNode
-            .path("candidates")
-            .get(0)
-            .path("content")
-            .path("parts")
-            .get(1)
-            .path("inlineData")
-            .path("data")
-            .asText();
-        byte[] responseImageBytes = Base64.getDecoder().decode(base64ImageData);
-        String outputImageFileName = outputImageRootName + ".png";
-
-        String gcsImageName = "generated_images/" + outputImageFileName;
-        fileStorageService.uploadFile(responseImageBytes, gcsImageName);
-
-        return "Image saved to GCS as " + gcsImageName;
+        return "Image generation failed.";
     }
 }
