@@ -73,6 +73,7 @@ export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
 ```bash
 sudo mkdir /var/log/mcp-human-resources
 sudo touch /var/log/mcp-human-resources/mcp-human-resources.log
+sudo touch /var/log/mcp-human-resources/mcp-human-resources-call-advisor.log
 sudo chmod -R 777 /var/log/mcp-human-resources
 ```
 
