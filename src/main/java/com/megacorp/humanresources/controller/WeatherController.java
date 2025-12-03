@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.megacorp.humanresources.service.WeatherService;
+import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 
 //Based on https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/tools/weather/WeatherController.java
 @RestController
@@ -13,8 +14,8 @@ public class WeatherController {
     private final ChatClient chatClient;
     private final WeatherService weatherService;
 
-    public WeatherController(ChatClient.Builder builder, WeatherService weatherService) {
-        this.chatClient = builder.build();
+    public WeatherController(ChatClient.Builder builder, WeatherService weatherService, CallAdvisor chatClientLoggingAdvisor) {
+        this.chatClient = builder.defaultAdvisors(chatClientLoggingAdvisor).build();
         this.weatherService = weatherService;
     }
 

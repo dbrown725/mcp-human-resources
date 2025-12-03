@@ -3,8 +3,7 @@ package com.megacorp.humanresources.controller;
 import java.util.List;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.web.bind.annotation.*;
@@ -23,19 +22,22 @@ public class ChatController {
     private final EmployeeService employeeService;
 
     private final BraveSearchService braveSearchService;
+
     /**
      * Constructor for ChatController.
      *
      * @param employeeService the service to manage employee data
+     * @param braveSearchService the service used to query Brave search tool
      * @param chatClientBuilder the builder for creating a ChatClient instance
-     * @param mcpSyncClients list of MCP sync clients for tool callbacks
+     * @param mcpSyncClients list of MCP sync clients used for tool callbacks
+     * @param chatClientLoggingAdvisor advisor applied to the ChatClient for logging/advice
      */
-
     public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService, 
-        ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients, ChatMemory chatMemory) {
+        ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients,
+        CallAdvisor chatClientLoggingAdvisor) {
         this.employeeService = employeeService;
         this.braveSearchService = braveSearchService;
-        this.chatClient = chatClientBuilder.defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+        this.chatClient = chatClientBuilder.defaultAdvisors(chatClientLoggingAdvisor)
                 .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
                 .build();
     }
@@ -48,7 +50,6 @@ public class ChatController {
             .call()
             .content();
     }
-
 
     @GetMapping("/ai/chat-response")
     public ChatResponse chatResponse(
@@ -67,15 +68,6 @@ public class ChatController {
                 .tools(employeeService, braveSearchService)
                 .user(prompt)
                 .stream()
-                .content();
-    }
-
-    // https://docs.spring.io/spring-ai/reference/api/chat-memory.html
-    @GetMapping("/memory")
-    public String home(@RequestParam String message) {
-        return chatClient.prompt()
-                .user(message)
-                .call()
                 .content();
     }
 

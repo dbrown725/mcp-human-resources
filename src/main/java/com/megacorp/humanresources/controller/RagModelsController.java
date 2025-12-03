@@ -1,6 +1,7 @@
 package com.megacorp.humanresources.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,11 @@ public class RagModelsController {
 
     private final ChatClient chatClient;
 
-    public RagModelsController(ChatClient.Builder builder, VectorStore vectorStore) {
+    public RagModelsController(ChatClient.Builder builder, VectorStore vectorStore,
+        CallAdvisor chatClientLoggingAdvisor
+    ) {
         this.chatClient = builder
-                .defaultAdvisors(new QuestionAnswerAdvisor(vectorStore))
+                .defaultAdvisors(new QuestionAnswerAdvisor(vectorStore), chatClientLoggingAdvisor)
                 .build();
     }
 

@@ -5,6 +5,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 
 // https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/output/VacationPlan.java
 @RestController
@@ -12,8 +13,10 @@ public class VacationPlanController {
 
     private final ChatClient chatClient;
 
-    public VacationPlanController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+    public VacationPlanController(ChatClient.Builder builder,
+        CallAdvisor chatClientLoggingAdvisor
+    ) {
+        this.chatClient = builder.defaultAdvisors(chatClientLoggingAdvisor).build();
     }
 
     @GetMapping("/vacation/unstructured")

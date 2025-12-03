@@ -15,6 +15,7 @@ import java.io.IOException;
 import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageSummaryService;
 import com.megacorp.humanresources.service.ImageGenerationService;
+import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 
 @RestController
 public class ImageController {
@@ -35,8 +36,8 @@ public class ImageController {
     @Value("classpath:/images/xyz_bookstore.webp")
     Resource sampleReceiptImage;
 
-    public ImageController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+    public ImageController(ChatClient.Builder builder, CallAdvisor chatClientLoggingAdvisor) {
+        this.chatClient = builder.defaultAdvisors(chatClientLoggingAdvisor).build();
     }
 
     // Based on https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/multimodal/image/ImageDetection.java

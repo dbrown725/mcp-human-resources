@@ -1,6 +1,7 @@
 package com.megacorp.humanresources.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +12,8 @@ public class ArticleController {
 
     private final ChatClient chatClient;
 
-    public ArticleController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+    public ArticleController(ChatClient.Builder builder, CallAdvisor chatClientLoggingAdvisor) {
+        this.chatClient = builder.defaultAdvisors(chatClientLoggingAdvisor).build();
     }
 
     @GetMapping("/posts/new")

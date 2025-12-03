@@ -4,6 +4,7 @@
     <!-- Setting up log path and log file name -->
     <property name="LOG_PATH" value="/var/log/spring-boot-applications/mcp-human-resources" />
     <property name="LOG_FILE_NAME" value="mcp-human-resources" />
+    <property name="CALL_ADVISOR_LOG_FILE_NAME" value="mcp-human-resources-call-advisor" />
 
     <!-- Setting up logging pattern for console logging -->
     <appender name="Console"
@@ -38,15 +39,42 @@
         </rollingPolicy>
     </appender>
 
+    <!-- Setting the filename and logging pattern for log file -->
+    <appender name="CallAdvisorFile"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${CALL_ADVISOR_LOG_FILE_NAME}.log</file>
+        <encoder
+            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level : %logger{36} - %msg%n
+            </Pattern>
+        </encoder>
+      
+        <!-- Setting up a rolling policy with rolling done
+              daily and when file size is 10MB-->
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archived/${CALL_ADVISOR_LOG_FILE_NAME}-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="Console" />
         <appender-ref ref="File" />
     </root>
     
     <!-- Logging at DEBUG level -->
-     <!-- <logger name="com.megacorp" level="DEBUG" additivity="false">
+     <logger name="com.megacorp" level="DEBUG" additivity="false">
         <appender-ref ref="File" />
         <appender-ref ref="Console" />
-    </logger> -->
+    </logger>
+
+    <logger name="com.megacorp.humanresources.advisors.ChatClientLoggingAdvisor" level="DEBUG" additivity="false">
+        <appender-ref ref="CallAdvisorFile" />
+    </logger>
     
 </configuration>
