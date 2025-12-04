@@ -31,7 +31,7 @@ public class RagConfiguration {
     @Value("classpath:/data/models.json")
     private Resource models;
 
-    @Bean
+    @Bean(name = "ragVectorStore")
     SimpleVectorStore simpleVectorStore(EmbeddingModel embeddingModel) throws IOException {
         var simpleVectorStore = SimpleVectorStore.builder(embeddingModel).build();
         var vectorStoreFile = getVectorStoreFile();

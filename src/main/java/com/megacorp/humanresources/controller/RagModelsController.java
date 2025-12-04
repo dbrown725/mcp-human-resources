@@ -15,7 +15,9 @@ public class RagModelsController {
 
     private final ChatClient chatClient;
 
-    public RagModelsController(ChatClient.Builder builder, VectorStore vectorStore,
+    public RagModelsController(
+        ChatClient.Builder builder,
+        @org.springframework.beans.factory.annotation.Qualifier("ragVectorStore") VectorStore vectorStore,
         CallAdvisor chatClientLoggingAdvisor
     ) {
         this.chatClient = builder
