@@ -41,6 +41,8 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     Configuration: src/main/resources/mcp-servers.json<br>
         Note that a space was needed in "ES_API_KEY": " ", since my local Elastic Index does not have security enabled<br>
 
+    For ElasticSearch RAG Ingest use later, navigate to http://localhost:5601/app/dev_tools and run "PUT /spring-ai-document-index"
+
 ```bash
 npm i @elastic/mcp-server-elasticsearch
 ```
@@ -134,11 +136,11 @@ Update run.sh with your JDK install location
         http://localhost:8081/models/stuff-the-prompt<br><br>
         http://localhost:8081/rag/models<br><br>
         Rag elasticsearch data load.<br><br>
-        Download https://www.sudarshan.com/employee-code-of-conduct-policy.pdf<br><br>
+        Download https://www.terma.com/media/nf3ewqzn/employee-code-of-conduct-jan-2021.pdf<br><br>
         POST http://localhost:8081/rag/ingest<br><br>
         In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-policy.pdf.<br><br>
-        http://localhost:8081/rag/query?question=Give%20me%20a%20summary%20of%20what%20the%20company%20believes%20are%20"Personal%20Conflicts%20of%20Interest"<br><br>
-        http://localhost:8081/rag/advised?question=Give%20me%20some%20information%20on%20Alcohol,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
+        http://localhost:8081/rag/query?question=Give%20me%20detailed%20information%20on%20Anti-Corruption%20Policy<br><br>
+        http://localhost:8081/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
         http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
         http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
 
