@@ -23,25 +23,34 @@ public class ChatController {
 
     private final BraveSearchService braveSearchService;
 
+    private final ChatClient secondaryChatClient;
+
+    private final ChatClient tertiaryChatClient;
+
     /**
      * Constructor for ChatController.
      *
      * @param employeeService the service to manage employee data
      * @param braveSearchService the service used to query Brave search tool
-     * @param chatClientBuilder the builder for creating a ChatClient instance
+     * @param chatClientBuilder the builder for creating the primary ChatClient instance
      * @param mcpSyncClients list of MCP sync clients used for tool callbacks
      * @param chatClientLoggingAdvisor advisor applied to the ChatClient for logging/advice
+     * @param secondaryChatClient an alternate ChatClient instance qualified as "secondaryChatClient"
+     * @param tertiaryChatClient an alternate ChatClient instance qualified as "tertiaryChatClient"
      */
     public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService, 
         ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients,
-        CallAdvisor chatClientLoggingAdvisor) {
+        CallAdvisor chatClientLoggingAdvisor, @org.springframework.beans.factory.annotation.Qualifier("secondaryChatClient") ChatClient secondaryChatClient,
+        @org.springframework.beans.factory.annotation.Qualifier("tertiaryChatClient") ChatClient tertiaryChatClient) {
         this.employeeService = employeeService;
         this.braveSearchService = braveSearchService;
+        this.secondaryChatClient = secondaryChatClient;
+        this.tertiaryChatClient = tertiaryChatClient;
         this.chatClient = chatClientBuilder.defaultAdvisors(chatClientLoggingAdvisor)
                 .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
                 .build();
     }
-
+    
     @GetMapping("/ai")
     String generationWithTools(@RequestParam(name = "prompt", defaultValue = "Tell me a joke", required = false) String prompt) {
         return this.chatClient.prompt()
@@ -141,6 +150,22 @@ public class ChatController {
         return chatClient.prompt()
                 .user("Can you give me an up to date list of popular large language models and their current context window size")
                 .system(system)
+                .call()
+                .content();
+    }
+
+    @GetMapping("/ai/model/secondary")
+    public String generatewithModelTwo(@RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
+        return secondaryChatClient.prompt()
+                .user(prompt)
+                .call()
+                .content();
+    }
+
+    @GetMapping("/ai/model/tertiary")
+    public String generate(@RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
+        return tertiaryChatClient.prompt()
+                .user(prompt)
                 .call()
                 .content();
     }

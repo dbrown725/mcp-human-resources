@@ -47,16 +47,18 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
 npm i @elastic/mcp-server-elasticsearch
 ```
 
-6. Setup your preferred LLM, tested with GROQ and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
+6. Setup your preferred LLMs, tested with GROQ, OPENROUTER and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
     Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html<br>
-    Current code setup with Google Vertex AI<br>
-    Acquire an API KEY: https://console.groq.com/keys
+    Current code setup with Google Vertex AI as the Primary model/chatClient and two OpenAi compliant models as Secondary and Tertiary models/chatClients<br>
+    Acquire an API KEY: https://console.groq.com/keys<br>
+    Acquire an OPENROUTER KEY: https://openrouter.ai/settings/keys
 
 ```bash
 export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
+export OPENROUTER_API_KEY=<YOUR_OPENROUTER_API_KEY>
 ```
 
-7.  Notes from when run with Google Vertex AI<br>
+7.  Notes on Google Vertex AI<br>
         https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html<br>	
 		Including the following command run in the terminal that also starts the spring-boot app.<br>
 			gcloud config set project <YOUR_PROJECT_ID> && gcloud auth application-default login <YOUR_ACCOUNT> <br><br>
@@ -143,6 +145,8 @@ Update run.sh with your JDK install location
         http://localhost:8081/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
         http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
         http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
+        http://localhost:8081/ai/model/secondary?prompt=Why%20do%20you%20park%20on%20a%20driveway%20,but%20drive%20on%20a%20parkway?<br><br>
+        http://localhost:8081/ai/model/tertiary?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
