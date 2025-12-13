@@ -37,7 +37,7 @@ class RagServiceImpl implements RagService {
         return this.ai
                 .prompt()
                 .user(question)
-                .advisors(new QuestionAnswerAdvisor(vectorStore))
+                .advisors(QuestionAnswerAdvisor.builder(vectorStore).build())
                 .call()
                 .content();
     }

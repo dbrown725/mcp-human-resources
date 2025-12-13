@@ -21,7 +21,7 @@ public class RagModelsController {
         CallAdvisor chatClientLoggingAdvisor
     ) {
         this.chatClient = builder
-                .defaultAdvisors(new QuestionAnswerAdvisor(vectorStore), chatClientLoggingAdvisor)
+                .defaultAdvisors(QuestionAnswerAdvisor.builder(vectorStore).build(), chatClientLoggingAdvisor)
                 .build();
     }
 
