@@ -47,10 +47,10 @@ public class ChatController {
         this.secondaryChatClient = secondaryChatClient;
         this.tertiaryChatClient = tertiaryChatClient;
         this.chatClient = chatClientBuilder.defaultAdvisors(chatClientLoggingAdvisor)
-                .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
+                .defaultToolCallbacks(SyncMcpToolCallbackProvider.builder().mcpClients(mcpSyncClients).build())
                 .build();
     }
-    
+
     @GetMapping("/ai")
     String generationWithTools(@RequestParam(name = "prompt", defaultValue = "Tell me a joke", required = false) String prompt) {
         return this.chatClient.prompt()

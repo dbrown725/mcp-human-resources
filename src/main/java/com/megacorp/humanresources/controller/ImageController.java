@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageSummaryService;
 import com.megacorp.humanresources.service.ImageGenerationService;
 import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
@@ -21,9 +20,6 @@ import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 public class ImageController {
 
     private final ChatClient chatClient;
-
-    @Autowired
-    private FileStorageService fileStorageService;
 
     @Autowired
     private ImageSummaryService imageSummaryService;
