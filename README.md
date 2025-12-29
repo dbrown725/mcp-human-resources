@@ -140,7 +140,7 @@ Update run.sh with your JDK install location
         Rag elasticsearch data load.<br><br>
         Download https://www.terma.com/media/nf3ewqzn/employee-code-of-conduct-jan-2021.pdf<br><br>
         POST http://localhost:8081/rag/ingest<br><br>
-        In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-policy.pdf.<br><br>
+        In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-jan-2021.pdf.<br><br>
         http://localhost:8081/rag/query?question=Give%20me%20detailed%20information%20on%20Anti-Corruption%20Policy<br><br>
         http://localhost:8081/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
         http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
