@@ -37,7 +37,7 @@ public interface EmployeeService {
 
 	List<Employee> fetchEmployeeList();
 
-	Page<Employee> searchEmployees(
+	String searchEmployees(
 		String firstName,
 		String lastName,
 		Integer startAge,

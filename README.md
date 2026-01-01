@@ -115,6 +115,7 @@ Update run.sh with your JDK install location
         http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
         http://localhost:8081/employees/5012<br><br>
         http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
+        http://localhost:8081/ai?prompt=Show%20me%20a%20list%20of%20employees%20based%20on%20the%20following%20criteria.%20department%20is%20Sales,startAge%20is%2026,endAge%20is%2050,pageNumber%20is%200,pageSize%20is%2020,sortBy%20is%20annualSalary,sortDirection%20is%20DESC<br><br>
         http://localhost:8081/ai/chat-response?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
         http://localhost:8081/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
         http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents

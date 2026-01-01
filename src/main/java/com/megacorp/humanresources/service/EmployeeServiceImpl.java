@@ -2,6 +2,7 @@ package com.megacorp.humanresources.service;
 
 import java.util.Date;
 import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -260,7 +261,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		"sortDirection (desc or asc), firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, " +
 		"managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
 	)
-	public Page<Employee> searchEmployees(
+	public String searchEmployees(
 		@ToolParam(required = false) String firstName,
 		@ToolParam(required = false) String lastName,
 		@ToolParam(required = false) Integer startAge,
@@ -322,7 +323,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Page<Employee> result = employeeRepository.findAll(spec, pageable);
 
-		return result;
+		try {
+			java.util.Map<String, Object> response = new java.util.HashMap<>();
+			response.put("content", result.getContent());
+			response.put("totalElements", result.getTotalElements());
+			response.put("totalPages", result.getTotalPages());
+			response.put("pageNumber", result.getNumber() + 1); // convert to 1-based
+			response.put("pageSize", result.getSize());
+			response.put("sort", result.getSort().toString());
+
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(response);
+			logger.debug("searchEmployees result JSON: {}", json);
+			return json;
+		} catch (Exception e) {
+			logger.error("Error serializing search result to JSON", e);
+			return "{}";
+		}
 	}
 
 	/**
