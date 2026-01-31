@@ -104,6 +104,7 @@ public class ModelsConfiguration {
 		@Value("${spring.ai.openai.chat.options.model-tertiary}") String modelName) {
 		OpenAiChatOptions chatOptions = OpenAiChatOptions.builder()
 			.model(modelName)
+			.temperature(0.0)
 			.build();
 		return OpenAiChatModel.builder()
 			.openAiApi(openAiApi2)

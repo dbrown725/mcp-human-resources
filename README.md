@@ -148,6 +148,7 @@ Update run.sh with your JDK install location
         http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
         http://localhost:8081/ai/model/secondary?prompt=Why%20do%20you%20park%20on%20a%20driveway%20,but%20drive%20on%20a%20parkway?<br><br>
         http://localhost:8081/ai/model/tertiary?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.<br><br>
+        http://localhost:8081/ai/onboarding/welcome?employeeName=Robert&position=MegaCorp%20Vice-President%20of%20Engineering&startDate=01/01/2026<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client

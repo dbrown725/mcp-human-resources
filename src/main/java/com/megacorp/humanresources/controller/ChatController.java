@@ -169,5 +169,16 @@ public class ChatController {
                 .call()
                 .content();
     }
+
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.megacorp.humanresources.service.EmployeeOnboardingService employeeOnboardingService;
+
+    @GetMapping("/ai/onboarding/welcome")
+    public String generateWelcomeMessage(
+      @RequestParam(value = "employeeName") String employeeName,
+      @RequestParam(value = "position", defaultValue = "New Hire") String position,
+      @RequestParam(value = "startDate", defaultValue = "ASAP") String startDate) {
+        return employeeOnboardingService.generateWelcomeMessage(employeeName, position, startDate);
+    }
     
 }
