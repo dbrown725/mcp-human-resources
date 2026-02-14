@@ -28,7 +28,7 @@ import java.io.IOException;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    private static final Logger logger = LoggerFactory.getLogger("mcp_human_resources_client_email_client");
+    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
     
     @Autowired
     private FileStorageService fileStorageService;
