@@ -116,8 +116,8 @@ public class EmailServiceImpl implements EmailService {
      * @param attachments list of Google Cloud Storage file names to attach; may be {@code null} or empty
      * @throws Exception if file retrieval, conversion, or email operations fail
      */
-    @Tool(description = "Saves an email draft to the user's Gmail Drafts folder with recipient, subject, body, " +
-            "and attachments from Google Cloud Storage. Provide attachment file names from GCS.")
+    // @Tool(description = "Saves an email draft to the user's Gmail Drafts folder with recipient, subject, body, " +
+    //         "and attachments from Google Cloud Storage. Provide attachment file names from GCS.")
     public void saveDraftEmailFromStorage(String toEmail, String subject, String body, List<String> attachments) throws Exception {
         logger.info("Saving draft email with GCS attachments: toEmail={}, subject={}, attachmentCount={}", 
                     toEmail, subject, attachments != null ? attachments.size() : 0);
