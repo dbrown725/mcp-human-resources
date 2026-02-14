@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.BraveSearchService;
+import com.megacorp.humanresources.service.EmailService;
 import com.megacorp.humanresources.service.KeepAliveService;
 import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageGenerationService;
@@ -23,15 +24,17 @@ public class HumanresourcesApplication {
 	}
 
 	@Bean
-	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService, 
-		KeepAliveService keepAliveService, FileStorageService fileStorageService, ImageGenerationService imageGenerationService,
-		WeatherService weatherService) {
-		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService, fileStorageService, imageGenerationService, weatherService).build();
+	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService,
+			KeepAliveService keepAliveService, FileStorageService fileStorageService,
+			ImageGenerationService imageGenerationService,
+			WeatherService weatherService, EmailService emailService) {
+		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService,
+				fileStorageService, imageGenerationService, weatherService, emailService).build();
 	}
 
 	@Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 
 }

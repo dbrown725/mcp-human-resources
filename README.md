@@ -73,7 +73,15 @@ export OPENROUTER_API_KEY=<YOUR_OPENROUTER_API_KEY>
             If switching from current GROQ setup to Google Vertex AI you will have to make comment/uncomment changes to pom.xml and application.properties 
 
 
-8. Setup log directory and file
+8. Setup GMAIL access<br>
+    Email configuration, currently only Save Draft functionality exists.<br>
+    Password in NOT your normal gmail password, the password needs to be an APP password: https://support.google.com/mail/answer/185833?hl=en
+    ```bash
+    export GMAIL_EMAIL_ADDRESS=<GMAIL_ADDRESSS>
+    export GMAIL_EMAIL__APP_PASSWORD=<GMAIL_APP_PASSWORD>
+    ```
+
+9. Setup log directory and file
 ```bash
 sudo mkdir /var/log/mcp-human-resources
 sudo touch /var/log/mcp-human-resources/mcp-human-resources.log
@@ -81,7 +89,7 @@ sudo touch /var/log/mcp-human-resources/mcp-human-resources-call-advisor.log
 sudo chmod -R 777 /var/log/mcp-human-resources
 ```
 
-9. Setup and configure Prometheus and Grafana on Docker
+10. Setup and configure Prometheus and Grafana on Docker
     Metrics and Tracing Configuration. Based on https://github.com/danvega/spring-ai-metrics and https://youtu.be/FzLABAppJfM?t=17141<br><br>
     Prometheus: http://localhost:9090<br>
     Grafana: http://localhost:3000 <br><br>
@@ -94,7 +102,7 @@ sudo chmod -R 777 /var/log/mcp-human-resources
     I also changed the admin password for Grafana in compose.yml to 'mysecretpassword' from 'admin' for better security. <br>
       if admin/mysecretpassword doesn't work, change it back to admin/admin
 
-10. Run a Maven Install<br>
+11. Run a Maven Install<br>
 ```bash
 "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/mvnw" install -f "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/pom.xml"
 ```
@@ -105,7 +113,7 @@ Update run.sh with your JDK install location
 ./run.sh
 ```
 
-12. TESTS
+13. TESTS
 
     Run unit tests<br><br>
         Navigate to project's root directory and run "mvn test"<br><br>
@@ -125,7 +133,9 @@ Update run.sh with your JDK install location
         http://localhost:8081/read-file?fileName=user_data/sample_user_data.txt<br><br>
         http://localhost:8081/list-files?prefix=expense_receipts/<br><br>
         POST http://localhost:8081/upload<br><br>
-        In POSTMAN the key should be "file" and the value field clicked should allow you to add a file from your file system, for example george_bush.jpg.<br><br>
+        To attach files in POSTMAN click the Body tab and do the following: the key should be "file" and the value field clicked should allow you to add a file from your file system, for example intellicare_solutions.jpeg.<br><br>
+        POST http://localhost:8081/upload-multiple<br><br>
+        To attach files in POSTMAN click the Body tab and do the following: the key should be "file" and the value field clicked should allow you to add multiple files from your file system, for example intellicare_solutions.jpeg and xyz_bookstore.webp. <br><br>
         http://localhost:8081/download-file/george_bush.jpg<br><br>
         http://localhost:8081/delete-file?fileName=george_bush.jpg<br><br>
         http://localhost:8081/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv<br><br>
@@ -149,14 +159,16 @@ Update run.sh with your JDK install location
         http://localhost:8081/ai/model/secondary?prompt=Why%20do%20you%20park%20on%20a%20driveway%20,but%20drive%20on%20a%20parkway?<br><br>
         http://localhost:8081/ai/model/tertiary?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.<br><br>
         http://localhost:8081/ai/onboarding/welcome?employeeName=Robert&position=MegaCorp%20Vice-President%20of%20Engineering&startDate=01/01/2026<br><br>
+        POST http://localhost:8081/save-draft-email?toEmail=john.smith@fake.com&subject=Draft email test&body=Hello World<br><br>
+        To attach files in POSTMAN click the Body tab and do the following: The key should be "attachments" and the value field clicked should allow you to add files from your file system, for intellicare_solutions.jpeg and xyz_bookstore.webp.<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
 
-13. Uses H2 as a database, it is loaded on application startup.<br>
+14. Uses H2 as a database, it is loaded on application startup.<br>
 http://localhost:8081/h2-console<br>
 Password is in application.properties<br>
 Sample query: Select * from EMPLOYEE where AGE > 50;   
 
-14. To see current logging level:<br>
+15. To see current logging level:<br>
 http://localhost:8081/log

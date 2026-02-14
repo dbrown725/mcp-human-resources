@@ -35,6 +35,17 @@ public class FileStorageController {
 		return fileStorageService.deleteFile(fileName);
     }
 
+    @PostMapping("/upload-multiple")
+    public List<String> uploadFiles(@RequestParam("files") List<MultipartFile> files) {
+        if (files == null || files.isEmpty()) {
+            return List.of("Please select files to upload.");
+        }
+        return files.stream()
+                .filter(file -> !file.isEmpty())
+                .map(fileStorageService::uploadFile)
+                .toList();
+    }
+    
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
