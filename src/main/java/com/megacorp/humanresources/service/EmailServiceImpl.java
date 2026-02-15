@@ -7,6 +7,7 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.search.*;
 import jakarta.activation.DataHandler;
 import jakarta.mail.util.ByteArrayDataSource;
 import java.util.Arrays;
@@ -24,6 +25,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import com.megacorp.humanresources.model.EmailMessage;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -157,6 +162,8 @@ public class EmailServiceImpl implements EmailService {
         // Call the existing method with MultipartFile list
         saveDraftEmail(toEmail, subject, body, multipartFiles);
     }
+
+
     
     /**
      * Determines the content type based on file extension.
@@ -276,6 +283,275 @@ public class EmailServiceImpl implements EmailService {
                 fos.write(content);
             }
         }
+    }
+    
+    /**
+     * Reads emails from the Gmail inbox with optional filtering and limiting.
+     *
+     * @param maxEmails maximum number of emails to retrieve (default: 50, max: 500)
+     * @param subjectFilter optional subject filter - returns emails where subject contains this string (case-insensitive)
+     * @param fromFilter optional from filter - returns emails from this sender (case-insensitive)
+     * @param isUnreadOnly if true, only return unread emails; if false, return all emails
+     * @return list of EmailMessage objects containing email details
+     * @throws Exception if IMAP connection or message parsing fails
+     */
+    public List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, Boolean isUnreadOnly) throws Exception {
+        logger.info("Reading inbox: maxEmails={}, subjectFilter={}, fromFilter={}, unreadOnly={}", 
+                    maxEmails, subjectFilter, fromFilter, isUnreadOnly);
+        
+        // Set default and validate maxEmails
+        int limit = (maxEmails != null && maxEmails > 0) ? Math.min(maxEmails, 500) : 50;
+        boolean unreadOnly = (isUnreadOnly != null) ? isUnreadOnly : false;
+        
+        List<EmailMessage> emailMessages = new ArrayList<>();
+        
+        // Configure IMAP properties
+        Properties props = new Properties();
+        props.put("mail.imap.host", IMAP_SERVER);
+        props.put("mail.imap.port", IMAP_PORT);
+        props.put("mail.imap.ssl.enable", "true");
+        props.put("mail.store.protocol", "imap");
+        
+        Session imapSession = Session.getInstance(props);
+        Store store = null;
+        Folder inbox = null;
+        
+        try {
+            // Connect to Gmail IMAP
+            store = imapSession.getStore("imap");
+            store.connect(IMAP_SERVER, emailAddress, emailPassword);
+            
+            // Open inbox folder
+            inbox = store.getFolder("INBOX");
+            inbox.open(Folder.READ_ONLY);
+            
+            logger.info("Connected to inbox. Total messages: {}", inbox.getMessageCount());
+            
+            // Build search criteria
+            SearchTerm searchTerm = buildSearchTerm(subjectFilter, fromFilter, unreadOnly);
+            
+            // Search for messages
+            Message[] messages;
+            if (searchTerm != null) {
+                messages = inbox.search(searchTerm);
+                logger.info("Search returned {} messages", messages.length);
+            } else {
+                messages = inbox.getMessages();
+            }
+            
+            // Limit the number of messages processed
+            int messagesToProcess = Math.min(messages.length, limit);
+            
+            // Process messages in reverse order (newest first)
+            for (int i = messages.length - 1; i >= messages.length - messagesToProcess && i >= 0; i--) {
+                try {
+                    Message message = messages[i];
+                    EmailMessage emailMessage = convertToEmailMessage(message);
+                    emailMessages.add(emailMessage);
+                } catch (Exception e) {
+                    logger.error("Error processing message at index {}: {}", i, e.getMessage());
+                    // Continue processing other messages
+                }
+            }
+            
+            logger.info("Successfully processed {} email messages", emailMessages.size());
+            
+        } finally {
+            // Clean up resources
+            if (inbox != null && inbox.isOpen()) {
+                inbox.close(false);
+            }
+            if (store != null && store.isConnected()) {
+                store.close();
+            }
+        }
+        
+        return emailMessages;
+    }
+    
+    /**
+     * Builds a search term based on the provided filters.
+     *
+     * @param subjectFilter optional subject filter
+     * @param fromFilter optional from filter
+     * @param unreadOnly if true, only search for unread messages
+     * @return SearchTerm or null if no filters applied
+     */
+    private SearchTerm buildSearchTerm(String subjectFilter, String fromFilter, boolean unreadOnly) {
+        List<SearchTerm> terms = new ArrayList<>();
+        
+        if (subjectFilter != null && !subjectFilter.trim().isEmpty()) {
+            terms.add(new SubjectTerm(subjectFilter));
+            logger.debug("Added subject filter: {}", subjectFilter);
+        }
+        
+        if (fromFilter != null && !fromFilter.trim().isEmpty()) {
+            terms.add(new FromStringTerm(fromFilter));
+            logger.debug("Added from filter: {}", fromFilter);
+        }
+        
+        if (unreadOnly) {
+            terms.add(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
+            logger.debug("Added unread filter");
+        }
+        
+        if (terms.isEmpty()) {
+            return null;
+        } else if (terms.size() == 1) {
+            return terms.get(0);
+        } else {
+            // Combine all terms with AND
+            SearchTerm combined = terms.get(0);
+            for (int i = 1; i < terms.size(); i++) {
+                combined = new AndTerm(combined, terms.get(i));
+            }
+            return combined;
+        }
+    }
+    
+    /**
+     * Converts a JavaMail Message to our EmailMessage model.
+     *
+     * @param message the JavaMail message
+     * @return EmailMessage object
+     * @throws Exception if message parsing fails
+     */
+    private EmailMessage convertToEmailMessage(Message message) throws Exception {
+        EmailMessage emailMessage = new EmailMessage();
+        
+        // Message ID
+        if (message instanceof MimeMessage) {
+            emailMessage.setMessageId(((MimeMessage) message).getMessageID());
+        }
+        
+        // From
+        Address[] fromAddresses = message.getFrom();
+        if (fromAddresses != null && fromAddresses.length > 0) {
+            emailMessage.setFrom(fromAddresses[0].toString());
+        }
+        
+        // To
+        Address[] toAddresses = message.getRecipients(Message.RecipientType.TO);
+        if (toAddresses != null) {
+            emailMessage.setTo(Arrays.stream(toAddresses)
+                    .map(Address::toString)
+                    .collect(Collectors.toList()));
+        }
+        
+        // CC
+        Address[] ccAddresses = message.getRecipients(Message.RecipientType.CC);
+        if (ccAddresses != null) {
+            emailMessage.setCc(Arrays.stream(ccAddresses)
+                    .map(Address::toString)
+                    .collect(Collectors.toList()));
+        }
+        
+        // Subject
+        emailMessage.setSubject(message.getSubject());
+        
+        // Body
+        String body = extractEmailBody(message);
+        emailMessage.setBody(body);
+        
+        // Sent date
+        Date sentDate = message.getSentDate();
+        if (sentDate != null) {
+            emailMessage.setSentDate(LocalDateTime.ofInstant(sentDate.toInstant(), ZoneId.systemDefault()));
+        }
+        
+        // Received date
+        Date receivedDate = message.getReceivedDate();
+        if (receivedDate != null) {
+            emailMessage.setReceivedDate(LocalDateTime.ofInstant(receivedDate.toInstant(), ZoneId.systemDefault()));
+        }
+        
+        // Read status
+        emailMessage.setRead(message.isSet(Flags.Flag.SEEN));
+        
+        // Size
+        emailMessage.setSize(message.getSize());
+        
+        // Attachments
+        List<String> attachmentNames = extractAttachmentNames(message);
+        emailMessage.setAttachmentNames(attachmentNames);
+        
+        return emailMessage;
+    }
+    
+    /**
+     * Extracts the text body from an email message.
+     *
+     * @param message the email message
+     * @return the email body as a string
+     * @throws Exception if body extraction fails
+     */
+    private String extractEmailBody(Message message) throws Exception {
+        Object content = message.getContent();
+        
+        if (content instanceof String) {
+            return (String) content;
+        } else if (content instanceof MimeMultipart) {
+            MimeMultipart multipart = (MimeMultipart) content;
+            return extractTextFromMultipart(multipart);
+        }
+        
+        return "";
+    }
+    
+    /**
+     * Recursively extracts text from a multipart message.
+     *
+     * @param multipart the multipart content
+     * @return extracted text
+     * @throws Exception if extraction fails
+     */
+    private String extractTextFromMultipart(MimeMultipart multipart) throws Exception {
+        StringBuilder result = new StringBuilder();
+        
+        for (int i = 0; i < multipart.getCount(); i++) {
+            BodyPart bodyPart = multipart.getBodyPart(i);
+            
+            if (bodyPart.isMimeType("text/plain")) {
+                result.append(bodyPart.getContent().toString());
+            } else if (bodyPart.isMimeType("text/html")) {
+                // Optionally include HTML content
+                String html = bodyPart.getContent().toString();
+                result.append(html);
+            } else if (bodyPart.getContent() instanceof MimeMultipart) {
+                result.append(extractTextFromMultipart((MimeMultipart) bodyPart.getContent()));
+            }
+        }
+        
+        return result.toString();
+    }
+    
+    /**
+     * Extracts attachment filenames from an email message.
+     *
+     * @param message the email message
+     * @return list of attachment filenames
+     * @throws Exception if extraction fails
+     */
+    private List<String> extractAttachmentNames(Message message) throws Exception {
+        List<String> attachments = new ArrayList<>();
+        Object content = message.getContent();
+        
+        if (content instanceof MimeMultipart) {
+            MimeMultipart multipart = (MimeMultipart) content;
+            
+            for (int i = 0; i < multipart.getCount(); i++) {
+                BodyPart bodyPart = multipart.getBodyPart(i);
+                
+                if (Part.ATTACHMENT.equalsIgnoreCase(bodyPart.getDisposition())) {
+                    String fileName = bodyPart.getFileName();
+                    if (fileName != null) {
+                        attachments.add(fileName);
+                    }
+                }
+            }
+        }
+        
+        return attachments;
     }
     
 }
