@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:8081
+
+### Basic AI prompt
+GET {{baseUrl}}/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.
+
+### AI employee query
+GET {{baseUrl}}/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?
+
+### AI employee search with criteria
+GET {{baseUrl}}/ai?prompt=Show%20me%20a%20list%20of%20employees%20based%20on%20the%20following%20criteria.%20department%20is%20Sales,startAge%20is%2026,endAge%20is%2050,pageNumber%20is%200,pageSize%20is%2020,sortBy%20is%20annualSalary,sortDirection%20is%20DESC
+
+### AI chat response (travel recommendations)
+GET {{baseUrl}}/ai/chat-response?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.
+
+### AI streaming response
+GET {{baseUrl}}/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.
+
+### Secondary model (OpenRouter/GROQ)
+GET {{baseUrl}}/ai/model/secondary?prompt=Why%20do%20you%20park%20on%20a%20driveway%20,but%20drive%20on%20a%20parkway?
+
+### Tertiary model
+GET {{baseUrl}}/ai/model/tertiary?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.
+
+### AI onboarding welcome message
+GET {{baseUrl}}/ai/onboarding/welcome?employeeName=Robert&position=MegaCorp%20Vice-President%20of%20Engineering&startDate=01/01/2026
+
+### Models - Stuff the prompt
+GET {{baseUrl}}/models/stuff-the-prompt

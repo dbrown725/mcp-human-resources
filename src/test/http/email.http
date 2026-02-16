@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:8081
+
+### Save draft email (simple)
+POST {{baseUrl}}/save-draft-email?toEmail=john.smith@fake.com&subject=Draft%20email%20test&body=Hello%20World
+
+### Save draft email with attachments
+POST {{baseUrl}}/save-draft-email
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="toEmail"
+
+john.smith@fake.com
+--WebAppBoundary
+Content-Disposition: form-data; name="subject"
+
+Draft email test with attachments
+--WebAppBoundary
+Content-Disposition: form-data; name="body"
+
+Hello World with attachments
+--WebAppBoundary
+Content-Disposition: form-data; name="attachments"; filename="intellicare_solutions.jpeg"
+Content-Type: image/jpeg
+
+< ../../main/resources/images/intellicare_solutions.jpeg
+--WebAppBoundary
+Content-Disposition: form-data; name="attachments"; filename="xyz_bookstore.webp"
+Content-Type: image/webp
+
+< ../../main/resources/images/xyz_bookstore.webp
+--WebAppBoundary--
+
+### Read inbox - last 10 emails
+GET {{baseUrl}}/read-inbox?maxEmails=10
+
+### Read inbox - unread only
+GET {{baseUrl}}/read-inbox?unreadOnly=true&maxEmails=10
+
+### Read inbox - filter by subject
+GET {{baseUrl}}/read-inbox?subjectFilter=Flashback%20Sunday!&maxEmails=20
+
+### Read inbox - filter by sender
+GET {{baseUrl}}/read-inbox?fromFilter=no-reply@accounts.google.com&maxEmails=20
+
+### Read inbox - combined filters
+GET {{baseUrl}}/read-inbox?subjectFilter=TEST%20Alpha&unreadOnly=true&maxEmails=5

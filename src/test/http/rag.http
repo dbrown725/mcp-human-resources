@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:8081
+
+### RAG models
+GET {{baseUrl}}/rag/models
+
+### RAG ingest document
+# POST {{baseUrl}}/rag/ingest
+# Content-Type: multipart/form-data; boundary=WebAppBoundary
+# 
+# --WebAppBoundary
+# Content-Disposition: form-data; name="path"; filename="employee-code-of-conduct-jan-2021.pdf"
+# Content-Type: application/pdf
+# 
+# < ./path/to/employee-code-of-conduct-jan-2021.pdf
+# --WebAppBoundary--
+#
+# Note: Download sample PDF from https://www.terma.com/media/nf3ewqzn/employee-code-of-conduct-jan-2021.pdf
+
+### RAG query - Anti-Corruption Policy
+GET {{baseUrl}}/rag/query?question=Give%20me%20detailed%20information%20on%20Anti-Corruption%20Policy
+
+### RAG advised query - Multiple topics
+GET {{baseUrl}}/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace

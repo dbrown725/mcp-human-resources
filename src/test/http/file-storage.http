@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:8081
+
+### Read file from storage
+GET {{baseUrl}}/read-file?fileName=user_data/sample_user_data.txt
+
+### List files with prefix
+GET {{baseUrl}}/list-files?prefix=expense_receipts/
+
+### Upload single file
+POST {{baseUrl}}/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="intellicare_solutions.jpeg"
+Content-Type: image/jpeg
+
+< ../../main/resources/images/intellicare_solutions.jpeg
+--WebAppBoundary--
+
+### Upload multiple files
+POST {{baseUrl}}/upload-multiple
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="files"; filename="intellicare_solutions.jpeg"
+Content-Type: image/jpeg
+
+< ../../main/resources/images/intellicare_solutions.jpeg
+--WebAppBoundary
+Content-Disposition: form-data; name="files"; filename="xyz_bookstore.webp"
+Content-Type: image/webp
+
+< ../../main/resources/images/xyz_bookstore.webp
+--WebAppBoundary--
+
+### Download file
+GET {{baseUrl}}/download-file?fileName=xyz_bookstore.webp
+
+### Delete file (simple path)
+GET {{baseUrl}}/delete-file?fileName=xyz_bookstore.webp
+
+### Delete file (with path)
+GET {{baseUrl}}/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv

@@ -1,0 +1,22 @@
+@baseUrl = http://localhost:8081
+
+### Receipt image to text - summary
+GET {{baseUrl}}/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents
+
+### Receipt image to text - total amount
+GET {{baseUrl}}/receipt-image-to-text?prompt=What%20is%20the%20Total%20Amount%20Due?
+
+### Summarize images in folder
+GET {{baseUrl}}/summarize-images-in-folder?folder=expense_receipts/20250831_20250913
+
+### Generate expense report from images
+GET {{baseUrl}}/generate-expense-report?folder=expense_receipts/20250831_20250913
+
+### Generate image - Pho soup stall (Blade Runner style)
+GET {{baseUrl}}/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2
+
+### Generate image with input - Cat eating nano-banana
+GET {{baseUrl}}/generate-image?prompt=Create%20a%20picture%20of%20my%20cat%20eating%20a%20nano-banana%20in%20a%20fancy%20restaurant%20under%20the%20Gemini%20constellation.&optionalInputImageNames=original_images/cat-close-up-of-side-profile.webp&outputImageRootName=myCat
+
+### Generate employee badge
+GET {{baseUrl}}/generate-employee-badge?firstName=Randy&lastName=Broussard&employeeNumber=6000&existingEmployeeImageName=original_images/randy_broussard.jpg

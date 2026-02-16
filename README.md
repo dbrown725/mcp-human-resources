@@ -102,78 +102,42 @@ sudo chmod -R 777 /var/log/mcp-human-resources
     I also changed the admin password for Grafana in compose.yml to 'mysecretpassword' from 'admin' for better security. <br>
       if admin/mysecretpassword doesn't work, change it back to admin/admin
 
-11. Run a Maven Install<br>
+11. Rag elasticsearch data load. See ### RAG ingest document test case found in the rag.http file. Download the pdf, uncomment the test, set the path value to your download location and running the test will load the ElasticSearch index.      
+
+12. Run a Maven Install<br>
 ```bash
 "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/mvnw" install -f "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/pom.xml"
 ```
 
-11. Start the server<br>
+13. Start the server<br>
 Update run.sh with your JDK install location
 ```bash
 ./run.sh
 ```
 
-13. TESTS
+14. TESTS
 
     Run unit tests<br><br>
         Navigate to project's root directory and run "mvn test"<br><br>
 
-    Run http tests<br><br>
-        Can be tested using a browser or Postman<br><br>
-        http://localhost:8081/ai?prompt=Write%20a%20few%20paragraphs%20about%20the%20Fermi%20Paradox%20and%20what%20are%20some%20of%20the%20possible%20explainations%20for%20why%20it%20exists.<br><br>
-        http://localhost:8081/employees/5012<br><br>
-        http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
-        http://localhost:8081/ai?prompt=Show%20me%20a%20list%20of%20employees%20based%20on%20the%20following%20criteria.%20department%20is%20Sales,startAge%20is%2026,endAge%20is%2050,pageNumber%20is%200,pageSize%20is%2020,sortBy%20is%20annualSalary,sortDirection%20is%20DESC<br><br>
-        http://localhost:8081/ai/chat-response?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
-        http://localhost:8081/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next%20week,%20give%20me%20a%20list%20of%20twenty%20places%20to%20visit.<br><br>
-        http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents
-        (see ImageDetectionController.java)<br><br>
-        http://localhost:8081/receipt-image-to-text?prompt=What%20is%20the%20Total%20Amount%20Due?<br><br>
-        http://localhost:8081/receipt-image-to-text?prompt=Write%20a%20summary%20of%20the%20receipt%20contents.<br><br>
-        http://localhost:8081/read-file?fileName=user_data/sample_user_data.txt<br><br>
-        http://localhost:8081/list-files?prefix=expense_receipts/<br><br>
-        POST http://localhost:8081/upload<br><br>
-        To attach files in POSTMAN click the Body tab and do the following: the key should be "file" and the value field clicked should allow you to add a file from your file system, for example intellicare_solutions.jpeg.<br><br>
-        POST http://localhost:8081/upload-multiple<br><br>
-        To attach files in POSTMAN click the Body tab and do the following: the key should be "file" and the value field clicked should allow you to add multiple files from your file system, for example intellicare_solutions.jpeg and xyz_bookstore.webp. <br><br>
-        http://localhost:8081/download-file/george_bush.jpg<br><br>
-        http://localhost:8081/delete-file?fileName=george_bush.jpg<br><br>
-        http://localhost:8081/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv<br><br>
-        http://localhost:8081/summarize-images-in-folder?folder=expense_receipts/20250831_20250913<br><br>
-        http://localhost:8081/generate-expense-report?folder=expense_receipts/20250831_20250913<br><br>
-        http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20a%20Pho%20soup%20stall%20in%20the%20style%20of%20the%20movie%20Blade%20Runner.&outputImageRootName=phoRunner2<br><br>
-        http://localhost:8081/generate-image?prompt=Create%20a%20picture%20of%20my%20cat%20eating%20a%20nano-banana%20in%20a%20fancy%20restaurant%20under%20the%20Gemini%20constellation.&optionalInputImageNames=original_images/cat-close-up-of-side-profile.webp&outputImageRootName=myCat<br><br>
-        http://localhost:8081/generate-employee-badge?firstName=Randy&lastName=Broussard&employeeNumber=6000&existingEmployeeImageName=original_images/randy_broussard.jpg<br><br>
-        http://localhost:8081/memory?message=My%20name%20is%20Bill%20Smith<br><br>
-        http://localhost:8081/memory?message=What%20is%20my%20name?<br><br>
-        http://localhost:8081/models/stuff-the-prompt<br><br>
-        http://localhost:8081/rag/models<br><br>
-        Rag elasticsearch data load.<br><br>
-        Download https://www.terma.com/media/nf3ewqzn/employee-code-of-conduct-jan-2021.pdf<br><br>
-        POST http://localhost:8081/rag/ingest<br><br>
-        In POSTMAN the key should be "path" and the value field clicked should allow you to add a file from your file system, for example employee-code-of-conduct-jan-2021.pdf.<br><br>
-        http://localhost:8081/rag/query?question=Give%20me%20detailed%20information%20on%20Anti-Corruption%20Policy<br><br>
-        http://localhost:8081/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace<br><br>
-        http://localhost:8081/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938<br><br>
-        http://localhost:8081/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida<br><br>
-        http://localhost:8081/ai/model/secondary?prompt=Why%20do%20you%20park%20on%20a%20driveway%20,but%20drive%20on%20a%20parkway?<br><br>
-        http://localhost:8081/ai/model/tertiary?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.<br><br>
-        http://localhost:8081/ai/onboarding/welcome?employeeName=Robert&position=MegaCorp%20Vice-President%20of%20Engineering&startDate=01/01/2026<br><br>
-        POST http://localhost:8081/save-draft-email?toEmail=john.smith@fake.com&subject=Draft%20email%20test&body=Hello%20World<br><br>
-        To attach files in POSTMAN click the Body tab and do the following: The key should be "attachments" and the value field clicked should allow you to add files from your file system, for intellicare_solutions.jpeg and xyz_bookstore.webp.<br><br>
-        http://localhost:8081/read-inbox?maxEmails=10<br><br>
-        http://localhost:8081/read-inbox?unreadOnly=true&maxEmails=10<br><br>
-        http://localhost:8081/read-inbox?subjectFilter=Flashback%20Sunday!&maxEmails=20<br><br>
-        http://localhost:8081/read-inbox?fromFilter=no-reply@accounts.google.com&maxEmails=20<br>
-        http://localhost:8081/read-inbox?subjectFilter=TEST%20Alpha&unreadOnly=true&maxEmails=5<br><br>
+    Run HTTP API tests<br><br>
+        **Recommended**: Use the `.http` files in `src/test/http/` directory<br>
+        - Install [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for VS Code<br>
+        - Or use IntelliJ IDEA's built-in HTTP client<br>
+        - Open any `.http` file and click "Send Request" above each endpoint<br>
+        - See `src/test/http/README.md` for detailed instructions<br><br>
+        
+        **Alternative**: Use a browser, curl, or Postman<br>
+        - Example: http://localhost:8081/employees/5012<br>
+        - Example: http://localhost:8081/ai?prompt=How%20many%20employees%20in%20IT%20are%20asian?<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
 
-14. Uses H2 as a database, it is loaded on application startup.<br>
+15. Uses H2 as a database, it is loaded on application startup.<br>
 http://localhost:8081/h2-console<br>
 Password is in application.properties<br>
 Sample query: Select * from EMPLOYEE where AGE > 50;   
 
-15. To see current logging level:<br>
+16. To see current logging level:<br>
 http://localhost:8081/log

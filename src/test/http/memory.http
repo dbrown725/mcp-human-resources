@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:8081
+
+### Set memory - store name
+GET {{baseUrl}}/memory?message=My%20name%20is%20Bill%20Smith
+
+### Get memory - retrieve name
+GET {{baseUrl}}/memory?message=What%20is%20my%20name?

@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:8081
+
+### Weather forecast by coordinates (Miami area)
+GET {{baseUrl}}/weather/forecast?message=Give%20me%20the%20weather%20forcast%20for%2025.791484,%20-80.129938
+
+### Weather alerts by state
+GET {{baseUrl}}/weather/alerts?message=Give%20me%20weather%20alerts%20for%20Florida

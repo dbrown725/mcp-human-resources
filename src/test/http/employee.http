@@ -1,0 +1,19 @@
+@baseUrl = http://localhost:8081
+
+### Get employee by ID
+GET {{baseUrl}}/employees/5012
+
+### Save new employee
+POST {{baseUrl}}/employees
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@megacorp.com",
+  "department": "Engineering",
+  "salary": 75000.00
+}
+
+### Delete employee by ID
+DELETE {{baseUrl}}/employees/5012
