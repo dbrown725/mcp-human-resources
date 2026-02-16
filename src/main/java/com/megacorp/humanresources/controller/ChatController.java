@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.BraveSearchService;
-import com.megacorp.humanresources.service.EmailService;
 
 import io.modelcontextprotocol.client.McpSyncClient;
 import reactor.core.publisher.Flux;
@@ -23,8 +22,6 @@ public class ChatController {
     private final EmployeeService employeeService;
 
     private final BraveSearchService braveSearchService;
-
-    private final EmailService emailService;
 
     private final ChatClient secondaryChatClient;
 
@@ -41,13 +38,12 @@ public class ChatController {
      * @param secondaryChatClient an alternate ChatClient instance qualified as "secondaryChatClient"
      * @param tertiaryChatClient an alternate ChatClient instance qualified as "tertiaryChatClient"
      */
-    public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService, EmailService emailService,
+    public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService,
             ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients,
         CallAdvisor chatClientLoggingAdvisor, @org.springframework.beans.factory.annotation.Qualifier("secondaryChatClient") ChatClient secondaryChatClient,
         @org.springframework.beans.factory.annotation.Qualifier("tertiaryChatClient") ChatClient tertiaryChatClient) {
         this.employeeService = employeeService;
         this.braveSearchService = braveSearchService;
-        this.emailService = emailService;
         this.secondaryChatClient = secondaryChatClient;
         this.tertiaryChatClient = tertiaryChatClient;
         this.chatClient = chatClientBuilder.defaultAdvisors(chatClientLoggingAdvisor)
@@ -58,7 +54,7 @@ public class ChatController {
     @GetMapping("/ai")
     String generationWithTools(@RequestParam(name = "prompt", defaultValue = "Tell me a joke", required = false) String prompt) {
         return this.chatClient.prompt()
-            .tools(employeeService, braveSearchService, emailService)
+            .tools(employeeService, braveSearchService)
             .user(prompt)
             .call()
             .content();
