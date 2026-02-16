@@ -161,6 +161,11 @@ Update run.sh with your JDK install location
         http://localhost:8081/ai/onboarding/welcome?employeeName=Robert&position=MegaCorp%20Vice-President%20of%20Engineering&startDate=01/01/2026<br><br>
         POST http://localhost:8081/save-draft-email?toEmail=john.smith@fake.com&subject=Draft%20email%20test&body=Hello%20World<br><br>
         To attach files in POSTMAN click the Body tab and do the following: The key should be "attachments" and the value field clicked should allow you to add files from your file system, for intellicare_solutions.jpeg and xyz_bookstore.webp.<br><br>
+        http://localhost:8081/read-inbox?maxEmails=10<br><br>
+        http://localhost:8081/read-inbox?unreadOnly=true&maxEmails=10<br><br>
+        http://localhost:8081/read-inbox?subjectFilter=Flashback%20Sunday!&maxEmails=20<br><br>
+        http://localhost:8081/read-inbox?fromFilter=no-reply@accounts.google.com&maxEmails=20<br>
+        http://localhost:8081/read-inbox?subjectFilter=TEST%20Alpha&unreadOnly=true&maxEmails=5<br><br>
 
     Can be tested using the associated Client APP:<br>
     https://github.com/dbrown725/mcp-human-resources-client
