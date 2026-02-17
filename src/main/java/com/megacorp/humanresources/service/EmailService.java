@@ -7,5 +7,7 @@ import java.util.List;
 public interface EmailService {
     void saveDraftEmail(String toEmail, String subject, String body, List<MultipartFile> attachmentPaths) throws Exception;
     
-    List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, Boolean isUnreadOnly) throws Exception;
+    List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, String toFilter, 
+                                 String bodyFilter, String messageId, String dateAfter, String dateBefore, 
+                                 Boolean isUnreadOnly) throws Exception;
 }

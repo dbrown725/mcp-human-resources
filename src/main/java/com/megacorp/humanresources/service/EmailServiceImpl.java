@@ -290,13 +290,20 @@ public class EmailServiceImpl implements EmailService {
      * @param maxEmails maximum number of emails to retrieve (default: 50, max: 500)
      * @param subjectFilter optional subject filter - returns emails where subject contains this string (case-insensitive)
      * @param fromFilter optional from filter - returns emails from this sender (case-insensitive)
+     * @param toFilter optional recipient filter - returns emails sent to this recipient (case-insensitive)
+     * @param bodyFilter optional body filter - returns emails where body contains this string (case-insensitive)
+     * @param messageId optional message ID - returns specific email by message ID
+     * @param dateAfter optional date filter - returns emails received after this date (format: yyyy-MM-dd)
+     * @param dateBefore optional date filter - returns emails received before this date (format: yyyy-MM-dd)
      * @param isUnreadOnly if true, only return unread emails; if false, return all emails
      * @return list of EmailMessage objects containing email details
      * @throws Exception if IMAP connection or message parsing fails
      */
-    public List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, Boolean isUnreadOnly) throws Exception {
-        logger.info("Reading inbox: maxEmails={}, subjectFilter={}, fromFilter={}, unreadOnly={}", 
-                    maxEmails, subjectFilter, fromFilter, isUnreadOnly);
+    public List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, String toFilter, 
+                                        String bodyFilter, String messageId, String dateAfter, String dateBefore, 
+                                        Boolean isUnreadOnly) throws Exception {
+        logger.info("Reading inbox: maxEmails={}, subjectFilter={}, fromFilter={}, toFilter={}, bodyFilter={}, messageId={}, dateAfter={}, dateBefore={}, unreadOnly={}", 
+                    maxEmails, subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, isUnreadOnly);
         
         // Set default and validate maxEmails
         int limit = (maxEmails != null && maxEmails > 0) ? Math.min(maxEmails, 500) : 50;
@@ -327,7 +334,7 @@ public class EmailServiceImpl implements EmailService {
             logger.info("Connected to inbox. Total messages: {}", inbox.getMessageCount());
             
             // Build search criteria
-            SearchTerm searchTerm = buildSearchTerm(subjectFilter, fromFilter, unreadOnly);
+            SearchTerm searchTerm = buildSearchTerm(subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, unreadOnly);
             
             // Search for messages
             Message[] messages;
@@ -373,10 +380,17 @@ public class EmailServiceImpl implements EmailService {
      *
      * @param subjectFilter optional subject filter
      * @param fromFilter optional from filter
+     * @param toFilter optional recipient filter
+     * @param bodyFilter optional body text filter
+     * @param messageId optional message ID for exact match
+     * @param dateAfter optional date filter (yyyy-MM-dd) - emails after this date
+     * @param dateBefore optional date filter (yyyy-MM-dd) - emails before this date
      * @param unreadOnly if true, only search for unread messages
      * @return SearchTerm or null if no filters applied
      */
-    private SearchTerm buildSearchTerm(String subjectFilter, String fromFilter, boolean unreadOnly) {
+    private SearchTerm buildSearchTerm(String subjectFilter, String fromFilter, String toFilter, 
+                                      String bodyFilter, String messageId, String dateAfter, 
+                                      String dateBefore, boolean unreadOnly) {
         List<SearchTerm> terms = new ArrayList<>();
         
         if (subjectFilter != null && !subjectFilter.trim().isEmpty()) {
@@ -387,6 +401,43 @@ public class EmailServiceImpl implements EmailService {
         if (fromFilter != null && !fromFilter.trim().isEmpty()) {
             terms.add(new FromStringTerm(fromFilter));
             logger.debug("Added from filter: {}", fromFilter);
+        }
+        
+        if (toFilter != null && !toFilter.trim().isEmpty()) {
+            terms.add(new RecipientStringTerm(Message.RecipientType.TO, toFilter));
+            logger.debug("Added recipient filter: {}", toFilter);
+        }
+        
+        if (bodyFilter != null && !bodyFilter.trim().isEmpty()) {
+            terms.add(new BodyTerm(bodyFilter));
+            logger.debug("Added body filter: {}", bodyFilter);
+        }
+        
+        if (messageId != null && !messageId.trim().isEmpty()) {
+            terms.add(new MessageIDTerm(messageId));
+            logger.debug("Added message ID filter: {}", messageId);
+        }
+        
+        if (dateAfter != null && !dateAfter.trim().isEmpty()) {
+            try {
+                java.time.LocalDate localDate = java.time.LocalDate.parse(dateAfter);
+                Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                terms.add(new ReceivedDateTerm(ComparisonTerm.GE, date));
+                logger.debug("Added date after filter: {}", dateAfter);
+            } catch (Exception e) {
+                logger.warn("Invalid dateAfter format: {}. Expected yyyy-MM-dd", dateAfter);
+            }
+        }
+        
+        if (dateBefore != null && !dateBefore.trim().isEmpty()) {
+            try {
+                java.time.LocalDate localDate = java.time.LocalDate.parse(dateBefore);
+                Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                terms.add(new ReceivedDateTerm(ComparisonTerm.LE, date));
+                logger.debug("Added date before filter: {}", dateBefore);
+            } catch (Exception e) {
+                logger.warn("Invalid dateBefore format: {}. Expected yyyy-MM-dd", dateBefore);
+            }
         }
         
         if (unreadOnly) {

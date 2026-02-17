@@ -1,7 +1,7 @@
 @baseUrl = http://localhost:8081
 
 ### Save draft email (simple)
-POST {{baseUrl}}/save-draft-email?toEmail=john.smith@fake.com&subject=Draft%20email%20test&body=Hello%20World
+POST {{baseUrl}}/save-draft-email?toEmail=fake@test.test&subject=Draft%20email%20test&body=Hello%20World
 
 ### Save draft email with attachments
 POST {{baseUrl}}/save-draft-email
@@ -10,7 +10,7 @@ Content-Type: multipart/form-data; boundary=WebAppBoundary
 --WebAppBoundary
 Content-Disposition: form-data; name="toEmail"
 
-john.smith@fake.com
+fake@test.test
 --WebAppBoundary
 Content-Disposition: form-data; name="subject"
 
@@ -45,3 +45,21 @@ GET {{baseUrl}}/read-inbox?fromFilter=no-reply@accounts.google.com&maxEmails=20
 
 ### Read inbox - combined filters
 GET {{baseUrl}}/read-inbox?subjectFilter=TEST%20Alpha&unreadOnly=true&maxEmails=5
+
+### Read inbox - filter by recipient (to) (replace with actual email address)
+#GET {{baseUrl}}/read-inbox?toFilter=<your-actual-email@gmail.com>&maxEmails=20&dateAfter=2026-02-13
+
+### Read inbox - filter by body text
+GET {{baseUrl}}/read-inbox?bodyFilter=Economic&maxEmails=20
+
+### Read inbox - filter by date range
+GET {{baseUrl}}/read-inbox?dateAfter=2026-02-13&dateBefore=2026-02-16&maxEmails=20
+
+### Read inbox - filter by date after
+GET {{baseUrl}}/read-inbox?dateAfter=2025-09-12&maxEmails=10
+
+### Read inbox - complex combined filters
+GET {{baseUrl}}/read-inbox?fromFilter=googleplay-noreply@google.com&dateAfter=2026-01-01&unreadOnly=false&maxEmails=15
+
+### Read inbox - filter by specific message ID (replace with actual message ID)
+# GET {{baseUrl}}/read-inbox?messageId=<actual-message-id@mail.gmail.com>&maxEmails=1
