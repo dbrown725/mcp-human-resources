@@ -31,6 +31,28 @@ Content-Type: image/webp
 < ../../main/resources/images/xyz_bookstore.webp
 --WebAppBoundary--
 
+### Save draft email with storageAttachments (string item) - Replace generated_images/bullRoastRunner.png with actual file path on your system
+# POST {{baseUrl}}/save-draft-email
+# Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+# --WebAppBoundary
+# Content-Disposition: form-data; name="toEmail"
+
+# fake@test.test
+# --WebAppBoundary
+# Content-Disposition: form-data; name="subject"
+
+# Draft email with storage attachment
+# --WebAppBoundary
+# Content-Disposition: form-data; name="body"
+
+# Body with storage attachment reference
+# --WebAppBoundary
+# Content-Disposition: form-data; name="storageAttachments"
+
+# generated_images/bullRoastRunner.png
+# --WebAppBoundary--
+
 ### Read inbox - last 10 emails
 GET {{baseUrl}}/read-inbox?maxEmails=10
 
@@ -63,3 +85,37 @@ GET {{baseUrl}}/read-inbox?fromFilter=googleplay-noreply@google.com&dateAfter=20
 
 ### Read inbox - filter by specific message ID (replace with actual message ID)
 # GET {{baseUrl}}/read-inbox?messageId=<actual-message-id@mail.gmail.com>&maxEmails=1
+
+### Save draft email as reply (simple) - replace <actual-message-id@mail.gmail.com> with actual one from inbox
+#POST {{baseUrl}}/save-draft-email?toEmail=fake@test.test&subject=Your%20message&body=Thank%20you%20for%20your%20email&inReplyToMessageId=<actual-message-id@mail.gmail.com>
+
+### Save draft email as reply with attachments - 1) replace <actual-message-id@mail.gmail.com> with actual one in your inbox 2) replace generated_images/bullRoastRunner.png with actual file path on your system
+# POST {{baseUrl}}/save-draft-email
+# Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+# --WebAppBoundary
+# Content-Disposition: form-data; name="toEmail"
+
+# fake@test.test
+# --WebAppBoundary
+# Content-Disposition: form-data; name="subject"
+
+# Your inquiry
+# --WebAppBoundary
+# Content-Disposition: form-data; name="body"
+
+# Thank you for reaching out. Please see the attached documents.
+# --WebAppBoundary
+# Content-Disposition: form-data; name="inReplyToMessageId"
+
+# <actual-message-id@mail.gmail.com>
+# --WebAppBoundary
+# Content-Disposition: form-data; name="attachments"; filename="xyz_bookstore.webp"
+# Content-Type: image/webp
+
+# < ../../main/resources/images/xyz_bookstore.webp
+# --WebAppBoundary
+# Content-Disposition: form-data; name="storageAttachments"
+
+# generated_images/bullRoastRunner.png
+# --WebAppBoundary--

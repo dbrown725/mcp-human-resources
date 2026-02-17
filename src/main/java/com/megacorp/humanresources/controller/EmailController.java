@@ -25,9 +25,11 @@ public class EmailController {
             @RequestParam("toEmail") String toEmail,
             @RequestParam("subject") String subject,
             @RequestParam("body") String body,
-            @RequestParam(value = "attachments", required = false) List<MultipartFile> attachments) {
+            @RequestParam(value = "attachments", required = false) List<MultipartFile> attachments,
+            @RequestParam(value = "storageAttachments", required = false) List<String> storageAttachments,
+            @RequestParam(value = "inReplyToMessageId", required = false) String inReplyToMessageId) {
         try {
-            emailService.saveDraftEmail(toEmail, subject, body, attachments);
+            emailService.saveDraftEmail(toEmail, subject, body, attachments, storageAttachments, inReplyToMessageId);
             return ResponseEntity.ok("Draft saved.");
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to save draft.");
