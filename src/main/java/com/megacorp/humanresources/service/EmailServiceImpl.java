@@ -83,6 +83,15 @@ public class EmailServiceImpl implements EmailService {
                 Message originalMessage = emailHelper.retrieveOriginalMessage(inReplyToMessageId, inboxFolder);
                 if (originalMessage != null) {
                     emailBody = emailHelper.formatReplyBody(body, originalMessage);
+                    
+                    // Extract and include original email's attachment names
+                    List<String> originalAttachmentNames = emailHelper.extractAttachmentNames(originalMessage);
+                    if (originalAttachmentNames != null && !originalAttachmentNames.isEmpty()) {
+                        emailBody += "\n\n[Original email contained " + originalAttachmentNames.size() + 
+                                    " attachment(s): " + String.join(", ", originalAttachmentNames) + "]";
+                        logger.debug("Added original email attachment names to reply: {}", originalAttachmentNames);
+                    }
+                    
                     logger.debug("Successfully retrieved and quoted original message");
                 } else {
                     logger.warn("Could not retrieve original message with ID: {}", inReplyToMessageId);
