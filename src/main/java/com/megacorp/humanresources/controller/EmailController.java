@@ -70,5 +70,26 @@ public class EmailController {
                     .body("Failed to read inbox: " + ex.getMessage());
         }
     }
+    
+    /**
+     * Marks an email as read by setting the SEEN flag.
+     *
+     * @param messageId the Message-ID of the email to mark as read (required)
+     * @return success or error message
+     */
+    @PostMapping("/mark-email-read")
+    public ResponseEntity<String> markEmailAsRead(
+            @RequestParam("messageId") String messageId) {
+        try {
+            emailService.markEmailAsRead(messageId);
+            return ResponseEntity.ok("Email marked as read successfully.");
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Invalid request: " + ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to mark email as read: " + ex.getMessage());
+        }
+    }
 
 }

@@ -59,8 +59,8 @@ GET {{baseUrl}}/read-inbox?maxEmails=10
 ### Read inbox - unread only
 GET {{baseUrl}}/read-inbox?unreadOnly=true&maxEmails=10
 
-### Read inbox - filter by subject
-GET {{baseUrl}}/read-inbox?subjectFilter=Flashback%20Sunday!&maxEmails=20
+### Read inbox - filter by subject (replace Test attachments with actual subject text you want to filter by)
+GET {{baseUrl}}/read-inbox?subjectFilter=Test%20attachments&maxEmails=20
 
 ### Read inbox - filter by sender
 GET {{baseUrl}}/read-inbox?fromFilter=no-reply@accounts.google.com&maxEmails=20
@@ -119,3 +119,6 @@ GET {{baseUrl}}/read-inbox?fromFilter=googleplay-noreply@google.com&dateAfter=20
 
 # generated_images/bullRoastRunner.png
 # --WebAppBoundary--
+
+### Mark email as read - replace <actual-message-id@mail.gmail.com> with actual message ID from your inbox
+POST {{baseUrl}}/mark-email-read?messageId=<actual-message-id@mail.gmail.com>

@@ -10,4 +10,6 @@ public interface EmailService {
     List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, String toFilter, 
                                  String bodyFilter, String messageId, String dateAfter, String dateBefore, 
                                  Boolean isUnreadOnly) throws Exception;
+    
+    void markEmailAsRead(String messageId) throws Exception;
 }

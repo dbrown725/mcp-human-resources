@@ -282,4 +282,68 @@ public class EmailServiceImpl implements EmailService {
         return emailMessages;
     }
     
+    /**
+     * Marks an email as read by setting the SEEN flag.
+     *
+     * @param messageId the Message-ID of the email to mark as read
+     * @throws Exception if IMAP connection fails or message is not found
+     */
+    public void markEmailAsRead(String messageId) throws Exception {
+        logger.info("Marking email as read: messageId={}", messageId);
+        
+        if (messageId == null || messageId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Message ID cannot be null or empty");
+        }
+        
+        Session imapSession = emailHelper.getImapSession();
+        Store store = null;
+        Folder inbox = null;
+        
+        try {
+            // Connect to Gmail IMAP
+            store = imapSession.getStore("imap");
+            store.connect(IMAP_SERVER, emailAddress, emailPassword);
+            
+            // Open inbox folder in READ_WRITE mode to modify flags
+            inbox = store.getFolder("INBOX");
+            inbox.open(Folder.READ_WRITE);
+            
+            logger.info("Connected to inbox in READ_WRITE mode");
+            
+            // Search for the message by Message-ID
+            SearchTerm searchTerm = new MessageIDTerm(messageId);
+            Message[] messages = inbox.search(searchTerm);
+            
+            if (messages.length == 0) {
+                throw new Exception("Email not found with Message-ID: " + messageId);
+            }
+            
+            // Mark the message as read (set SEEN flag)
+            Message message = messages[0];
+            message.setFlag(Flags.Flag.SEEN, true);
+            
+            logger.info("Successfully marked email as read: {}", messageId);
+            
+        } catch (Exception e) {
+            logger.error("Error marking email as read: {}", e.getMessage());
+            throw e;
+        } finally {
+            // Clean up resources
+            try {
+                if (inbox != null && inbox.isOpen()) {
+                    inbox.close(true); // true to expunge deleted messages and save changes
+                }
+            } catch (Exception e) {
+                logger.error("Error closing inbox: {}", e.getMessage());
+            }
+            try {
+                if (store != null && store.isConnected()) {
+                    store.close();
+                }
+            } catch (Exception e) {
+                logger.error("Error closing store: {}", e.getMessage());
+            }
+        }
+    }
+    
 }
