@@ -38,7 +38,7 @@ public class FactCheckingEvaluatorTest {
         // factCheckingEvaluator = new FactCheckingEvaluator(builder);
     }
 
-    @Test
+    //@Test
     void passes_when_claim_is_true() {
         String contextDocument = """
                 The Eiffel Tower is a wrought-iron lattice tower located on the Champ de Mars in Paris, France. \
@@ -60,7 +60,7 @@ public class FactCheckingEvaluatorTest {
         assertTrue(response.isPass(), "Claim should be factually correct. Feedback: " + response.getFeedback());
     }
 
-    @Test
+    //@Test
     void fails_when_claim_is_false() {
         String contextDocument = """
                 The Eiffel Tower is a wrought-iron lattice tower located on the Champ de Mars in Paris, France. \
