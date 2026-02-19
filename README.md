@@ -20,6 +20,8 @@ cd mcp-human-resources
 export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
 ```
 
+**Note:** If using the convenience scripts (`start-run.sh` or `start-debug.sh`), you don't need to run this export command manually. Just edit the script files and set your API key there.<br>
+
 3. Setup Google Cloud Storage:
     Used as a guide: https://github.com/sohamkamani/java-gcp-examples/blob/main/src/main/java/com/sohamkamani/storage/App.java
     // https://www.youtube.com/watch?v=FXiV4WPQveY
@@ -27,10 +29,14 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     export GEMINI_PROJECT_ID=<YOUR_GEMINI_PROJECT_ID>
     export STORAGE_BUCKET_NAME=<YOUR_STORAGE_BUCKET_NAME>
     ```
+    
+**Note:** If using `start-run.sh` or `start-debug.sh`, set these values in the script files instead of exporting manually.<br><br>
 4. Needed for Nano Banana image generation
     ```bash
     export GEMINI_API_KEY=<YOUR_GEMINI_API_KEY>
     ```
+    
+**Note:** Set this in `start-run.sh` or `start-debug.sh` if using those scripts.<br><br>
 5. Setup Elastic Search:<br>
     Elastic Search MCP: https://github.com/elastic/mcp-server-elasticsearch<br><br>
     Install Elastic Search and Kibana: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana<br>
@@ -58,6 +64,8 @@ export GROQ_API_KEY=<YOUR_GROQ_API_KEY>
 export OPENROUTER_API_KEY=<YOUR_OPENROUTER_API_KEY>
 ```
 
+**Note:** Set these in `start-run.sh` or `start-debug.sh` for automatic configuration.<br>
+
 7.  Notes on Google Vertex AI<br>
         https://docs.spring.io/spring-ai/reference/api/chat/vertexai-gemini-chat.html<br>	
 		Including the following command run in the terminal that also starts the spring-boot app.<br>
@@ -70,16 +78,17 @@ export OPENROUTER_API_KEY=<YOUR_OPENROUTER_API_KEY>
 			In the browser when prompted choose my google user and then selected all access options.<br>
 			Terminal then showed: Credentials saved to file: [/home/davidbrown/.config/gcloud/application_default_credentials.json]<br>
 			First test resulted in an error and instructions with url link to resolve. I needed to follow the link and enable Vertex AI API<br><br>
-            If switching from current GROQ setup to Google Vertex AI you will have to make comment/uncomment changes to pom.xml and application.properties 
 
 
 8. Setup GMAIL access<br>
     Email configuration, currently only Save Draft functionality exists.<br>
-    Password in NOT your normal gmail password, the password needs to be an APP password: https://support.google.com/mail/answer/185833?hl=en
+    Password is NOT your normal gmail password, the password needs to be an APP password: https://support.google.com/mail/answer/185833?hl=en
     ```bash
     export GMAIL_EMAIL_ADDRESS=<GMAIL_ADDRESSS>
     export GMAIL_EMAIL__APP_PASSWORD=<GMAIL_APP_PASSWORD>
     ```
+    
+**Note:** Set these in `start-run.sh` or `start-debug.sh` - these scripts handle all environment variable configuration.<br>
 
 9. Setup log directory and file
 ```bash
@@ -106,19 +115,117 @@ sudo chmod -R 777 /var/log/mcp-human-resources
 
 12. Run a Maven Install<br>
 ```bash
-"/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/mvnw" install -f "/home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources/pom.xml"
+"./mvnw install"
 ```
 
 13. Start the server<br>
-Update run.sh with your JDK install location
+
+### Option A: Using the convenience scripts (Recommended for VS Code development)<br>
+
+The repository includes two convenience scripts that automatically set all required environment variables and start the server:
+
+#### Step 1: Make the scripts executable<br>
+
+Navigate to the project root directory and run:
+```bash
+cd /home/<YOUR_HOME_DIRECTORY>/Documents/projects/mcp-human-resources
+chmod +x start-run.sh
+chmod +x start-debug.sh
+```
+
+#### Step 2: Run the appropriate script<br>
+
+**For normal development:**<br>
+```bash
+./start-run.sh
+```
+
+**For debugging with VS Code breakpoints:**<br>
+```bash
+./start-debug.sh
+```
+
+The scripts automatically export all environment variables listed above (BRAVE_API_KEY, GEMINI_PROJECT_ID, STORAGE_BUCKET_NAME, GEMINI_API_KEY, GROQ_API_KEY, OPENROUTER_API_KEY, GMAIL_EMAIL_ADDRESS, GMAIL_EMAIL_APP_PASSWORD).
+
+**Important:** You need to edit `start-run.sh` and `start-debug.sh` to set your actual API keys and credentials before running them. Open each file and replace the placeholder values with your actual keys.
+
+#### Step 3: (Debug mode only) Attach VS Code debugger<br>
+
+When using `./start-debug.sh`, the server starts with remote debugging enabled on port 5005. To enable breakpoint debugging in VS Code:
+
+1. Ensure your `.vscode/launch.json` contains an attach configuration:
+```json
+{
+    "type": "java",
+    "name": "Attach to Debug Server (Port 5005)",
+    "request": "attach",
+    "hostName": "localhost",
+    "port": 5005,
+    "projectName": "humanresources"
+}
+```
+
+2. Open the **Run and Debug** panel in VS Code (`Ctrl+Shift+D` or `Cmd+Shift+D`)
+
+3. Select **"Attach to Debug Server (Port 5005)"** from the dropdown at the top
+
+4. Click the green play button (or press `F5`) to attach the debugger
+
+5. Set breakpoints in your Java files - they will now work!
+
+**Critical:** You must perform the "Attach to Debug Server" step **every time** you start the server with `./start-debug.sh`. If you don't attach the debugger, VS Code will ignore your breakpoints because it's not connected to the running Java process.
+
+**Understanding the difference:**
+- **"launch" configurations** in VS Code start a new Java process
+- **"attach" configurations** connect to an already-running Java process
+- The scripts use Maven to start the server externally, so you need "attach" mode to connect VS Code's debugger to that running process
+
+### Option B: Setting environment variables permanently
+
+If you don't want to use the scripts, you can set environment variables permanently in your shell configuration:
+
+**For bash users** (most Linux systems), add the export statements to `~/.bashrc`:
+```bash
+nano ~/.bashrc
+# Add all the export statements from start-run.sh or start-debug.sh
+# Save and exit (Ctrl+X, then Y, then Enter)
+source ~/.bashrc
+```
+
+**For zsh users** (default on macOS), add them to `~/.zshrc`:
+```bash
+nano ~/.zshrc
+# Add all the export statements from start-run.sh or start-debug.sh
+# Save and exit (Ctrl+X, then Y, then Enter)
+source ~/.zshrc
+```
+
+After setting up permanent environment variables, you can start the server directly with Maven:
+```bash
+./mvnw spring-boot:run
+```
+
+Or for debug mode:
+```bash
+./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+```
+
+### Option C: Using the original run.sh script
+
+Update run.sh with your JDK install location and environment variables, then run:
 ```bash
 ./run.sh
 ```
 
+## Additional Documentation
+
+- **[VS Code Setup and Tips](VSCODE_SETUP.md)** - Required extensions, debugging tips, and terminal navigation
+- **[Troubleshooting](TROUBLESHOOTING.md)** - Solutions for common issues with environment variables, permissions, and ports
+
 14. TESTS
 
     Run unit tests<br><br>
-        Navigate to project's root directory and run "mvn test"<br><br>
+        Navigate to project's root directory and run "./mvnw test"<br><br>
 
     Run HTTP API tests<br><br>
         **Recommended**: Use the `.http` files in `src/test/http/` directory<br>
