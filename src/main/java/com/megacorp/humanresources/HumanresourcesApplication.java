@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.BraveSearchService;
-import com.megacorp.humanresources.service.EmailService;
 import com.megacorp.humanresources.service.KeepAliveService;
 import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageGenerationService;

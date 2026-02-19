@@ -52,7 +52,13 @@ public class RagConfiguration {
     }
 
     private File getVectorStoreFile() {
-        Path path = Paths.get("src", "main", "resources", "data");
+        // Use user.dir to get the project root, not the current working directory
+        String projectRoot = System.getProperty("user.dir");
+        // If we're in the target directory (running from JAR), go up one level
+        if (projectRoot.endsWith("target")) {
+            projectRoot = new File(projectRoot).getParent();
+        }
+        Path path = Paths.get(projectRoot, "src", "main", "resources", "data");
         String absolutePath = path.toFile().getAbsolutePath() + "/" + vectorStoreName;
         return new File(absolutePath);
     }
