@@ -9,7 +9,8 @@ import org.springframework.ai.evaluation.EvaluationRequest;
 import org.springframework.ai.evaluation.EvaluationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.ollama.OllamaContainer;
@@ -24,11 +25,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FactCheckingEvaluatorTest {
 
     private static final String OLLAMA_IMAGE = "ollama/ollama:0.1.48";
+    private static final String MODEL_NAME = "llama3.2:1b";
 
-    // Boot will expose http://<host>:<mappedPort>
     @Container
-    @ServiceConnection(name = "spring.ai.ollama.base-url")
-    static final OllamaContainer ollama = new OllamaContainer(OLLAMA_IMAGE);
+    @SuppressWarnings("resource")
+    static OllamaContainer ollama = new OllamaContainer(OLLAMA_IMAGE).withReuse(true);
+    
+    @DynamicPropertySource
+    static void ollamaProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.ai.ollama.base-url", ollama::getEndpoint);
+        registry.add("spring.ai.ollama.chat.options.model", () -> MODEL_NAME);
+    }
 
     private FactCheckingEvaluator factCheckingEvaluator;
 
@@ -38,7 +45,7 @@ public class FactCheckingEvaluatorTest {
         // factCheckingEvaluator = new FactCheckingEvaluator(builder);
     }
 
-    //@Test
+    @Test
     void passes_when_claim_is_true() {
         String contextDocument = """
                 The Eiffel Tower is a wrought-iron lattice tower located on the Champ de Mars in Paris, France. \
@@ -60,7 +67,7 @@ public class FactCheckingEvaluatorTest {
         assertTrue(response.isPass(), "Claim should be factually correct. Feedback: " + response.getFeedback());
     }
 
-    //@Test
+    @Test
     void fails_when_claim_is_false() {
         String contextDocument = """
                 The Eiffel Tower is a wrought-iron lattice tower located on the Champ de Mars in Paris, France. \
