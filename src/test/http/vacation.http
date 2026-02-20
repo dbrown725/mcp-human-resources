@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:8081
+
+### Vacation plan - unstructured (Montreal default)
+GET {{baseUrl}}/vacation/unstructured
+
+### Vacation plan - structured (default: Cleveland, OH)
+GET {{baseUrl}}/vacation/structured
+
+### Vacation plan - structured (custom destination: Paris, France)
+GET {{baseUrl}}/vacation/structured?destination=Paris,%20France
+
+### Vacation plan - structured (New York City)
+GET {{baseUrl}}/vacation/structured?destination=New%20York%20City,%20NY
+
+### Vacation plan - structured (Tokyo, Japan)
+GET {{baseUrl}}/vacation/structured?destination=Tokyo,%20Japan

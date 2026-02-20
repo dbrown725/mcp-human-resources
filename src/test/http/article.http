@@ -1,0 +1,13 @@
+@baseUrl = http://localhost:8081
+
+### Generate blog post - default topic (JDK Virtual Threads)
+GET {{baseUrl}}/posts/new
+
+### Generate blog post - custom topic
+GET {{baseUrl}}/posts/new?topic=Artificial%20Intelligence%20in%20Healthcare
+
+### Generate blog post - Spring Boot 3
+GET {{baseUrl}}/posts/new?topic=Spring%20Boot%203%20Migration%20Guide
+
+### Generate blog post - Kubernetes
+GET {{baseUrl}}/posts/new?topic=Getting%20Started%20with%20Kubernetes
