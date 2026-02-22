@@ -12,6 +12,7 @@ import com.megacorp.humanresources.service.KeepAliveService;
 import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageGenerationService;
 import com.megacorp.humanresources.service.WeatherService;
+import com.megacorp.humanresources.service.EmailService;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -26,9 +27,9 @@ public class HumanresourcesApplication {
 	public ToolCallbackProvider availableTools(EmployeeService employeeService, BraveSearchService braveSearchService,
 			KeepAliveService keepAliveService, FileStorageService fileStorageService,
 			ImageGenerationService imageGenerationService,
-			WeatherService weatherService) {
+			WeatherService weatherService, EmailService emailService) {
 		return MethodToolCallbackProvider.builder().toolObjects(employeeService, braveSearchService, keepAliveService,
-				fileStorageService, imageGenerationService, weatherService).build();
+				fileStorageService, imageGenerationService, weatherService, emailService).build();
 	}
 
 	@Bean

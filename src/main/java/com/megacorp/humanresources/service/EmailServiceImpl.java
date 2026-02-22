@@ -11,6 +11,7 @@ import jakarta.mail.search.*;
 import jakarta.activation.DataHandler;
 import jakarta.mail.util.ByteArrayDataSource;
 import java.util.List;
+import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -202,6 +203,9 @@ public class EmailServiceImpl implements EmailService {
      * @return list of EmailMessage objects containing email details
      * @throws Exception if IMAP connection or message parsing fails
      */
+    @Tool(name = "readInbox", description = "Reads emails from the Gmail inbox with optional filtering by " +
+            "subject, sender, recipient, body content, date range, and read/unread status. Returns up to the specified " +
+            "maximum number of emails (default 50, max 500).")
     public List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, String toFilter, 
                                         String bodyFilter, String messageId, String dateAfter, String dateBefore, 
                                         Boolean isUnreadOnly) throws Exception {
@@ -288,6 +292,8 @@ public class EmailServiceImpl implements EmailService {
      * @param messageId the Message-ID of the email to mark as read
      * @throws Exception if IMAP connection fails or message is not found
      */
+    @Tool(name = "markEmailAsRead", description = "Marks a specific email as read by setting the SEEN flag. " +
+            "Requires the Message-ID of the email to mark as read.")
     public void markEmailAsRead(String messageId) throws Exception {
         logger.info("Marking email as read: messageId={}", messageId);
         
