@@ -44,7 +44,7 @@ public class FileStorageServiceImpl implements FileStorageService {
      * @return a message indicating the result of the upload operation
      */
     public String uploadFile(MultipartFile file){
-        logger.info("Entering uploadFile MultipartFile file method");
+        logger.debug("Entering uploadFile(MultipartFile) with originalFilename={}", file.getOriginalFilename());
 
         String fileName;
         byte[] fileContent;
@@ -58,8 +58,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             return errorMsg;
         }
         
-        logger.debug("File {} as {}", fileName, fileName);
-        logger.info("Exiting uploadFile MultipartFile file method");
+        logger.info("File uploaded successfully as {}", fileName);
         return "File " + fileName + " uploaded as " + fileName;
     }
 
@@ -71,7 +70,7 @@ public class FileStorageServiceImpl implements FileStorageService {
      * @return a message indicating the result of the upload operation
      */
     public String uploadFile(byte[] fileContent, String fileName) {
-        logger.info("Entering uploadFile(byte[], String) method");
+        logger.debug("Entering uploadFile(byte[], String) with fileName={} bytes={}", fileName, fileContent == null ? 0 : fileContent.length);
 
         try {
             storeFile(fileName, fileContent);
@@ -81,8 +80,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             return errorMsg;
         }
 
-        logger.debug("File {} uploaded as {}", fileName, fileName);
-        logger.info("Exiting uploadFile(byte[], String) method");
+        logger.info("File uploaded successfully as {}", fileName);
         return "File " + fileName + " uploaded as " + fileName;
     }
 
@@ -125,19 +123,18 @@ public class FileStorageServiceImpl implements FileStorageService {
      */
     @Override
     public byte[] retrieveFile(String fileName) {
-        logger.info("Entering retrieveFile method");
+        logger.debug("Entering retrieveFile with fileName={}", fileName);
 
         // Create a new GCS client and get the blob object from the blob ID
         Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
         BlobId blobId = BlobId.of(bucketName, fileName);
         Blob blob = storage.get(blobId);
         if (blob == null) {
-            logger.error("File {} does not exist in bucket {}", fileName, bucketName);
+            logger.warn("File {} does not exist in bucket {}", fileName, bucketName);
             return null;
         }
 
-        logger.debug("File {} downloaded from bucket {}, contents will be returned", fileName, bucketName);
-        logger.info("Exiting retrieveFile method");
+        logger.info("File retrieved successfully from bucket {} with fileName={}", bucketName, fileName);
         return blob.getContent();
     }
 
@@ -150,7 +147,7 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Tool(name = "storage_read_file", description = "Returns the contents of a file from Google Cloud Storage")
     @Override
     public String readFile(String fileName)  {
-        logger.info("Entering readFile method");
+        logger.debug("Entering readFile with fileName={}", fileName);
         // Create a new GCS client and get the blob object from the blob ID
         String contents = "";
         try {
@@ -158,7 +155,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             BlobId blobId = BlobId.of(bucketName, fileName);
             Blob blob = storage.get(blobId);
             if (blob == null) {
-                logger.error("File {} does not exist in bucket {}", fileName, bucketName);
+                logger.warn("File {} does not exist in bucket {}", fileName, bucketName);
                 return "File not found";
             }
 
@@ -167,9 +164,9 @@ public class FileStorageServiceImpl implements FileStorageService {
             logger.debug("Contents of file {}: {}", fileName, contents);
         } catch (Exception e) {
             contents = "Exception occurred: " + e.getMessage();
+            logger.error("Exception occurred while reading file {}", fileName, e);
         }
-        logger.debug("Contents of file {}: {}", fileName, contents);
-        logger.info("Exiting readFile method");
+        logger.info("Read file request completed for fileName={}", fileName);
         return contents;
     }
 
@@ -182,7 +179,7 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Tool(name = "storage_delete_file", description = "Deletes a file from Google Cloud Storage")
     @Override
     public String deleteFile(String fileName) {
-        logger.info("Entering deleteFile method");
+        logger.debug("Entering deleteFile with fileName={}", fileName);
         // Create a new GCS client and get the blob object from the blob ID
         try {
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
@@ -190,18 +187,18 @@ public class FileStorageServiceImpl implements FileStorageService {
             Blob blob = storage.get(blobId);
 
             if (blob == null) {
-                logger.error("File {} does not exist in bucket {}", fileName, bucketName);
+                logger.warn("File {} does not exist in bucket {}", fileName, bucketName);
                 return "File not found";
             }
 
             // delete the file and print the status
             blob.delete();
         } catch (Exception e) {
-            logger.error("Exception occurred while deleting file: {}", e.getMessage());
+            logger.error("Exception occurred while deleting file {}", fileName, e);
             return "Exception occurred: " + e.getMessage();
         }
         
-        logger.info("Exiting deleteFile method");
+        logger.info("File deleted successfully for fileName={}", fileName);
         return "File " + fileName + " deleted from bucket " + bucketName;
     }
 
@@ -219,7 +216,7 @@ public class FileStorageServiceImpl implements FileStorageService {
     )
     @Override
     public List<String> listFiles(String prefix) {
-        logger.info("Entering listFiles method");
+        logger.debug("Entering listFiles with prefix={}", prefix);
 
         List<String> fileNames = new ArrayList<>();
         try {
@@ -235,10 +232,10 @@ public class FileStorageServiceImpl implements FileStorageService {
                 fileNames.add(blob.getName());
             }
         } catch (Exception e) {
-            logger.error("Exception occurred while listing files: {}", e.getMessage());
+            logger.error("Exception occurred while listing files for prefix={}", prefix, e);
             throw e;
         }
-        logger.info("Exiting listFiles method");
+        logger.info("Listed {} files for prefix={}", fileNames.size(), prefix);
         return fileNames;
     }
 
@@ -250,7 +247,7 @@ public class FileStorageServiceImpl implements FileStorageService {
      */
     @Tool(name = "storage_list_file_urls", description = "Returns a list of public URLs for all files in a given folder in the GCS bucket")
     public List<String> listFileUrlsInFolder(String folderName) {
-        logger.info("Entering listFileUrlsInFolder method for folder: {}", folderName);
+        logger.debug("Entering listFileUrlsInFolder with folderName={}", folderName);
         List<String> urls = new ArrayList<>();
         try {
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
@@ -263,17 +260,17 @@ public class FileStorageServiceImpl implements FileStorageService {
                 }
             }
         } catch (Exception e) {
-            logger.error("Exception occurred while listing file URLs: {}", e.getMessage());
+            logger.error("Exception occurred while listing file URLs for folderName={}", folderName, e);
             throw e;
         }
-        logger.info("Exiting listFileUrlsInFolder method");
+        logger.info("Listed {} file URLs for folderName={}", urls.size(), folderName);
         return urls;
     }
 
     public Resource getResourceFromGcsUrl(String gcsUrl) {
-        logger.info("Entering getResourceFromGcsUrl method with URL: {}", gcsUrl);
+        logger.debug("Entering getResourceFromGcsUrl with url={}", gcsUrl);
         if (gcsUrl == null) {
-            logger.error("Null URL provided");
+            logger.warn("Null URL provided to getResourceFromGcsUrl");
             return null;
         }
         try {
@@ -284,7 +281,7 @@ public class FileStorageServiceImpl implements FileStorageService {
                 String withoutPrefix = gcsUrl.substring(5); // remove "gs://"
                 int slashIndex = withoutPrefix.indexOf('/');
                 if (slashIndex < 0) {
-                    logger.error("GCS URL missing object name: {}", gcsUrl);
+                    logger.warn("GCS URL missing object name: {}", gcsUrl);
                     return null;
                 }
                 bucket = withoutPrefix.substring(0, slashIndex);
@@ -293,27 +290,27 @@ public class FileStorageServiceImpl implements FileStorageService {
                 String withoutPrefix = gcsUrl.substring("https://storage.googleapis.com/".length());
                 int slashIndex = withoutPrefix.indexOf('/');
                 if (slashIndex < 0) {
-                    logger.error("HTTP URL missing object name: {}", gcsUrl);
+                    logger.warn("HTTP URL missing object name: {}", gcsUrl);
                     return null;
                 }
                 bucket = withoutPrefix.substring(0, slashIndex);
                 objectName = withoutPrefix.substring(slashIndex + 1);
             } else {
-                logger.error("Invalid GCS or HTTP URL: {}", gcsUrl);
+                logger.warn("Invalid GCS or HTTP URL: {}", gcsUrl);
                 return null;
             }
 
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
             Blob blob = storage.get(BlobId.of(bucket, objectName));
             if (blob == null) {
-                logger.error("Blob not found for URL: {}", gcsUrl);
+                logger.warn("Blob not found for URL: {}", gcsUrl);
                 return null;
             }
             byte[] content = blob.getContent();
-            logger.info("Exiting getResourceFromGcsUrl method");
+            logger.info("Loaded resource successfully from url={}", gcsUrl);
             return new ByteArrayResource(content);
         } catch (Exception e) {
-            logger.error("Exception in getResourceFromGcsUrl: {}", e.getMessage());
+            logger.error("Exception in getResourceFromGcsUrl for url={}", gcsUrl, e);
             return null;
         }
     }

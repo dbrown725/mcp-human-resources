@@ -51,6 +51,12 @@ public class EmailServiceImpl implements EmailService {
      * @throws Exception if message creation, attachment handling, or IMAP operations fail
      */
     public void saveDraftEmail(String toEmail, String subject, String body, List<MultipartFile> attachments, List<String> storageAttachments, String inReplyToMessageId) throws Exception {
+        logger.debug("Entering saveDraftEmail with toEmail={} subject={} attachmentsCount={} storageAttachmentsCount={} hasReplyTo={}",
+            toEmail,
+            subject,
+            attachments == null ? 0 : attachments.size(),
+            storageAttachments == null ? 0 : storageAttachments.size(),
+            inReplyToMessageId != null && !inReplyToMessageId.trim().isEmpty());
         MimeMessage message = new MimeMessage(emailHelper.getSmtpSession());
         message.setFrom(new InternetAddress(emailAddress));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
@@ -98,7 +104,7 @@ public class EmailServiceImpl implements EmailService {
                     logger.warn("Could not retrieve original message with ID: {}", inReplyToMessageId);
                 }
             } catch (Exception e) {
-                logger.error("Error retrieving original message: {}", e.getMessage());
+                logger.error("Error retrieving original message for inReplyToMessageId={}", inReplyToMessageId, e);
                 // Continue with reply without quoted content
             } finally {
                 // Close inbox folder after we're done with the message
@@ -107,14 +113,14 @@ public class EmailServiceImpl implements EmailService {
                         inboxFolder.close(false);
                     }
                 } catch (Exception e) {
-                    logger.error("Error closing inbox folder: {}", e.getMessage());
+                    logger.warn("Error closing inbox folder", e);
                 }
                 try {
                     if (inboxStore != null && inboxStore.isConnected()) {
                         inboxStore.close();
                     }
                 } catch (Exception e) {
-                    logger.error("Error closing inbox store: {}", e.getMessage());
+                    logger.warn("Error closing inbox store", e);
                 }
             }
             
@@ -128,7 +134,9 @@ public class EmailServiceImpl implements EmailService {
         textPart.setText(emailBody, "utf-8");
         multipart.addBodyPart(textPart);
 
-        logger.info("In saveDraft multipart files: {}, storage files: {}", attachments, storageAttachments);
+        logger.debug("Preparing draft attachments with multipartCount={} storageCount={}",
+            attachments == null ? 0 : attachments.size(),
+            storageAttachments == null ? 0 : storageAttachments.size());
 
         // Add MultipartFile attachments
         if (attachments != null) {
@@ -186,6 +194,7 @@ public class EmailServiceImpl implements EmailService {
         drafts.appendMessages(new Message[]{message});
         drafts.close(false);
         store.close();
+        logger.info("Email draft saved successfully for toEmail={} subject={}", toEmail, subject);
     }
     
     /**
@@ -209,7 +218,7 @@ public class EmailServiceImpl implements EmailService {
     public List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, String toFilter, 
                                         String bodyFilter, String messageId, String dateAfter, String dateBefore, 
                                         Boolean isUnreadOnly) throws Exception {
-        logger.info("Reading inbox: maxEmails={}, subjectFilter={}, fromFilter={}, toFilter={}, bodyFilter={}, messageId={}, dateAfter={}, dateBefore={}, unreadOnly={}", 
+        logger.debug("Entering readInbox with maxEmails={}, subjectFilter={}, fromFilter={}, toFilter={}, bodyFilter={}, messageId={}, dateAfter={}, dateBefore={}, unreadOnly={}", 
                     maxEmails, subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, isUnreadOnly);
         
         // Set default and validate maxEmails
@@ -263,7 +272,7 @@ public class EmailServiceImpl implements EmailService {
             logger.info("Successfully processed {} email messages", emailMessages.size());
             
         } catch (Exception e) {
-            logger.error("Error reading inbox: {}", e.getMessage());
+            logger.error("Error reading inbox", e);
             throw e;
         } finally {
             // Clean up resources - ensure folder is closed after all processing is complete
@@ -272,14 +281,14 @@ public class EmailServiceImpl implements EmailService {
                     inbox.close(false);
                 }
             } catch (Exception e) {
-                logger.error("Error closing inbox: {}", e.getMessage());
+                logger.warn("Error closing inbox", e);
             }
             try {
                 if (store != null && store.isConnected()) {
                     store.close();
                 }
             } catch (Exception e) {
-                logger.error("Error closing store: {}", e.getMessage());
+                logger.warn("Error closing store", e);
             }
         }
         
@@ -295,7 +304,7 @@ public class EmailServiceImpl implements EmailService {
     @Tool(name = "markEmailAsRead", description = "Marks a specific email as read by setting the SEEN flag. " +
             "Requires the Message-ID of the email to mark as read.")
     public void markEmailAsRead(String messageId) throws Exception {
-        logger.info("Marking email as read: messageId={}", messageId);
+        logger.debug("Entering markEmailAsRead with messageId={}", messageId);
         
         if (messageId == null || messageId.trim().isEmpty()) {
             throw new IllegalArgumentException("Message ID cannot be null or empty");
@@ -314,7 +323,7 @@ public class EmailServiceImpl implements EmailService {
             inbox = store.getFolder("INBOX");
             inbox.open(Folder.READ_WRITE);
             
-            logger.info("Connected to inbox in READ_WRITE mode");
+            logger.debug("Connected to inbox in READ_WRITE mode");
             
             // Search for the message by Message-ID
             SearchTerm searchTerm = new MessageIDTerm(messageId);
@@ -331,7 +340,7 @@ public class EmailServiceImpl implements EmailService {
             logger.info("Successfully marked email as read: {}", messageId);
             
         } catch (Exception e) {
-            logger.error("Error marking email as read: {}", e.getMessage());
+            logger.error("Error marking email as read for messageId={}", messageId, e);
             throw e;
         } finally {
             // Clean up resources
@@ -340,14 +349,14 @@ public class EmailServiceImpl implements EmailService {
                     inbox.close(true); // true to expunge deleted messages and save changes
                 }
             } catch (Exception e) {
-                logger.error("Error closing inbox: {}", e.getMessage());
+                logger.warn("Error closing inbox", e);
             }
             try {
                 if (store != null && store.isConnected()) {
                     store.close();
                 }
             } catch (Exception e) {
-                logger.error("Error closing store: {}", e.getMessage());
+                logger.warn("Error closing store", e);
             }
         }
     }

@@ -3,6 +3,8 @@ package com.megacorp.humanresources.service;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import com.megacorp.humanresources.advisors.SelfRefineEvaluationAdvisor;
 
 @Service
 public class EmployeeOnboardingServiceImpl implements EmployeeOnboardingService {
+
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeOnboardingServiceImpl.class);
 
     private final ChatModel secondaryChatModel;
 
@@ -27,6 +31,7 @@ public class EmployeeOnboardingServiceImpl implements EmployeeOnboardingService 
 
     @Override
     public String generateWelcomeMessage(String employeeName, String position, String startDate) {
+		logger.debug("Entering generateWelcomeMessage with employeeName={} position={} startDate={}", employeeName, position, startDate);
         String prompt = String.format("Generate a warm and engaging welcome message for a new employee named %s who is joining as a %s starting on %s. The message should highlight the company's values and culture, and encourage the new hire to feel excited about their new role.", 
             employeeName, position, startDate);
             
@@ -51,7 +56,7 @@ public class EmployeeOnboardingServiceImpl implements EmployeeOnboardingService 
 
 				// @formatter:on
 
-			System.out.println(answer);
+			logger.info("Generated onboarding welcome message for employeeName={}", employeeName);
 
         return answer;
     }

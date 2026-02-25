@@ -2,6 +2,8 @@ package com.megacorp.humanresources.service;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeType;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @Service
 public class ImageSummaryServiceImpl implements ImageSummaryService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ImageSummaryServiceImpl.class);
+
     private final ChatClient chatClient;
     private final FileStorageService fileStorageService;
 
@@ -23,8 +27,10 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
 
     @Override
     public List<String> summarizeImagesInFolder(String folderName) throws IOException {
+        logger.debug("Entering summarizeImagesInFolder with folderName={}", folderName);
         List<String> urls = fileStorageService.listFileUrlsInFolder(folderName);
         if (urls == null || urls.isEmpty()) {
+            logger.warn("No image URLs found in folder={}", folderName);
             return Collections.emptyList();
         }
 
@@ -42,6 +48,7 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
         }
 
         if (resources.isEmpty()) {
+            logger.warn("No image resources could be resolved for folder={}", folderName);
             return Collections.emptyList();
         }
 
@@ -66,11 +73,14 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
             }
         }
 
+        logger.info("Generated {} image summaries for folder={}", result.size(), folderName);
+
         return result;
     }
 
     @Override
     public String generateExpenseReportFromImages(String folderName) throws IOException {
+        logger.debug("Entering generateExpenseReportFromImages with folderName={}", folderName);
         java.util.List<String> result = summarizeImagesInFolder(folderName);
         String csvTemplateHeaders = "Receipt_ID,Receipt_Date,Due_Date,Vendor,Purchaser,Recipient,Payment_Method,Subtotal,Tax_Rate,Tax_Amount,Total_Amount,Currency,Line_Item_Description,Line_Item_Quantity,Line_Item_Unit_Price,Line_Item_Total,Notes";
 
@@ -86,10 +96,13 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
         byte[] csvBytes = csvResponse.getBytes();
         String csvFileName = folderName + "/expense_report.csv";
         
-        return "Generated File. " + fileStorageService.uploadFile(csvBytes, csvFileName);
+        String uploadResponse = fileStorageService.uploadFile(csvBytes, csvFileName);
+        logger.info("Generated expense report CSV for folder={} as fileName={}", folderName, csvFileName);
+        return "Generated File. " + uploadResponse;
     }
 
     private String resolveMimeType(String filename) {
+        logger.trace("Resolving mime type for filename={}", filename);
         String mimeType = "";
         if (filename != null) {
             String ext = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
@@ -113,8 +126,11 @@ public class ImageSummaryServiceImpl implements ImageSummaryService {
                 case "heif":
                     mimeType = "image/heif";
                     break;
+                default:
+                    logger.warn("Unsupported file extension while resolving mime type: {}", ext);
             }
         }
+        logger.trace("Resolved mime type {} for filename={}", mimeType, filename);
         return mimeType;
     }
 

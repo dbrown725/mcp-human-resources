@@ -15,9 +15,10 @@ public class KeepAliveServiceImpl implements KeepAliveService {
 		description = "Returns a keep alive response."
 	)
     public String keepAlive() {
-        logger.info("Enter keepAlive()");
+        logger.debug("Entering keepAlive");
         // This method can be used to perform a simple operation to keep the service alive.
         // For example, returning a simple message or performing a lightweight operation.
+        logger.info("Keep-alive request processed successfully");
         return "KEEP_ALIVE_RESPONSE";
     }
     

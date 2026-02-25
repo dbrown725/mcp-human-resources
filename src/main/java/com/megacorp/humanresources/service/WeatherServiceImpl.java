@@ -2,6 +2,8 @@ package com.megacorp.humanresources.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
+
+    private static final Logger logger = LoggerFactory.getLogger(WeatherServiceImpl.class);
 
     private static final String BASE_URL = "https://api.weather.gov";
     private final RestClient restClient;
@@ -75,6 +79,7 @@ public class WeatherServiceImpl implements WeatherService {
      */
     @Tool(description = "Get weather forecast for a specific latitude/longitude")
     public String getWeatherForecastByLocation(double latitude, double longitude) {
+        logger.debug("Entering getWeatherForecastByLocation with latitude={} longitude={}", latitude, longitude);
 
         var points = restClient.get()
                 .uri("/points/{latitude},{longitude}", latitude, longitude)
@@ -93,6 +98,8 @@ public class WeatherServiceImpl implements WeatherService {
                     p.detailedForecast());
         }).collect(Collectors.joining());
 
+        logger.info("Weather forecast generated successfully for latitude={} longitude={}", latitude, longitude);
+
         return forecastText;
     }
 
@@ -104,9 +111,15 @@ public class WeatherServiceImpl implements WeatherService {
      */
     @Tool(description = "Get weather alerts for a US state. Input is Two-letter US state code (e.g. CA, NY)")
     public String getAlerts(@ToolParam( description =  "Two-letter US state code (e.g. CA, NY") String state) {
+        logger.debug("Entering getAlerts with state={}", state);
         Alert alert = restClient.get().uri("/alerts/active/area/{state}", state).retrieve().body(Alert.class);
 
-        return alert.features()
+        if (alert == null || alert.features() == null || alert.features().isEmpty()) {
+            logger.warn("No active weather alerts found for state={}", state);
+            return "No active weather alerts found for state " + state;
+        }
+
+        String alerts = alert.features()
                 .stream()
                 .map(f -> String.format("""
 					Event: %s
@@ -117,6 +130,8 @@ public class WeatherServiceImpl implements WeatherService {
 					""", f.properties().event(), f.properties.areaDesc(), f.properties.severity(),
                         f.properties.description(), f.properties.instruction()))
                 .collect(Collectors.joining("\n"));
+        logger.info("Weather alerts generated successfully for state={}", state);
+        return alerts;
     }
 
 }

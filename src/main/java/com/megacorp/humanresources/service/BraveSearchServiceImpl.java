@@ -26,6 +26,7 @@ public class BraveSearchServiceImpl implements BraveSearchService {
 
     @Tool(name = "braveSearch", description = "Searches Brave Search for information and extracts entities.")
     public BraveSearchApiResponse braveSearch(String query) {
+        log.debug("Entering braveSearch with query={}", query);
 
         String apiUrl = "https://api.search.brave.com/res/v1/web/search?q=" + query + "&entity=true";
 
@@ -39,9 +40,12 @@ public class BraveSearchServiceImpl implements BraveSearchService {
         try {
             response = restTemplate.exchange(apiUrl, org.springframework.http.HttpMethod.GET,
                     requestEntity, BraveSearchApiResponse.class).getBody();
+            int resultCount = response != null && response.getWeb() != null && response.getWeb().getResults() != null
+                    ? response.getWeb().getResults().size()
+                    : 0;
+            log.info("Brave search completed successfully with {} results", resultCount);
         } catch (Exception e) {
-            System.out.println("Exception during Brave Search API call: " + e.getMessage());
-            e.printStackTrace();
+            log.error("Brave search call failed for query={}", query, e);
             throw e;
         }
 

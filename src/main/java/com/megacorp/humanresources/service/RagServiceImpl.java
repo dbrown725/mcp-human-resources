@@ -8,6 +8,8 @@ import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.elasticsearch.ElasticsearchVectorStore;
 import org.springframework.core.io.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 
 @Service
 class RagServiceImpl implements RagService {
+
+    private static final Logger logger = LoggerFactory.getLogger(RagServiceImpl.class);
 
     private final ElasticsearchVectorStore vectorStore;
 
@@ -27,23 +31,29 @@ class RagServiceImpl implements RagService {
     }
 
     public void ingest(Resource path) {
+        logger.debug("Entering ingest with resource={}", path);
         PagePdfDocumentReader pdfReader = new PagePdfDocumentReader(path);
         List<Document> batch = new TokenTextSplitter().apply(pdfReader.read());
         vectorStore.add(batch);
+        logger.info("RAG ingest completed with {} document chunks", batch.size());
     }
 
 
     public String advisedRag(String question) {
-        return this.ai
+        logger.debug("Entering advisedRag with question={}", question);
+        String response = this.ai
                 .prompt()
                 .user(question)
                 .advisors(QuestionAnswerAdvisor.builder(vectorStore).build())
                 .call()
                 .content();
+        logger.info("RAG advised query completed successfully");
+        return response;
     }
 
 
     public String directRag(String question) {
+        logger.debug("Entering directRag with question={}", question);
         // Query the vector store for documents related to the question
         List<Document> vectorStoreResult =
                 vectorStore.doSimilaritySearch(SearchRequest.builder().query(question).topK(5)
@@ -56,6 +66,7 @@ class RagServiceImpl implements RagService {
 
         // Exit if the vector search didn't find any results
         if (documents.isEmpty()) {
+            logger.warn("No relevant context found for directRag question={}", question);
             return "No relevant context found. Please change your question.";
         }
 
@@ -79,6 +90,8 @@ class RagServiceImpl implements RagService {
                 .user(prompt)
                 .call()
                 .content();
+
+        logger.info("RAG direct query completed successfully with {} matching documents", vectorStoreResult.size());
 
         return response +
                 System.lineSeparator() +

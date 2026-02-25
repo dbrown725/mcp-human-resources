@@ -61,8 +61,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Tool(name = "save_employee", description = "Creates a new employee based on the passed employee object.")
 	@Override
 	public Employee saveEmployee(Employee employee) {
+		logger.debug("Entering saveEmployee with firstName={} lastName={}", employee.getFirstName(), employee.getLastName());
 		employee.setEmployeeId(null);
-		return employeeRepository.save(employee);
+		Employee savedEmployee = employeeRepository.save(employee);
+		logger.info("Employee saved successfully with employeeId={}", savedEmployee.getEmployeeId());
+		return savedEmployee;
 	}
 
 	/**
@@ -74,7 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Tool(name = "save_employee_with_name", description = "Creates a new employee using the provided first name and last name.")
 	public Employee saveEmployeeByName(String firstName, String lastName) {
-		logger.info("Enter saveEmployeeByName(String firstName, String lastName)");
+		logger.debug("Entering saveEmployeeByName");
 		logger.debug("saveEmployeeByName inputs - firstName: {}, lastName: {}", firstName, lastName);
 		Employee employee = new Employee(firstName, lastName);
 		try {
@@ -82,8 +85,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		} catch (Exception e) {
 			logger.error("Error parsing hire date", e);
 		}
-		logger.info("Exit saveEmployeeByName(String firstName, String lastName)");
-		return employeeRepository.save(employee);
+		Employee savedEmployee = employeeRepository.save(employee);
+		logger.info("Employee saved successfully with employeeId={}", savedEmployee.getEmployeeId());
+		return savedEmployee;
 	}
 
 	/**
@@ -140,7 +144,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Long annualSalary
 	)
 	{
-		logger.info("Enter updateEmployee("
+		logger.debug("Entering updateEmployee("
 			+ "employeeId={}, firstName={}, lastName={}, age={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={},\n"
 			+ "managerId={}, hireDate={}, annualSalary={})",
 			employeeId, firstName, lastName, age, department, title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary);
@@ -184,7 +188,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				
 		employeeRepository.save(employee);
 
-		logger.info("Exit updateEmployee with updated employee: {}", employee.toString());
+		logger.info("Employee updated successfully with employeeId={}", employee.getEmployeeId());
 		return employee;
 	}
 
@@ -198,8 +202,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Tool(name = "get_employee_with_id", description = "Get a single employee by ID")
 	public Employee getEmployeeById(Long employeeId) {
-		logger.info("Enter/Exit getEmployeeById(Long employeeId)");
-		return employeeRepository.findById(employeeId).get();
+		logger.debug("Entering getEmployeeById with employeeId={}", employeeId);
+		Employee employee = employeeRepository.findById(employeeId).get();
+		logger.info("Employee retrieved successfully with employeeId={}", employeeId);
+		return employee;
 	}
 
 	/**
@@ -210,10 +216,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Tool(name = "delete_employee_with_id", description = "Delete a single employee by ID")
 	public void deleteEmployeeById(Long employeeId) {
-		logger.info("Enter/exit deleteEmployeeById(Long employeeId)");
+		logger.debug("Entering deleteEmployeeById");
 		logger.debug("deleteEmployeeById input - employeeId: {}", employeeId);
-		logger.info("Exit deleteEmployeeById(Long employeeId)");
 		employeeRepository.deleteById(employeeId);
+		logger.info("Employee deleted successfully with employeeId={}", employeeId);
 	}
 
 	/**
@@ -223,9 +229,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Tool(name = "fetch_employee_list", description = "Get a list of all employees")
 	public List<Employee> fetchEmployeeList() {
-		logger.info("Enter fetchEmployeeList()");
+		logger.debug("Entering fetchEmployeeList");
 		List<Employee> employeesList = (List<Employee>) employeeRepository.findAll();
-		logger.info("Exit fetchEmployeeList()");
+		logger.info("Fetched {} employees", employeesList.size());
 		return employeesList;
 	}
 	
@@ -282,7 +288,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) String sortDirection
 	)
 	{
-		logger.info("Enter searchEmployees("
+		logger.debug("Entering searchEmployees("
 			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
 		
@@ -335,6 +341,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(response);
 			logger.debug("searchEmployees result JSON: {}", json);
+			logger.info("Employee search completed successfully with {} results", result.getNumberOfElements());
 			return json;
 		} catch (Exception e) {
 			logger.error("Error serializing search result to JSON", e);
@@ -381,7 +388,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Date hireDateLast,
 		@ToolParam(required = false) Long annualSalary
 	) {
-		logger.info("Enter countEmployees("
+		logger.debug("Entering countEmployees("
 			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={})",
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary);
 
@@ -392,7 +399,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		long count = employeeRepository.count(spec);
 
-		logger.info("Exit countEmployees with count: {}", count);
+		logger.info("Employee count completed with count={}", count);
 		return new EmployeeCount(Long.valueOf(count));
 	}
 

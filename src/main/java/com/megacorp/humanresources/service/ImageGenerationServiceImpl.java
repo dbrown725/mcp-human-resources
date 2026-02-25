@@ -51,7 +51,7 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
         description = "Generates an image from a prompt using Gemini API and uploads it to GCS. Optionally, input images can be provided via 'optionalInputImageNames' array to guide the generation."
     )
     public String generateImage(String prompt, String[] optionalInputImageNames, String outputImageRootName) throws IOException {
-        logger.info("generateImage called with prompt: '{}', optionalInputImageNames: '{}', outputImageRootName: '{}'",
+        logger.debug("Entering generateImage with prompt='{}', optionalInputImageNames='{}', outputImageRootName='{}'",
             prompt,
             optionalInputImageNames != null ? String.join(", ", optionalInputImageNames) : "null",
             outputImageRootName
@@ -92,7 +92,7 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
 
             for (Part part : response.parts()) {
                 if (part.text().isPresent()) {
-                    logger.info(part.text().get());
+                    logger.trace("Image generation text part: {}", part.text().get());
                 } else if (part.inlineData().isPresent()) {
                     var blob = part.inlineData().get();
                     if (blob.data().isPresent()) {
@@ -101,6 +101,7 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
 
                         String gcsImageName = "generated_images/" + outputImageFileName;
                         fileStorageService.uploadFile(responseImageBytes, gcsImageName);
+                        logger.info("Image generation completed successfully, saved as {}", gcsImageName);
                         return "Image saved to GCS as " + gcsImageName;
                     }
                 }
@@ -108,6 +109,7 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
 
         }
 
+        logger.warn("Image generation completed without inline image data for outputImageRootName={}", outputImageRootName);
         return "Image generation failed.";
     }
 }
