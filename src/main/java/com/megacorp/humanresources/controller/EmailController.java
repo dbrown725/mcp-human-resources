@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import com.megacorp.humanresources.service.EmailService;
@@ -15,6 +17,8 @@ import com.megacorp.humanresources.model.EmailMessage;
 
 @RestController
 public class EmailController {
+
+    private static final Logger log = LoggerFactory.getLogger(EmailController.class);
 
     @Autowired
 	private EmailService emailService;
@@ -28,10 +32,18 @@ public class EmailController {
             @RequestParam(value = "attachments", required = false) List<MultipartFile> attachments,
             @RequestParam(value = "storageAttachments", required = false) List<String> storageAttachments,
             @RequestParam(value = "inReplyToMessageId", required = false) String inReplyToMessageId) {
+        log.debug("Entering saveDraft with toEmail={} subject={} attachmentsCount={} storageAttachmentsCount={} hasReplyTo={}",
+                toEmail,
+                subject,
+                attachments == null ? 0 : attachments.size(),
+                storageAttachments == null ? 0 : storageAttachments.size(),
+                inReplyToMessageId != null);
         try {
             emailService.saveDraftEmail(toEmail, subject, body, attachments, storageAttachments, inReplyToMessageId);
+            log.info("Email draft saved for toEmail={} subject={}", toEmail, subject);
             return ResponseEntity.ok("Draft saved.");
         } catch (Exception ex) {
+            log.error("Failed to save draft email for toEmail={} subject={}", toEmail, subject, ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to save draft.");
         }
     }
@@ -61,11 +73,15 @@ public class EmailController {
             @RequestParam(value = "dateAfter", required = false) String dateAfter,
             @RequestParam(value = "dateBefore", required = false) String dateBefore,
             @RequestParam(value = "unreadOnly", required = false) Boolean unreadOnly) {
+        log.debug("Entering readInbox with maxEmails={} subjectFilter={} fromFilter={} toFilter={} unreadOnly={} messageId={} dateAfter={} dateBefore={}",
+                maxEmails, subjectFilter, fromFilter, toFilter, unreadOnly, messageId, dateAfter, dateBefore);
         try {
             List<EmailMessage> emails = emailService.readInbox(maxEmails, subjectFilter, fromFilter, toFilter, 
                                                               bodyFilter, messageId, dateAfter, dateBefore, unreadOnly);
+            log.info("Read inbox request completed with {} messages", emails.size());
             return ResponseEntity.ok(emails);
         } catch (Exception ex) {
+            log.error("Failed to read inbox", ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to read inbox: " + ex.getMessage());
         }
@@ -80,13 +96,17 @@ public class EmailController {
     @PostMapping("/mark-email-read")
     public ResponseEntity<String> markEmailAsRead(
             @RequestParam("messageId") String messageId) {
+        log.debug("Entering markEmailAsRead with messageId={}", messageId);
         try {
             emailService.markEmailAsRead(messageId);
+            log.info("Marked email as read for messageId={}", messageId);
             return ResponseEntity.ok("Email marked as read successfully.");
         } catch (IllegalArgumentException ex) {
+            log.warn("Invalid markEmailAsRead request for messageId={}: {}", messageId, ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Invalid request: " + ex.getMessage());
         } catch (Exception ex) {
+            log.error("Failed to mark email as read for messageId={}", messageId, ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to mark email as read: " + ex.getMessage());
         }

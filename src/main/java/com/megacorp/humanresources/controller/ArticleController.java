@@ -5,10 +5,14 @@ import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class ArticleController {
     // https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/prompt/ArticleController.java
+
+    private static final Logger log = LoggerFactory.getLogger(ArticleController.class);
 
     private final ChatClient chatClient;
 
@@ -18,6 +22,7 @@ public class ArticleController {
 
     @GetMapping("/posts/new")
     public String newPost(@RequestParam(value = "topic", defaultValue = "JDK Virtual Threads") String topic) {
+        log.debug("Entering newPost with topic={}", topic);
 
         // A system message in LLMs is a special type of input that provides high-level instructions, context, or behavioral
         // guidelines to the model before it processes user queries. Think of it as the "behind-the-scenes"
@@ -47,7 +52,7 @@ public class ArticleController {
                 5. Response Format: Deliver complete, ready-to-publish posts with a suggested title.
                 """;
 
-        return chatClient.prompt()
+        String generatedPost = chatClient.prompt()
                 .system(system)
                 .user(u -> {
                     u.text("Write me a blog post about {topic}");
@@ -55,6 +60,8 @@ public class ArticleController {
                 })
                 .call()
                 .content();
+        log.info("Generated blog post for topic={}", topic);
+        return generatedPost;
     }
 
 }

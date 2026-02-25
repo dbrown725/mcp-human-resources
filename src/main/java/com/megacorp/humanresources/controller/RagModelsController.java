@@ -7,11 +7,15 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.megacorp.humanresources.model.RagModels;
 
 @RestController
 public class RagModelsController {
+
+    private static final Logger log = LoggerFactory.getLogger(RagModelsController.class);
 
     private final ChatClient chatClient;
 
@@ -27,10 +31,13 @@ public class RagModelsController {
 
     @GetMapping("/rag/models")
     public RagModels faq(@RequestParam(value = "message", defaultValue = "Give me a list of all the models from OpenAI along with their context window.") String message) {
-        return chatClient.prompt()
+        log.debug("Entering faq with message={}", message);
+        RagModels ragModels = chatClient.prompt()
                 .user(message)
                 .call()
                 .entity(RagModels.class);
+        log.info("Generated RAG model response successfully");
+        return ragModels;
     }
 
 }

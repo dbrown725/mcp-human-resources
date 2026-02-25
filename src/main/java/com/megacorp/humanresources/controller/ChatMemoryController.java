@@ -34,11 +34,13 @@ public class ChatMemoryController {
      // https://docs.spring.io/spring-ai/reference/api/chat-memory.html
     @GetMapping("/memory")
     public String chatWithMemory(@RequestParam(value = "message", defaultValue = "Hello") String message) {
-        log.debug("Received memory chat message: {}", message);
-        return chatClient.prompt()
+                log.debug("Entering chatWithMemory with message={}", message);
+                String content = chatClient.prompt()
                 .user(message)
                 .call()
                 .content();
+                log.info("Memory chat response generated successfully");
+                return content;
     }
 
 }

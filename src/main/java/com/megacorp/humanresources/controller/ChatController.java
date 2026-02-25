@@ -6,6 +6,8 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import com.megacorp.humanresources.service.EmployeeService;
@@ -16,6 +18,8 @@ import reactor.core.publisher.Flux;
 
 @RestController
 public class ChatController {
+
+  private static final Logger log = LoggerFactory.getLogger(ChatController.class);
     
     private final ChatClient chatClient;
 
@@ -53,27 +57,35 @@ public class ChatController {
 
     @GetMapping("/ai")
     String generationWithTools(@RequestParam(name = "prompt", defaultValue = "Tell me a joke", required = false) String prompt) {
-        return this.chatClient.prompt()
+      log.debug("Entering generationWithTools with prompt={}", prompt);
+      String content = this.chatClient.prompt()
             .tools(employeeService, braveSearchService)
             .user(prompt)
             .call()
             .content();
+      log.info("Generated AI response with tools successfully");
+      return content;
     }
 
     @GetMapping("/ai/chat-response")
     public ChatResponse chatResponse(
             @RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
-        return chatClient.prompt()
+      log.debug("Entering chatResponse with prompt={}", prompt);
+      ChatResponse response = chatClient.prompt()
                 .tools(employeeService, braveSearchService)
                 .user(prompt)
                 .call()
                 .chatResponse();
+      log.info("Generated structured chat response successfully");
+      return response;
     }
     
     @GetMapping("/ai/stream")
     public Flux<String> stream(
         @RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
-        return chatClient.prompt()
+      log.debug("Entering stream with prompt={}", prompt);
+      log.info("Starting AI streaming response");
+      return chatClient.prompt()
                 .tools(employeeService, braveSearchService)
                 .user(prompt)
                 .stream()
@@ -82,6 +94,7 @@ public class ChatController {
 
     @GetMapping("/models/stuff-the-prompt")
     public String modelsWithData() {
+      log.debug("Entering modelsWithData");
         String system = """
             If you are asked about up to date language models and their context window here is some information to help you with your response:
             [
@@ -147,27 +160,35 @@ public class ChatController {
               }
             ]
             """;
-        return chatClient.prompt()
+        String content = chatClient.prompt()
                 .user("Can you give me an up to date list of popular large language models and their current context window size")
                 .system(system)
                 .call()
                 .content();
+        log.info("Generated response for modelsWithData");
+        return content;
     }
 
     @GetMapping("/ai/model/secondary")
     public String generatewithModelTwo(@RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
-        return secondaryChatClient.prompt()
+      log.debug("Entering generatewithModelTwo with prompt={}", prompt);
+      String content = secondaryChatClient.prompt()
                 .user(prompt)
                 .call()
                 .content();
+      log.info("Generated AI response using secondary model");
+      return content;
     }
 
     @GetMapping("/ai/model/tertiary")
     public String generate(@RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
-        return tertiaryChatClient.prompt()
+      log.debug("Entering generate with prompt={}", prompt);
+      String content = tertiaryChatClient.prompt()
                 .user(prompt)
                 .call()
                 .content();
+      log.info("Generated AI response using tertiary model");
+      return content;
     }
 
     @org.springframework.beans.factory.annotation.Autowired
@@ -178,7 +199,10 @@ public class ChatController {
       @RequestParam(value = "employeeName") String employeeName,
       @RequestParam(value = "position", defaultValue = "New Hire") String position,
       @RequestParam(value = "startDate", defaultValue = "ASAP") String startDate) {
-        return employeeOnboardingService.generateWelcomeMessage(employeeName, position, startDate);
+        log.debug("Entering generateWelcomeMessage for employeeName={} position={} startDate={}", employeeName, position, startDate);
+        String welcomeMessage = employeeOnboardingService.generateWelcomeMessage(employeeName, position, startDate);
+        log.info("Generated welcome message for employeeName={}", employeeName);
+        return welcomeMessage;
     }
     
 }

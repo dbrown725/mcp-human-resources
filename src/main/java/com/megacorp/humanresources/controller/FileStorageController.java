@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import com.megacorp.humanresources.service.FileStorageService;
@@ -17,48 +19,69 @@ import com.megacorp.humanresources.service.FileStorageService;
 @RestController
 public class FileStorageController {
 
+    private static final Logger log = LoggerFactory.getLogger(FileStorageController.class);
+
     @Autowired
 	private FileStorageService fileStorageService;
 
     @GetMapping("/read-file")
 	public String readFile(@RequestParam(value = "fileName") String fileName) {
-		return fileStorageService.readFile(fileName);
+        log.debug("Entering readFile with fileName={}", fileName);
+        String content = fileStorageService.readFile(fileName);
+        log.info("File read request completed for fileName={}", fileName);
+        return content;
     }
 
     @GetMapping("/list-files")
 	public List<String> listFiles(@RequestParam(value = "prefix") String prefix) {
-		return fileStorageService.listFiles(prefix);
+        log.debug("Entering listFiles with prefix={}", prefix);
+        List<String> files = fileStorageService.listFiles(prefix);
+        log.info("Listed {} files for prefix={}", files.size(), prefix);
+        return files;
     }
 
     @GetMapping("/delete-file")
 	public String deleteFile(@RequestParam(value = "fileName") String fileName) {
-		return fileStorageService.deleteFile(fileName);
+        log.debug("Entering deleteFile with fileName={}", fileName);
+        String result = fileStorageService.deleteFile(fileName);
+        log.info("Delete file request completed for fileName={}", fileName);
+        return result;
     }
 
     @PostMapping("/upload-multiple")
     public List<String> uploadFiles(@RequestParam("files") List<MultipartFile> files) {
+        log.debug("Entering uploadFiles with filesCount={}", files == null ? 0 : files.size());
         if (files == null || files.isEmpty()) {
+            log.warn("Upload multiple requested with no files provided");
             return List.of("Please select files to upload.");
         }
-        return files.stream()
+        List<String> uploaded = files.stream()
                 .filter(file -> !file.isEmpty())
                 .map(fileStorageService::uploadFile)
                 .toList();
+        log.info("Uploaded {} files successfully", uploaded.size());
+        return uploaded;
     }
     
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file) {
+        log.debug("Entering uploadFile with originalFilename={}", file.getOriginalFilename());
         if (file.isEmpty()) {
+            log.warn("Upload requested with empty file payload");
             return "Please select a file to upload.";
         }
-        return fileStorageService.uploadFile(file);
+        String uploadedFileName = fileStorageService.uploadFile(file);
+        log.info("File uploaded successfully as {}", uploadedFileName);
+        return uploadedFileName;
     }
 
     @GetMapping("/download-file")
     public ResponseEntity<byte[]> downloadFile(@RequestParam("fileName") String fileName) {
+        log.debug("Entering downloadFile with fileName={}", fileName);
         byte[] fileContent = fileStorageService.retrieveFile(fileName);
 
         if (fileContent == null) {
+            log.warn("Download requested for missing fileName={}", fileName);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -83,11 +106,13 @@ public class FileStorageController {
             headers.setContentType(MediaType.parseMediaType("text/plain"));
         }
         else {
+            log.error("Unsupported file extension for fileName={}", fileName);
             throw new IllegalArgumentException(
                 "Unsupported file extension. Valid image extensions are: .jpg, .jpeg, .png, .gif, .webp, .heic, .heif, .csv, .txt"
             );
         }
         headers.setContentDispositionFormData("attachment", fileName);
+        log.info("File downloaded successfully for fileName={}", fileName);
 
         return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
     }
