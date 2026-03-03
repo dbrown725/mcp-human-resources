@@ -45,7 +45,9 @@ public class EmailServiceHelper {
      * @return the MIME content type
      */
     public String determineContentType(String fileName) {
+        logger.debug("Entering determineContentType with fileName={}", fileName);
         if (fileName == null) {
+            logger.warn("Null fileName provided to determineContentType; defaulting to application/octet-stream");
             return "application/octet-stream";
         }
         
@@ -75,6 +77,7 @@ public class EmailServiceHelper {
         } else if (lowerFileName.endsWith(".xlsx")) {
             return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
         } else {
+            logger.debug("Unknown extension for fileName={}, using default content type", fileName);
             return "application/octet-stream";
         }
     }
@@ -85,6 +88,7 @@ public class EmailServiceHelper {
      * @return configured SMTP Session
      */
     public Session getSmtpSession() {
+        logger.debug("Entering getSmtpSession");
         Properties props = new Properties();
         props.put("mail.smtp.host", SMTP_SERVER);
         props.put("mail.smtp.port", SMTP_PORT);
@@ -103,6 +107,7 @@ public class EmailServiceHelper {
      * @return configured IMAP Session
      */
     public Session getImapSession() {
+        logger.debug("Entering getImapSession");
         Properties props = new Properties();
         props.put("mail.imap.host", IMAP_SERVER);
         props.put("mail.imap.port", IMAP_PORT);
@@ -118,6 +123,7 @@ public class EmailServiceHelper {
      * @return formatted string with capitalized words
      */
     public String formatSubjectString(String inputString) {
+        logger.debug("Entering formatSubjectString with inputString={}", inputString);
         return Arrays.stream(inputString.split("_"))
                 .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase())
                 .collect(Collectors.joining(" "));
@@ -132,6 +138,7 @@ public class EmailServiceHelper {
      * @throws Exception if search fails
      */
     public Message retrieveOriginalMessage(String messageId, Folder inbox) throws Exception {
+        logger.debug("Entering retrieveOriginalMessage with messageId={}", messageId);
         SearchTerm searchTerm = new MessageIDTerm(messageId);
         Message[] messages = inbox.search(searchTerm);
         
@@ -153,6 +160,7 @@ public class EmailServiceHelper {
      * @throws Exception if message parsing fails
      */
     public String formatReplyBody(String newBody, Message originalMessage) throws Exception {
+        logger.debug("Entering formatReplyBody");
         StringBuilder replyBody = new StringBuilder();
         
         // Add the new reply text
@@ -187,7 +195,9 @@ public class EmailServiceHelper {
             }
         }
         
-        return replyBody.toString();
+        String formattedReply = replyBody.toString();
+        logger.info("Reply body formatted successfully");
+        return formattedReply;
     }
 
     /**
@@ -206,6 +216,8 @@ public class EmailServiceHelper {
     public SearchTerm buildSearchTerm(String subjectFilter, String fromFilter, String toFilter, 
                                       String bodyFilter, String messageId, String dateAfter, 
                                       String dateBefore, boolean unreadOnly) {
+        logger.debug("Entering buildSearchTerm with subjectFilter={} fromFilter={} toFilter={} messageId={} dateAfter={} dateBefore={} unreadOnly={}",
+            subjectFilter, fromFilter, toFilter, messageId, dateAfter, dateBefore, unreadOnly);
         List<SearchTerm> terms = new ArrayList<>();
         
         if (subjectFilter != null && !subjectFilter.trim().isEmpty()) {
@@ -261,8 +273,10 @@ public class EmailServiceHelper {
         }
         
         if (terms.isEmpty()) {
+            logger.info("No search filters provided; returning null search term");
             return null;
         } else if (terms.size() == 1) {
+            logger.info("Built search term with 1 filter");
             return terms.get(0);
         } else {
             // Combine all terms with AND
@@ -270,6 +284,7 @@ public class EmailServiceHelper {
             for (int i = 1; i < terms.size(); i++) {
                 combined = new AndTerm(combined, terms.get(i));
             }
+            logger.info("Built combined search term with {} filters", terms.size());
             return combined;
         }
     }
@@ -282,6 +297,7 @@ public class EmailServiceHelper {
      * @throws Exception if message parsing fails
      */
     public EmailMessage convertToEmailMessage(Message message) throws Exception {
+        logger.debug("Entering convertToEmailMessage");
         EmailMessage emailMessage = new EmailMessage();
         
         // Message ID
@@ -339,6 +355,9 @@ public class EmailServiceHelper {
         // Attachments
         List<String> attachmentNames = extractAttachmentNames(message);
         emailMessage.setAttachmentNames(attachmentNames);
+        logger.info("Converted email message successfully with messageId={} attachmentCount={}",
+            emailMessage.getMessageId(),
+            attachmentNames == null ? 0 : attachmentNames.size());
         
         return emailMessage;
     }
@@ -351,6 +370,7 @@ public class EmailServiceHelper {
      * @throws Exception if body extraction fails
      */
     public String extractEmailBody(Message message) throws Exception {
+        logger.debug("Entering extractEmailBody");
         Object content = message.getContent();
         
         if (content instanceof String) {
@@ -371,6 +391,7 @@ public class EmailServiceHelper {
      * @throws Exception if extraction fails
      */
     public String extractTextFromMultipart(MimeMultipart multipart) throws Exception {
+        logger.debug("Entering extractTextFromMultipart with partsCount={}", multipart.getCount());
         StringBuilder result = new StringBuilder();
         
         for (int i = 0; i < multipart.getCount(); i++) {
@@ -387,6 +408,7 @@ public class EmailServiceHelper {
             }
         }
         
+        logger.debug("Extracted multipart text length={}", result.length());
         return result.toString();
     }
 
@@ -398,6 +420,7 @@ public class EmailServiceHelper {
      * @throws Exception if extraction fails
      */
     public List<String> extractAttachmentNames(Message message) throws Exception {
+        logger.debug("Entering extractAttachmentNames");
         List<String> attachments = new ArrayList<>();
         Object content = message.getContent();
         
@@ -416,6 +439,7 @@ public class EmailServiceHelper {
             }
         }
         
+        logger.info("Extracted {} attachment names", attachments.size());
         return attachments;
     }
 }

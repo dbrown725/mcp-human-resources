@@ -49,7 +49,7 @@ public class WeatherServiceImpl implements WeatherService {
                              @JsonProperty("isDaytime") Boolean isDayTime, @JsonProperty("temperature") Integer temperature,
                              @JsonProperty("temperatureUnit") String temperatureUnit,
                              @JsonProperty("temperatureTrend") String temperatureTrend,
-                             @JsonProperty("probabilityOfPrecipitation") Map probabilityOfPrecipitation,
+                             @JsonProperty("probabilityOfPrecipitation") Map<String, Object> probabilityOfPrecipitation,
                              @JsonProperty("windSpeed") String windSpeed, @JsonProperty("windDirection") String windDirection,
                              @JsonProperty("icon") String icon, @JsonProperty("shortForecast") String shortForecast,
                              @JsonProperty("detailedForecast") String detailedForecast) {

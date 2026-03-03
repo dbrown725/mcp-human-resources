@@ -114,6 +114,7 @@ public final class SelfRefineEvaluationAdvisor implements CallAdvisor, StreamAdv
 
 	@Override
 	public ChatClientResponse adviseCall(ChatClientRequest chatClientRequest, CallAdvisorChain callAdvisorChain) {
+		logger.debug("Entering adviseCall with maxRepeatAttempts={} successRating={}", maxRepeatAttempts, successRating);
 		Assert.notNull(chatClientRequest, "chatClientRequest must not be null");
 		Assert.notNull(callAdvisorChain, "callAdvisorChain must not be null");
 
@@ -173,11 +174,14 @@ public final class SelfRefineEvaluationAdvisor implements CallAdvisor, StreamAdv
 	 * Performs the evaluation using the LLM-as-a-Judge and returns the result.
 	 */
 	private EvaluationResponse evaluate(ChatClientRequest request, ChatClientResponse response) {
+		logger.debug("Entering evaluate");
 
 		var evaluationPrompt = this.evaluationPromptTemplate.render(
 				Map.of("question", this.getPromptQuestion(request), "answer", this.getAssistantAnswer(response)));
 
-		return chatClient.prompt(evaluationPrompt).call().entity(EvaluationResponse.class);
+		EvaluationResponse evaluationResponse = chatClient.prompt(evaluationPrompt).call().entity(EvaluationResponse.class);
+		logger.debug("Evaluation completed with rating={}", evaluationResponse.rating());
+		return evaluationResponse;
 	}
 
 	private String getPromptQuestion(ChatClientRequest chatClientRequest) {
@@ -204,6 +208,7 @@ public final class SelfRefineEvaluationAdvisor implements CallAdvisor, StreamAdv
 	 */
 	private ChatClientRequest addEvaluationFeedback(ChatClientRequest originalRequest,
 			EvaluationResponse evaluationResponse) {
+		logger.debug("Entering addEvaluationFeedback");
 
 		Prompt augmentedPrompt = originalRequest.prompt()
 				.augmentUserMessage(userMessage -> userMessage.mutate().text(String.format("""
@@ -218,6 +223,7 @@ public final class SelfRefineEvaluationAdvisor implements CallAdvisor, StreamAdv
 	@Override
 	public Flux<ChatClientResponse> adviseStream(ChatClientRequest chatClientRequest,
 			StreamAdvisorChain streamAdvisorChain) {
+		logger.warn("Streaming is not supported by SelfRefineEvaluationAdvisor");
 		return Flux.error(new UnsupportedOperationException(
 				"The Structured Output Validation Advisor does not support streaming."));
 	}
