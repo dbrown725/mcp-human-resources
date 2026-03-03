@@ -53,6 +53,28 @@ Content-Type: image/webp
 # generated_images/bullRoastRunner.png
 # --WebAppBoundary--
 
+### Save draft email with GCS storage attachment (catCircus)
+POST {{baseUrl}}/save-draft-email
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="toEmail"
+
+fake@test.test
+--WebAppBoundary
+Content-Disposition: form-data; name="subject"
+
+Draft email with GCS catCircus attachment
+--WebAppBoundary
+Content-Disposition: form-data; name="body"
+
+Body with GCS storage attachment reference
+--WebAppBoundary
+Content-Disposition: form-data; name="storageAttachments"
+
+generated_images/catCircus.png
+--WebAppBoundary--
+
 ### Read inbox - last 10 emails
 GET {{baseUrl}}/read-inbox?maxEmails=10
 
