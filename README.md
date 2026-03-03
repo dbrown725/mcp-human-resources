@@ -12,6 +12,15 @@ git clone https://github.com/dbrown725/mcp-human-resources.git
 cd mcp-human-resources
 ```
 
+### Repository data layout
+
+- Runtime classpath assets stay in `src/main/resources`.
+- Operational data files used by setup/loading workflows stay under `ops/data`.
+- Current locations:
+    - DB seed CSV: `ops/data/db/employee_data_load.csv`
+    - Elastic setup CSV: `ops/data/search/employee_code_of_conduct_policies.csv`
+- Startup note: `data.sql` reads the DB seed CSV via a relative path, so start the app from the repository root.
+
 2. Setup Brave Search: Acquire API Key, update configuration file and install Node module(s):<br>
     https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search<br>
     Follow the above directions and acquire an API Key<br>
@@ -42,7 +51,7 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     Install Elastic Search and Kibana: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana<br>
     Directions for loading a csv file into Elastic Search using Kibana.<br>
         https://www.elastic.co/blog/importing-csv-and-log-data-into-elasticsearch-with-file-data-visualizer<br><br>
-    Use the following data to load an Elastic Index: mcp-human-resources/employee_code_of_conduct_policies.csv<br>
+    Use the following data to load an Elastic Index: mcp-human-resources/ops/data/search/employee_code_of_conduct_policies.csv<br>
     Name the index: employee_code_of_conduct_policies<br><br>
     Configuration: src/main/resources/mcp-servers.json<br>
         Note that a space was needed in "ES_API_KEY": " ", since my local Elastic Index does not have security enabled<br>
