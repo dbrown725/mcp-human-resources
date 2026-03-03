@@ -248,3 +248,7 @@ Sample query: Select * from EMPLOYEE where AGE > 50;
 
 16. To see current logging level:<br>
 http://localhost:8081/log
+
+## Known Benign Startup Warnings
+
+See [Troubleshooting startup warning guidance](TROUBLESHOOTING.md#known-benign-startup-warnings) for the same checklist in the troubleshooting doc.

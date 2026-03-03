@@ -33,3 +33,23 @@ lsof -i :8081
 # Kill the process (replace PID with actual process ID)
 kill -9 <PID>
 ```
+
+## Known Benign Startup Warnings
+
+Some warnings can appear during local startup/restart (especially with DevTools) and are expected for this project setup.
+
+- MCP framework startup warnings (tool/sampling/elicitation availability) can appear when optional capabilities are not registered yet.
+- Bean post-processor checker warnings from Spring MCP auto-configuration may appear during early bean lifecycle phases.
+- H2 shutdown warnings like `Database is already closed` can occur during rapid restart/shutdown cycles.
+
+### When to investigate immediately
+
+- Any `APPLICATION FAILED TO START` block.
+- Missing required service bean errors (for example unresolved tool/service bean dependencies).
+- Repeated `ERROR` logs from application packages (`com.megacorp...`) that persist after restart.
+
+### Suggested workflow
+
+1. Run a clean compile: `./mvnw -q -DskipTests clean compile`
+2. Restart once with `./start-debug.sh`
+3. If startup still fails, capture the first `APPLICATION FAILED TO START` block and investigate from that root error.
