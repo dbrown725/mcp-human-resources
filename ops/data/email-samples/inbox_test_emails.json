@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "flow": "POLICY",
+    "subject": "Case of the Mondays and Dress Code",
+    "body": "Hi HR,\n\nI had a serious case of the Mondays and showed up in jeans and sneakers. What is Mega Corp's official policy on business casual vs formal attire, and are there exceptions on specific days?\n\nThanks,\nPeter G."
+  },
+  {
+    "id": 2,
+    "flow": "POLICY",
+    "subject": "Red Stapler on Desk Policy",
+    "body": "Hello,\n\nI keep a red stapler at my desk and want to confirm if personal desk items are allowed under company policy. Are there any restrictions on personal items in shared office spaces?\n\nRegards,\nMilton W."
+  },
+  {
+    "id": 3,
+    "flow": "POLICY",
+    "subject": "Personal Use of Company Email (TPS Report Related)",
+    "body": "Hi,\n\nIf I send a quick personal message from my company email between TPS report updates, is that allowed? Please share the policy guidance for personal use of corporate email.\n\nThanks,\nSamir"
+  },
+  {
+    "id": 4,
+    "flow": "POLICY",
+    "subject": "Flair Requirement and Dress Expectations",
+    "body": "Hi HR Team,\n\nA manager mentioned that our team should show more \"flair\" when meeting visitors. Is there any policy requirement about accessories, visible badges, or presentation standards?\n\nBest,\nJoanna"
+  },
+  {
+    "id": 5,
+    "flow": "POLICY",
+    "subject": "Password Sharing Request from \"The Bobs\"",
+    "body": "Hello,\n\nI was asked to share account access details during a business process review. What does Mega Corp policy say about password sharing and account credential handling?\n\nThanks,\nMichael B."
+  },
+  {
+    "id": 6,
+    "flow": "POLICY",
+    "subject": "Internet Usage During Breaks",
+    "body": "Hi,\n\nCan employees browse non-work websites briefly during lunch and breaks, or does policy prohibit personal internet browsing on company devices?\n\nRegards,\nTom S."
+  },
+  {
+    "id": 7,
+    "flow": "POLICY",
+    "subject": "Cell Phone Use in Company Vehicle",
+    "body": "Hi HR,\n\nI drive a company vehicle between sites. What is the official rule for mobile phone calls, texting, or navigation use while driving?\n\nThanks,\nPeter G."
+  },
+  {
+    "id": 8,
+    "flow": "POLICY",
+    "subject": "Workplace Relationship Disclosure Rules",
+    "body": "Hello,\n\nWhat is the policy if two coworkers start dating? Are there disclosure requirements, especially if one person could influence the other's assignments?\n\nBest,\nAnonymous Employee"
+  },
+  {
+    "id": 9,
+    "flow": "POLICY",
+    "subject": "Office Fundraiser and Solicitation Rules",
+    "body": "Hi,\n\nCan I ask coworkers to donate to a personal fundraiser during work hours, or does Mega Corp have a solicitation policy that limits this?\n\nThanks,\nLawrence"
+  },
+  {
+    "id": 10,
+    "flow": "POLICY",
+    "subject": "Visitor Policy for Family at Office",
+    "body": "Hello HR,\n\nMy cousin is in town and wanted to stop by the office lobby for a quick hello. What are the workplace visitor rules for personal guests?\n\nRegards,\nMilton W."
+  },
+  {
+    "id": 11,
+    "flow": "EMPLOYEE",
+    "subject": "Employee Count in IT by Ethnicity",
+    "body": "Hi,\n\nHow many employees in the IT department are Asian?\n\nThanks,\nTest User"
+  },
+  {
+    "id": 12,
+    "flow": "EMPLOYEE",
+    "subject": "Employee Count by Department",
+    "body": "Hello,\n\nWhat is the employee count for each department?\n\nRegards,\nTest User"
+  },
+  {
+    "id": 13,
+    "flow": "EMPLOYEE",
+    "subject": "Employee ID Lookup 5012",
+    "body": "Hi,\n\nPlease provide employee details for employee ID 5012, including title, department, hire date, and annual salary.\n\nThanks,\nTest User"
+  },
+  {
+    "id": 14,
+    "flow": "EMPLOYEE",
+    "subject": "Manager Information for Employee 5020",
+    "body": "Hello,\n\nWho is the manager for employee ID 5020?\n\nBest,\nTest User"
+  },
+  {
+    "id": 15,
+    "flow": "EMPLOYEE",
+    "subject": "Count Employees Hired After 2018",
+    "body": "Hi,\n\nHow many employees were hired after 2018-01-01?\n\nThanks,\nTest User"
+  },
+  {
+    "id": 16,
+    "flow": "EMPLOYEE",
+    "subject": "Search Employees by First Name Michael",
+    "body": "Hello,\n\nCan you list employees with first name Michael and include their employee ID, title, and department?\n\nRegards,\nTest User"
+  },
+  {
+    "id": 17,
+    "flow": "EMPLOYEE",
+    "subject": "Employees Over Age 50 in Sales",
+    "body": "Hi,\n\nHow many employees in the Sales department are over age 50?\n\nThanks,\nTest User"
+  },
+  {
+    "id": 18,
+    "flow": "EMPLOYEE",
+    "subject": "Employee ID and Salary Filter",
+    "body": "Hello,\n\nPlease find employees in HR with annual salary above 150000 and return their employee IDs and titles.\n\nBest,\nTest User"
+  },
+  {
+    "id": 19,
+    "flow": "EMPLOYEE",
+    "subject": "Gender Count in Finance",
+    "body": "Hi,\n\nWhat is the employee count by gender in the Finance department?\n\nThanks,\nTest User"
+  },
+  {
+    "id": 20,
+    "flow": "EMPLOYEE",
+    "subject": "Department and Title Count",
+    "body": "Hello,\n\nHow many employees have the title \"Manager\" in the IT department?\n\nRegards,\nTest User"
+  }
+]

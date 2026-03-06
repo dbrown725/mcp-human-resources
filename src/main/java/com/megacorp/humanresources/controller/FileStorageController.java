@@ -104,11 +104,13 @@ public class FileStorageController {
             headers.setContentType(MediaType.parseMediaType("text/csv"));
         } else if (lowerFileName.endsWith(".txt")) {
             headers.setContentType(MediaType.parseMediaType("text/plain"));
+        } else if (lowerFileName.endsWith(".pdf")) {
+            headers.setContentType(MediaType.APPLICATION_PDF);
         }
         else {
             log.error("Unsupported file extension for fileName={}", fileName);
             throw new IllegalArgumentException(
-                "Unsupported file extension. Valid image extensions are: .jpg, .jpeg, .png, .gif, .webp, .heic, .heif, .csv, .txt"
+                "Unsupported file extension. Valid image extensions are: .jpg, .jpeg, .png, .gif, .webp, .heic, .heif, .csv, .txt, .pdf"
             );
         }
         headers.setContentDispositionFormData("attachment", fileName);

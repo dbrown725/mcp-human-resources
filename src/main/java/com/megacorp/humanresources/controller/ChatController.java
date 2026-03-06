@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import com.megacorp.humanresources.model.PolicyRagResponse;
 import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.BraveSearchService;
+import com.megacorp.humanresources.service.RagService;
 
 import io.modelcontextprotocol.client.McpSyncClient;
 import reactor.core.publisher.Flux;
@@ -26,6 +28,8 @@ public class ChatController {
     private final EmployeeService employeeService;
 
     private final BraveSearchService braveSearchService;
+
+    private final RagService ragService;
 
     private final ChatClient secondaryChatClient;
 
@@ -43,11 +47,13 @@ public class ChatController {
      * @param tertiaryChatClient an alternate ChatClient instance qualified as "tertiaryChatClient"
      */
     public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService,
+        RagService ragService,
             ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients,
         CallAdvisor chatClientLoggingAdvisor, @org.springframework.beans.factory.annotation.Qualifier("secondaryChatClient") ChatClient secondaryChatClient,
         @org.springframework.beans.factory.annotation.Qualifier("tertiaryChatClient") ChatClient tertiaryChatClient) {
         this.employeeService = employeeService;
         this.braveSearchService = braveSearchService;
+      this.ragService = ragService;
         this.secondaryChatClient = secondaryChatClient;
         this.tertiaryChatClient = tertiaryChatClient;
         this.chatClient = chatClientBuilder.defaultAdvisors(chatClientLoggingAdvisor)
@@ -189,6 +195,33 @@ public class ChatController {
                 .content();
       log.info("Generated AI response using tertiary model");
       return content;
+    }
+
+    @GetMapping("/ai/company-policies")
+    public String companyPolicies(
+        @RequestParam(value = "question") String question,
+        @RequestParam(value = "topK", required = false) Integer topK,
+        @RequestParam(value = "similarityThreshold", required = false) Double similarityThreshold) {
+      log.debug("Entering companyPolicies with question={} topK={} similarityThreshold={}", question, topK, similarityThreshold);
+      PolicyRagResponse response = ragService.queryPolicies(question, topK, similarityThreshold);
+
+      String answer = response.answer() == null || response.answer().isBlank()
+          ? "No policy answer available."
+          : response.answer();
+      String gcsFiles = (response.attachmentPaths() == null || response.attachmentPaths().isEmpty())
+          ? "None"
+          : String.join(", ", response.attachmentPaths());
+
+      String result = """
+          Answer:
+          %s
+
+          Related GCS Files:
+          %s
+          """.formatted(answer, gcsFiles);
+
+      log.info("companyPolicies completed with {} matched files", response.attachmentPaths() == null ? 0 : response.attachmentPaths().size());
+      return result;
     }
 
     @org.springframework.beans.factory.annotation.Autowired

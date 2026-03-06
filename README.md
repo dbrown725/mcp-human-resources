@@ -18,7 +18,6 @@ cd mcp-human-resources
 - Operational data files used by setup/loading workflows stay under `ops/data`.
 - Current locations:
     - DB seed CSV: `ops/data/db/employee_data_load.csv`
-    - Elastic setup CSV: `ops/data/search/employee_code_of_conduct_policies.csv`
 - Startup note: `data.sql` reads the DB seed CSV via a relative path, so start the app from the repository root.
 
 2. Setup Brave Search: Acquire API Key, update configuration file and install Node module(s):<br>
@@ -38,6 +37,7 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     export GEMINI_PROJECT_ID=<YOUR_GEMINI_PROJECT_ID>
     export STORAGE_BUCKET_NAME=<YOUR_STORAGE_BUCKET_NAME>
     ```
+    Upload policy PDF files from `ops/data/gcs` and use the GCS object path format `policies/<FILENAME>.pdf` (example: `policies/policies_Business Dress Code Policy.pdf`).
     
 **Note:** If using `start-run.sh` or `start-debug.sh`, set these values in the script files instead of exporting manually.<br><br>
 4. Needed for Nano Banana image generation
@@ -51,12 +51,12 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     Install Elastic Search and Kibana: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana<br>
     Directions for loading a csv file into Elastic Search using Kibana.<br>
         https://www.elastic.co/blog/importing-csv-and-log-data-into-elasticsearch-with-file-data-visualizer<br><br>
-    Use the following data to load an Elastic Index: mcp-human-resources/ops/data/search/employee_code_of_conduct_policies.csv<br>
-    Name the index: employee_code_of_conduct_policies<br><br>
     Configuration: src/main/resources/mcp-servers.json<br>
         Note that a space was needed in "ES_API_KEY": " ", since my local Elastic Index does not have security enabled<br>
 
-    For ElasticSearch RAG Ingest use later, navigate to http://localhost:5601/app/dev_tools and run "PUT /spring-ai-document-index"
+    For Policy Vector RAG ingest use later, navigate to http://localhost:5601/app/dev_tools and run:
+    - `PUT /hr-policy-rag-index`
+    - Optional mapping override (if needed): set a dense_vector field with dimensions 768
 
 ```bash
 npm i @elastic/mcp-server-elasticsearch
@@ -120,7 +120,10 @@ sudo chmod -R 777 /var/log/mcp-human-resources
     I also changed the admin password for Grafana in compose.yml to 'mysecretpassword' from 'admin' for better security. <br>
       if admin/mysecretpassword doesn't work, change it back to admin/admin
 
-11. Rag elasticsearch data load. See ### RAG ingest document test case found in the rag.http file. Download the pdf, uncomment the test, set the path value to your download location and running the test will load the ElasticSearch index.      
+11. Policy RAG elasticsearch vector data load.
+    - Ensure policy PDFs exist in your GCS bucket under `policies/`.
+    - Call `POST /rag/policies/ingest-gcs?prefix=policies/` (see `src/test/http/rag.http`) to ingest GCS PDFs into the `hr-policy-rag-index` vector index.
+    - Query with `GET /rag/policies/query?question=...` to retrieve grounded policy context and matched policy attachment paths.
 
 12. Run a Maven Install<br>
 ```bash
@@ -242,6 +245,13 @@ Update run.sh with your JDK install location and environment variables, then run
         - Or use IntelliJ IDEA's built-in HTTP client<br>
         - Open any `.http` file and click "Send Request" above each endpoint<br>
         - See `src/test/http/README.md` for detailed instructions<br><br>
+
+    Inbox listener email test cases (policy + employee flows)<br><br>
+        - Sample subject/body content for sending real emails to the monitored inbox is in `ops/data/email-samples/`<br>
+        - Available formats:<br>
+            - `ops/data/email-samples/inbox_test_emails.md`<br>
+            - `ops/data/email-samples/inbox_test_emails.csv`<br>
+            - `ops/data/email-samples/inbox_test_emails.json`<br><br>
         
         **Alternative**: Use a browser, curl, or Postman<br>
         - Example: http://localhost:8081/employees/5012<br>
