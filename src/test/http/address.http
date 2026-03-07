@@ -1,0 +1,165 @@
+@baseUrl = http://localhost:8081
+
+### Get address by ID (existing)
+GET {{baseUrl}}/addresses/10002
+
+> {%
+client.test("Get existing address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Get remote address by ID (existing)
+GET {{baseUrl}}/addresses/10000
+
+> {%
+client.test("Get existing remote address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Get address by ID (not found scenario)
+GET {{baseUrl}}/addresses/999999
+
+> {%
+client.test("Get missing address returns 404", function() {
+  client.assert(response.status === 404, "Expected status 404, got " + response.status);
+});
+%}
+
+### Search addresses by city/state/isRemote
+GET {{baseUrl}}/addresses?city=Atlanta&state=GA&isRemote=false
+
+> {%
+client.test("Search by city/state/isRemote returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search addresses by city/state only
+GET {{baseUrl}}/addresses?city=Atlanta&state=GA
+
+> {%
+client.test("Search by city/state returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search addresses by postalCode
+GET {{baseUrl}}/addresses?postalCode=30905
+
+> {%
+client.test("Search by postal code returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search addresses by remote flag
+GET {{baseUrl}}/addresses?isRemote=true
+
+> {%
+client.test("Search by remote flag returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search addresses by city + remote flag
+GET {{baseUrl}}/addresses?city=Austin&state=TX&isRemote=true
+
+> {%
+client.test("Search Austin remote returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search addresses by another city + remote flag
+GET {{baseUrl}}/addresses?city=Denver&state=CO&isRemote=true
+
+> {%
+client.test("Search Denver remote returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Create onsite address
+# @name createOnsiteAddress
+POST {{baseUrl}}/addresses
+Content-Type: application/json
+
+{
+  "streetAddress": "1234 Peachtree Park Dr Apt 5",
+  "city": "Atlanta",
+  "state": "GA",
+  "postalCode": "30319",
+  "isRemote": false
+}
+
+> {%
+client.test("Create onsite address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Get newly created onsite address
+GET {{baseUrl}}/addresses/{{createOnsiteAddress.response.body.$.addressId}}
+
+> {%
+client.test("Get newly created onsite address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Create remote address
+# @name createRemoteAddress
+POST {{baseUrl}}/addresses
+Content-Type: application/json
+
+{
+  "streetAddress": "987 Market St Suite 44",
+  "city": "Denver",
+  "state": "CO",
+  "postalCode": "80202",
+  "isRemote": true
+}
+
+> {%
+client.test("Create remote address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Get newly created remote address
+GET {{baseUrl}}/addresses/{{createRemoteAddress.response.body.$.addressId}}
+
+> {%
+client.test("Get newly created remote address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search by created remote postalCode
+GET {{baseUrl}}/addresses?postalCode=80202&isRemote=true
+
+> {%
+client.test("Search by remote postal code returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Delete newly created remote address (cleanup)
+DELETE {{baseUrl}}/addresses/{{createRemoteAddress.response.body.$.addressId}}
+
+> {%
+client.test("Delete created remote address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Delete newly created onsite address (cleanup)
+DELETE {{baseUrl}}/addresses/{{createOnsiteAddress.response.body.$.addressId}}
+
+> {%
+client.test("Delete created onsite address returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}

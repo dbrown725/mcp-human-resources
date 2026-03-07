@@ -25,7 +25,8 @@ You can modify this to point to different environments if needed.
 ## File Organization
 
 - `ai.http` - AI chat and model endpoints
-- `employee.http` - Employee data endpoints
+- `employee.http` - Employee CRUD, patch, search, count, and E2E address linkage flow
+- `address.http` - Address CRUD and search endpoints
 - `file-storage.http` - File upload, download, delete operations
 - `image.http` - Image generation and processing
 - `email.http` - Email draft and inbox operations
@@ -40,6 +41,12 @@ You can modify this to point to different environments if needed.
 - Comments start with `#`
 - Use variables for repeated values
 - For POST requests with file uploads, the file path is relative to your workspace
+
+## Recommended Order (Employee/Address)
+
+1. Run `address.http` first for address endpoint verification
+2. Run `employee.http` for employee CRUD/search/count
+3. Run the E2E section in `employee.http` for linked employee/address validation
 
 ## More Information
 

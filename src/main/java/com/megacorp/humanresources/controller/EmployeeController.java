@@ -1,11 +1,16 @@
 package com.megacorp.humanresources.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import com.megacorp.humanresources.entity.Employee;
+import com.megacorp.humanresources.model.EmployeeCount;
 import com.megacorp.humanresources.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,10 +42,159 @@ public class EmployeeController {
 	
 	// Get operation
 	@GetMapping("/employees/{id}")
-	public Employee EmployeeById(@PathVariable("id") Long employeeId) {
-		log.debug("Entering EmployeeById with id={}", employeeId);
+	public Employee employeeById(@PathVariable("id") Long employeeId) {
+		log.debug("Entering employeeById with id={}", employeeId);
 		Employee employee = employeeService.getEmployeeById(employeeId);
 		log.info("Employee retrieved successfully with id={}", employeeId);
 		return employee;
+	}
+
+	// List operation
+	@GetMapping("/employees")
+	public List<Employee> fetchEmployeeList() {
+		log.debug("Entering fetchEmployeeList");
+		List<Employee> employees = employeeService.fetchEmployeeList();
+		log.info("Fetched {} employees", employees.size());
+		return employees;
+	}
+
+	// Partial update operation
+	@PatchMapping("/employees/{id}")
+	public Employee updateEmployeeById(@PathVariable("id") Long employeeId, @RequestBody EmployeeUpdateRequest request) {
+		log.debug("Entering updateEmployeeById with id={}", employeeId);
+		Employee updatedEmployee = employeeService.updateEmployee(
+			employeeId,
+			request.firstName,
+			request.lastName,
+			request.age,
+			request.department,
+			request.title,
+			request.businessUnit,
+			request.gender,
+			request.ethnicity,
+			request.managerId,
+			request.addressId,
+			request.hireDate,
+			request.terminationDate,
+			request.annualSalary
+		);
+		log.info("Employee updated successfully with id={}", employeeId);
+		return updatedEmployee;
+	}
+
+	// Search operation
+	@GetMapping("/employees/search")
+	public String searchEmployees(
+			@RequestParam(required = false) String firstName,
+			@RequestParam(required = false) String lastName,
+			@RequestParam(required = false) Integer startAge,
+			@RequestParam(required = false) Integer endAge,
+			@RequestParam(required = false) String department,
+			@RequestParam(required = false) String title,
+			@RequestParam(required = false) String businessUnit,
+			@RequestParam(required = false) String gender,
+			@RequestParam(required = false) String ethnicity,
+			@RequestParam(required = false) Long managerId,
+			@RequestParam(required = false) Long addressId,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateLast,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateLast,
+			@RequestParam(required = false) Long annualSalary,
+			@RequestParam(required = false) Integer pageNumber,
+			@RequestParam(required = false) Integer pageSize,
+			@RequestParam(required = false) String sortBy,
+			@RequestParam(required = false) String sortDirection) {
+
+		log.debug("Entering searchEmployees endpoint");
+		return employeeService.searchEmployees(
+				firstName,
+				lastName,
+				startAge,
+				endAge,
+				department,
+				title,
+				businessUnit,
+				gender,
+				ethnicity,
+				managerId,
+				addressId,
+				hireDate,
+				hireDateFirst,
+				hireDateLast,
+				terminationDate,
+				terminationDateFirst,
+				terminationDateLast,
+				annualSalary,
+				pageNumber,
+				pageSize,
+				sortBy,
+				sortDirection
+		);
+	}
+
+	// Count operation
+	@GetMapping("/employees/count")
+	public EmployeeCount countEmployees(
+			@RequestParam(required = false) String firstName,
+			@RequestParam(required = false) String lastName,
+			@RequestParam(required = false) Integer startAge,
+			@RequestParam(required = false) Integer endAge,
+			@RequestParam(required = false) String department,
+			@RequestParam(required = false) String title,
+			@RequestParam(required = false) String businessUnit,
+			@RequestParam(required = false) String gender,
+			@RequestParam(required = false) String ethnicity,
+			@RequestParam(required = false) Long managerId,
+			@RequestParam(required = false) Long addressId,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateLast,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateLast,
+			@RequestParam(required = false) Long annualSalary) {
+
+		log.debug("Entering countEmployees endpoint");
+		return employeeService.countEmployees(
+				firstName,
+				lastName,
+				startAge,
+				endAge,
+				department,
+				title,
+				businessUnit,
+				gender,
+				ethnicity,
+				managerId,
+				addressId,
+				hireDate,
+				hireDateFirst,
+				hireDateLast,
+				terminationDate,
+				terminationDateFirst,
+				terminationDateLast,
+				annualSalary
+		);
+	}
+
+	private static class EmployeeUpdateRequest {
+		public String firstName;
+		public String lastName;
+		public Long age;
+		public String department;
+		public String title;
+		public String businessUnit;
+		public String gender;
+		public String ethnicity;
+		public Long managerId;
+		public Long addressId;
+		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+		public Date hireDate;
+		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+		public Date terminationDate;
+		public Long annualSalary;
 	}
 }

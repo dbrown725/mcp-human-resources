@@ -1,5 +1,8 @@
 package com.megacorp.humanresources.specifications;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 import org.springframework.data.jpa.domain.Specification;
@@ -42,22 +45,33 @@ public class EmployeeSpecifications {
 		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("businessUnit"), businessUnit);
 	}
 
-	public static Specification<Employee> hasHireDate(String hireDate) {
-		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("hireDate"), hireDate);
+	private static java.sql.Date toSqlDateUtc(Date date) {
+		LocalDate utcDate = Instant.ofEpochMilli(date.getTime()).atZone(ZoneOffset.UTC).toLocalDate();
+		return java.sql.Date.valueOf(utcDate);
+	}
+
+	public static Specification<Employee> hasHireDate(Date hireDate) {
+		java.sql.Date normalizedDate = toSqlDateUtc(hireDate);
+		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("hireDate").as(java.sql.Date.class), normalizedDate);
 	}
 
 	public static Specification<Employee> hasHireDateBetween(Date hireDateFirst, Date hireDateLast) {
-		return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("hireDate"), hireDateFirst,
-				hireDateLast);
+		java.sql.Date firstDate = toSqlDateUtc(hireDateFirst);
+		java.sql.Date lastDate = toSqlDateUtc(hireDateLast);
+		return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("hireDate").as(java.sql.Date.class), firstDate,
+				lastDate);
 	}
 
 	public static Specification<Employee> hasTerminationDate(Date terminationDate) {
-		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("terminationDate"), terminationDate);
+		java.sql.Date normalizedDate = toSqlDateUtc(terminationDate);
+		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("terminationDate").as(java.sql.Date.class), normalizedDate);
 	}
 
 	public static Specification<Employee> hasTerminationDateBetween(Date terminationDateFirst, Date terminationDateLast) {
-		return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("terminationDate"), terminationDateFirst,
-				terminationDateLast);
+		java.sql.Date firstDate = toSqlDateUtc(terminationDateFirst);
+		java.sql.Date lastDate = toSqlDateUtc(terminationDateLast);
+		return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("terminationDate").as(java.sql.Date.class), firstDate,
+				lastDate);
 	}
 
 	public static Specification<Employee> hasAnnualSalary(Long annualSalary) {
@@ -71,6 +85,13 @@ public class EmployeeSpecifications {
             // Create a predicate to filter by the manager's ID
             return criteriaBuilder.equal(managerJoin.get("employeeId"), managerId);
         };
+	}
+
+	public static Specification<Employee> hasAddressId(Long addressId) {
+		return (root, query, criteriaBuilder) -> {
+			Join<Employee, ?> addressJoin = root.join("address");
+			return criteriaBuilder.equal(addressJoin.get("addressId"), addressId);
+		};
 	}
 
 }

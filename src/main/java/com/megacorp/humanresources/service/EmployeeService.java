@@ -23,6 +23,7 @@ public interface EmployeeService {
 		String gender,
 		String ethnicity,
 		Long managerId,
+		Long addressId,
 		Date hireDate,
 		Date terminationDate,
 		Long annualSalary
@@ -47,6 +48,7 @@ public interface EmployeeService {
 		String gender,
 		String ethnicity,
 		Long managerId,
+		Long addressId,
 		Date hireDate,
 		Date hireDateFirst,
 		Date hireDateLast,
@@ -72,6 +74,7 @@ public interface EmployeeService {
 		String gender,
 		String ethnicity,
 		Long managerId,
+		Long addressId,
 		Date hireDate,
 		Date hireDateFirst,
 		Date hireDateLast,

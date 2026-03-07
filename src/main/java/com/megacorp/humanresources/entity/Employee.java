@@ -80,6 +80,10 @@ public class Employee {
 	@com.fasterxml.jackson.annotation.JsonIgnore
 	private Employee manager;
 
+	@ManyToOne
+	@JoinColumn(name = "ADDRESS_ID", insertable = true, updatable = true, nullable = true)
+	private Address address;
+
 	public void setManager(Employee manager) {
 		this.manager = manager;
 	}
@@ -87,6 +91,11 @@ public class Employee {
 	@JsonProperty("managerId")
 	public Long getManagerId() {
 		return this.manager != null ? this.manager.getEmployeeId() : null;
+	}
+
+	@JsonProperty("addressId")
+	public Long getAddressId() {
+		return this.address != null ? this.address.getAddressId() : null;
 	}
 	
 	@Temporal(TemporalType.DATE)
@@ -99,34 +108,6 @@ public class Employee {
 	
 	@Column(name = "ANNUAL_SALARY", nullable = true)
 	private Long annualSalary;
-	
-    public String getFormattedDate() {
-		if (this.hireDate == null) {
-			logger.warn("Hire date is null, returning empty string");
-			return "";
-		}
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		String formattedDate = dateFormat.format(this.hireDate);
-		logger.info("Returning formatted hire date: {}", formattedDate);
-		return formattedDate;
-    }
-
-    public void setFormattedDate(String dateString) {
-		logger.info("Entering setFormattedDate");
-		if (dateString == null || dateString.isEmpty()) {
-			this.hireDate = null;
-			return;
-		}
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-            this.hireDate = dateFormat.parse(dateString);
-        } catch (Exception e) {
-            // Handle exception, maybe log or throw a custom exception
-            e.printStackTrace();
-			logger.error("Error parsing date string: {}", dateString, e);
-        }
-		logger.info("Exiting setFormattedDate");
-    }
 
 	@Override
 	public String toString() {
@@ -141,6 +122,7 @@ public class Employee {
 				", ethnicity='" + ethnicity + '\'' +
 				", age=" + age +
 				", managerId=" + (manager != null ? this.manager.getEmployeeId() : null) +
+				", addressId=" + (address != null ? this.address.getAddressId() : null) +
 				", hireDate=" + (hireDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(hireDate) : null) +
 				", terminationDate=" + (terminationDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(terminationDate) : null) +
 				", annualSalary=" + annualSalary +

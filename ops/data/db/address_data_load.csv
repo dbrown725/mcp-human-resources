@@ -1,0 +1,901 @@
+ADDRESS_ID,STREET_ADDRESS,CITY,STATE,POSTAL_CODE,IS_REMOTE
+10000,43 Atwood Court Apt 1848,Miami,FL,33101,true
+10001,7 Russell Alley Suite 98,Portland,OR,97201,true
+10002,6851 Onsgard Hill Suite 16,Atlanta,GA,31196,false
+10003,67168 Green Ridge Alley Suite 73,Atlanta,GA,30301,false
+10004,31090 Debra Terrace 2nd Floor,Atlanta,GA,31132,false
+10005,6 Colorado Park Apt 528,Chicago,IL,60601,true
+10006,90160 Esker Alley Room 2000,Atlanta,GA,31190,false
+10007,977 Hauk Point Apt 880,Valdosta,GA,31605,false
+10008,659 Old Shore Pass Apt 1820,Atlanta,GA,30343,false
+10009,13621 Melvin Place 20th Floor,Atlanta,GA,31196,false
+10010,33 Old Gate Way PO Box 5414,Boston,MA,02108,true
+10011,204 Truax Parkway Room 1822,Atlanta,GA,30336,false
+10012,097 Michigan Trail PO Box 2453,Atlanta,GA,31106,false
+10013,0 Northland Alley 8th Floor,Portland,OR,97201,true
+10014,93713 Melody Pass Room 350,Marietta,GA,30066,false
+10015,3 Westend Way 7th Floor,Macon,GA,31205,false
+10016,56332 Carberry Place 9th Floor,Atlanta,GA,30323,false
+10017,6 Trailsway Trail PO Box 94640,Atlanta,GA,30316,false
+10018,05 Pleasure Way 18th Floor,Atlanta,GA,30358,false
+10019,3 Fairfield Drive Room 580,Savannah,GA,31422,false
+10020,415 Rusk Circle Suite 89,Cumming,GA,30130,false
+10021,4959 Farragut Way Room 477,Atlanta,GA,31136,false
+10022,1551 Sullivan Point 13th Floor,Atlanta,GA,30375,false
+10023,3092 Fisk Hill Room 1162,Atlanta,GA,30380,false
+10024,15 Reinke Circle Suite 84,Austin,TX,73301,true
+10025,40724 Upham Parkway 3rd Floor,Atlanta,GA,30358,false
+10026,379 Valley Edge Street Suite 71,Atlanta,GA,30311,false
+10027,0977 La Follette Terrace Suite 81,Macon,GA,31296,false
+10028,5 Crescent Oaks Point Suite 79,Austin,TX,73301,true
+10029,02 Del Sol Plaza Room 1941,Atlanta,GA,31132,false
+10030,572 Browning Street Suite 11,Atlanta,GA,31106,false
+10031,68098 Manley Junction Room 776,Lawrenceville,GA,30045,false
+10032,68479 Mitchell Road Room 283,Miami,FL,33101,true
+10033,36 Glacier Hill Point Room 57,Atlanta,GA,31196,false
+10034,412 Hollow Ridge Circle Room 1681,Atlanta,GA,30336,true
+10035,4352 Independence Parkway Room 1254,Columbus,GA,31904,false
+10036,472 Mayer Park Apt 689,Albany,GA,31704,false
+10037,887 Melody Trail Room 364,Atlanta,GA,30358,false
+10038,195 Park Meadow Avenue Suite 53,Gainesville,GA,30506,false
+10039,60212 Bonner Place PO Box 85483,Columbus,GA,31998,false
+10040,8818 Swallow Crossing PO Box 61127,Atlanta,GA,31106,false
+10041,9976 Hagan Point 14th Floor,Macon,GA,31217,false
+10042,296 Graedel Crossing 6th Floor,Marietta,GA,30061,false
+10043,17226 Sachs Point 19th Floor,Denver,CO,80202,true
+10044,194 Swallow Court Room 73,Atlanta,GA,30356,false
+10045,78409 Oneill Lane PO Box 70538,Savannah,GA,31405,false
+10046,024 Coolidge Lane PO Box 46190,Savannah,GA,31416,false
+10047,5684 Birchwood Drive Apt 1717,Raleigh,NC,27601,true
+10048,66 Clove Avenue Apt 1694,Atlanta,GA,30336,false
+10049,493 Marcy Trail PO Box 3158,Columbus,GA,31904,false
+10050,91 Gina Road PO Box 98045,Augusta,GA,30911,false
+10051,545 David Junction PO Box 52784,Atlanta,GA,30323,false
+10052,8958 Autumn Leaf Terrace Room 327,Macon,GA,31210,false
+10053,5 Bayside Avenue Room 1435,Atlanta,GA,30340,false
+10054,5534 Fallview Alley PO Box 51247,Augusta,GA,30911,false
+10055,52669 Hoffman Lane Suite 12,Atlanta,GA,30340,false
+10056,528 Mockingbird Point 10th Floor,Columbus,GA,31998,false
+10057,97371 Doe Crossing Way PO Box 40412,Atlanta,GA,31132,false
+10058,14041 Welch Park Suite 10,Savannah,GA,31405,false
+10059,0 Fairview Drive 20th Floor,Chicago,IL,60601,true
+10060,2976 Oxford Place Apt 347,Norcross,GA,30092,false
+10061,737 Burning Wood Drive PO Box 52092,Albany,GA,31704,false
+10062,622 Redwing Terrace PO Box 5802,Austin,TX,73301,true
+10063,7 Karstens Avenue Apt 1931,Macon,GA,31296,false
+10064,18 Old Shore Plaza Apt 1469,Athens,GA,30610,false
+10065,63128 Oxford Parkway Suite 35,Atlanta,GA,30301,false
+10066,8 Iowa Pass PO Box 93868,Nashville,TN,37201,true
+10067,94356 Linden Plaza 9th Floor,Atlanta,GA,30356,false
+10068,66527 Lakewood Gardens Alley Suite 16,Atlanta,GA,31132,false
+10069,2290 Ronald Regan Avenue 8th Floor,Atlanta,GA,31106,true
+10070,936 Novick Place PO Box 14765,Columbus,GA,31904,false
+10071,580 Tony Place PO Box 30373,Duluth,GA,30195,false
+10072,146 Sutteridge Lane 12th Floor,Marietta,GA,30066,false
+10073,4649 Ridgeway Road 13th Floor,Atlanta,GA,30301,false
+10074,7117 Hagan Parkway Room 1261,Macon,GA,31217,false
+10075,87213 Springs Plaza Room 874,Atlanta,GA,31106,false
+10076,00 Spaight Circle 19th Floor,Atlanta,GA,30306,false
+10077,12 Chive Drive Room 1417,Atlanta,GA,31190,false
+10078,6651 John Wall Avenue Room 970,Atlanta,GA,30392,false
+10079,09704 Wayridge Hill 12th Floor,Atlanta,GA,30386,false
+10080,9204 Drewry Trail Suite 18,Atlanta,GA,30328,false
+10081,8769 Eagan Parkway Room 1930,Savannah,GA,31405,false
+10082,5 Northview Junction Apt 1837,Macon,GA,31210,false
+10083,6312 Canary Lane Room 1725,Chicago,IL,60601,true
+10084,0697 Mallory Plaza Apt 122,Gainesville,GA,30506,false
+10085,27 New Castle Street PO Box 10834,Austin,TX,73301,true
+10086,62932 Bonner Way PO Box 38487,Atlanta,GA,30340,false
+10087,35 Amoth Court PO Box 74567,Atlanta,GA,31106,false
+10088,5076 Rigney Circle Room 391,Seattle,WA,98101,true
+10089,54 Stoughton Alley PO Box 13582,Augusta,GA,30919,false
+10090,72788 Northview Avenue PO Box 22935,Atlanta,GA,30392,false
+10091,5 La Follette Pass 15th Floor,Athens,GA,30610,false
+10092,1 Claremont Junction Apt 898,Columbus,GA,31914,false
+10093,458 Darwin Alley Suite 29,Athens,GA,30610,false
+10094,32 Prentice Center 19th Floor,Macon,GA,31210,false
+10095,3074 Tennessee Avenue Suite 8,Portland,OR,97201,true
+10096,225 Buhler Way 19th Floor,Savannah,GA,31410,false
+10097,94296 Fair Oaks Point Room 1856,Atlanta,GA,30328,false
+10098,61 Ramsey Road Suite 58,Atlanta,GA,30340,false
+10099,9 Leroy Avenue Suite 61,Denver,CO,80202,true
+10100,43 Crest Line Alley Suite 10,Duluth,GA,30195,false
+10101,07 Mendota Terrace Suite 20,Atlanta,GA,30343,true
+10102,2 Brown Pass Room 881,Athens,GA,30610,false
+10103,30 Manitowish Terrace PO Box 11691,Atlanta,GA,31196,false
+10104,629 Roth Center Room 1312,Atlanta,GA,30392,false
+10105,4078 Goodland Junction Apt 474,Valdosta,GA,31605,false
+10106,43826 Monica Hill Apt 777,Atlanta,GA,30386,false
+10107,68442 Hollow Ridge Road Apt 1301,Atlanta,GA,30368,false
+10108,668 Huxley Junction Suite 75,Athens,GA,30610,true
+10109,47220 Birchwood Circle Suite 42,Atlanta,GA,31136,false
+10110,05 Crownhardt Street Room 59,Columbus,GA,31998,false
+10111,72638 Pierstorff Junction 18th Floor,Atlanta,GA,30301,false
+10112,7149 Briar Crest Crossing 10th Floor,Lawrenceville,GA,30045,false
+10113,90 Dexter Center Suite 61,Duluth,GA,30195,false
+10114,050 Canary Lane Room 839,Macon,GA,31210,true
+10115,708 Westridge Avenue Room 1456,Atlanta,GA,31136,false
+10116,9 Chinook Park 7th Floor,Duluth,GA,30096,false
+10117,964 Onsgard Road Suite 43,Macon,GA,31210,false
+10118,3 Vera Alley Suite 57,Atlanta,GA,30301,false
+10119,92328 Melvin Court Apt 547,Alpharetta,GA,30022,false
+10120,32494 Walton Plaza Apt 970,Valdosta,GA,31605,false
+10121,118 Arkansas Lane Room 1848,Atlanta,GA,30336,false
+10122,53 Londonderry Point Suite 20,Columbus,GA,31904,false
+10123,77 Farragut Road Apt 1459,Marietta,GA,30061,false
+10124,69064 Mayer Drive PO Box 86885,Valdosta,GA,31605,false
+10125,7 Forster Road 20th Floor,Atlanta,GA,30386,false
+10126,3 Sherman Court PO Box 99624,Atlanta,GA,30301,false
+10127,02566 Gina Avenue Apt 858,Albany,GA,31704,false
+10128,3795 Crest Line Trail PO Box 55668,Atlanta,GA,30343,false
+10129,805 Reindahl Center Apt 563,Atlanta,GA,31119,false
+10130,56 Loomis Center Suite 56,Atlanta,GA,31106,false
+10131,5628 Maryland Trail Apt 1949,Macon,GA,31205,false
+10132,34 Grayhawk Crossing Apt 1265,Atlanta,GA,30306,false
+10133,70261 Almo Lane PO Box 62727,Valdosta,GA,31605,false
+10134,65 Jenifer Terrace PO Box 16339,Duluth,GA,30195,false
+10135,7382 Shasta Park Apt 1644,Cumming,GA,30130,false
+10136,799 Pepper Wood Road Suite 61,Alpharetta,GA,30022,false
+10137,08523 Browning Terrace Apt 640,Atlanta,GA,30375,false
+10138,6 Grover Place Room 408,Atlanta,GA,30343,false
+10139,96456 Hooker Point Suite 20,Decatur,GA,30033,false
+10140,399 Northridge Plaza 17th Floor,Atlanta,GA,30343,true
+10141,2267 Red Cloud Lane PO Box 66886,Gainesville,GA,30506,false
+10142,0 Dapin Lane Suite 11,Atlanta,GA,30375,false
+10143,564 Dorton Hill 18th Floor,Augusta,GA,30919,true
+10144,204 Lindbergh Hill Room 1879,Marietta,GA,30066,false
+10145,01 Hermina Lane 16th Floor,Cumming,GA,30130,false
+10146,66 7th Park 4th Floor,Atlanta,GA,30336,false
+10147,86 Russell Point 5th Floor,Valdosta,GA,31605,false
+10148,197 Golf Course Place Room 411,Athens,GA,30605,false
+10149,70 Starling Court Room 404,Atlanta,GA,30368,false
+10150,7 Commercial Street PO Box 90234,Columbus,GA,31914,false
+10151,3 Dapin Hill 4th Floor,Savannah,GA,31410,false
+10152,43 Vermont Hill PO Box 41995,Atlanta,GA,30328,false
+10153,67 Hudson Street Suite 41,Atlanta,GA,30351,false
+10154,51160 7th Way PO Box 73320,Decatur,GA,30033,false
+10155,5 Spohn Parkway Suite 48,Columbus,GA,31914,false
+10156,79500 Scoville Way Room 1192,Columbus,GA,31914,false
+10157,5574 Ludington Road Suite 70,Duluth,GA,30096,false
+10158,65 Ridge Oak Place Suite 56,Savannah,GA,31422,false
+10159,20567 Anzinger Street Apt 151,Lawrenceville,GA,30245,false
+10160,8518 John Wall Trail Suite 100,Atlanta,GA,31165,false
+10161,23969 Upham Pass 8th Floor,Atlanta,GA,30343,false
+10162,66 Holy Cross Hill Apt 1915,Macon,GA,31296,false
+10163,3795 Havey Place Suite 29,Marietta,GA,30061,false
+10164,7779 Morrow Point Room 3,Atlanta,GA,30306,false
+10165,85576 Scoville Terrace Room 64,Atlanta,GA,31190,false
+10166,4 Packers Drive Apt 924,Alpharetta,GA,30022,false
+10167,37015 Mayfield Road PO Box 42109,Augusta,GA,30919,false
+10168,649 Fieldstone Court Apt 134,Atlanta,GA,30356,false
+10169,934 Clarendon Point Room 1518,Albany,GA,31704,false
+10170,221 Rowland Place Room 355,Decatur,GA,30033,true
+10171,42827 Old Gate Circle PO Box 11992,Atlanta,GA,30343,false
+10172,74650 Arapahoe Center Room 539,Duluth,GA,30195,false
+10173,518 Mcguire Center 3rd Floor,Atlanta,GA,31196,false
+10174,6 Clemons Way Suite 9,Albany,GA,31704,false
+10175,885 Cardinal Pass Apt 535,Augusta,GA,30919,false
+10176,38 Fieldstone Court Room 1197,Savannah,GA,31405,false
+10177,731 Sauthoff Street Suite 8,Atlanta,GA,31190,false
+10178,19 Lighthouse Bay Point Apt 1521,Atlanta,GA,31106,false
+10179,828 8th Trail 3rd Floor,Atlanta,GA,30356,true
+10180,65 Goodland Pass Room 73,Atlanta,GA,31196,false
+10181,33 Kennedy Alley Apt 1137,Atlanta,GA,31106,false
+10182,50 Sunbrook Center Room 497,Atlanta,GA,30392,false
+10183,4 Quincy Junction Suite 7,Duluth,GA,30096,false
+10184,46 Badeau Place Suite 50,Savannah,GA,31410,false
+10185,3199 Hoard Court 9th Floor,Augusta,GA,30905,false
+10186,3386 Lunder Point Room 1887,Athens,GA,30605,false
+10187,3296 Nevada Park 15th Floor,Atlanta,GA,31119,false
+10188,4552 Doe Crossing Place Suite 13,Atlanta,GA,31136,false
+10189,04 Pleasure Place Suite 17,Columbus,GA,31904,false
+10190,14891 Westend Hill Apt 1543,Columbus,GA,31998,false
+10191,24039 Pleasure Way 17th Floor,Nashville,TN,37201,true
+10192,851 Kennedy Pass Room 476,Atlanta,GA,30392,false
+10193,2097 Troy Junction Room 847,Atlanta,GA,30386,true
+10194,8959 Merchant Terrace Apt 581,Decatur,GA,30089,false
+10195,90475 3rd Road Room 1551,Lawrenceville,GA,30045,false
+10196,53398 Rockefeller Park Room 1391,Alpharetta,GA,30022,false
+10197,5314 Elmside Junction Room 1397,Miami,FL,33101,true
+10198,71 Elmside Court Apt 1421,Atlanta,GA,30328,false
+10199,42 Autumn Leaf Trail Suite 88,Macon,GA,31217,false
+10200,071 Ramsey Trail Suite 29,Raleigh,NC,27601,true
+10201,25 Miller Road 2nd Floor,Macon,GA,31210,false
+10202,448 Orin Place Room 149,Atlanta,GA,30392,true
+10203,29 Ronald Regan Drive Suite 36,Decatur,GA,30033,false
+10204,64220 Sutteridge Road PO Box 77155,Marietta,GA,30061,false
+10205,339 Meadow Vale Pass Apt 1896,Lawrenceville,GA,30245,false
+10206,351 Toban Trail Room 1861,Atlanta,GA,30340,false
+10207,86404 Dwight Trail Room 1542,Atlanta,GA,30375,false
+10208,5811 Sugar Park PO Box 91827,Marietta,GA,30066,false
+10209,0 Morningstar Alley 17th Floor,Atlanta,GA,31190,false
+10210,15 Mallard Lane PO Box 27612,Atlanta,GA,30311,false
+10211,4 Carpenter Place Room 1258,Atlanta,GA,30340,false
+10212,48 Park Meadow Lane Apt 1522,Atlanta,GA,30392,false
+10213,3 Lakeland Point Suite 95,Atlanta,GA,31106,false
+10214,03 Mifflin Road Suite 43,Atlanta,GA,30323,false
+10215,83 Delaware Circle Apt 105,Atlanta,GA,30340,false
+10216,37 Crescent Oaks Crossing Suite 56,Phoenix,AZ,85001,true
+10217,2 Bunting Alley Suite 17,Atlanta,GA,30306,true
+10218,1934 Shopko Center Suite 13,Atlanta,GA,30301,false
+10219,75 Darwin Drive Room 236,Seattle,WA,98101,true
+10220,0283 Garrison Place Room 112,Atlanta,GA,31106,false
+10221,7 Mcbride Avenue PO Box 92983,Augusta,GA,30919,false
+10222,1610 Golf Plaza Suite 86,Atlanta,GA,30351,false
+10223,187 Bobwhite Plaza Suite 42,Atlanta,GA,31196,false
+10224,01 8th Park 9th Floor,Alpharetta,GA,30022,false
+10225,6222 Hoepker Hill Apt 550,Atlanta,GA,30386,false
+10226,19 Northland Place Suite 95,Columbus,GA,31914,false
+10227,3866 Gateway Trail 4th Floor,Macon,GA,31205,false
+10228,0021 Arapahoe Point Apt 838,Atlanta,GA,30368,false
+10229,00 Oneill Way Suite 90,Marietta,GA,30061,false
+10230,5 Bartillon Avenue Suite 97,Atlanta,GA,30356,false
+10231,30872 Farwell Circle PO Box 64314,Chicago,IL,60601,true
+10232,0969 Jana Trail PO Box 73897,Chicago,IL,60601,true
+10233,0229 Drewry Terrace PO Box 86958,Columbus,GA,31914,false
+10234,0302 Thackeray Way 8th Floor,Atlanta,GA,30386,false
+10235,2 Lighthouse Bay Place Room 1081,Athens,GA,30605,false
+10236,13236 Holmberg Court PO Box 80626,Gainesville,GA,30506,false
+10237,817 Kropf Way Apt 407,Decatur,GA,30089,false
+10238,1906 Village Court Room 133,Athens,GA,30605,false
+10239,55 Maryland Court Room 1026,Decatur,GA,30089,false
+10240,452 Nobel Point Suite 49,Atlanta,GA,30340,false
+10241,8458 Dapin Lane Room 682,Norcross,GA,30092,false
+10242,5 Magdeline Hill Suite 14,Decatur,GA,30089,false
+10243,5518 West Way 7th Floor,Savannah,GA,31416,false
+10244,96 Eagle Crest Drive Suite 82,Raleigh,NC,27601,true
+10245,79 Summer Ridge Park Suite 79,Atlanta,GA,31106,false
+10246,7232 Montana Avenue Suite 21,Atlanta,GA,30351,false
+10247,89947 Comanche Crossing Apt 1969,Atlanta,GA,30336,false
+10248,27 Lillian Place Apt 125,Atlanta,GA,30336,false
+10249,221 Transport Plaza Room 1007,Macon,GA,31210,false
+10250,4431 Kenwood Crossing Apt 1986,Gainesville,GA,30506,false
+10251,433 Jana Drive Suite 53,Atlanta,GA,31132,false
+10252,38048 American Ash Hill PO Box 22662,Duluth,GA,30096,true
+10253,0 Scofield Place PO Box 98993,Atlanta,GA,31196,false
+10254,4 Utah Lane Suite 75,Augusta,GA,30905,false
+10255,207 Westerfield Alley Apt 1330,Atlanta,GA,30356,true
+10256,91031 Burrows Alley 9th Floor,Atlanta,GA,31165,false
+10257,61 Thompson Place Suite 31,Albany,GA,31704,false
+10258,11886 Maple Plaza Room 1012,Atlanta,GA,31196,false
+10259,6 Jenna Trail PO Box 6121,Atlanta,GA,30323,false
+10260,6641 Fair Oaks Center Room 1982,Augusta,GA,30919,false
+10261,3367 Superior Drive PO Box 91723,Albany,GA,31704,false
+10262,53673 2nd Road PO Box 15560,Atlanta,GA,30386,true
+10263,677 Nancy Court PO Box 86308,Boston,MA,02108,true
+10264,6 Tennyson Terrace Suite 85,Marietta,GA,30066,false
+10265,8 John Wall Drive PO Box 10973,Atlanta,GA,30386,false
+10266,6 Del Sol Way PO Box 28043,Gainesville,GA,30506,false
+10267,008 Onsgard Plaza 20th Floor,Atlanta,GA,31136,false
+10268,121 Lyons Parkway 19th Floor,Nashville,TN,37201,true
+10269,4 Lindbergh Plaza Room 1414,Savannah,GA,31405,false
+10270,293 Hintze Point Suite 48,Duluth,GA,30096,false
+10271,9 Corben Avenue Suite 87,Lawrenceville,GA,30245,false
+10272,06334 Moland Trail Suite 6,Atlanta,GA,30392,false
+10273,1 Cardinal Trail PO Box 12918,Atlanta,GA,30358,false
+10274,017 Donald Junction Suite 48,Duluth,GA,30195,false
+10275,6789 Menomonie Place Suite 29,Macon,GA,31205,false
+10276,43072 Lakewood Gardens Way Room 1365,Duluth,GA,30096,false
+10277,66 Crowley Parkway Apt 262,Boston,MA,02108,true
+10278,1115 Dexter Court Apt 607,Albany,GA,31704,false
+10279,58793 Browning Road Suite 95,Savannah,GA,31405,false
+10280,24 Carioca Circle Apt 1,Marietta,GA,30061,false
+10281,47134 Sunbrook Street PO Box 14936,Atlanta,GA,30311,false
+10282,3043 Huxley Way PO Box 9936,Columbus,GA,31904,false
+10283,490 Iowa Center Suite 38,Athens,GA,30610,false
+10284,301 Waxwing Circle Apt 1293,Savannah,GA,31422,false
+10285,4479 Merchant Court Suite 85,Macon,GA,31217,false
+10286,0270 Reinke Point 15th Floor,Portland,OR,97201,true
+10287,75324 Vermont Alley Room 1090,Atlanta,GA,30351,false
+10288,658 Cherokee Drive Room 1614,Decatur,GA,30033,false
+10289,862 Sunbrook Alley Apt 1598,Atlanta,GA,31136,false
+10290,5947 La Follette Plaza 14th Floor,Atlanta,GA,31132,false
+10291,959 Crest Line Crossing Suite 45,Decatur,GA,30033,true
+10292,79828 Fallview Center PO Box 4192,Savannah,GA,31422,true
+10293,17382 Sunbrook Trail 6th Floor,Atlanta,GA,30306,false
+10294,42 Everett Avenue 15th Floor,Phoenix,AZ,85001,true
+10295,7 Longview Junction PO Box 11557,Columbus,GA,31904,false
+10296,74 La Follette Trail Room 815,Atlanta,GA,31119,false
+10297,32 Bunting Street Room 1036,Savannah,GA,31410,false
+10298,9 Hanover Hill Apt 607,Columbus,GA,31998,false
+10299,65 Northwestern Street 10th Floor,Atlanta,GA,30358,false
+10300,61 Maple Wood Avenue 13th Floor,Lawrenceville,GA,30045,false
+10301,967 Forest Pass PO Box 92695,Seattle,WA,98101,true
+10302,29 Grim Circle PO Box 64952,Duluth,GA,30096,false
+10303,1476 Hayes Junction Room 67,Savannah,GA,31422,false
+10304,0177 Sycamore Circle Suite 32,Atlanta,GA,31196,false
+10305,0 Kropf Plaza Suite 16,Phoenix,AZ,85001,true
+10306,1 3rd Court Room 360,Macon,GA,31296,false
+10307,1131 Bowman Avenue PO Box 83947,Marietta,GA,30066,false
+10308,078 Duke Point Apt 1157,Atlanta,GA,30392,false
+10309,09387 Grasskamp Avenue Apt 809,Decatur,GA,30033,false
+10310,69 Debs Way PO Box 22321,Savannah,GA,31422,false
+10311,0786 Texas Avenue Suite 77,Columbus,GA,31998,false
+10312,0220 Quincy Way Suite 61,Atlanta,GA,30316,false
+10313,9406 Londonderry Court 4th Floor,Savannah,GA,31405,false
+10314,132 Rowland Trail 5th Floor,Atlanta,GA,30340,false
+10315,51501 Warrior Road 1st Floor,Raleigh,NC,27601,true
+10316,97 Meadow Valley Center PO Box 45462,Atlanta,GA,30340,false
+10317,8 Lyons Junction Suite 47,Macon,GA,31205,false
+10318,65 Ryan Terrace 18th Floor,Atlanta,GA,31196,false
+10319,68620 Bellgrove Junction PO Box 68472,Atlanta,GA,30392,false
+10320,7312 Tennessee Trail Room 727,Decatur,GA,30033,false
+10321,76651 Burning Wood Alley 17th Floor,Columbus,GA,31904,true
+10322,1 Grover Terrace Suite 4,Albany,GA,31704,false
+10323,0921 Jana Plaza PO Box 63530,Portland,OR,97201,true
+10324,7258 Maple Drive Apt 1454,Lawrenceville,GA,30045,false
+10325,538 Lunder Circle PO Box 27017,Duluth,GA,30195,false
+10326,95554 Dottie Street 4th Floor,Atlanta,GA,30356,true
+10327,75823 Lindbergh Parkway Suite 19,Denver,CO,80202,true
+10328,9105 Talmadge Trail Suite 45,Nashville,TN,37201,true
+10329,97034 Elka Park PO Box 24965,Norcross,GA,30092,false
+10330,6 Lyons Lane Room 1884,Atlanta,GA,30351,false
+10331,6 Mariners Cove Avenue 5th Floor,Atlanta,GA,31106,false
+10332,3536 Commercial Parkway Suite 63,Atlanta,GA,30301,false
+10333,6347 Village Park Suite 1,Augusta,GA,30919,false
+10334,1857 Autumn Leaf Hill 10th Floor,Athens,GA,30605,false
+10335,5 Canary Place Room 683,Atlanta,GA,31106,false
+10336,03781 Bunting Circle Room 1854,Atlanta,GA,30323,true
+10337,41222 Maple Wood Way Suite 99,Atlanta,GA,31165,false
+10338,61 Farmco Plaza Room 1982,Marietta,GA,30061,false
+10339,3 Buhler Hill PO Box 27490,Atlanta,GA,30351,false
+10340,52872 Walton Plaza Apt 892,Athens,GA,30610,false
+10341,7513 Pepper Wood Parkway Apt 197,Columbus,GA,31914,false
+10342,61193 Talisman Lane Suite 98,Atlanta,GA,30380,false
+10343,9 Mariners Cove Alley Suite 7,Decatur,GA,30033,false
+10344,0 Brentwood Way 4th Floor,Duluth,GA,30195,false
+10345,22319 Anthes Avenue Apt 213,Atlanta,GA,30311,false
+10346,87172 Hayes Terrace 19th Floor,Atlanta,GA,30351,false
+10347,1 Arrowood Way 15th Floor,Decatur,GA,30033,false
+10348,054 South Place Room 88,Decatur,GA,30089,false
+10349,3 Bonner Way 6th Floor,Atlanta,GA,30386,false
+10350,265 Sutteridge Hill Apt 180,Atlanta,GA,30323,false
+10351,8 Mifflin Drive Apt 1049,Augusta,GA,30911,false
+10352,791 Nevada Pass Suite 74,Valdosta,GA,31605,true
+10353,31 Summerview Park Apt 1607,Macon,GA,31217,false
+10354,05 Derek Avenue Apt 764,Augusta,GA,30919,false
+10355,7246 Vernon Parkway PO Box 66541,Atlanta,GA,30323,true
+10356,9 Muir Trail Room 865,Atlanta,GA,30340,false
+10357,131 Morrow Avenue Room 971,Athens,GA,30605,false
+10358,49864 Petterle Hill 3rd Floor,Valdosta,GA,31605,false
+10359,32 Mitchell Drive PO Box 77858,Atlanta,GA,31190,true
+10360,426 Hallows Crossing Apt 878,Gainesville,GA,30506,false
+10361,0477 Quincy Way Room 1341,Atlanta,GA,30336,false
+10362,634 Havey Crossing PO Box 20361,Marietta,GA,30061,false
+10363,2 Pennsylvania Plaza Suite 100,Atlanta,GA,30356,false
+10364,540 Menomonie Lane Apt 34,Atlanta,GA,30392,false
+10365,9205 Hudson Lane Apt 1061,Atlanta,GA,30358,false
+10366,9 Hallows Lane PO Box 56485,Atlanta,GA,30368,false
+10367,4821 Vidon Point Apt 1520,Augusta,GA,30911,false
+10368,945 Donald Street Room 790,Atlanta,GA,30311,false
+10369,0 Granby Place 11th Floor,Portland,OR,97201,true
+10370,2 Mockingbird Parkway Room 742,Atlanta,GA,31165,false
+10371,4 Fulton Lane Apt 1959,Augusta,GA,30905,false
+10372,954 Oakridge Drive Suite 80,Marietta,GA,30066,false
+10373,6724 Graceland Place Suite 44,Raleigh,NC,27601,true
+10374,2454 Lukken Lane 10th Floor,Macon,GA,31210,false
+10375,064 Northwestern Point Suite 66,Augusta,GA,30919,false
+10376,97349 Knutson Court Suite 72,Atlanta,GA,30340,false
+10377,0235 Darwin Lane PO Box 69755,Atlanta,GA,30301,false
+10378,6986 Hauk Court Room 1806,Atlanta,GA,30375,false
+10379,186 Walton Parkway Suite 56,Athens,GA,30610,false
+10380,77 Hintze Center 13th Floor,Atlanta,GA,30392,false
+10381,3 Warbler Avenue Apt 136,Atlanta,GA,30311,false
+10382,94904 Mcbride Place PO Box 3629,Norcross,GA,30092,false
+10383,626 Schlimgen Pass Room 1243,Savannah,GA,31410,false
+10384,01 Bunker Hill Avenue Suite 91,Atlanta,GA,30311,false
+10385,43 Londonderry Terrace Room 671,Macon,GA,31217,false
+10386,550 Oneill Avenue 7th Floor,Atlanta,GA,31196,false
+10387,1 Golf View Parkway 16th Floor,Atlanta,GA,30380,false
+10388,92050 Division Avenue Suite 69,Athens,GA,30605,false
+10389,3 Rigney Place Apt 1490,Athens,GA,30610,false
+10390,57 Namekagon Terrace 13th Floor,Macon,GA,31210,false
+10391,783 Esker Place Room 665,Savannah,GA,31416,false
+10392,38640 Pierstorff Drive 2nd Floor,Decatur,GA,30089,false
+10393,400 Elka Junction Suite 49,Athens,GA,30605,false
+10394,51023 Washington Avenue Room 1462,Atlanta,GA,31132,false
+10395,50 Bayside Street Apt 1152,Seattle,WA,98101,true
+10396,02184 Dwight Place Apt 1928,Boston,MA,02108,true
+10397,3 Debra Road Room 1190,Decatur,GA,30089,false
+10398,57368 7th Parkway 19th Floor,Savannah,GA,31405,false
+10399,65 Rigney Drive PO Box 50973,Atlanta,GA,30356,false
+10400,07732 Colorado Crossing PO Box 66158,Athens,GA,30610,false
+10401,40 Ridgeway Court Suite 83,Macon,GA,31210,false
+10402,94613 Monument Drive 8th Floor,Norcross,GA,30092,true
+10403,60192 Kingsford Center Apt 1900,Denver,CO,80202,true
+10404,529 Gale Plaza PO Box 61919,Atlanta,GA,30323,false
+10405,00023 Ohio Alley Suite 2,Atlanta,GA,30306,false
+10406,45 Washington Place PO Box 43196,Lawrenceville,GA,30045,false
+10407,60706 Manufacturers Plaza PO Box 53073,Lawrenceville,GA,30045,false
+10408,28607 Ridgeway Court 12th Floor,Denver,CO,80202,true
+10409,717 Manitowish Street PO Box 99072,Duluth,GA,30096,false
+10410,7 Fuller Way Apt 1579,Atlanta,GA,30316,false
+10411,53 Johnson Way 17th Floor,Gainesville,GA,30506,false
+10412,6034 Thompson Way Apt 1823,Alpharetta,GA,30022,false
+10413,9 Moland Park Room 1133,Marietta,GA,30061,false
+10414,45 Katie Alley PO Box 5816,Atlanta,GA,31106,false
+10415,51 Roth Pass PO Box 96966,Alpharetta,GA,30022,false
+10416,32 Westerfield Circle Suite 73,Atlanta,GA,31196,false
+10417,5 Dryden Point PO Box 68276,Marietta,GA,30066,false
+10418,0 Waywood Center Room 963,Columbus,GA,31914,false
+10419,92291 Towne Plaza Apt 1471,Savannah,GA,31416,false
+10420,0857 Bartelt Park Room 817,Savannah,GA,31410,true
+10421,85 Cordelia Trail Room 838,Boston,MA,02108,true
+10422,28 Corry Court Room 55,Atlanta,GA,30386,false
+10423,454 Grayhawk Terrace 13th Floor,Savannah,GA,31405,false
+10424,24022 Coolidge Street 3rd Floor,Macon,GA,31296,false
+10425,7 Spaight Road Apt 1760,Marietta,GA,30061,false
+10426,23264 Lerdahl Park 2nd Floor,Alpharetta,GA,30022,true
+10427,67506 Manufacturers Trail PO Box 1524,Atlanta,GA,31190,false
+10428,4 Tennessee Street Room 17,Norcross,GA,30092,false
+10429,40314 Laurel Junction Room 1041,Duluth,GA,30195,false
+10430,4049 Reinke Alley PO Box 73919,Miami,FL,33101,true
+10431,6570 Eastwood Parkway Room 32,Atlanta,GA,30386,false
+10432,4762 Nova Lane 14th Floor,Savannah,GA,31410,false
+10433,89795 Pond Crossing Suite 75,Atlanta,GA,31190,false
+10434,916 Straubel Court PO Box 29687,Norcross,GA,30092,false
+10435,58 Bunting Crossing 18th Floor,Marietta,GA,30066,false
+10436,53288 Namekagon Park PO Box 73300,Atlanta,GA,30375,false
+10437,894 Sage Junction Room 1439,Norcross,GA,30092,false
+10438,195 Mandrake Pass Room 108,Decatur,GA,30089,false
+10439,566 Eagle Crest Parkway 17th Floor,Atlanta,GA,30351,false
+10440,4 Corry Drive 14th Floor,Chicago,IL,60601,true
+10441,0748 Nevada Terrace Apt 1334,Augusta,GA,30911,false
+10442,3 Elgar Road Suite 83,Duluth,GA,30195,false
+10443,51 Carioca Alley Suite 62,Portland,OR,97201,true
+10444,376 Lerdahl Park 3rd Floor,Atlanta,GA,30306,false
+10445,77 Crescent Oaks Court Apt 990,Albany,GA,31704,false
+10446,3608 Roxbury Crossing Room 985,Augusta,GA,30905,false
+10447,94 Darwin Junction 16th Floor,Atlanta,GA,30323,false
+10448,247 Oak Way PO Box 94623,Atlanta,GA,30386,false
+10449,1 Heath Road 16th Floor,Atlanta,GA,31119,false
+10450,21769 Moulton Center Suite 91,Savannah,GA,31416,false
+10451,800 Ohio Center Suite 46,Atlanta,GA,31136,false
+10452,40977 Moose Way Room 609,Atlanta,GA,31165,false
+10453,0 Bobwhite Drive Room 599,Augusta,GA,30911,false
+10454,7 Di Loreto Hill 2nd Floor,Lawrenceville,GA,30245,false
+10455,73 Esker Parkway Suite 44,Atlanta,GA,31106,false
+10456,5906 Burning Wood Crossing 13th Floor,Augusta,GA,30905,true
+10457,19 Kennedy Terrace 3rd Floor,Atlanta,GA,31136,false
+10458,4532 Dottie Street PO Box 92718,Duluth,GA,30195,false
+10459,58578 Village Alley Room 538,Augusta,GA,30905,false
+10460,3172 5th Avenue 14th Floor,Macon,GA,31296,false
+10461,57 Browning Center Apt 121,Atlanta,GA,31132,false
+10462,0329 Elka Trail Room 333,Augusta,GA,30919,false
+10463,3003 Cascade Road PO Box 39193,Atlanta,GA,31165,false
+10464,3 Portage Drive Suite 12,Atlanta,GA,30328,false
+10465,79790 Hanover Plaza Room 1835,Valdosta,GA,31605,false
+10466,0786 Grover Drive 6th Floor,Atlanta,GA,30316,false
+10467,487 Lakewood Gardens Pass Suite 47,Athens,GA,30605,false
+10468,35928 Rigney Pass Room 395,Savannah,GA,31405,false
+10469,0 International Terrace PO Box 54264,Alpharetta,GA,30022,false
+10470,0878 Valley Edge Place PO Box 40283,Duluth,GA,30195,false
+10471,63406 Bonner Lane Apt 762,Chicago,IL,60601,true
+10472,429 3rd Circle PO Box 24197,Atlanta,GA,30380,false
+10473,28928 Gale Plaza PO Box 90378,Atlanta,GA,30316,false
+10474,19 Sunnyside Center 16th Floor,Atlanta,GA,30368,false
+10475,672 Kenwood Avenue Room 250,Duluth,GA,30096,false
+10476,0 Washington Junction Apt 1645,Columbus,GA,31998,false
+10477,97 Harper Park 10th Floor,Atlanta,GA,30356,false
+10478,5 Crowley Junction 18th Floor,Boston,MA,02108,true
+10479,599 Graedel Terrace 10th Floor,Atlanta,GA,30358,false
+10480,12 Commercial Alley Apt 1575,Portland,OR,97201,true
+10481,155 Fulton Road Room 995,Austin,TX,73301,true
+10482,63100 Emmet Road Apt 1874,Macon,GA,31210,false
+10483,6 Waywood Road Suite 32,Atlanta,GA,30392,false
+10484,67 Stuart Park 1st Floor,Atlanta,GA,30328,false
+10485,26 Briar Crest Road 18th Floor,Columbus,GA,31914,false
+10486,35 Rigney Place Room 1784,Phoenix,AZ,85001,true
+10487,60 Elka Trail Apt 1681,Atlanta,GA,30328,false
+10488,044 Summit Junction Apt 1436,Columbus,GA,31998,false
+10489,92327 Merrick Center 1st Floor,Atlanta,GA,30306,false
+10490,64828 Division Road Suite 70,Decatur,GA,30033,false
+10491,41 Sugar Crossing Apt 1893,Savannah,GA,31422,false
+10492,339 Tennyson Hill Room 1428,Seattle,WA,98101,true
+10493,48 Golf Trail 11th Floor,Atlanta,GA,30392,true
+10494,78 Merrick Pass PO Box 74049,Atlanta,GA,30301,false
+10495,3729 Mosinee Street Room 645,Savannah,GA,31422,false
+10496,14 Reindahl Court Room 1125,Savannah,GA,31405,false
+10497,8 Welch Hill Suite 8,Alpharetta,GA,30022,false
+10498,3 Forster Trail Apt 1052,Augusta,GA,30905,false
+10499,95194 Sachs Point PO Box 22554,Duluth,GA,30195,false
+10500,94988 Meadow Valley Road PO Box 29574,Savannah,GA,31410,false
+10501,5 Eastlawn Terrace Room 1217,Lawrenceville,GA,30045,false
+10502,1 Luster Terrace Room 1638,Columbus,GA,31914,false
+10503,749 Monument Road PO Box 65991,Macon,GA,31210,false
+10504,47934 Derek Pass Room 1444,Augusta,GA,30911,true
+10505,9 Daystar Way Room 131,Seattle,WA,98101,true
+10506,362 Crownhardt Drive Apt 1006,Albany,GA,31704,false
+10507,798 Waxwing Lane 14th Floor,Savannah,GA,31422,false
+10508,715 Donald Avenue 7th Floor,Atlanta,GA,31190,false
+10509,73321 Parkside Street Apt 1256,Atlanta,GA,30380,false
+10510,76 Thompson Alley 7th Floor,Portland,OR,97201,true
+10511,7911 Drewry Center PO Box 63471,Lawrenceville,GA,30045,false
+10512,64424 Michigan Court PO Box 30165,Decatur,GA,30089,false
+10513,54137 Portage Circle Apt 1560,Macon,GA,31296,false
+10514,637 Susan Road Suite 38,Atlanta,GA,30336,false
+10515,0 Monica Pass Suite 8,Atlanta,GA,31119,false
+10516,34 Spaight Way PO Box 8866,Athens,GA,30605,false
+10517,685 Kensington Plaza Suite 24,Augusta,GA,30905,false
+10518,965 Briar Crest Place PO Box 17139,Augusta,GA,30919,false
+10519,332 Stone Corner Way Room 65,Macon,GA,31217,false
+10520,4 Pawling Plaza Suite 47,Atlanta,GA,30375,false
+10521,75314 American Ash Hill 13th Floor,Atlanta,GA,30316,false
+10522,237 Killdeer Road Room 1529,Atlanta,GA,30306,false
+10523,4569 Northfield Road 16th Floor,Atlanta,GA,30306,false
+10524,98367 Westerfield Junction Room 380,Savannah,GA,31405,false
+10525,27209 Service Center 1st Floor,Atlanta,GA,30358,true
+10526,3 Kennedy Drive PO Box 35851,Valdosta,GA,31605,false
+10527,7 Aberg Circle Suite 52,Cumming,GA,30130,false
+10528,80 Green Park Apt 984,Atlanta,GA,30340,false
+10529,3 1st Terrace Apt 1313,Boston,MA,02108,true
+10530,79 Golf Trail PO Box 86042,Austin,TX,73301,true
+10531,8 Mitchell Street 20th Floor,Atlanta,GA,30392,true
+10532,725 Mallory Pass Suite 12,Atlanta,GA,30358,false
+10533,3793 Eliot Hill PO Box 37677,Atlanta,GA,30316,false
+10534,17 Pennsylvania Court Suite 39,Macon,GA,31205,false
+10535,7896 Evergreen Drive Apt 1391,Columbus,GA,31914,false
+10536,321 Pankratz Pass 6th Floor,Savannah,GA,31405,false
+10537,9 Spohn Pass Suite 98,Cumming,GA,30130,false
+10538,82580 Glacier Hill Way PO Box 19183,Atlanta,GA,30316,false
+10539,14 Bunting Point Suite 96,Athens,GA,30610,false
+10540,039 Gale Parkway Apt 1466,Decatur,GA,30089,false
+10541,20 Forest Park PO Box 21368,Columbus,GA,31904,false
+10542,8 Twin Pines Center Room 1619,Denver,CO,80202,true
+10543,519 Schurz Road Apt 1399,Atlanta,GA,30306,false
+10544,706 Rutledge Crossing 16th Floor,Duluth,GA,30195,false
+10545,18553 Valley Edge Trail 14th Floor,Atlanta,GA,30316,false
+10546,9865 Warner Lane Suite 66,Alpharetta,GA,30022,false
+10547,2216 Coolidge Plaza Room 1216,Augusta,GA,30905,false
+10548,62513 Porter Crossing Apt 1722,Athens,GA,30610,true
+10549,7 Dawn Court Apt 908,Albany,GA,31704,false
+10550,6 Mosinee Road Suite 43,Atlanta,GA,31196,false
+10551,04 Clarendon Parkway Suite 91,Savannah,GA,31410,true
+10552,2 Twin Pines Drive Room 1312,Atlanta,GA,30316,false
+10553,14 Truax Crossing Room 1714,Atlanta,GA,31136,false
+10554,3636 Ridgeview Park Apt 1054,Atlanta,GA,30336,false
+10555,3 3rd Terrace Room 914,Atlanta,GA,31196,false
+10556,1 Graedel Circle PO Box 66713,Gainesville,GA,30506,false
+10557,5 Tomscot Point Room 906,Columbus,GA,31904,false
+10558,14576 Debra Road 2nd Floor,Atlanta,GA,30343,false
+10559,67 Lillian Plaza 13th Floor,Atlanta,GA,30343,false
+10560,353 Monterey Trail Apt 378,Atlanta,GA,30380,false
+10561,0843 Bayside Plaza Room 1530,Atlanta,GA,31106,false
+10562,11 Pepper Wood Hill Room 382,Atlanta,GA,31136,false
+10563,8410 Lillian Street Room 1933,Atlanta,GA,31136,false
+10564,20962 Stephen Park Suite 37,Athens,GA,30605,false
+10565,636 Gulseth Circle Room 1638,Macon,GA,31205,true
+10566,86435 American Park Suite 59,Atlanta,GA,31196,false
+10567,7 Kim Trail PO Box 33848,Columbus,GA,31998,false
+10568,92 Michigan Hill 4th Floor,Marietta,GA,30066,false
+10569,576 West Road Suite 50,Atlanta,GA,30375,false
+10570,29735 Longview Road Apt 1841,Valdosta,GA,31605,false
+10571,8516 Iowa Center PO Box 50518,Savannah,GA,31416,false
+10572,04 Northridge Parkway Suite 37,Decatur,GA,30089,false
+10573,46 Kropf Center 1st Floor,Phoenix,AZ,85001,true
+10574,4 Upham Avenue PO Box 58548,Atlanta,GA,30380,false
+10575,2 3rd Pass PO Box 7124,Athens,GA,30610,false
+10576,3828 Karstens Point PO Box 17921,Atlanta,GA,30380,false
+10577,233 Pawling Drive Suite 21,Augusta,GA,30911,false
+10578,4 South Drive Room 1338,Atlanta,GA,30316,false
+10579,84 Green Ridge Circle Room 502,Atlanta,GA,30386,false
+10580,7 Fallview Parkway Room 298,Atlanta,GA,31196,false
+10581,67787 Cottonwood Road Suite 33,Atlanta,GA,31106,false
+10582,5 Commercial Park PO Box 78297,Atlanta,GA,31132,false
+10583,18 Crescent Oaks Crossing 16th Floor,Atlanta,GA,30301,false
+10584,2 Milwaukee Drive Suite 53,Atlanta,GA,31136,false
+10585,5440 Stone Corner Terrace Apt 1357,Atlanta,GA,30336,false
+10586,90892 Village Green Junction Apt 1241,Atlanta,GA,30351,false
+10587,76039 Erie Alley Apt 1663,Atlanta,GA,30386,false
+10588,9434 Independence Hill Suite 70,Columbus,GA,31998,true
+10589,1 Transport Circle Suite 12,Gainesville,GA,30506,false
+10590,063 Algoma Pass Suite 47,Augusta,GA,30911,false
+10591,2618 Sloan Road Apt 1272,Atlanta,GA,30343,false
+10592,97 Banding Avenue 9th Floor,Lawrenceville,GA,30245,false
+10593,37 Buhler Junction Suite 87,Macon,GA,31210,false
+10594,20 Paget Hill PO Box 50427,Columbus,GA,31998,false
+10595,2122 Service Point Apt 472,Decatur,GA,30089,false
+10596,24619 Homewood Crossing Apt 433,Atlanta,GA,31106,false
+10597,297 Ludington Street Room 1236,Miami,FL,33101,true
+10598,1 Magdeline Plaza 3rd Floor,Savannah,GA,31416,false
+10599,28030 Everett Point Apt 846,Savannah,GA,31405,false
+10600,169 Karstens Crossing Apt 790,Atlanta,GA,31190,false
+10601,71616 Moose Hill 10th Floor,Austin,TX,73301,true
+10602,7091 Mosinee Place Apt 1608,Athens,GA,30605,false
+10603,6 Veith Avenue PO Box 22572,Lawrenceville,GA,30045,false
+10604,51689 Boyd Center PO Box 86068,Atlanta,GA,30336,false
+10605,4 David Drive 11th Floor,Augusta,GA,30905,false
+10606,09800 Blue Bill Park Terrace Apt 718,Atlanta,GA,30336,false
+10607,997 Mcbride Drive PO Box 76111,Columbus,GA,31998,false
+10608,0826 Dennis Hill Room 1574,Nashville,TN,37201,true
+10609,23 Vernon Center Room 528,Atlanta,GA,30340,false
+10610,18205 Clemons Terrace Apt 1456,Portland,OR,97201,true
+10611,00228 Fairview Street PO Box 23322,Phoenix,AZ,85001,true
+10612,0468 Donald Drive 6th Floor,Atlanta,GA,30380,false
+10613,3749 Magdeline Drive 2nd Floor,Savannah,GA,31405,false
+10614,78329 Briar Crest Way PO Box 70709,Augusta,GA,30905,false
+10615,68 Longview Parkway Suite 93,Gainesville,GA,30506,false
+10616,226 Service Street Room 415,Atlanta,GA,30323,false
+10617,13 Corscot Circle Apt 1103,Macon,GA,31205,false
+10618,4649 La Follette Circle Room 895,Lawrenceville,GA,30045,false
+10619,15750 Schlimgen Point Apt 672,Augusta,GA,30919,false
+10620,596 1st Junction Room 1780,Macon,GA,31205,false
+10621,74 Forster Place Suite 75,Athens,GA,30610,false
+10622,08 Eggendart Point Apt 1628,Savannah,GA,31422,false
+10623,2611 Lerdahl Trail Room 1819,Atlanta,GA,30336,false
+10624,480 Red Cloud Lane Suite 53,Portland,OR,97201,true
+10625,105 Holy Cross Drive Room 1036,Alpharetta,GA,30022,false
+10626,568 Commercial Center 9th Floor,Atlanta,GA,31132,false
+10627,3 Cottonwood Place 11th Floor,Atlanta,GA,30336,false
+10628,3433 Novick Alley Apt 300,Macon,GA,31205,false
+10629,882 Starling Park Room 1359,Atlanta,GA,30323,false
+10630,471 Sauthoff Hill Apt 230,Atlanta,GA,31196,false
+10631,4922 Sheridan Park Apt 1534,Atlanta,GA,30343,false
+10632,69132 Fair Oaks Trail 20th Floor,Atlanta,GA,31132,false
+10633,97488 Jay Parkway PO Box 85446,Gainesville,GA,30506,false
+10634,60 Nobel Way PO Box 8158,Atlanta,GA,30375,false
+10635,9660 Homewood Trail PO Box 39691,Boston,MA,02108,true
+10636,01749 Walton Circle Suite 80,Cumming,GA,30130,false
+10637,0221 Dapin Junction Suite 89,Norcross,GA,30092,false
+10638,7 Orin Circle Room 750,Athens,GA,30610,false
+10639,9 Brentwood Lane 7th Floor,Athens,GA,30605,false
+10640,3 Butterfield Lane Apt 1565,Athens,GA,30610,false
+10641,24557 Crest Line Junction Suite 19,Alpharetta,GA,30022,false
+10642,5364 Knutson Park Room 1825,Atlanta,GA,30386,false
+10643,161 Bartelt Terrace PO Box 85396,Atlanta,GA,30328,false
+10644,12 Mayer Point 3rd Floor,Portland,OR,97201,true
+10645,8226 Manley Plaza 16th Floor,Athens,GA,30610,false
+10646,19950 Jenifer Street Apt 236,Atlanta,GA,30311,false
+10647,83288 Grasskamp Point Room 1331,Savannah,GA,31410,false
+10648,3 Havey Road PO Box 30712,Augusta,GA,30911,false
+10649,0919 Cody Court Apt 801,Atlanta,GA,31119,false
+10650,538 Bonner Terrace Apt 1021,Atlanta,GA,30380,false
+10651,11 Hollow Ridge Place 16th Floor,Savannah,GA,31410,false
+10652,8103 Summer Ridge Parkway Suite 37,Macon,GA,31210,false
+10653,06 Columbus Pass Apt 545,Atlanta,GA,31132,false
+10654,3664 Morrow Park Room 935,Atlanta,GA,31132,false
+10655,19 Longview Circle Suite 72,Miami,FL,33101,true
+10656,08920 Schurz Road Suite 6,Savannah,GA,31410,false
+10657,82 Messerschmidt Center Apt 1205,Atlanta,GA,30368,false
+10658,8209 Lyons Court PO Box 15972,Atlanta,GA,30386,false
+10659,24633 Bonner Terrace PO Box 29829,Atlanta,GA,30323,false
+10660,18 Marcy Street PO Box 57899,Atlanta,GA,30386,false
+10661,845 Straubel Hill Room 1952,Savannah,GA,31422,false
+10662,753 4th Avenue Room 161,Macon,GA,31296,false
+10663,6 Hoffman Street PO Box 95977,Denver,CO,80202,true
+10664,371 Cottonwood Court 1st Floor,Miami,FL,33101,true
+10665,93588 Crest Line Crossing Room 1627,Norcross,GA,30092,false
+10666,78 Forest Dale Park 7th Floor,Atlanta,GA,30311,false
+10667,75653 Truax Way Suite 41,Augusta,GA,30919,false
+10668,843 Forster Junction Suite 4,Atlanta,GA,31106,false
+10669,507 Muir Street Room 897,Duluth,GA,30195,false
+10670,74 Montana Parkway Room 604,Norcross,GA,30092,false
+10671,49598 Judy Road Room 1594,Atlanta,GA,30306,false
+10672,23 5th Parkway Suite 68,Columbus,GA,31998,false
+10673,4 Kinsman Court 1st Floor,Atlanta,GA,30311,false
+10674,5558 Tennyson Drive Room 1852,Atlanta,GA,30301,false
+10675,7220 Sachs Road Room 1555,Savannah,GA,31410,false
+10676,9446 Becker Place PO Box 18545,Duluth,GA,30195,false
+10677,9700 Menomonie Trail Suite 23,Augusta,GA,30919,false
+10678,832 Melody Way Apt 584,Marietta,GA,30066,false
+10679,2031 East Place Room 1216,Raleigh,NC,27601,true
+10680,9 Montana Point Room 639,Gainesville,GA,30506,false
+10681,2844 Vera Trail 18th Floor,Lawrenceville,GA,30045,false
+10682,2602 Quincy Road PO Box 53103,Marietta,GA,30066,true
+10683,4326 American Way Room 1075,Cumming,GA,30130,false
+10684,1 Roxbury Court Room 1141,Columbus,GA,31914,false
+10685,05 West Pass Apt 500,Raleigh,NC,27601,true
+10686,8408 Drewry Crossing Suite 32,Savannah,GA,31422,false
+10687,7 Annamark Center 19th Floor,Savannah,GA,31416,true
+10688,44 Kropf Way 1st Floor,Macon,GA,31296,false
+10689,85580 Brickson Park Drive 4th Floor,Augusta,GA,30919,false
+10690,91286 Northland Alley Room 1420,Augusta,GA,30905,false
+10691,40 Mccormick Alley Room 1920,Athens,GA,30605,false
+10692,46721 Darwin Parkway Room 1882,Decatur,GA,30033,false
+10693,07136 Lunder Plaza PO Box 9802,Atlanta,GA,30328,false
+10694,76100 Pierstorff Avenue Room 1521,Atlanta,GA,30323,false
+10695,209 Graceland Plaza 11th Floor,Macon,GA,31296,false
+10696,652 Northview Point Suite 46,Atlanta,GA,31106,false
+10697,2009 Swallow Terrace PO Box 51730,Savannah,GA,31416,false
+10698,50 Springs Court 4th Floor,Cumming,GA,30130,false
+10699,30 Pennsylvania Hill PO Box 42294,Atlanta,GA,31119,false
+10700,14525 Browning Park Room 1692,Atlanta,GA,30323,false
+10701,6761 Lien Pass Room 1000,Atlanta,GA,30375,false
+10702,4159 American Ash Parkway Room 384,Cumming,GA,30130,false
+10703,87088 Almo Hill Room 761,Savannah,GA,31405,false
+10704,87842 Hollow Ridge Point Apt 1666,Augusta,GA,30905,false
+10705,213 Waywood Junction 15th Floor,Gainesville,GA,30506,true
+10706,430 Meadow Valley Hill Apt 1238,Atlanta,GA,30392,false
+10707,227 Spaight Pass PO Box 21338,Atlanta,GA,31136,false
+10708,52278 Schmedeman Lane Room 700,Atlanta,GA,31136,false
+10709,644 Nevada Parkway Apt 24,Atlanta,GA,30311,false
+10710,470 Northview Pass Suite 54,Macon,GA,31217,false
+10711,9 Lukken Terrace 14th Floor,Atlanta,GA,31190,false
+10712,1 Maple Street Suite 86,Nashville,TN,37201,true
+10713,8 Lakewood Gardens Parkway PO Box 73057,Savannah,GA,31416,false
+10714,0732 Bunting Street PO Box 37198,Atlanta,GA,30386,false
+10715,910 Vidon Alley Suite 20,Atlanta,GA,30380,false
+10716,9620 Declaration Avenue Suite 64,Lawrenceville,GA,30245,false
+10717,4357 Del Mar Road Suite 37,Austin,TX,73301,true
+10718,8 Bay Parkway PO Box 79178,Atlanta,GA,30316,false
+10719,5 Mitchell Road Room 1603,Macon,GA,31296,false
+10720,37928 Dixon Circle Apt 610,Savannah,GA,31416,false
+10721,4 Waxwing Place PO Box 96175,Atlanta,GA,30375,false
+10722,5337 Manley Lane PO Box 96551,Augusta,GA,30919,false
+10723,4347 Stuart Parkway Room 1677,Savannah,GA,31405,false
+10724,63590 West Place Room 1347,Atlanta,GA,31165,false
+10725,29 Lyons Road PO Box 32899,Atlanta,GA,30351,false
+10726,08525 Bellgrove Park Suite 72,Atlanta,GA,31106,false
+10727,76518 Bunker Hill Park Apt 1409,Atlanta,GA,30311,false
+10728,32463 Eggendart Trail Room 1833,Savannah,GA,31416,false
+10729,65 4th Trail Apt 1748,Atlanta,GA,30316,false
+10730,68460 Moose Park PO Box 59968,Atlanta,GA,30343,false
+10731,9918 David Hill PO Box 62392,Atlanta,GA,30340,false
+10732,15 Dakota Center Apt 874,Atlanta,GA,31165,false
+10733,098 3rd Pass Apt 1361,Athens,GA,30605,false
+10734,8 Hintze Trail PO Box 42061,Marietta,GA,30066,false
+10735,3 Lake View Street PO Box 80024,Atlanta,GA,31119,false
+10736,22242 Helena Lane Suite 30,Savannah,GA,31416,false
+10737,09 Randy Alley Apt 118,Savannah,GA,31416,false
+10738,78910 Texas Plaza Suite 44,Duluth,GA,30096,false
+10739,7695 Stoughton Court Apt 1379,Atlanta,GA,30351,false
+10740,6731 Stone Corner Crossing Room 1264,Duluth,GA,30195,true
+10741,3934 Merchant Alley Apt 1885,Macon,GA,31296,false
+10742,48 Lyons Lane 5th Floor,Marietta,GA,30061,false
+10743,7 Eagle Crest Court Apt 34,Savannah,GA,31410,false
+10744,3631 Redwing Terrace PO Box 38981,Macon,GA,31217,false
+10745,87778 Hanover Crossing Apt 345,Atlanta,GA,31119,false
+10746,0119 Mariners Cove Street Room 634,Atlanta,GA,31196,false
+10747,05 Sloan Center PO Box 49734,Norcross,GA,30092,false
+10748,40 Rusk Plaza PO Box 75243,Atlanta,GA,31165,false
+10749,7869 Fairview Court 13th Floor,Atlanta,GA,30340,false
+10750,3 Nobel Alley PO Box 41248,Decatur,GA,30089,false
+10751,458 Eagan Lane Apt 808,Phoenix,AZ,85001,true
+10752,827 Vahlen Terrace Apt 675,Atlanta,GA,31136,false
+10753,7709 Bluestem Terrace PO Box 95763,Augusta,GA,30911,false
+10754,20 Warner Point 7th Floor,Savannah,GA,31405,false
+10755,66 Corry Road Suite 54,Atlanta,GA,30380,false
+10756,7 Jana Street Suite 100,Atlanta,GA,30328,false
+10757,6 Bartillon Way Apt 292,Atlanta,GA,30306,false
+10758,94620 Melvin Park PO Box 65665,Atlanta,GA,30351,false
+10759,12676 Loomis Street 20th Floor,Alpharetta,GA,30022,false
+10760,3 Merry Plaza Suite 99,Atlanta,GA,31190,false
+10761,437 Thierer Terrace 12th Floor,Atlanta,GA,31165,false
+10762,227 Messerschmidt Lane PO Box 13287,Cumming,GA,30130,false
+10763,4 Meadow Vale Avenue 18th Floor,Columbus,GA,31998,false
+10764,6 Upham Parkway Apt 150,Macon,GA,31205,false
+10765,2885 6th Court Suite 58,Duluth,GA,30195,false
+10766,80 Carioca Place PO Box 59494,Boston,MA,02108,true
+10767,7 Muir Court Suite 90,Augusta,GA,30905,false
+10768,8518 Ohio Plaza Room 1786,Columbus,GA,31914,false
+10769,5 Fremont Way Apt 106,Atlanta,GA,30356,false
+10770,8798 Spaight Junction Room 345,Alpharetta,GA,30022,false
+10771,763 Scott Point PO Box 44669,Atlanta,GA,30368,false
+10772,75 Oak Place Room 1281,Chicago,IL,60601,true
+10773,130 Florence Drive 20th Floor,Denver,CO,80202,true
+10774,568 Maple Alley PO Box 8554,Atlanta,GA,30358,false
+10775,19155 Karstens Hill Suite 98,Atlanta,GA,31136,false
+10776,10305 Grayhawk Point Room 1293,Duluth,GA,30195,false
+10777,9780 Fairview Center PO Box 60795,Augusta,GA,30905,false
+10778,16 Green Road Suite 48,Augusta,GA,30919,false
+10779,92033 Crowley Center 14th Floor,Albany,GA,31704,false
+10780,9 Novick Alley PO Box 3792,Augusta,GA,30911,false
+10781,50 Jay Way Room 1504,Atlanta,GA,30316,false
+10782,7 Commercial Park Room 1856,Marietta,GA,30061,false
+10783,9 Saint Paul Junction Suite 35,Savannah,GA,31405,true
+10784,58383 Northview Park PO Box 14231,Lawrenceville,GA,30245,false
+10785,3030 Golf Course Crossing Suite 44,Albany,GA,31704,false
+10786,6 Heffernan Lane 18th Floor,Nashville,TN,37201,true
+10787,23 Schmedeman Hill Apt 1199,Marietta,GA,30061,false
+10788,9 Steensland Crossing 15th Floor,Atlanta,GA,30343,false
+10789,44 Rowland Court Suite 88,Savannah,GA,31422,false
+10790,2548 Green Center Suite 49,Gainesville,GA,30506,false
+10791,43 Declaration Alley Suite 30,Atlanta,GA,31190,false
+10792,9 Canary Plaza 4th Floor,Gainesville,GA,30506,false
+10793,05128 Mayfield Terrace Room 1283,Atlanta,GA,30356,false
+10794,2 Springs Center Room 728,Atlanta,GA,30323,false
+10795,96881 David Place PO Box 44135,Duluth,GA,30096,false
+10796,32500 Sutherland Point PO Box 6954,Atlanta,GA,30386,false
+10797,0576 Heath Road Room 1696,Macon,GA,31217,false
+10798,80 Dahle Road Suite 75,Savannah,GA,31405,false
+10799,93 Center Pass Room 1543,Augusta,GA,30919,false
+10800,1 David Crossing Room 1582,Savannah,GA,31405,false
+10801,73323 Superior Center 8th Floor,Macon,GA,31217,false
+10802,37 Montana Parkway 10th Floor,Cumming,GA,30130,false
+10803,00345 Haas Court PO Box 31475,Atlanta,GA,31119,false
+10804,59 3rd Circle Apt 1699,Lawrenceville,GA,30245,false
+10805,61 Eggendart Alley PO Box 56120,Norcross,GA,30092,false
+10806,8147 Karstens Avenue PO Box 54586,Savannah,GA,31422,false
+10807,783 Veith Trail 19th Floor,Augusta,GA,30911,false
+10808,01 Pleasure Plaza Suite 41,Atlanta,GA,30356,false
+10809,5695 Huxley Alley PO Box 22032,Atlanta,GA,30368,false
+10810,4 Westend Alley PO Box 51094,Atlanta,GA,30311,false
+10811,96922 Fieldstone Place PO Box 65881,Savannah,GA,31416,false
+10812,3 Twin Pines Crossing Room 770,Savannah,GA,31422,false
+10813,6203 Mendota Junction Suite 59,Columbus,GA,31904,false
+10814,5 American Pass Room 1147,Columbus,GA,31998,false
+10815,4 Moulton Terrace 19th Floor,Atlanta,GA,30328,true
+10816,2 Drewry Crossing 8th Floor,Decatur,GA,30089,false
+10817,870 Derek Plaza 12th Floor,Atlanta,GA,30323,false
+10818,87 Huxley Junction PO Box 54841,Savannah,GA,31405,false
+10819,66027 Main Street 14th Floor,Albany,GA,31704,false
+10820,0 Heath Junction PO Box 20439,Marietta,GA,30061,false
+10821,3411 Arizona Circle Room 1229,Athens,GA,30605,false
+10822,80 Michigan Plaza PO Box 85253,Macon,GA,31210,false
+10823,9 Lillian Drive 13th Floor,Savannah,GA,31416,false
+10824,94 Golden Leaf Terrace PO Box 51074,Nashville,TN,37201,true
+10825,63 Center Center Room 551,Atlanta,GA,30358,false
+10826,630 Westridge Circle Suite 18,Atlanta,GA,31106,false
+10827,43 Kingsford Street Suite 71,Duluth,GA,30195,false
+10828,613 La Follette Junction 19th Floor,Athens,GA,30610,false
+10829,610 Buena Vista Court Suite 25,Lawrenceville,GA,30245,false
+10830,092 Arrowood Hill Suite 6,Nashville,TN,37201,true
+10831,32557 Calypso Plaza 13th Floor,Nashville,TN,37201,true
+10832,82145 Glacier Hill Junction Apt 970,Macon,GA,31210,false
+10833,8 Swallow Way Room 1558,Atlanta,GA,30323,true
+10834,16 Redwing Alley Suite 63,Athens,GA,30610,false
+10835,66722 Vidon Court 5th Floor,Phoenix,AZ,85001,true
+10836,92 Merry Park Room 1661,Atlanta,GA,31119,false
+10837,0 Redwing Way 20th Floor,Austin,TX,73301,true
+10838,482 Autumn Leaf Lane Room 876,Atlanta,GA,31190,false
+10839,1832 Ronald Regan Parkway Apt 1546,Marietta,GA,30061,false
+10840,4 Elmside Trail 8th Floor,Athens,GA,30605,false
+10841,5 Thackeray Way Apt 1418,Atlanta,GA,30375,false
+10842,272 Karstens Avenue Apt 659,Atlanta,GA,30392,false
+10843,3630 Annamark Circle Room 1928,Seattle,WA,98101,true
+10844,63439 Steensland Alley Room 580,Atlanta,GA,30311,false
+10845,3 Marcy Point 7th Floor,Augusta,GA,30919,false
+10846,3 Memorial Pass Room 1993,Atlanta,GA,31136,false
+10847,545 Hooker Lane PO Box 20342,Norcross,GA,30092,false
+10848,95157 Colorado Street PO Box 61154,Decatur,GA,30089,false
+10849,7 Dayton Street Apt 1019,Albany,GA,31704,false
+10850,44516 Jenna Road Suite 97,Gainesville,GA,30506,false
+10851,6 Vernon Plaza Apt 1066,Decatur,GA,30089,false
+10852,04 Lunder Plaza Room 1760,Albany,GA,31704,false
+10853,9910 Namekagon Alley Apt 676,Norcross,GA,30092,true
+10854,9 Doe Crossing Point Room 1479,Seattle,WA,98101,true
+10855,707 Sycamore Center Suite 5,Atlanta,GA,30343,false
+10856,0625 Mallory Street 1st Floor,Atlanta,GA,31165,false
+10857,5567 Ilene Drive Apt 1528,Boston,MA,02108,true
+10858,31 2nd Place Suite 26,Decatur,GA,30089,false
+10859,196 Drewry Park 8th Floor,Augusta,GA,30911,false
+10860,322 Schmedeman Center 19th Floor,Columbus,GA,31904,false
+10861,424 Commercial Drive Room 1158,Duluth,GA,30195,false
+10862,2322 Cardinal Circle Apt 448,Augusta,GA,30905,true
+10863,88422 Autumn Leaf Circle PO Box 66226,Macon,GA,31205,false
+10864,7 Randy Court Room 1500,Atlanta,GA,31196,false
+10865,4 Canary Street Suite 95,Denver,CO,80202,true
+10866,2 Monterey Hill Suite 32,Atlanta,GA,30306,false
+10867,790 Anniversary Center PO Box 71836,Augusta,GA,30905,false
+10868,5159 Waywood Place Apt 764,Atlanta,GA,31132,false
+10869,40 Emmet Crossing Apt 254,Valdosta,GA,31605,false
+10870,3 Killdeer Parkway 11th Floor,Macon,GA,31296,false
+10871,077 Rusk Terrace Suite 41,Atlanta,GA,31190,false
+10872,82 Crest Line Place PO Box 6441,Atlanta,GA,31119,false
+10873,7 Hagan Plaza Suite 97,Atlanta,GA,30306,false
+10874,9 Forest Dale Pass 19th Floor,Athens,GA,30605,false
+10875,83363 Shasta Alley 11th Floor,Atlanta,GA,31119,false
+10876,5 Sherman Alley Room 1014,Norcross,GA,30092,false
+10877,1092 8th Place Apt 1303,Phoenix,AZ,85001,true
+10878,4147 Onsgard Drive Suite 50,Atlanta,GA,31165,false
+10879,8 Hazelcrest Terrace PO Box 43744,Austin,TX,73301,true
+10880,511 Lunder Terrace 11th Floor,Columbus,GA,31904,false
+10881,0504 Kensington Place 15th Floor,Atlanta,GA,30301,false
+10882,937 Karstens Drive Room 1833,Atlanta,GA,30351,false
+10883,0325 Jenifer Plaza Room 166,Augusta,GA,30919,false
+10884,48 Washington Pass Apt 1346,Decatur,GA,30089,false
+10885,70 Johnson Terrace PO Box 38027,Lawrenceville,GA,30045,false
+10886,393 5th Trail 12th Floor,Savannah,GA,31422,false
+10887,408 Golf Course Hill Apt 404,Atlanta,GA,31196,false
+10888,422 Buell Hill Room 691,Norcross,GA,30092,false
+10889,370 Old Gate Junction PO Box 95114,Atlanta,GA,30351,false
+10890,54 Lighthouse Bay Junction 20th Floor,Augusta,GA,30905,false
+10891,077 Thackeray Street Suite 35,Atlanta,GA,31106,false
+10892,94837 Village Alley PO Box 16741,Augusta,GA,30905,false
+10893,295 Summerview Terrace Room 1136,Lawrenceville,GA,30045,true
+10894,165 Mandrake Hill 18th Floor,Atlanta,GA,30336,false
+10895,7 Orin Plaza Suite 63,Atlanta,GA,30328,false
+10896,898 5th Circle 19th Floor,Columbus,GA,31904,false
+10897,8 Darwin Avenue Room 257,Macon,GA,31217,false
+10898,9474 New Castle Point Apt 135,Atlanta,GA,31196,false
+10899,968 Ronald Regan Way PO Box 75841,Macon,GA,31296,false
