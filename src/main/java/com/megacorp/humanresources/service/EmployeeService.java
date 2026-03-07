@@ -24,6 +24,7 @@ public interface EmployeeService {
 		String ethnicity,
 		Long managerId,
 		Date hireDate,
+		Date terminationDate,
 		Long annualSalary
 	);
 
@@ -49,6 +50,9 @@ public interface EmployeeService {
 		Date hireDate,
 		Date hireDateFirst,
 		Date hireDateLast,
+		Date terminationDate,
+		Date terminationDateFirst,
+		Date terminationDateLast,
 		Long annualSalary,
 		Integer pageNumber, 
 		Integer pageSize, 
@@ -71,6 +75,9 @@ public interface EmployeeService {
 		Date hireDate,
 		Date hireDateFirst,
 		Date hireDateLast,
+		Date terminationDate,
+		Date terminationDateFirst,
+		Date terminationDateLast,
 		Long annualSalary
 	);
 

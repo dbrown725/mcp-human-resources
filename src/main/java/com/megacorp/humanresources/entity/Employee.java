@@ -92,6 +92,10 @@ public class Employee {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "HIRE_DATE", nullable = true)
 	private Date hireDate;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "TERMINATION_DATE", nullable = true)
+	private Date terminationDate;
 	
 	@Column(name = "ANNUAL_SALARY", nullable = true)
 	private Long annualSalary;
@@ -138,6 +142,7 @@ public class Employee {
 				", age=" + age +
 				", managerId=" + (manager != null ? this.manager.getEmployeeId() : null) +
 				", hireDate=" + (hireDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(hireDate) : null) +
+				", terminationDate=" + (terminationDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(terminationDate) : null) +
 				", annualSalary=" + annualSalary +
 				'}';
 	}

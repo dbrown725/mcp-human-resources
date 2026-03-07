@@ -51,6 +51,15 @@ public class EmployeeSpecifications {
 				hireDateLast);
 	}
 
+	public static Specification<Employee> hasTerminationDate(Date terminationDate) {
+		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("terminationDate"), terminationDate);
+	}
+
+	public static Specification<Employee> hasTerminationDateBetween(Date terminationDateFirst, Date terminationDateLast) {
+		return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("terminationDate"), terminationDateFirst,
+				terminationDateLast);
+	}
+
 	public static Specification<Employee> hasAnnualSalary(Long annualSalary) {
 		return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("annualSalary"), annualSalary);
 	}

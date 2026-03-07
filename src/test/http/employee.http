@@ -17,3 +17,21 @@ Content-Type: application/json
 
 ### Delete employee by ID
 DELETE {{baseUrl}}/employees/5012
+
+### Save terminated employee (terminationDate set)
+POST {{baseUrl}}/employees
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "title": "Engineer",
+  "department": "Engineering",
+  "businessUnit": "Corporate",
+  "gender": "Female",
+  "ethnicity": "Caucasian",
+  "age": 34,
+  "hireDate": "2020-05-10",
+  "terminationDate": "2024-11-15",
+  "annualSalary": 98000
+}

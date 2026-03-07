@@ -120,13 +120,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param ethnicity The new ethnicity of the employee (optional)
 	 * @param managerId The new manager's ID (optional)
 	 * @param hireDate The new hire date of the employee (optional)
+	 * @param terminationDate The new termination date of the employee (optional)
 	 * @param annualSalary The new annual salary of the employee (optional)
 	 * @return The updated Employee object
 	 */
 	@Tool(
 		name = "update_employee",
 		description = "Update specific fields of an Employee. Optional parameters: firstName, lastName, age, department, " +
-			"title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary. " +
+			"title, businessUnit, gender, ethnicity, managerId, hireDate, terminationDate, annualSalary. " +
 			"Only non-null parameters will be updated. Requires employeeId."
 	)
 	public Employee updateEmployee(
@@ -141,13 +142,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) String ethnicity,
 		@ToolParam(required = false) Long managerId,
 		@ToolParam(required = false) Date hireDate,
+		@ToolParam(required = false) Date terminationDate,
 		@ToolParam(required = false) Long annualSalary
 	)
 	{
 		logger.debug("Entering updateEmployee("
 			+ "employeeId={}, firstName={}, lastName={}, age={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={},\n"
-			+ "managerId={}, hireDate={}, annualSalary={})",
-			employeeId, firstName, lastName, age, department, title, businessUnit, gender, ethnicity, managerId, hireDate, annualSalary);
+			+ "managerId={}, hireDate={}, terminationDate={}, annualSalary={})",
+			employeeId, firstName, lastName, age, department, title, businessUnit, gender, ethnicity, managerId, hireDate, terminationDate, annualSalary);
 
 		Employee employee = employeeRepository.findById(employeeId).get();
 
@@ -177,6 +179,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		if (hireDate != null) {
 			employee.setHireDate(hireDate);
+		}
+		if (terminationDate != null) {
+			employee.setTerminationDate(terminationDate);
 		}
 		if (annualSalary != null) {
 			employee.setAnnualSalary(annualSalary);
@@ -254,6 +259,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param hireDate The hire date of the employee (optional)
 	 * @param hireDateFirst The earliest hire date (optional)
 	 * @param hireDateLast The latest hire date (optional)
+	 * @param terminationDate The termination date of the employee (optional)
+	 * @param terminationDateFirst The earliest termination date (optional)
+	 * @param terminationDateLast The latest termination date (optional)
 	 * @param annualSalary The annual salary of the employee (optional)
 	 * @param pageNumber The page number to retrieve (1-based)
 	 * @param pageSize The number of employees per page
@@ -265,7 +273,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		name = "search_employees",
 		description = "Get a Page of employees. Optional parameters: pageNumber, pageSize, sortBy (any Employee field), " +
 		"sortDirection (desc or asc), firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, " +
-		"managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
+		"managerId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
 	)
 	public String searchEmployees(
 		@ToolParam(required = false) String firstName,
@@ -281,6 +289,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Date hireDate,
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
+		@ToolParam(required = false) Date terminationDate,
+		@ToolParam(required = false) Date terminationDateFirst,
+		@ToolParam(required = false) Date terminationDateLast,
 		@ToolParam(required = false) Long annualSalary,
 		@ToolParam(required = false) Integer pageNumber, 
 		@ToolParam(required = false) Integer pageSize, 
@@ -289,12 +300,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	)
 	{
 		logger.debug("Entering searchEmployees("
-			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
-			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
+			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
 		
 		Specification<Employee> spec = buildEmployeeSpecification(
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
-			managerId, hireDate, hireDateFirst, hireDateLast, annualSalary
+			managerId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary
 		);
 
 		logger.debug("Built search specification: {}", spec);
@@ -365,12 +376,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @param hireDate The hire date of the employee (optional)
 	 * @param hireDateFirst The earliest hire date (optional)
 	 * @param hireDateLast The latest hire date (optional)
+	 * @param terminationDate The termination date of the employee (optional)
+	 * @param terminationDateFirst The earliest termination date (optional)
+	 * @param terminationDateLast The latest termination date (optional)
 	 * @param annualSalary The annual salary of the employee (optional)
 	 * @return The count of employees matching the criteria
 	 */
 	@Tool(
 		name = "count_employees",
-		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary."
+		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
 	)
 	public EmployeeCount countEmployees(
 		@ToolParam(required = false) String firstName,
@@ -386,15 +400,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Date hireDate,
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
+		@ToolParam(required = false) Date terminationDate,
+		@ToolParam(required = false) Date terminationDateFirst,
+		@ToolParam(required = false) Date terminationDateLast,
 		@ToolParam(required = false) Long annualSalary
 	) {
 		logger.debug("Entering countEmployees("
-			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, annualSalary={})",
-			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, annualSalary);
+			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={})",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary);
 
 		Specification<Employee> spec = buildEmployeeSpecification(
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
-			managerId, hireDate, hireDateFirst, hireDateLast, annualSalary
+			managerId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary
 		);
 
 		long count = employeeRepository.count(spec);
@@ -407,7 +424,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String firstName, String lastName, Integer startAge, Integer endAge,
 		String department, String title, String businessUnit,
 		String gender, String ethnicity,
-		Long managerId, Date hireDate, Date hireDateFirst, Date hireDateLast, Long annualSalary) {
+		Long managerId, Date hireDate, Date hireDateFirst, Date hireDateLast, Date terminationDate, Date terminationDateFirst, Date terminationDateLast, Long annualSalary) {
 
 		Specification<Employee> spec = Specification.where(null);
 
@@ -440,6 +457,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		if (hireDateFirst != null && hireDateLast != null) {
 			spec = spec.and(EmployeeSpecifications.hasHireDateBetween(hireDateFirst, hireDateLast));
+		}
+		if (terminationDate != null) {
+			spec = spec.and(EmployeeSpecifications.hasTerminationDate(terminationDate));
+		}
+		if (terminationDateFirst != null && terminationDateLast != null) {
+			spec = spec.and(EmployeeSpecifications.hasTerminationDateBetween(terminationDateFirst, terminationDateLast));
 		}
 		if (annualSalary != null) {
 			spec = spec.and(EmployeeSpecifications.hasAnnualSalary(annualSalary));
