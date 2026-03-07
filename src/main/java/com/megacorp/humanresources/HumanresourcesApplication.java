@@ -19,6 +19,7 @@ import com.megacorp.humanresources.service.FileStorageService;
 import com.megacorp.humanresources.service.ImageGenerationService;
 import com.megacorp.humanresources.service.WeatherService;
 import com.megacorp.humanresources.service.EmailService;
+import com.megacorp.humanresources.service.AddressService;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -33,6 +34,7 @@ public class HumanresourcesApplication {
 
 	@Bean
 	public ToolCallbackProvider availableTools(ObjectProvider<EmployeeService> employeeService,
+			ObjectProvider<AddressService> addressService,
 			ObjectProvider<BraveSearchService> braveSearchService,
 			ObjectProvider<KeepAliveService> keepAliveService,
 			ObjectProvider<FileStorageService> fileStorageService,
@@ -42,6 +44,7 @@ public class HumanresourcesApplication {
 
 		List<Object> toolObjects = new ArrayList<>();
 		employeeService.ifAvailable(toolObjects::add);
+		addressService.ifAvailable(toolObjects::add);
 		braveSearchService.ifAvailable(toolObjects::add);
 		keepAliveService.ifAvailable(toolObjects::add);
 		fileStorageService.ifAvailable(toolObjects::add);
