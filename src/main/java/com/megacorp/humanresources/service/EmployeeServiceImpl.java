@@ -2,6 +2,8 @@ package com.megacorp.humanresources.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
@@ -49,6 +51,59 @@ import lombok.extern.slf4j.Slf4j;
 
 //Class
 public class EmployeeServiceImpl implements EmployeeService {
+	private static final Map<String, String> US_STATE_TO_ABBREVIATION = Map.ofEntries(
+		Map.entry("alabama", "AL"),
+		Map.entry("alaska", "AK"),
+		Map.entry("arizona", "AZ"),
+		Map.entry("arkansas", "AR"),
+		Map.entry("california", "CA"),
+		Map.entry("colorado", "CO"),
+		Map.entry("connecticut", "CT"),
+		Map.entry("delaware", "DE"),
+		Map.entry("district of columbia", "DC"),
+		Map.entry("florida", "FL"),
+		Map.entry("georgia", "GA"),
+		Map.entry("hawaii", "HI"),
+		Map.entry("idaho", "ID"),
+		Map.entry("illinois", "IL"),
+		Map.entry("indiana", "IN"),
+		Map.entry("iowa", "IA"),
+		Map.entry("kansas", "KS"),
+		Map.entry("kentucky", "KY"),
+		Map.entry("louisiana", "LA"),
+		Map.entry("maine", "ME"),
+		Map.entry("maryland", "MD"),
+		Map.entry("massachusetts", "MA"),
+		Map.entry("michigan", "MI"),
+		Map.entry("minnesota", "MN"),
+		Map.entry("mississippi", "MS"),
+		Map.entry("missouri", "MO"),
+		Map.entry("montana", "MT"),
+		Map.entry("nebraska", "NE"),
+		Map.entry("nevada", "NV"),
+		Map.entry("new hampshire", "NH"),
+		Map.entry("new jersey", "NJ"),
+		Map.entry("new mexico", "NM"),
+		Map.entry("new york", "NY"),
+		Map.entry("north carolina", "NC"),
+		Map.entry("north dakota", "ND"),
+		Map.entry("ohio", "OH"),
+		Map.entry("oklahoma", "OK"),
+		Map.entry("oregon", "OR"),
+		Map.entry("pennsylvania", "PA"),
+		Map.entry("rhode island", "RI"),
+		Map.entry("south carolina", "SC"),
+		Map.entry("south dakota", "SD"),
+		Map.entry("tennessee", "TN"),
+		Map.entry("texas", "TX"),
+		Map.entry("utah", "UT"),
+		Map.entry("vermont", "VT"),
+		Map.entry("virginia", "VA"),
+		Map.entry("washington", "WA"),
+		Map.entry("west virginia", "WV"),
+		Map.entry("wisconsin", "WI"),
+		Map.entry("wyoming", "WY")
+	);
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
@@ -293,7 +348,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		name = "search_employees",
 		description = "Get a Page of employees. Optional parameters: pageNumber, pageSize, sortBy (any Employee field), " +
 		"sortDirection (desc or asc), firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, " +
-		"managerId, addressId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
+		"managerId, addressId, state (US state in address, e.g. GA or Georgia), city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
 	)
 	public String searchEmployees(
 		@ToolParam(required = false) String firstName,
@@ -307,6 +362,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) String ethnicity,
 		@ToolParam(required = false) Long managerId,
 		@ToolParam(required = false) Long addressId,
+		@ToolParam(required = false, description = "US state in employee address; accepts 2-letter code or full state name") String state,
+		@ToolParam(required = false, description = "City in employee address") String city,
+		@ToolParam(required = false, description = "ZIP/postal code in employee address") String postalCode,
 		@ToolParam(required = false) Date hireDate,
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
@@ -321,12 +379,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	)
 	{
 		logger.debug("Entering searchEmployees("
-			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, addressId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
-			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
+			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, addressId={}, state={}, city={}, postalCode={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={}, pageNumber={}, pageSize={}, sortBy={}, sortDirection={})",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, state, city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary, pageNumber, pageSize, sortBy, sortDirection);
 		
 		Specification<Employee> spec = buildEmployeeSpecification(
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
-			managerId, addressId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary
+			managerId, addressId, state, city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary
 		);
 
 		logger.debug("Built search specification: {}", spec);
@@ -406,7 +464,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Tool(
 		name = "count_employees",
-		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
+		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, state (US state in address, e.g. GA or Georgia), city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
 	)
 	public EmployeeCount countEmployees(
 		@ToolParam(required = false) String firstName,
@@ -420,6 +478,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) String ethnicity,
 		@ToolParam(required = false) Long managerId,
 		@ToolParam(required = false) Long addressId,
+		@ToolParam(required = false, description = "US state in employee address; accepts 2-letter code or full state name") String state,
+		@ToolParam(required = false, description = "City in employee address") String city,
+		@ToolParam(required = false, description = "ZIP/postal code in employee address") String postalCode,
 		@ToolParam(required = false) Date hireDate,
 		@ToolParam(required = false) Date hireDateFirst,
 		@ToolParam(required = false) Date hireDateLast,
@@ -429,12 +490,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) Long annualSalary
 	) {
 		logger.debug("Entering countEmployees("
-			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, addressId={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={})",
-			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary);
+			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, addressId={}, state={}, city={}, postalCode={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={})",
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, state, city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary);
 
 		Specification<Employee> spec = buildEmployeeSpecification(
 			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
-			managerId, addressId, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary
+			managerId, addressId, state, city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary
 		);
 
 		long count = employeeRepository.count(spec);
@@ -443,11 +504,147 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return new EmployeeCount(Long.valueOf(count));
 	}
 
+	@Tool(
+		name = "count_employees_in_state",
+		description = "Count employees whose address is in a US state. Accepts full name (e.g. Georgia) or 2-letter code (e.g. GA)."
+	)
+	public EmployeeCount countEmployeesInState(
+		@ToolParam(description = "US state in employee address; accepts 2-letter code or full state name") String state
+	) {
+		return countEmployeesByLocation(state, null, null);
+	}
+
+	@Tool(
+		name = "search_employees_in_state",
+		description = "Search employees whose address is in a US state. Accepts full name (e.g. Georgia) or 2-letter code (e.g. GA)."
+	)
+	public String searchEmployeesInState(
+		@ToolParam(description = "US state in employee address; accepts 2-letter code or full state name") String state,
+		@ToolParam(required = false) Integer pageNumber,
+		@ToolParam(required = false) Integer pageSize,
+		@ToolParam(required = false) String sortBy,
+		@ToolParam(required = false) String sortDirection
+	) {
+		return searchEmployeesByLocation(state, null, null, pageNumber, pageSize, sortBy, sortDirection);
+	}
+
+	@Tool(
+		name = "count_employees_in_city",
+		description = "Count employees whose address is in a city (case-insensitive)."
+	)
+	public EmployeeCount countEmployeesInCity(
+		@ToolParam(description = "City in employee address") String city
+	) {
+		return countEmployeesByLocation(null, city, null);
+	}
+
+	@Tool(
+		name = "search_employees_in_city",
+		description = "Search employees whose address is in a city (case-insensitive)."
+	)
+	public String searchEmployeesInCity(
+		@ToolParam(description = "City in employee address") String city,
+		@ToolParam(required = false) Integer pageNumber,
+		@ToolParam(required = false) Integer pageSize,
+		@ToolParam(required = false) String sortBy,
+		@ToolParam(required = false) String sortDirection
+	) {
+		return searchEmployeesByLocation(null, city, null, pageNumber, pageSize, sortBy, sortDirection);
+	}
+
+	@Tool(
+		name = "count_employees_in_zipcode",
+		description = "Count employees whose address has the provided ZIP/postal code."
+	)
+	public EmployeeCount countEmployeesInZipcode(
+		@ToolParam(description = "ZIP/postal code in employee address") String zipcode
+	) {
+		return countEmployeesByLocation(null, null, zipcode);
+	}
+
+	@Tool(
+		name = "search_employees_in_zipcode",
+		description = "Search employees whose address has the provided ZIP/postal code."
+	)
+	public String searchEmployeesInZipcode(
+		@ToolParam(description = "ZIP/postal code in employee address") String zipcode,
+		@ToolParam(required = false) Integer pageNumber,
+		@ToolParam(required = false) Integer pageSize,
+		@ToolParam(required = false) String sortBy,
+		@ToolParam(required = false) String sortDirection
+	) {
+		return searchEmployeesByLocation(null, null, zipcode, pageNumber, pageSize, sortBy, sortDirection);
+	}
+
+	private EmployeeCount countEmployeesByLocation(String state, String city, String postalCode) {
+		return countEmployees(
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			state,
+			city,
+			postalCode,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null
+		);
+	}
+
+	private String searchEmployeesByLocation(
+		String state,
+		String city,
+		String postalCode,
+		Integer pageNumber,
+		Integer pageSize,
+		String sortBy,
+		String sortDirection
+	) {
+		return searchEmployees(
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			state,
+			city,
+			postalCode,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			pageNumber,
+			pageSize,
+			sortBy,
+			sortDirection
+		);
+	}
+
 	private Specification<Employee> buildEmployeeSpecification(
 		String firstName, String lastName, Integer startAge, Integer endAge,
 		String department, String title, String businessUnit,
 		String gender, String ethnicity,
-		Long managerId, Long addressId, Date hireDate, Date hireDateFirst, Date hireDateLast, Date terminationDate, Date terminationDateFirst, Date terminationDateLast, Long annualSalary) {
+		Long managerId, Long addressId, String state, String city, String postalCode, Date hireDate, Date hireDateFirst, Date hireDateLast, Date terminationDate, Date terminationDateFirst, Date terminationDateLast, Long annualSalary) {
 
 		Specification<Employee> spec = Specification.where(null);
 
@@ -496,6 +693,35 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (addressId != null) {
 			spec = spec.and(EmployeeSpecifications.hasAddressId(addressId));
 		}
+		if (state != null && !state.isBlank()) {
+			spec = spec.and(EmployeeSpecifications.hasAddressState(normalizeUsState(state)));
+		}
+		if (city != null && !city.isBlank()) {
+			spec = spec.and(EmployeeSpecifications.hasAddressCity(normalizeCity(city)));
+		}
+		if (postalCode != null && !postalCode.isBlank()) {
+			spec = spec.and(EmployeeSpecifications.hasAddressPostalCode(normalizePostalCode(postalCode)));
+		}
 		return spec;
+	}
+
+	private String normalizeUsState(String state) {
+		String trimmed = state.trim();
+		if (trimmed.length() == 2) {
+			return trimmed.toUpperCase(Locale.ROOT);
+		}
+		String mapped = US_STATE_TO_ABBREVIATION.get(trimmed.toLowerCase(Locale.ROOT));
+		if (mapped != null) {
+			return mapped;
+		}
+		return trimmed.toUpperCase(Locale.ROOT);
+	}
+
+	private String normalizeCity(String city) {
+		return city.trim().toUpperCase(Locale.ROOT);
+	}
+
+	private String normalizePostalCode(String postalCode) {
+		return postalCode.trim();
 	}
 }

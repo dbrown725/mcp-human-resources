@@ -67,4 +67,16 @@ class EmployeeSearchDateFilterIntegrationTest {
 
         assertThat(containsEmployee5000).isTrue();
     }
+
+    @Test
+    void searchByStateFullNameReturnsEmployees() throws Exception {
+        MvcResult result = mockMvc.perform(get("/employees/search")
+                .param("state", "Georgia"))
+            .andExpect(status().isOk())
+            .andReturn();
+
+        JsonNode root = objectMapper.readTree(result.getResponse().getContentAsString());
+
+        assertThat(root.path("totalElements").asInt()).isGreaterThan(0);
+    }
 }

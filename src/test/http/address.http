@@ -54,6 +54,24 @@ client.test("Search by postal code returns 200", function() {
 });
 %}
 
+### Search addresses by city + zipcode (postalCode)
+GET {{baseUrl}}/addresses?city=Miami&postalCode=33101
+
+> {%
+client.test("Search by city and zipcode returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search addresses by state + zipcode (postalCode)
+GET {{baseUrl}}/addresses?state=GA&postalCode=30301
+
+> {%
+client.test("Search by state and zipcode returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
 ### Search addresses by remote flag
 GET {{baseUrl}}/addresses?isRemote=true
 

@@ -166,6 +166,42 @@ client.test("Search by managerId and addressId returns 200", function() {
 });
 %}
 
+### Search employees by state (full name normalized to abbreviation)
+GET {{baseUrl}}/employees/search?state=Georgia&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
+
+> {%
+client.test("Search by state full name returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search employees by city
+GET {{baseUrl}}/employees/search?city=Atlanta&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
+
+> {%
+client.test("Search by city returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search employees by zipcode (postalCode)
+GET {{baseUrl}}/employees/search?postalCode=33101&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
+
+> {%
+client.test("Search by zipcode returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Search employees by state + city + zipcode
+GET {{baseUrl}}/employees/search?state=GA&city=Atlanta&postalCode=30301&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
+
+> {%
+client.test("Search by state city zipcode returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
 ### Search employees by hire date range
 GET {{baseUrl}}/employees/search?hireDateFirst=2020-01-01&hireDateLast=2022-12-31&pageNumber=1&pageSize=10&sortBy=hireDate&sortDirection=asc
 
@@ -216,6 +252,33 @@ GET {{baseUrl}}/employees/count?managerId=5615
 
 > {%
 client.test("Count by managerId returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Count employees by state
+GET {{baseUrl}}/employees/count?state=Georgia
+
+> {%
+client.test("Count by state returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Count employees by city
+GET {{baseUrl}}/employees/count?city=Atlanta
+
+> {%
+client.test("Count by city returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
+### Count employees by zipcode (postalCode)
+GET {{baseUrl}}/employees/count?postalCode=33101
+
+> {%
+client.test("Count by zipcode returns 200", function() {
   client.assert(response.status === 200, "Expected status 200, got " + response.status);
 });
 %}

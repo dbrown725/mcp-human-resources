@@ -94,4 +94,25 @@ public class EmployeeSpecifications {
 		};
 	}
 
+	public static Specification<Employee> hasAddressState(String state) {
+		return (root, query, criteriaBuilder) -> {
+			Join<Employee, ?> addressJoin = root.join("address");
+			return criteriaBuilder.equal(criteriaBuilder.upper(addressJoin.get("state")), state.toUpperCase());
+		};
+	}
+
+	public static Specification<Employee> hasAddressCity(String city) {
+		return (root, query, criteriaBuilder) -> {
+			Join<Employee, ?> addressJoin = root.join("address");
+			return criteriaBuilder.equal(criteriaBuilder.upper(addressJoin.get("city")), city.toUpperCase());
+		};
+	}
+
+	public static Specification<Employee> hasAddressPostalCode(String postalCode) {
+		return (root, query, criteriaBuilder) -> {
+			Join<Employee, ?> addressJoin = root.join("address");
+			return criteriaBuilder.equal(addressJoin.get("postalCode"), postalCode);
+		};
+	}
+
 }
