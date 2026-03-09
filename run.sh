@@ -1,4 +1,5 @@
-# to make executable on mac "chmod 755 YourScriptName.sh"
-# to run "./YourScriptName.sh"
+# to make executable on mac "chmod 755 run.sh"
+# to run "./run.sh"
 cd target
-exec /home/YOUR_HOME_DIRECTORY/Documents/development/JDKs/openjdk-24_linux-x64_bin/jdk-24/bin/java -jar humanresources-0.0.1-SNAPSHOT.jar
+# Replace PATH_TO_YOUR_JDK with your actual JDK installation path (e.g., /usr/libexec/java_home on Mac or /usr/lib/jvm/java-11 on Linux)
+exec PATH_TO_YOUR_JDK/bin/java -jar humanresources-0.0.1-SNAPSHOT.jar
