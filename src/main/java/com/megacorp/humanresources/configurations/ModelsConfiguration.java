@@ -85,13 +85,13 @@ public class ModelsConfiguration {
 	}
 
 
-    // *******************************************************
-    // *** Beans related to tertiary model and chat client ***
-    // *******************************************************
+    // ****************************************************
+    // *** Beans related to judge model and chat client ***
+    // ****************************************************
 	@Bean
-	public OpenAiApi openAiApi2(
-		@Value("${spring.ai.openai.api-key-tertiary}") String apiKey,
-		@Value("${spring.ai.openai.base-url-tertiary}") String baseUrl
+	public OpenAiApi openAiApiJudge(
+		@Value("${spring.ai.openai.api-key-judge}") String apiKey,
+		@Value("${spring.ai.openai.base-url-judge}") String baseUrl
 	) {
 		return OpenAiApi.builder()
 		.apiKey(apiKey)
@@ -100,41 +100,41 @@ public class ModelsConfiguration {
 	}
 
 	@Bean
-	public OpenAiChatModel openAiChatModel2(OpenAiApi openAiApi2,
-		@Value("${spring.ai.openai.chat.options.model-tertiary}") String modelName) {
+	public OpenAiChatModel openAiChatModelJudge(OpenAiApi openAiApiJudge,
+		@Value("${spring.ai.openai.chat.options.model-judge}") String modelName) {
 		OpenAiChatOptions chatOptions = OpenAiChatOptions.builder()
 			.model(modelName)
 			.temperature(0.0)
 			.build();
 		return OpenAiChatModel.builder()
-			.openAiApi(openAiApi2)
+			.openAiApi(openAiApiJudge)
 			.defaultOptions(chatOptions)
 			.build();
 	}
 
 	@Bean(
-		name = "tertiaryModel"
+		name = "judgeModel"
 	)
-	ChatModel ChatModelTertiary(
-		OpenAiApi openAiApi2,
-		OpenAiChatModel openAiChatModel2
+	ChatModel chatModelJudge(
+		OpenAiApi openAiApiJudge,
+		OpenAiChatModel openAiChatModelJudge
 	) {
 		return OpenAiChatModel.builder()
-		.openAiApi(openAiApi2)
-		.defaultOptions(openAiChatModel2.getDefaultOptions().copy())
+		.openAiApi(openAiApiJudge)
+		.defaultOptions(openAiChatModelJudge.getDefaultOptions().copy())
 		.build();
 	}
 
 	@Bean(
-		name = "tertiaryChatClient"
+		name = "judgeChatClient"
 	)
-	ChatClient tertiaryChatClient(
-		@Qualifier("tertiaryModel") ChatModel tertiaryChatModel,
+	ChatClient judgeChatClient(
+		@Qualifier("judgeModel") ChatModel judgeChatModel,
 		ChatClientLoggingAdvisor chatClientLoggingAdvisor,
 		EmployeeService employeeService,
 		BraveSearchService braveSearchService
 	) {
-		return ChatClient.builder(tertiaryChatModel)
+		return ChatClient.builder(judgeChatModel)
 			.defaultAdvisors(chatClientLoggingAdvisor)
 			.defaultTools(employeeService, braveSearchService)
 			.build();

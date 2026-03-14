@@ -43,6 +43,7 @@ public class EmailServiceImpl implements EmailService {
      * Saves an email draft to the IMAP drafts folder with optional attachments.
      *
      * @param toEmail     recipient email address
+     * @param ccEmail     optional CC email address(es), comma-separated
      * @param subject     email subject (will be formatted)
      * @param body        plain text email body
      * @param attachments optional list of multipart attachments
@@ -50,9 +51,10 @@ public class EmailServiceImpl implements EmailService {
      * @param inReplyToMessageId optional Message-ID of the email this draft is replying to
      * @throws Exception if message creation, attachment handling, or IMAP operations fail
      */
-    public void saveDraftEmail(String toEmail, String subject, String body, List<MultipartFile> attachments, List<String> storageAttachments, String inReplyToMessageId) throws Exception {
-        logger.debug("Entering saveDraftEmail with toEmail={} subject={} attachmentsCount={} storageAttachmentsCount={} hasReplyTo={}",
+    public void saveDraftEmail(String toEmail, String ccEmail, String subject, String body, List<MultipartFile> attachments, List<String> storageAttachments, String inReplyToMessageId) throws Exception {
+        logger.debug("Entering saveDraftEmail with toEmail={} ccEmail={} subject={} attachmentsCount={} storageAttachmentsCount={} hasReplyTo={}",
             toEmail,
+            ccEmail,
             subject,
             attachments == null ? 0 : attachments.size(),
             storageAttachments == null ? 0 : storageAttachments.size(),
@@ -60,6 +62,9 @@ public class EmailServiceImpl implements EmailService {
         MimeMessage message = new MimeMessage(emailHelper.getSmtpSession());
         message.setFrom(new InternetAddress(emailAddress));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+        if (ccEmail != null && !ccEmail.trim().isEmpty()) {
+            message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail));
+        }
         
         String emailBody = body;
         Store inboxStore = null;
@@ -218,10 +223,45 @@ public class EmailServiceImpl implements EmailService {
     public List<EmailMessage> readInbox(Integer maxEmails, String subjectFilter, String fromFilter, String toFilter, 
                                         String bodyFilter, String messageId, String dateAfter, String dateBefore, 
                                         Boolean isUnreadOnly) throws Exception {
-        logger.debug("Entering readInbox with maxEmails={}, subjectFilter={}, fromFilter={}, toFilter={}, bodyFilter={}, messageId={}, dateAfter={}, dateBefore={}, unreadOnly={}", 
-                    maxEmails, subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, isUnreadOnly);
+        return readFromFolder("INBOX", maxEmails, subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, isUnreadOnly);
+    }
+
+    /**
+     * Reads emails from a specified Gmail folder with optional filtering and limiting.
+     * Common folder names: "INBOX", "[Gmail]/Drafts", "[Gmail]/Sent Mail", "[Gmail]/Trash", "[Gmail]/All Mail".
+     *
+     * @param folderName    the IMAP folder name to read from
+     * @param maxEmails     maximum number of emails to retrieve (default: 50, max: 500)
+     * @param subjectFilter optional subject filter (case-insensitive contains)
+     * @param fromFilter    optional sender filter (case-insensitive contains)
+     * @param toFilter      optional recipient filter (case-insensitive contains)
+     * @param bodyFilter    optional body filter (case-insensitive contains)
+     * @param messageId     optional exact message ID match
+     * @param dateAfter     optional date filter (format: yyyy-MM-dd)
+     * @param dateBefore    optional date filter (format: yyyy-MM-dd)
+     * @param isUnreadOnly  if true, only return unread emails
+     * @return list of EmailMessage objects
+     * @throws Exception if IMAP connection or message parsing fails
+     */
+    public List<EmailMessage> readFolder(String folderName, Integer maxEmails, String subjectFilter, String fromFilter, 
+                                         String toFilter, String bodyFilter, String messageId, String dateAfter, 
+                                         String dateBefore, Boolean isUnreadOnly) throws Exception {
+        if (folderName == null || folderName.trim().isEmpty()) {
+            folderName = "INBOX";
+        }
+        return readFromFolder(folderName, maxEmails, subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, isUnreadOnly);
+    }
+
+    /**
+     * Core implementation for reading emails from any Gmail IMAP folder.
+     */
+    private List<EmailMessage> readFromFolder(String folderName, Integer maxEmails, String subjectFilter, 
+                                              String fromFilter, String toFilter, String bodyFilter, 
+                                              String messageId, String dateAfter, String dateBefore, 
+                                              Boolean isUnreadOnly) throws Exception {
+        logger.debug("Entering readFromFolder with folder={}, maxEmails={}, subjectFilter={}, fromFilter={}, toFilter={}, bodyFilter={}, messageId={}, dateAfter={}, dateBefore={}, unreadOnly={}", 
+                    folderName, maxEmails, subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, isUnreadOnly);
         
-        // Set default and validate maxEmails
         int limit = (maxEmails != null && maxEmails > 0) ? Math.min(maxEmails, 500) : 50;
         boolean unreadOnly = (isUnreadOnly != null) ? isUnreadOnly : false;
         
@@ -229,35 +269,33 @@ public class EmailServiceImpl implements EmailService {
         
         Session imapSession = emailHelper.getImapSession();
         Store store = null;
-        Folder inbox = null;
+        Folder folder = null;
         
         try {
-            // Connect to Gmail IMAP
             store = imapSession.getStore("imap");
             store.connect(IMAP_SERVER, emailAddress, emailPassword);
             
-            // Open inbox folder
-            inbox = store.getFolder("INBOX");
-            inbox.open(Folder.READ_ONLY);
+            folder = store.getFolder(folderName);
+            if (!folder.exists()) {
+                logger.warn("Folder '{}' does not exist", folderName);
+                return emailMessages;
+            }
+            folder.open(Folder.READ_ONLY);
             
-            logger.info("Connected to inbox. Total messages: {}", inbox.getMessageCount());
+            logger.info("Connected to folder '{}'. Total messages: {}", folderName, folder.getMessageCount());
             
-            // Build search criteria
             SearchTerm searchTerm = emailHelper.buildSearchTerm(subjectFilter, fromFilter, toFilter, bodyFilter, messageId, dateAfter, dateBefore, unreadOnly);
             
-            // Search for messages
             Message[] messages;
             if (searchTerm != null) {
-                messages = inbox.search(searchTerm);
+                messages = folder.search(searchTerm);
                 logger.info("Search returned {} messages", messages.length);
             } else {
-                messages = inbox.getMessages();
+                messages = folder.getMessages();
             }
             
-            // Limit the number of messages processed
             int messagesToProcess = Math.min(messages.length, limit);
             
-            // Process messages in reverse order (newest first)
             for (int i = messages.length - 1; i >= messages.length - messagesToProcess && i >= 0; i--) {
                 try {
                     Message message = messages[i];
@@ -265,23 +303,21 @@ public class EmailServiceImpl implements EmailService {
                     emailMessages.add(emailMessage);
                 } catch (Exception e) {
                     logger.error("Error processing message at index {}: {}", i, e.getMessage());
-                    // Continue processing other messages
                 }
             }
             
-            logger.info("Successfully processed {} email messages", emailMessages.size());
+            logger.info("Successfully processed {} email messages from folder '{}'", emailMessages.size(), folderName);
             
         } catch (Exception e) {
-            logger.error("Error reading inbox", e);
+            logger.error("Error reading folder '{}'", folderName, e);
             throw e;
         } finally {
-            // Clean up resources - ensure folder is closed after all processing is complete
             try {
-                if (inbox != null && inbox.isOpen()) {
-                    inbox.close(false);
+                if (folder != null && folder.isOpen()) {
+                    folder.close(false);
                 }
             } catch (Exception e) {
-                logger.warn("Error closing inbox", e);
+                logger.warn("Error closing folder", e);
             }
             try {
                 if (store != null && store.isConnected()) {
@@ -350,6 +386,66 @@ public class EmailServiceImpl implements EmailService {
                 }
             } catch (Exception e) {
                 logger.warn("Error closing inbox", e);
+            }
+            try {
+                if (store != null && store.isConnected()) {
+                    store.close();
+                }
+            } catch (Exception e) {
+                logger.warn("Error closing store", e);
+            }
+        }
+    }
+
+    /**
+     * Deletes all draft emails whose subject contains the given text.
+     * Used for rollback during onboarding workflow failures.
+     */
+    @Override
+    public int deleteDraftsBySubjectContaining(String subjectContains) throws Exception {
+        logger.debug("Entering deleteDraftsBySubjectContaining with subjectContains={}", subjectContains);
+        Store store = null;
+        Folder drafts = null;
+        int deletedCount = 0;
+
+        try {
+            Session imapSession = emailHelper.getImapSession();
+            store = imapSession.getStore("imap");
+            store.connect(IMAP_SERVER, emailAddress, emailPassword);
+
+            drafts = store.getFolder("[Gmail]/Drafts");
+            if (!drafts.exists()) {
+                drafts = store.getFolder("Drafts");
+            }
+            drafts.open(Folder.READ_WRITE);
+
+            Message[] messages = drafts.getMessages();
+            for (Message msg : messages) {
+                String subject = msg.getSubject();
+                if (subject != null && subject.contains(subjectContains)) {
+                    msg.setFlag(Flags.Flag.DELETED, true);
+                    deletedCount++;
+                    logger.debug("Marked draft for deletion: {}", subject);
+                }
+            }
+
+            if (deletedCount > 0) {
+                drafts.expunge();
+            }
+
+            logger.info("Deleted {} draft emails matching '{}'", deletedCount, subjectContains);
+            return deletedCount;
+
+        } catch (Exception e) {
+            logger.error("Error deleting drafts matching '{}': {}", subjectContains, e.getMessage(), e);
+            throw e;
+        } finally {
+            try {
+                if (drafts != null && drafts.isOpen()) {
+                    drafts.close(false);
+                }
+            } catch (Exception e) {
+                logger.warn("Error closing drafts folder", e);
             }
             try {
                 if (store != null && store.isConnected()) {

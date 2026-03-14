@@ -64,7 +64,7 @@ npm i @elastic/mcp-server-elasticsearch
 
 6. Setup your preferred LLMs, tested with GROQ, OPENROUTER and Google Vertex AI. Image Detection works with Google only, Gemini Flash 2.5 specifically:<br>
     Spring AI supported models: https://docs.spring.io/spring-ai/reference/api/index.html<br>
-    Current code setup with Google Vertex AI as the Primary model/chatClient and two OpenAi compliant models as Secondary and Tertiary models/chatClients<br>
+    Current code setup with Google Vertex AI as the Primary model/chatClient and two OpenAi compliant models as Secondary and Judge models/chatClients<br>
     Acquire an API KEY: https://console.groq.com/keys<br>
     Acquire an OPENROUTER KEY: https://openrouter.ai/settings/keys
 

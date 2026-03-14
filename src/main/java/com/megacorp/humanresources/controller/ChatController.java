@@ -33,7 +33,7 @@ public class ChatController {
 
     private final ChatClient secondaryChatClient;
 
-    private final ChatClient tertiaryChatClient;
+    private final ChatClient judgeChatClient;
 
     /**
      * Constructor for ChatController.
@@ -44,18 +44,18 @@ public class ChatController {
      * @param mcpSyncClients list of MCP sync clients used for tool callbacks
      * @param chatClientLoggingAdvisor advisor applied to the ChatClient for logging/advice
      * @param secondaryChatClient an alternate ChatClient instance qualified as "secondaryChatClient"
-     * @param tertiaryChatClient an alternate ChatClient instance qualified as "tertiaryChatClient"
+     * @param judgeChatClient an alternate ChatClient instance qualified as "judgeChatClient"
      */
     public ChatController(EmployeeService employeeService, BraveSearchService braveSearchService,
         RagService ragService,
             ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients,
         CallAdvisor chatClientLoggingAdvisor, @org.springframework.beans.factory.annotation.Qualifier("secondaryChatClient") ChatClient secondaryChatClient,
-        @org.springframework.beans.factory.annotation.Qualifier("tertiaryChatClient") ChatClient tertiaryChatClient) {
+        @org.springframework.beans.factory.annotation.Qualifier("judgeChatClient") ChatClient judgeChatClient) {
         this.employeeService = employeeService;
         this.braveSearchService = braveSearchService;
       this.ragService = ragService;
         this.secondaryChatClient = secondaryChatClient;
-        this.tertiaryChatClient = tertiaryChatClient;
+        this.judgeChatClient = judgeChatClient;
         this.chatClient = chatClientBuilder.defaultAdvisors(chatClientLoggingAdvisor)
                 .defaultToolCallbacks(SyncMcpToolCallbackProvider.builder().mcpClients(mcpSyncClients).build())
                 .build();
@@ -186,14 +186,14 @@ public class ChatController {
       return content;
     }
 
-    @GetMapping("/ai/model/tertiary")
+    @GetMapping("/ai/model/judge")
     public String generate(@RequestParam(value = "prompt", defaultValue = "Tell me a joke") String prompt) {
       log.debug("Entering generate with prompt={}", prompt);
-      String content = tertiaryChatClient.prompt()
+      String content = judgeChatClient.prompt()
                 .user(prompt)
                 .call()
                 .content();
-      log.info("Generated AI response using tertiary model");
+      log.info("Generated AI response using judge model");
       return content;
     }
 

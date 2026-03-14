@@ -314,6 +314,7 @@ public class EmailIdleService {
 
         emailService.saveDraftEmail(
             recipient,
+            null,
             subject,
             draftResponse.replyBody(),
             null,

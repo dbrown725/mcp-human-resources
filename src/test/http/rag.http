@@ -19,10 +19,10 @@
 GET {{baseUrl}}/rag/models
 
 ### RAG query - Anti-Corruption Policy
-GET {{baseUrl}}/rag/query?question=Give%20me%20detailed%20information%20on%20Anti-Corruption%20Policy
+# GET {{baseUrl}}/rag/query?question=Give%20me%20detailed%20information%20on%20Anti-Corruption%20Policy
 
 ### RAG advised query - Multiple topics
-GET {{baseUrl}}/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace
+# GET {{baseUrl}}/rag/advised?question=Give%20me%20detailed%20information%20on%20Ethical%20Decision%20Tree,%20Drugs%20and%20a%20Tobacco%20-%20Free%20Environment%20in%20the%20Workplace
 
 ### Policy RAG ingest from GCS policies/ prefix
 POST {{baseUrl}}/rag/policies/ingest-gcs?prefix=policies/

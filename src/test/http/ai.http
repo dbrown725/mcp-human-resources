@@ -18,8 +18,8 @@ GET {{baseUrl}}/ai/stream?prompt=I%20am%20visiting%20Baltimore%20Maryland%20next
 ### Secondary model (OpenRouter/GROQ)
 GET {{baseUrl}}/ai/model/secondary?prompt=Why%20do%20you%20park%20on%20a%20driveway%20,but%20drive%20on%20a%20parkway?
 
-### Tertiary model
-GET {{baseUrl}}/ai/model/tertiary?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.
+### Judge model
+GET {{baseUrl}}/ai/model/judge?prompt=Write%20a%20few%20paragraphs%20that%20describe%20the%20war%20of%201812.
 
 ### AI onboarding welcome message
 GET {{baseUrl}}/ai/onboarding/welcome?employeeName=Robert&position=MegaCorp%20Vice-President%20of%20Engineering&startDate=01/01/2026

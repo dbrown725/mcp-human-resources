@@ -27,19 +27,21 @@ public class EmailController {
     @PostMapping("/save-draft-email")
     public ResponseEntity<String> saveDraft(
             @RequestParam("toEmail") String toEmail,
+            @RequestParam(value = "ccEmail", required = false) String ccEmail,
             @RequestParam("subject") String subject,
             @RequestParam("body") String body,
             @RequestParam(value = "attachments", required = false) List<MultipartFile> attachments,
             @RequestParam(value = "storageAttachments", required = false) List<String> storageAttachments,
             @RequestParam(value = "inReplyToMessageId", required = false) String inReplyToMessageId) {
-        log.debug("Entering saveDraft with toEmail={} subject={} attachmentsCount={} storageAttachmentsCount={} hasReplyTo={}",
+        log.debug("Entering saveDraft with toEmail={} ccEmail={} subject={} attachmentsCount={} storageAttachmentsCount={} hasReplyTo={}",
                 toEmail,
+                ccEmail,
                 subject,
                 attachments == null ? 0 : attachments.size(),
                 storageAttachments == null ? 0 : storageAttachments.size(),
                 inReplyToMessageId != null);
         try {
-            emailService.saveDraftEmail(toEmail, subject, body, attachments, storageAttachments, inReplyToMessageId);
+            emailService.saveDraftEmail(toEmail, ccEmail, subject, body, attachments, storageAttachments, inReplyToMessageId);
             log.info("Email draft saved for toEmail={} subject={}", toEmail, subject);
             return ResponseEntity.ok("Draft saved.");
         } catch (Exception ex) {
@@ -87,6 +89,47 @@ public class EmailController {
         }
     }
     
+    /**
+     * Reads emails from a specified Gmail folder with optional filtering.
+     * Common folder names: INBOX, [Gmail]/Drafts, [Gmail]/Sent Mail, [Gmail]/Trash, [Gmail]/All Mail.
+     *
+     * @param folder        the IMAP folder name to read from (required)
+     * @param maxEmails     maximum number of emails to retrieve (optional, default: 50, max: 500)
+     * @param subjectFilter filter by subject containing this text (optional, case-insensitive)
+     * @param fromFilter    filter by sender email containing this text (optional, case-insensitive)
+     * @param toFilter      filter by recipient email containing this text (optional, case-insensitive)
+     * @param bodyFilter    filter by body text containing this string (optional, case-insensitive)
+     * @param messageId     filter by specific message ID (optional, exact match)
+     * @param dateAfter     filter emails received after this date (optional, format: yyyy-MM-dd)
+     * @param dateBefore    filter emails received before this date (optional, format: yyyy-MM-dd)
+     * @param unreadOnly    if true, only return unread emails (optional, default: false)
+     * @return list of email messages with details
+     */
+    @GetMapping("/read-folder")
+    public ResponseEntity<?> readFolder(
+            @RequestParam("folder") String folder,
+            @RequestParam(value = "maxEmails", required = false) Integer maxEmails,
+            @RequestParam(value = "subjectFilter", required = false) String subjectFilter,
+            @RequestParam(value = "fromFilter", required = false) String fromFilter,
+            @RequestParam(value = "toFilter", required = false) String toFilter,
+            @RequestParam(value = "bodyFilter", required = false) String bodyFilter,
+            @RequestParam(value = "messageId", required = false) String messageId,
+            @RequestParam(value = "dateAfter", required = false) String dateAfter,
+            @RequestParam(value = "dateBefore", required = false) String dateBefore,
+            @RequestParam(value = "unreadOnly", required = false) Boolean unreadOnly) {
+        log.debug("Entering readFolder with folder={} maxEmails={} subjectFilter={}", folder, maxEmails, subjectFilter);
+        try {
+            List<EmailMessage> emails = emailService.readFolder(folder, maxEmails, subjectFilter, fromFilter, toFilter,
+                                                                bodyFilter, messageId, dateAfter, dateBefore, unreadOnly);
+            log.info("Read folder '{}' request completed with {} messages", folder, emails.size());
+            return ResponseEntity.ok(emails);
+        } catch (Exception ex) {
+            log.error("Failed to read folder '{}'", folder, ex);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to read folder: " + ex.getMessage());
+        }
+    }
+
     /**
      * Marks an email as read by setting the SEEN flag.
      *

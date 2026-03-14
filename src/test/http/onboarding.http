@@ -1,0 +1,53 @@
+@baseUrl = http://localhost:8081
+
+### Onboard new employee - Randy Broussard
+# This triggers the full 8-step onboarding workflow with LLM-as-a-Judge validation.
+# Steps: 1) DB inserts, 2) Image upload to GCS, 3) Badge generation, 4-7) Draft emails, 8) GCS cleanup
+# The employee image (randy_broussard.jpg) and CSV data file are uploaded as multipart form data.
+POST {{baseUrl}}/onboarding
+Content-Type: multipart/form-data; boundary=OnboardingBoundary
+
+--OnboardingBoundary
+Content-Disposition: form-data; name="firstName"
+
+Randy
+--OnboardingBoundary
+Content-Disposition: form-data; name="lastName"
+
+Broussard
+--OnboardingBoundary
+Content-Disposition: form-data; name="personalEmail"
+
+randy.broussard.personal@gmail.com
+--OnboardingBoundary
+Content-Disposition: form-data; name="employeeImage"; filename="randy_broussard.jpg"
+Content-Type: image/jpeg
+
+< ../../main/resources/images/randy_broussard.jpg
+--OnboardingBoundary
+Content-Disposition: form-data; name="csvFile"; filename="onboarding_randy_broussard.csv"
+Content-Type: text/csv
+
+< ../resources/data/onboarding_randy_broussard.csv
+--OnboardingBoundary--
+
+### Verify employee was created (search by name after onboarding)
+GET {{baseUrl}}/employees/search?firstName=Randy&lastName=Broussard
+
+### Verify address was created (search by city)
+GET {{baseUrl}}/addresses?city=Springfield&state=IL
+
+### Check GCS for employee image
+GET {{baseUrl}}/list-files?prefix=employees/
+
+### Check GCS onboarding folder is cleaned up
+GET {{baseUrl}}/list-files?prefix=onboarding/
+
+### Check generated images folder
+GET {{baseUrl}}/list-files?prefix=generated_images/
+
+### Check draft emails were created
+GET {{baseUrl}}/read-folder?folder=%5BGmail%5D/Drafts&subjectFilter=MegaCorp%20Onboarding&maxEmails=10
+
+### Legacy: Generate welcome message (uses SelfRefineEvaluationAdvisor pattern)
+GET {{baseUrl}}/ai/onboarding/welcome?employeeName=Randy%20Broussard&position=Software%20Engineer&startDate=2026-04-01
