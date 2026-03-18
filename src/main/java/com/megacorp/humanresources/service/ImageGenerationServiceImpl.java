@@ -1,6 +1,7 @@
 package com.megacorp.humanresources.service;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,8 +102,9 @@ public class ImageGenerationServiceImpl implements ImageGenerationService {
 
                         String gcsImageName = "generated_images/" + outputImageFileName;
                         fileStorageService.uploadFile(responseImageBytes, gcsImageName);
+                        String signedUrl = fileStorageService.generateSignedUrl(gcsImageName, 15, TimeUnit.MINUTES);
                         logger.info("Image generation completed successfully, saved as {}", gcsImageName);
-                        return "Image saved to GCS as " + gcsImageName;
+                        return "Image saved to GCS as " + gcsImageName + " | Signed URL (15 min): " + signedUrl;
                     }
                 }
             }

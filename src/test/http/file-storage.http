@@ -41,3 +41,15 @@ GET {{baseUrl}}/delete-file?fileName=xyz_bookstore.webp
 
 ### Delete file (with path)
 GET {{baseUrl}}/delete-file?fileName=expense_receipts/20250831_20250913/expense_report.csv
+
+### Get a signed URL for a single file (default 15 minutes)
+GET {{baseUrl}}/signed-url?fileName=policies/Internet Usage Policy.pdf
+
+### Get a signed URL valid for 30 minutes
+GET {{baseUrl}}/signed-url?fileName=policies/Internet Usage Policy.pdf&durationMinutes=30
+
+### List files with signed URLs (default 15 minutes)
+GET {{baseUrl}}/list-files-signed?prefix=policies/
+
+### List files with signed URLs valid for 10 minutes
+GET {{baseUrl}}/list-files-signed?prefix=policies/&durationMinutes=10

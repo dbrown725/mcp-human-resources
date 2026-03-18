@@ -19,8 +19,16 @@ import com.google.cloud.storage.StorageOptions;
 import lombok.extern.slf4j.Slf4j;
 
 import com.google.cloud.storage.Storage.BlobListOption;
+import com.google.cloud.storage.Storage.SignUrlOption;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+
+import java.util.concurrent.TimeUnit;
+import com.megacorp.humanresources.model.FileItem;
+
+import com.google.auth.ServiceAccountSigner;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.ImpersonatedCredentials;
 
 // Based on https://github.com/sohamkamani/java-gcp-examples/blob/main/src/main/java/com/sohamkamani/storage/App.java
 // https://www.youtube.com/watch?v=FXiV4WPQveY
@@ -36,6 +44,49 @@ public class FileStorageServiceImpl implements FileStorageService {
 
     @Value("${spring.ai.vertex.ai.gemini.project-id}")
     private String projectId;
+
+    @Value("${google.cloud.storage.signing.service-account:}")
+    private String signingServiceAccount;
+
+    /**
+     * Returns a {@link ServiceAccountSigner} that can produce V4-signed URLs.
+     * <p>
+     * If the Application Default Credentials already contain a private key
+     * (e.g. a JSON key file or Compute Engine metadata), they are used directly.
+     * Otherwise the method falls back to IAM-based impersonation of the service
+     * account configured in {@code google.cloud.storage.signing.service-account}.
+     */
+    private ServiceAccountSigner getSigningCredentials() {
+        try {
+            GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
+            if (credentials instanceof ServiceAccountSigner) {
+                logger.debug("Using ADC ServiceAccountSigner for URL signing");
+                return (ServiceAccountSigner) credentials;
+            }
+
+            // ADC is user credentials (e.g. gcloud auth) — impersonate a service account
+            if (signingServiceAccount == null || signingServiceAccount.isBlank()) {
+                throw new IllegalStateException(
+                    "Application Default Credentials cannot sign URLs and no " +
+                    "google.cloud.storage.signing.service-account is configured. " +
+                    "Set the SIGNING_SERVICE_ACCOUNT environment variable to a " +
+                    "service account email that has Storage Object Viewer on the bucket.");
+            }
+
+            logger.debug("Impersonating {} for URL signing", signingServiceAccount);
+            ImpersonatedCredentials impersonated = ImpersonatedCredentials.create(
+                    credentials,
+                    signingServiceAccount,
+                    null,
+                    List.of("https://www.googleapis.com/auth/devstorage.read_only"),
+                    0);
+            return impersonated;
+        } catch (IllegalStateException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to obtain signing credentials", e);
+        }
+    }
 
     /**
      * Uploads a file to Google Cloud Storage.
@@ -59,7 +110,8 @@ public class FileStorageServiceImpl implements FileStorageService {
         }
         
         logger.info("File uploaded successfully as {}", fileName);
-        return "File " + fileName + " uploaded as " + fileName;
+        String signedUrl = generateSignedUrl(fileName, 15, TimeUnit.MINUTES);
+        return "File " + fileName + " uploaded as " + fileName + " | Signed URL (15 min): " + signedUrl;
     }
 
     /**
@@ -81,7 +133,8 @@ public class FileStorageServiceImpl implements FileStorageService {
         }
 
         logger.info("File uploaded successfully as {}", fileName);
-        return "File " + fileName + " uploaded as " + fileName;
+        String signedUrl = generateSignedUrl(fileName, 15, TimeUnit.MINUTES);
+        return "File " + fileName + " uploaded as " + fileName + " | Signed URL (15 min): " + signedUrl;
     }
 
     private void storeFile(String fileName, byte[] fileContent) {
@@ -313,5 +366,80 @@ public class FileStorageServiceImpl implements FileStorageService {
             logger.error("Exception in getResourceFromGcsUrl for url={}", gcsUrl, e);
             return null;
         }
+    }
+
+    /**
+     * Generates a V4-signed URL granting temporary read access to a GCS object.
+     *
+     * @param objectName the full object name (key) in the bucket, e.g. "policies/handbook.pdf"
+     * @param duration   how long the URL should remain valid
+     * @param timeUnit   the time unit for duration
+     * @return the signed URL as a String
+     */
+    @Override
+    public String generateSignedUrl(String objectName, long duration, TimeUnit timeUnit) {
+        logger.debug("Entering generateSignedUrl for objectName={}, duration={} {}", objectName, duration, timeUnit);
+        try {
+            Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
+            BlobInfo blobInfo = BlobInfo.newBuilder(BlobId.of(bucketName, objectName)).build();
+            ServiceAccountSigner signer = getSigningCredentials();
+
+            String url = storage.signUrl(
+                    blobInfo,
+                    duration,
+                    timeUnit,
+                    SignUrlOption.withV4Signature(),
+                    SignUrlOption.signWith(signer))
+                    .toString();
+
+            logger.info("Generated signed URL for objectName={} valid for {} {}", objectName, duration, timeUnit);
+            return url;
+        } catch (Exception e) {
+            logger.error("Failed to generate signed URL for objectName={}", objectName, e);
+            throw new RuntimeException("Failed to generate signed URL for " + objectName, e);
+        }
+    }
+
+    /**
+     * Lists files matching a prefix and returns each file together with a time-limited signed URL.
+     *
+     * @param prefix   the prefix to filter files, e.g. "policies/"
+     * @param duration how long each signed URL should remain valid
+     * @param timeUnit the time unit for duration
+     * @return a list of {@link FileItem} containing each file's name and signed URL
+     */
+    @Tool(
+        name = "storage_list_files_with_signed_urls",
+        description = "Lists files in GCS matching a prefix and returns each file with a time-limited signed URL for viewing. " +
+            "The prefix can be a folder path such as 'policies/'. Duration and time unit control how long the URLs remain valid."
+    )
+    @Override
+    public List<FileItem> listFilesWithSignedUrls(String prefix, long duration, TimeUnit timeUnit) {
+        logger.debug("Entering listFilesWithSignedUrls with prefix={}, duration={} {}", prefix, duration, timeUnit);
+        List<FileItem> items = new ArrayList<>();
+        try {
+            Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
+            ServiceAccountSigner signer = getSigningCredentials();
+            for (Blob blob : storage
+                    .list(bucketName, BlobListOption.prefix(prefix), BlobListOption.currentDirectory())
+                    .iterateAll()) {
+                if (!blob.isDirectory()) {
+                    String signedUrl = storage.signUrl(
+                            BlobInfo.newBuilder(BlobId.of(bucketName, blob.getName())).build(),
+                            duration,
+                            timeUnit,
+                            SignUrlOption.withV4Signature(),
+                            SignUrlOption.signWith(signer))
+                            .toString();
+                    items.add(new FileItem(blob.getName(), signedUrl));
+                    logger.debug("Added FileItem name={}", blob.getName());
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Failed to list files with signed URLs for prefix={}", prefix, e);
+            throw new RuntimeException("Failed to list files with signed URLs for prefix " + prefix, e);
+        }
+        logger.info("Listed {} files with signed URLs for prefix={}", items.size(), prefix);
+        return items;
     }
 }

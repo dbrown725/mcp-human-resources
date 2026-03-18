@@ -13,7 +13,9 @@ import org.springframework.http.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import com.megacorp.humanresources.model.FileItem;
 import com.megacorp.humanresources.service.FileStorageService;
 
 @RestController
@@ -117,5 +119,40 @@ public class FileStorageController {
         log.info("File downloaded successfully for fileName={}", fileName);
 
         return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
+    }
+
+    /**
+     * Generates a time-limited V4-signed URL for a single GCS object.
+     *
+     * @param fileName       the full object name in the bucket, e.g. "policies/handbook.pdf"
+     * @param durationMinutes how many minutes the URL should remain valid (default 15)
+     * @return the signed URL as a plain-text string
+     */
+    @GetMapping("/signed-url")
+    public String getSignedUrl(
+            @RequestParam("fileName") String fileName,
+            @RequestParam(value = "durationMinutes", defaultValue = "15") long durationMinutes) {
+        log.debug("Entering getSignedUrl with fileName={}, durationMinutes={}", fileName, durationMinutes);
+        String url = fileStorageService.generateSignedUrl(fileName, durationMinutes, TimeUnit.MINUTES);
+        log.info("Signed URL generated for fileName={}", fileName);
+        return url;
+    }
+
+    /**
+     * Lists files matching a prefix and returns each file name together with a
+     * time-limited V4-signed URL that grants temporary read access.
+     *
+     * @param prefix          the prefix to filter files, e.g. "policies/"
+     * @param durationMinutes how many minutes each signed URL should remain valid (default 15)
+     * @return a list of {@link FileItem} containing name and signedUrl
+     */
+    @GetMapping("/list-files-signed")
+    public List<FileItem> listFilesWithSignedUrls(
+            @RequestParam("prefix") String prefix,
+            @RequestParam(value = "durationMinutes", defaultValue = "15") long durationMinutes) {
+        log.debug("Entering listFilesWithSignedUrls with prefix={}, durationMinutes={}", prefix, durationMinutes);
+        List<FileItem> items = fileStorageService.listFilesWithSignedUrls(prefix, durationMinutes, TimeUnit.MINUTES);
+        log.info("Listed {} files with signed URLs for prefix={}", items.size(), prefix);
+        return items;
     }
 }

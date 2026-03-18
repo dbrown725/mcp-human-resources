@@ -38,8 +38,14 @@ export BRAVE_API_KEY=<YOUR_BRAVE_API_KEY>
     export STORAGE_BUCKET_NAME=<YOUR_STORAGE_BUCKET_NAME>
     ```
     Upload policy PDF files from `ops/data/gcs` and use the GCS object path format `policies/<FILENAME>.pdf` (example: `policies/policies_Business Dress Code Policy.pdf`).
-    
-**Note:** If using `start-run.sh` or `start-debug.sh`, set these values in the script files instead of exporting manually.<br><br>
+
+    **Signed URLs:** To enable time-limited signed URL generation for GCS files (e.g. in-browser PDF viewing), you need to create a GCP service account, configure IAM permissions, and set the `SIGNING_SERVICE_ACCOUNT` environment variable:
+    ```bash
+    export SIGNING_SERVICE_ACCOUNT=<YOUR_SERVICE_ACCOUNT>@<YOUR_PROJECT_ID>.iam.gserviceaccount.com
+    ```
+    See [SIGNED_URLS.md](SIGNED_URLS.md) for full setup instructions.
+
+**Note:** If using `start-run.sh` or `start-debug.sh`, set these values (including `SIGNING_SERVICE_ACCOUNT`) in the script files instead of exporting manually.<br><br>
 4. Needed for Nano Banana image generation
     ```bash
     export GEMINI_API_KEY=<YOUR_GEMINI_API_KEY>

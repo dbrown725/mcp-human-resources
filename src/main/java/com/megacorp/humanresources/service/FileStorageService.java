@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.megacorp.humanresources.model.FileItem;
+
 public interface FileStorageService {
     String readFile(String fileName);
 
@@ -21,4 +23,8 @@ public interface FileStorageService {
     List<String> listFileUrlsInFolder(String folderName);
 
     Resource getResourceFromGcsUrl(String gcsUrl);
+
+    String generateSignedUrl(String objectName, long duration, java.util.concurrent.TimeUnit timeUnit);
+
+    List<FileItem> listFilesWithSignedUrls(String prefix, long duration, java.util.concurrent.TimeUnit timeUnit);
 }
