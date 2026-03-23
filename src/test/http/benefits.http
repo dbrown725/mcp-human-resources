@@ -1,0 +1,50 @@
+### Get all benefit plans
+GET http://localhost:8081/benefits/plans
+
+### Get plan by ID
+GET http://localhost:8081/benefits/plans/1
+
+### Get plans by type - Medical
+GET http://localhost:8081/benefits/plans/type/Medical
+
+### Get plans by type - Dental
+GET http://localhost:8081/benefits/plans/type/Dental
+
+### Get plans by type - Vision
+GET http://localhost:8081/benefits/plans/type/Vision
+
+### Get enrollments for employee 5001
+GET http://localhost:8081/benefits/enrollments/employee/5001
+
+### Get enrollments for employee 5000 (should have no Medical - MOD 7 == 0)
+GET http://localhost:8081/benefits/enrollments/employee/5000
+
+### Get enrollments for plan 1 (Titanium Health PPO)
+GET http://localhost:8081/benefits/enrollments/plan/1
+
+### Get enrollments by plan type - Medical
+GET http://localhost:8081/benefits/enrollments/type/Medical
+
+### Count enrollments for plan 1
+GET http://localhost:8081/benefits/enrollments/plan/1/count
+
+### Count enrollments by plan type - Medical
+GET http://localhost:8081/benefits/enrollments/type/Medical/count
+
+### Count enrollments by plan type - Dental
+GET http://localhost:8081/benefits/enrollments/type/Dental/count
+
+### Count enrollments by plan type - Vision
+GET http://localhost:8081/benefits/enrollments/type/Vision/count
+
+### Enroll employee in a plan
+POST http://localhost:8081/benefits/enrollments
+Content-Type: application/json
+
+{
+    "employeeId": 5000,
+    "planId": 3
+}
+
+### Unenroll employee from a plan
+DELETE http://localhost:8081/benefits/enrollments/employee/5000/plan/3

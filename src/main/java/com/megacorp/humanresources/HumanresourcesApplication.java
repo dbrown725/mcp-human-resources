@@ -13,6 +13,7 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
 
 import com.megacorp.humanresources.service.EmployeeService;
+import com.megacorp.humanresources.service.BenefitsService;
 import com.megacorp.humanresources.service.BraveSearchService;
 import com.megacorp.humanresources.service.KeepAliveService;
 import com.megacorp.humanresources.service.FileStorageService;
@@ -34,6 +35,7 @@ public class HumanresourcesApplication {
 
 	@Bean
 	public ToolCallbackProvider availableTools(ObjectProvider<EmployeeService> employeeService,
+			ObjectProvider<BenefitsService> benefitsService,
 			ObjectProvider<AddressService> addressService,
 			ObjectProvider<BraveSearchService> braveSearchService,
 			ObjectProvider<KeepAliveService> keepAliveService,
@@ -44,6 +46,7 @@ public class HumanresourcesApplication {
 
 		List<Object> toolObjects = new ArrayList<>();
 		employeeService.ifAvailable(toolObjects::add);
+		benefitsService.ifAvailable(toolObjects::add);
 		addressService.ifAvailable(toolObjects::add);
 		braveSearchService.ifAvailable(toolObjects::add);
 		keepAliveService.ifAvailable(toolObjects::add);

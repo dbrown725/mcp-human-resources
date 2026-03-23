@@ -2,6 +2,7 @@ package com.megacorp.humanresources.configurations;
 
 import com.megacorp.humanresources.advisors.ChatClientLoggingAdvisor;
 import com.megacorp.humanresources.service.EmployeeService;
+import com.megacorp.humanresources.service.BenefitsService;
 import com.megacorp.humanresources.service.BraveSearchService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
@@ -76,11 +77,12 @@ public class ModelsConfiguration {
 		@Qualifier("secondaryModel") ChatModel secondaryChatModel,
 		ChatClientLoggingAdvisor chatClientLoggingAdvisor,
 		EmployeeService employeeService,
+		BenefitsService benefitsService,
 		BraveSearchService braveSearchService
 	) {
 		return ChatClient.builder(secondaryChatModel)
 			.defaultAdvisors(chatClientLoggingAdvisor)
-			.defaultTools(employeeService, braveSearchService)
+			.defaultTools(employeeService, benefitsService, braveSearchService)
 			.build();
 	}
 
@@ -132,11 +134,12 @@ public class ModelsConfiguration {
 		@Qualifier("judgeModel") ChatModel judgeChatModel,
 		ChatClientLoggingAdvisor chatClientLoggingAdvisor,
 		EmployeeService employeeService,
+		BenefitsService benefitsService,
 		BraveSearchService braveSearchService
 	) {
 		return ChatClient.builder(judgeChatModel)
 			.defaultAdvisors(chatClientLoggingAdvisor)
-			.defaultTools(employeeService, braveSearchService)
+			.defaultTools(employeeService, benefitsService, braveSearchService)
 			.build();
 	}
 
