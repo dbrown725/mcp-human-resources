@@ -97,7 +97,7 @@ GET {{baseUrl}}/read-inbox?subjectFilter=TEST%20Alpha&unreadOnly=true&maxEmails=
 GET {{baseUrl}}/read-inbox?bodyFilter=Economic&maxEmails=20
 
 ### Read inbox - filter by date range
-GET {{baseUrl}}/read-inbox?dateAfter=2026-02-13&dateBefore=2026-02-16&maxEmails=20
+GET {{baseUrl}}/read-inbox?dateAfter=2026-02-13&dateBefore=2026-03-16&maxEmails=20
 
 ### Read inbox - filter by date after
 GET {{baseUrl}}/read-inbox?dateAfter=2025-09-12&maxEmails=10

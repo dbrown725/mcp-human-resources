@@ -283,10 +283,10 @@ public class EmployeeOnboardingServiceImpl implements EmployeeOnboardingService 
 
 					// Set hire date
 					try {
-						employee.setHireDate(new SimpleDateFormat("yyyy-MM-dd").parse(csvData.get("HIRE_DATE")));
+						employee.setHireDate(java.time.LocalDate.parse(csvData.get("HIRE_DATE")));
 					} catch (Exception e) {
 						logger.warn("Could not parse hire date '{}', setting to today", csvData.get("HIRE_DATE"));
-						employee.setHireDate(new java.util.Date());
+						employee.setHireDate(java.time.LocalDate.now());
 					}
 
 					// Set manager if specified

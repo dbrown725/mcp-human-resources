@@ -1,7 +1,7 @@
 package com.megacorp.humanresources.entity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +18,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -98,13 +96,11 @@ public class Employee {
 		return this.address != null ? this.address.getAddressId() : null;
 	}
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name = "HIRE_DATE", nullable = true)
-	private Date hireDate;
+	private LocalDate hireDate;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name = "TERMINATION_DATE", nullable = true)
-	private Date terminationDate;
+	private LocalDate terminationDate;
 	
 	@Column(name = "ANNUAL_SALARY", nullable = true)
 	private Long annualSalary;
@@ -123,8 +119,8 @@ public class Employee {
 				", age=" + age +
 				", managerId=" + (manager != null ? this.manager.getEmployeeId() : null) +
 				", addressId=" + (address != null ? this.address.getAddressId() : null) +
-				", hireDate=" + (hireDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(hireDate) : null) +
-				", terminationDate=" + (terminationDate != null ? new SimpleDateFormat("MM/dd/yyyy").format(terminationDate) : null) +
+				", hireDate=" + (hireDate != null ? hireDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) : null) +
+				", terminationDate=" + (terminationDate != null ? terminationDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) : null) +
 				", annualSalary=" + annualSalary +
 				'}';
 	}

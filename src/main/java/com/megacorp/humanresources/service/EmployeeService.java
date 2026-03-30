@@ -1,6 +1,6 @@
 package com.megacorp.humanresources.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.megacorp.humanresources.entity.Employee;
@@ -24,8 +24,8 @@ public interface EmployeeService {
 		String ethnicity,
 		Long managerId,
 		Long addressId,
-		Date hireDate,
-		Date terminationDate,
+		LocalDate hireDate,
+		LocalDate terminationDate,
 		Long annualSalary
 	);
 
@@ -52,12 +52,12 @@ public interface EmployeeService {
 		String state,
 		String city,
 		String postalCode,
-		Date hireDate,
-		Date hireDateFirst,
-		Date hireDateLast,
-		Date terminationDate,
-		Date terminationDateFirst,
-		Date terminationDateLast,
+		LocalDate hireDate,
+		LocalDate hireDateFirst,
+		LocalDate hireDateLast,
+		LocalDate terminationDate,
+		LocalDate terminationDateFirst,
+		LocalDate terminationDateLast,
 		Long annualSalary,
 		Integer pageNumber, 
 		Integer pageSize, 
@@ -81,12 +81,12 @@ public interface EmployeeService {
 		String state,
 		String city,
 		String postalCode,
-		Date hireDate,
-		Date hireDateFirst,
-		Date hireDateLast,
-		Date terminationDate,
-		Date terminationDateFirst,
-		Date terminationDateLast,
+		LocalDate hireDate,
+		LocalDate hireDateFirst,
+		LocalDate hireDateLast,
+		LocalDate terminationDate,
+		LocalDate terminationDateFirst,
+		LocalDate terminationDateLast,
 		Long annualSalary
 	);
 

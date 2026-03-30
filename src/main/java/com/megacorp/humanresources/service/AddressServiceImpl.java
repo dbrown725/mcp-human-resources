@@ -58,8 +58,7 @@ public class AddressServiceImpl implements AddressService {
             @ToolParam(required = false) String postalCode,
             @ToolParam(required = false) Boolean isRemote) {
 
-        Specification<Address> specification = Specification.where(null);
-
+        Specification<Address> specification = (root, query, criteriaBuilder) -> criteriaBuilder.conjunction();
         if (city != null && !city.isEmpty()) {
             specification = specification.and(AddressSpecifications.hasCity(city));
         }

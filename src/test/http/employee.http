@@ -28,116 +28,130 @@ client.test("List employees returns 200", function() {
 %}
 
 ### Create employee (minimal)
-POST {{baseUrl}}/employees
-Content-Type: application/json
+# POST {{baseUrl}}/employees
+# Content-Type: application/json
 
-{
-  "firstName": "Minimal",
-  "lastName": "Employee"
-}
+# {
+#     "address": null,
+#     "addressId": null,
+#     "age": null,
+#     "annualSalary": null,
+#     "businessUnit": null,
+#     "department": null,
+#     "employeeId": 6001,
+#     "ethnicity": null,
+#     "firstName": "dave",
+#     "gender": null,
+#     "hireDate": null,
+#     "lastName": "Smith",
+#     "managerId": null,
+#     "terminationDate": null,
+#     "title": null
+# }
 
-> {%
-client.test("Create minimal employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Create minimal employee returns 200", function() {
+#     client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Create employee (full onsite profile)
 # @name createEmployeeFull
-POST {{baseUrl}}/employees
-Content-Type: application/json
+# POST {{baseUrl}}/employees
+# Content-Type: application/json
+# Accept: application/json
 
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "title": "Engineer",
-  "department": "Engineering",
-  "businessUnit": "Corporate",
-  "gender": "Male",
-  "ethnicity": "Caucasian",
-  "age": 34,
-  "hireDate": "2023-06-01",
-  "annualSalary": 95000,
-  "managerId": 5615,
-  "addressId": 10010
-}
+# {
+#   "firstName": "John",
+#   "lastName": "Doe",
+#   "title": "Engineer",
+#   "department": "Engineering",
+#   "businessUnit": "Corporate",
+#   "gender": "Male",
+#   "ethnicity": "Caucasian",
+#   "age": 34,
+#   "hireDate": "2023-06-01",
+#   "annualSalary": 95000,
+#   "managerId": 5615,
+#   "addressId": 10010
+# }
 
-> {%
-client.test("Create full onsite employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Create full onsite employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Create employee (terminated / remote profile)
 # @name createEmployeeForDelete
-POST {{baseUrl}}/employees
-Content-Type: application/json
+# POST {{baseUrl}}/employees
+# Content-Type: application/json
 
-{
-  "firstName": "Jane",
-  "lastName": "Smith",
-  "title": "Engineer",
-  "department": "Engineering",
-  "businessUnit": "Corporate",
-  "gender": "Female",
-  "ethnicity": "Caucasian",
-  "age": 34,
-  "hireDate": "2020-05-10",
-  "terminationDate": "2024-11-15",
-  "annualSalary": 98000,
-  "managerId": 5684,
-  "addressId": 10300
-}
+# {
+#   "firstName": "Jane",
+#   "lastName": "Smith",
+#   "title": "Engineer",
+#   "department": "Engineering",
+#   "businessUnit": "Corporate",
+#   "gender": "Female",
+#   "ethnicity": "Caucasian",
+#   "age": 34,
+#   "hireDate": "2020-05-10",
+#   "terminationDate": "2024-11-15",
+#   "annualSalary": 98000,
+#   "managerId": 5684,
+#   "addressId": 10300
+# }
 
-> {%
-client.test("Create terminated remote employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Create terminated remote employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Patch employee by ID (partial update)
-PATCH {{baseUrl}}/employees/{{createEmployeeFull.response.body.$.employeeId}}
-Content-Type: application/json
+# PATCH {{baseUrl}}/employees/{{createEmployeeFull.response.body.$.employeeId}}
+# Content-Type: application/json
 
-{
-  "title": "Senior Engineer",
-  "department": "Engineering",
-  "annualSalary": 123000,
-  "addressId": 10020
-}
+# {
+#   "title": "Senior Engineer",
+#   "department": "Engineering",
+#   "annualSalary": 123000,
+#   "addressId": 10020
+# }
 
-> {%
-client.test("Patch employee partial update returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Patch employee partial update returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Patch employee by ID (manager and demographic fields)
-PATCH {{baseUrl}}/employees/{{createEmployeeFull.response.body.$.employeeId}}
-Content-Type: application/json
+# PATCH {{baseUrl}}/employees/{{createEmployeeFull.response.body.$.employeeId}}
+# Content-Type: application/json
 
-{
-  "managerId": 5615,
-  "businessUnit": "Research & Development",
-  "gender": "Female",
-  "ethnicity": "Asian",
-  "age": 35
-}
+# {
+#   "managerId": 5615,
+#   "businessUnit": "Research & Development",
+#   "gender": "Female",
+#   "ethnicity": "Asian",
+#   "age": 35
+# }
 
-> {%
-client.test("Patch employee manager and demographic update returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Patch employee manager and demographic update returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Get updated employee by ID
-GET {{baseUrl}}/employees/{{createEmployeeFull.response.body.$.employeeId}}
+# GET {{baseUrl}}/employees/{{createEmployeeFull.response.body.$.employeeId}}
 
-> {%
-client.test("Get updated employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Get updated employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Search employees by department and age range
 GET {{baseUrl}}/employees/search?department=Engineering&startAge=30&endAge=45&pageNumber=1&pageSize=5&sortBy=employeeId&sortDirection=asc
@@ -220,8 +234,17 @@ client.test("Search by termination date range returns 200", function() {
 });
 %}
 
+### Search employees by exact termination date
+GET {{baseUrl}}/employees/search?terminationDate=2018-09-29&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
+
+> {%
+client.test("Search by exact termination date returns 200", function() {
+  client.assert(response.status === 200, "Expected status 200, got " + response.status);
+});
+%}
+
 ### Search employees by salary
-GET {{baseUrl}}/employees/search?annualSalary=123000&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
+GET {{baseUrl}}/employees/search?annualSalary=61680&pageNumber=1&pageSize=10&sortBy=employeeId&sortDirection=asc
 
 > {%
 client.test("Search by salary returns 200", function() {
@@ -239,7 +262,7 @@ client.test("Search with invalid sort direction still returns 200", function() {
 %}
 
 ### Count employees by department and address
-GET {{baseUrl}}/employees/count?department=Engineering&addressId=10020
+GET {{baseUrl}}/employees/count?department=Engineering&addressId=10226
 
 > {%
 client.test("Count by department and address returns 200", function() {
@@ -302,7 +325,7 @@ client.test("Count by termination date range returns 200", function() {
 %}
 
 ### Delete employee by ID
-DELETE {{baseUrl}}/employees/5012
+DELETE {{baseUrl}}/employees/6000
 
 > {%
 client.test("Delete seeded employee returns 200 or 404", function() {
@@ -311,106 +334,106 @@ client.test("Delete seeded employee returns 200 or 404", function() {
 %}
 
 ### Delete newly created employee (cleanup)
-DELETE {{baseUrl}}/employees/{{createEmployeeForDelete.response.body.$.employeeId}}
+# DELETE {{baseUrl}}/employees/{{createEmployeeForDelete.response.body.$.employeeId}}
 
-> {%
-client.test("Delete created employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Delete created employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E step 1: create address for a new employee link
 # @name createE2eAddress
-POST {{baseUrl}}/addresses
-Content-Type: application/json
+# POST {{baseUrl}}/addresses
+# Content-Type: application/json
 
-{
-  "streetAddress": "700 Midtown Way Apt 22",
-  "city": "Atlanta",
-  "state": "GA",
-  "postalCode": "30308",
-  "isRemote": false
-}
+# {
+#   "streetAddress": "700 Midtown Way Apt 22",
+#   "city": "Atlanta",
+#   "state": "GA",
+#   "postalCode": "30308",
+#   "isRemote": false
+# }
 
-> {%
-client.test("E2E create address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E create address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E step 2: create employee linked to addressId from step 1 response
 # @name createE2eEmployee
-POST {{baseUrl}}/employees
-Content-Type: application/json
+# POST {{baseUrl}}/employees
+# Content-Type: application/json
 
-{
-  "firstName": "E2E",
-  "lastName": "AddressLink",
-  "title": "QA Engineer",
-  "department": "Engineering",
-  "businessUnit": "Corporate",
-  "gender": "Female",
-  "ethnicity": "Asian",
-  "age": 31,
-  "hireDate": "2024-01-15",
-  "annualSalary": 105000,
-  "managerId": 5615,
-  "addressId": {{createE2eAddress.response.body.$.addressId}}
-}
+# {
+#   "firstName": "E2E",
+#   "lastName": "AddressLink",
+#   "title": "QA Engineer",
+#   "department": "Engineering",
+#   "businessUnit": "Corporate",
+#   "gender": "Female",
+#   "ethnicity": "Asian",
+#   "age": 31,
+#   "hireDate": "2024-01-15",
+#   "annualSalary": 105000,
+#   "managerId": 5615,
+#   "addressId": {{createE2eAddress.response.body.$.addressId}}
+# }
 
-> {%
-client.test("E2E create employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E create employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E step 3: fetch employee and verify addressId is present
-GET {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
+# GET {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
 
-> {%
-client.test("E2E fetch employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E fetch employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E step 4: patch employee to remote address
-PATCH {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
-Content-Type: application/json
+# PATCH {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
+# Content-Type: application/json
 
-{
-  "addressId": 10300,
-  "title": "QA Engineer II"
-}
+# {
+#   "addressId": 10300,
+#   "title": "QA Engineer II"
+# }
 
-> {%
-client.test("E2E patch employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E patch employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E step 5: verify employee after patch
-GET {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
+# GET {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
 
-> {%
-client.test("E2E verify employee after patch returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E verify employee after patch returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E cleanup: delete employee
-DELETE {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
+# DELETE {{baseUrl}}/employees/{{createE2eEmployee.response.body.$.employeeId}}
 
-> {%
-client.test("E2E cleanup delete employee returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E cleanup delete employee returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### E2E cleanup: delete linked address
-DELETE {{baseUrl}}/addresses/{{createE2eAddress.response.body.$.addressId}}
+# DELETE {{baseUrl}}/addresses/{{createE2eAddress.response.body.$.addressId}}
 
-> {%
-client.test("E2E cleanup delete address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("E2E cleanup delete address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}

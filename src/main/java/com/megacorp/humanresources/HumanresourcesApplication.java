@@ -11,7 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
-
+import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
+import org.springframework.boot.data.mongodb.autoconfigure.DataMongoAutoConfiguration;
 import com.megacorp.humanresources.service.EmployeeService;
 import com.megacorp.humanresources.service.BenefitsService;
 import com.megacorp.humanresources.service.BraveSearchService;
@@ -24,7 +25,10 @@ import com.megacorp.humanresources.service.AddressService;
 
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+	MongoAutoConfiguration.class, 
+	DataMongoAutoConfiguration.class
+})
 public class HumanresourcesApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(HumanresourcesApplication.class);

@@ -16,7 +16,8 @@ class EmployeeStateToolIntegrationTest {
     @Autowired
     private EmployeeServiceImpl employeeService;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Test
     void countEmployeesInStateAcceptsFullStateName() {

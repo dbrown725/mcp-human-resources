@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class EmailIdleService {
     private final RagService ragService;
     private final FileStorageService fileStorageService;
     private final ChatClient chatClient;
-    private final ObjectMapper objectMapper;
+    private final JsonMapper jsonMapper;
     private final ConcurrentMap<String, CachedPolicyText> policyTextCache = new ConcurrentHashMap<>();
     
     private volatile boolean running = false;
@@ -90,14 +90,14 @@ public class EmailIdleService {
         ChatClient.Builder chatClientBuilder,
         List<McpSyncClient> mcpSyncClients,
         CallAdvisor chatClientLoggingAdvisor,
-        ObjectMapper objectMapper
+        JsonMapper jsonMapper
     ) {
         this.emailHelper = emailHelper;
         this.emailService = emailService;
         this.employeeService = employeeService;
         this.ragService = ragService;
         this.fileStorageService = fileStorageService;
-        this.objectMapper = objectMapper;
+        this.jsonMapper = jsonMapper;
         this.chatClient = chatClientBuilder
             .defaultAdvisors(chatClientLoggingAdvisor)
             .defaultToolCallbacks(SyncMcpToolCallbackProvider.builder().mcpClients(mcpSyncClients).build())
@@ -382,7 +382,7 @@ public class EmailIdleService {
                 .replace("```", "")
                 .trim();
 
-            FlowClassificationDto dto = objectMapper.readValue(cleaned, FlowClassificationDto.class);
+            FlowClassificationDto dto = jsonMapper.readValue(cleaned, FlowClassificationDto.class);
             if (dto.flow == null || dto.flow.isBlank()) {
                 return null;
             }
@@ -530,7 +530,7 @@ public class EmailIdleService {
             .trim();
 
         try {
-            DraftResponseDto dto = objectMapper.readValue(cleaned, DraftResponseDto.class);
+            DraftResponseDto dto = jsonMapper.readValue(cleaned, DraftResponseDto.class);
             logger.debug("Parsed draft response: {}", dto);
             return new DraftResponse(
                 dto.replyBody == null ? "" : dto.replyBody,

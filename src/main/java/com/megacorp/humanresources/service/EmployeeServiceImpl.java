@@ -1,10 +1,11 @@
 package com.megacorp.humanresources.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -142,7 +143,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		logger.debug("saveEmployeeByName inputs - firstName: {}, lastName: {}", firstName, lastName);
 		Employee employee = new Employee(firstName, lastName);
 		try {
-			employee.setHireDate(new java.text.SimpleDateFormat("MM/dd/yyyy").parse("09/09/9999"));
+			employee.setHireDate(java.time.LocalDate.of(9999, 9, 9));
 		} catch (Exception e) {
 			logger.error("Error parsing hire date", e);
 		}
@@ -189,10 +190,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Tool(
 		name = "update_employee",
 		description = "Update specific fields of an Employee. Optional parameters: firstName, lastName, age, department, " +
-			"title, businessUnit, gender, ethnicity, managerId, addressId, hireDate, terminationDate, annualSalary. " +
+			"title, businessUnit, gender, ethnicity, managerId, addressId, hireDate (Format: YYYY-MM-DD), terminationDate (Format: YYYY-MM-DD), annualSalary. " +
 			"Only non-null parameters will be updated. Requires employeeId."
 	)
-	public Employee updateEmployee(
+	public Employee updateEmployeeTool(
 		Long employeeId,
 		@ToolParam(required = false) String firstName,
 		@ToolParam(required = false) String lastName,
@@ -204,9 +205,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false) String ethnicity,
 		@ToolParam(required = false) Long managerId,
 		@ToolParam(required = false) Long addressId,
-		@ToolParam(required = false) Date hireDate,
-		@ToolParam(required = false) Date terminationDate,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDate,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDate,
 		@ToolParam(required = false) Long annualSalary
+	) {
+		return updateEmployee(
+			employeeId, firstName, lastName, age, department, title, businessUnit, gender, ethnicity,
+			managerId, addressId, parseDate(hireDate), parseDate(terminationDate), annualSalary
+		);
+	}
+
+	public Employee updateEmployee(
+		Long employeeId,
+		String firstName,
+		String lastName,
+		Long age,
+		String department,
+		String title,
+		String businessUnit,
+		String gender,
+		String ethnicity,
+		Long managerId,
+		Long addressId,
+		LocalDate hireDate,
+		LocalDate terminationDate,
+		Long annualSalary
 	)
 	{
 		logger.debug("Entering updateEmployee("
@@ -348,9 +371,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		name = "search_employees",
 		description = "Get a Page of employees. Optional parameters: pageNumber, pageSize, sortBy (any Employee field), " +
 		"sortDirection (desc or asc), firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, " +
-		"managerId, addressId, state (US state in address, e.g. GA or Georgia), city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
+		"managerId, addressId, state (US state in address, e.g. GA or Georgia), city, postalCode, hireDate (Format: YYYY-MM-DD), hireDateFirst (Format: YYYY-MM-DD), hireDateLast (Format: YYYY-MM-DD), terminationDate (Format: YYYY-MM-DD), terminationDateFirst (Format: YYYY-MM-DD), terminationDateLast (Format: YYYY-MM-DD), annualSalary."
 	)
-	public String searchEmployees(
+	public String searchEmployeesTool(
 		@ToolParam(required = false) String firstName,
 		@ToolParam(required = false) String lastName,
 		@ToolParam(required = false) Integer startAge,
@@ -365,17 +388,53 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false, description = "US state in employee address; accepts 2-letter code or full state name") String state,
 		@ToolParam(required = false, description = "City in employee address") String city,
 		@ToolParam(required = false, description = "ZIP/postal code in employee address") String postalCode,
-		@ToolParam(required = false) Date hireDate,
-		@ToolParam(required = false) Date hireDateFirst,
-		@ToolParam(required = false) Date hireDateLast,
-		@ToolParam(required = false) Date terminationDate,
-		@ToolParam(required = false) Date terminationDateFirst,
-		@ToolParam(required = false) Date terminationDateLast,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDate,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDateFirst,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDateLast,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDate,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDateFirst,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDateLast,
 		@ToolParam(required = false) Long annualSalary,
 		@ToolParam(required = false) Integer pageNumber, 
 		@ToolParam(required = false) Integer pageSize, 
 		@ToolParam(required = false) String sortBy, 
 		@ToolParam(required = false) String sortDirection
+	) {
+		return searchEmployees(
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
+			managerId, addressId, state, city, postalCode, 
+			parseDate(hireDate), parseDate(hireDateFirst), parseDate(hireDateLast), 
+			parseDate(terminationDate), parseDate(terminationDateFirst), parseDate(terminationDateLast), 
+			annualSalary, pageNumber, pageSize, sortBy, sortDirection
+		);
+	}
+
+	public String searchEmployees(
+		String firstName,
+		String lastName,
+		Integer startAge,
+		Integer endAge,
+		String department,
+		String title,
+		String businessUnit,
+		String gender,
+		String ethnicity,
+		Long managerId,
+		Long addressId,
+		String state,
+		String city,
+		String postalCode,
+		LocalDate hireDate,
+		LocalDate hireDateFirst,
+		LocalDate hireDateLast,
+		LocalDate terminationDate,
+		LocalDate terminationDateFirst,
+		LocalDate terminationDateLast,
+		Long annualSalary,
+		Integer pageNumber, 
+		Integer pageSize, 
+		String sortBy, 
+		String sortDirection
 	)
 	{
 		logger.debug("Entering searchEmployees("
@@ -429,6 +488,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			response.put("sort", result.getSort().toString());
 
 			ObjectMapper mapper = new ObjectMapper();
+			mapper.registerModule(new JavaTimeModule());
 			String json = mapper.writeValueAsString(response);
 			logger.debug("searchEmployees result JSON: {}", json);
 			logger.info("Employee search completed successfully with {} results", result.getNumberOfElements());
@@ -464,9 +524,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Tool(
 		name = "count_employees",
-		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, state (US state in address, e.g. GA or Georgia), city, postalCode, hireDate, hireDateFirst, hireDateLast, terminationDate, terminationDateFirst, terminationDateLast, annualSalary."
+		description = "Count employees matching optional parameters: firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity, managerId, addressId, state (US state in address, e.g. GA or Georgia), city, postalCode, hireDate (Format: YYYY-MM-DD), hireDateFirst (Format: YYYY-MM-DD), hireDateLast (Format: YYYY-MM-DD), terminationDate (Format: YYYY-MM-DD), terminationDateFirst (Format: YYYY-MM-DD), terminationDateLast (Format: YYYY-MM-DD), annualSalary."
 	)
-	public EmployeeCount countEmployees(
+	public EmployeeCount countEmployeesTool(
 		@ToolParam(required = false) String firstName,
 		@ToolParam(required = false) String lastName,
 		@ToolParam(required = false) Integer startAge,
@@ -481,13 +541,45 @@ public class EmployeeServiceImpl implements EmployeeService {
 		@ToolParam(required = false, description = "US state in employee address; accepts 2-letter code or full state name") String state,
 		@ToolParam(required = false, description = "City in employee address") String city,
 		@ToolParam(required = false, description = "ZIP/postal code in employee address") String postalCode,
-		@ToolParam(required = false) Date hireDate,
-		@ToolParam(required = false) Date hireDateFirst,
-		@ToolParam(required = false) Date hireDateLast,
-		@ToolParam(required = false) Date terminationDate,
-		@ToolParam(required = false) Date terminationDateFirst,
-		@ToolParam(required = false) Date terminationDateLast,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDate,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDateFirst,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String hireDateLast,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDate,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDateFirst,
+		@ToolParam(required = false, description = "Format: YYYY-MM-DD") String terminationDateLast,
 		@ToolParam(required = false) Long annualSalary
+	) {
+		return countEmployees(
+			firstName, lastName, startAge, endAge, department, title, businessUnit, gender, ethnicity,
+			managerId, addressId, state, city, postalCode, 
+			parseDate(hireDate), parseDate(hireDateFirst), parseDate(hireDateLast), 
+			parseDate(terminationDate), parseDate(terminationDateFirst), parseDate(terminationDateLast), 
+			annualSalary
+		);
+	}
+
+	public EmployeeCount countEmployees(
+		String firstName,
+		String lastName,
+		Integer startAge,
+		Integer endAge,
+		String department,
+		String title,
+		String businessUnit,
+		String gender,
+		String ethnicity,
+		Long managerId,
+		Long addressId,
+		String state,
+		String city,
+		String postalCode,
+		LocalDate hireDate,
+		LocalDate hireDateFirst,
+		LocalDate hireDateLast,
+		LocalDate terminationDate,
+		LocalDate terminationDateFirst,
+		LocalDate terminationDateLast,
+		Long annualSalary
 	) {
 		logger.debug("Entering countEmployees("
 			+ "firstName={}, lastName={}, startAge={}, endAge={}, department={}, title={}, businessUnit={}, gender={}, ethnicity={}, managerId={}, addressId={}, state={}, city={}, postalCode={}, hireDate={}, hireDateFirst={}, hireDateLast={}, terminationDate={}, terminationDateFirst={}, terminationDateLast={}, annualSalary={})",
@@ -644,9 +736,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String firstName, String lastName, Integer startAge, Integer endAge,
 		String department, String title, String businessUnit,
 		String gender, String ethnicity,
-		Long managerId, Long addressId, String state, String city, String postalCode, Date hireDate, Date hireDateFirst, Date hireDateLast, Date terminationDate, Date terminationDateFirst, Date terminationDateLast, Long annualSalary) {
+		Long managerId, Long addressId, String state, String city, String postalCode, LocalDate hireDate, LocalDate hireDateFirst, LocalDate hireDateLast, LocalDate terminationDate, LocalDate terminationDateFirst, LocalDate terminationDateLast, Long annualSalary) {
 
-		Specification<Employee> spec = Specification.where(null);
+		Specification<Employee> spec = (root, query, cb) -> cb.conjunction();
 
 		if (firstName != null && !firstName.isEmpty()) {
 			spec = spec.and(EmployeeSpecifications.hasFirstName(firstName));
@@ -723,5 +815,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	private String normalizePostalCode(String postalCode) {
 		return postalCode.trim();
+	}
+
+	private LocalDate parseDate(String dateStr) {
+		if (dateStr == null || dateStr.trim().isEmpty()) {
+			return null;
+		}
+		try {
+			return LocalDate.parse(dateStr);
+		} catch (Exception e) {
+			logger.warn("Failed to parse date string: {}", dateStr, e);
+			return null;
+		}
 	}
 }

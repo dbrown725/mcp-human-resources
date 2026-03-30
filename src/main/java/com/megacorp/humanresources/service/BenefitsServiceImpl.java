@@ -1,6 +1,6 @@
 package com.megacorp.humanresources.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,6 +81,7 @@ public class BenefitsServiceImpl implements BenefitsService {
     }
 
     // ==================== Enrollment Operations ====================
+    
 
     @Override
     @Tool(name = "get_employee_benefit_enrollments", description = "Get all benefit enrollments for a specific employee by their employee ID. Returns the list of plans the employee is enrolled in.")
@@ -144,10 +145,10 @@ public class BenefitsServiceImpl implements BenefitsService {
         }
 
         EmployeeBenefit enrollment = EmployeeBenefit.builder()
-                .employee(employee)
-                .benefitsPlan(plan)
-                .enrollmentDate(new Date())
-                .build();
+            .employee(employee)
+            .benefitsPlan(plan)
+            .enrollmentDate(LocalDate.now())
+            .build();
 
         EmployeeBenefit saved = employeeBenefitRepository.save(enrollment);
         logger.info("Employee {} enrolled in plan {} ({})", employeeId, planId, plan.getPlanName());

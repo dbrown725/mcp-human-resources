@@ -1,6 +1,6 @@
 package com.megacorp.humanresources.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,8 +14,6 @@ import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,9 +51,8 @@ public class EmployeeBenefit {
     @JoinColumn(name = "PLAN_ID", nullable = false)
     private BenefitsConfig benefitsPlan;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "ENROLLMENT_DATE")
-    private Date enrollmentDate;
+    private LocalDate enrollmentDate;
 
     @JsonProperty("employeeId")
     public Long getEmployeeId() {

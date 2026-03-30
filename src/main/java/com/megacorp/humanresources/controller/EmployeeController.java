@@ -1,6 +1,6 @@
 package com.megacorp.humanresources.controller;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.megacorp.humanresources.entity.Employee;
@@ -99,12 +99,12 @@ public class EmployeeController {
 			@RequestParam(required = false) String state,
 			@RequestParam(required = false) String city,
 			@RequestParam(required = false) String postalCode,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateFirst,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateLast,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDate,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateFirst,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateLast,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDateLast,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate terminationDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate terminationDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate terminationDateLast,
 			@RequestParam(required = false) Long annualSalary,
 			@RequestParam(required = false) Integer pageNumber,
 			@RequestParam(required = false) Integer pageSize,
@@ -158,12 +158,12 @@ public class EmployeeController {
 			@RequestParam(required = false) String state,
 			@RequestParam(required = false) String city,
 			@RequestParam(required = false) String postalCode,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateFirst,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDateLast,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDate,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateFirst,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date terminationDateLast,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hireDateLast,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate terminationDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate terminationDateFirst,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate terminationDateLast,
 			@RequestParam(required = false) Long annualSalary) {
 
 		log.debug("Entering countEmployees endpoint");
@@ -204,9 +204,9 @@ public class EmployeeController {
 		public Long managerId;
 		public Long addressId;
 		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-		public Date hireDate;
+		public LocalDate hireDate;
 		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-		public Date terminationDate;
+		public LocalDate terminationDate;
 		public Long annualSalary;
 	}
 }

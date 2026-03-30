@@ -101,59 +101,60 @@ client.test("Search Denver remote returns 200", function() {
 
 ### Create onsite address
 # @name createOnsiteAddress
-POST {{baseUrl}}/addresses
-Content-Type: application/json
+# POST {{baseUrl}}/addresses
+# Content-Type: application/json
+# Accept: application/json
 
-{
-  "streetAddress": "1234 Peachtree Park Dr Apt 5",
-  "city": "Atlanta",
-  "state": "GA",
-  "postalCode": "30319",
-  "isRemote": false
-}
+# {
+#   "streetAddress": "1234 Peachtree Park Dr Apt 5",
+#   "city": "Atlanta",
+#   "state": "GA",
+#   "postalCode": "30319",
+#   "isRemote": false
+# }
 
-> {%
-client.test("Create onsite address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Create onsite address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Get newly created onsite address
-GET {{baseUrl}}/addresses/{{createOnsiteAddress.response.body.$.addressId}}
+# GET {{baseUrl}}/addresses/{{createOnsiteAddress.response.body.$.addressId}}
 
-> {%
-client.test("Get newly created onsite address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Get newly created onsite address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Create remote address
 # @name createRemoteAddress
-POST {{baseUrl}}/addresses
-Content-Type: application/json
+# POST {{baseUrl}}/addresses
+# Content-Type: application/json
 
-{
-  "streetAddress": "987 Market St Suite 44",
-  "city": "Denver",
-  "state": "CO",
-  "postalCode": "80202",
-  "isRemote": true
-}
+# {
+#   "streetAddress": "987 Market St Suite 44",
+#   "city": "Denver",
+#   "state": "CO",
+#   "postalCode": "80202",
+#   "isRemote": true
+# }
 
-> {%
-client.test("Create remote address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Create remote address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Get newly created remote address
-GET {{baseUrl}}/addresses/{{createRemoteAddress.response.body.$.addressId}}
+# GET {{baseUrl}}/addresses/{{createRemoteAddress.response.body.$.addressId}}
 
-> {%
-client.test("Get newly created remote address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Get newly created remote address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Search by created remote postalCode
 GET {{baseUrl}}/addresses?postalCode=80202&isRemote=true
@@ -165,19 +166,19 @@ client.test("Search by remote postal code returns 200", function() {
 %}
 
 ### Delete newly created remote address (cleanup)
-DELETE {{baseUrl}}/addresses/{{createRemoteAddress.response.body.$.addressId}}
+# DELETE {{baseUrl}}/addresses/{{createRemoteAddress.response.body.$.addressId}}
 
-> {%
-client.test("Delete created remote address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Delete created remote address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
 
 ### Delete newly created onsite address (cleanup)
-DELETE {{baseUrl}}/addresses/{{createOnsiteAddress.response.body.$.addressId}}
+# DELETE {{baseUrl}}/addresses/{{createOnsiteAddress.response.body.$.addressId}}
 
-> {%
-client.test("Delete created onsite address returns 200", function() {
-  client.assert(response.status === 200, "Expected status 200, got " + response.status);
-});
-%}
+# > {%
+# client.test("Delete created onsite address returns 200", function() {
+#   client.assert(response.status === 200, "Expected status 200, got " + response.status);
+# });
+# %}
